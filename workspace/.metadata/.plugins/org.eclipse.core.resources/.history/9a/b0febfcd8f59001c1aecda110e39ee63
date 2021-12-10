@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+
+
+	<!-- DB Connection -->
+	<!-- DataSource 설정 -->
+	<bean destroy-method="close"
+		class="org.apache.commons.dbcp.BasicDataSource" id="dataSource">
+
+	<!-- Mybatis 설정 -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean"
+			id="sqlSessionFactory">
+
+			<property name="dataSource" ref="dataSource" />
+
+			<property value="classpath:config/mybatis-config.xml"
+				name="configLocation" />
+
+			<property value="classpath:query/admin/*.xml"
+				name="mapperLocations" />
+
+		</bean>
+
+
+
+		<bean destroy-method="clearCache"
+			class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
+
+			<!-- a Platform TransactionManager is Still required -->
+
+
+
+
+			<bean
+				class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+				id="transactionManager">
+
+				<property name="dataSource" ref="dataSource" />
+
+			</bean>
+
+
+
+			<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+
+
+
+				<property name="basePackage">
+
+					<value>com.camflex.**.**.dao</value>
+
+				</property>
+
+			</bean>
+
+</beans>
