@@ -3,7 +3,8 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 
 <ul class="nav nav-sidebar">
-	<li class="active"><a href="#">CamFlex<span class="sr-only">(current)</span></a></li>
+	<br>
 	<li><a href="/">캠핑 리스트</a></li>
+	<br>
 	<li><a href="/">캠핑 상품 등록</a></li>
 </ul>

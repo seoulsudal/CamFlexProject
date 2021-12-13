@@ -3,6 +3,6 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 
 <ul class="nav nav-sidebar">
-	<li class="active"><a href="#">CamFlex<span class="sr-only">(current)</span></a></li>
+	<br>
 	<li><a href="/">회원 정보</a></li>
 </ul>

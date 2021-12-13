@@ -21,7 +21,7 @@
 	<div id="navbar" class="collapse navbar-collapse">
 		<ul class="nav navbar-nav navbar-left">
 			<li><a href="/">공지사항</a></li>
-			<li><a href="/reservation/reservationDetail">예약</a></li>
+			<li><a href="/">예약</a></li>
 			<li><a href="/">마이 페이지</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
