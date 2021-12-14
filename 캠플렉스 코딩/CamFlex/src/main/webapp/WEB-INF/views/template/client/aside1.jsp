@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <ul class="nav nav-sidebar">
+	<li class="active"><a href="#">MENU<span class="sr-only">(current)</span></a></li>
 	<br>
 	<li><a href="/">캠핑장 리스트</a></li>
 	<br>

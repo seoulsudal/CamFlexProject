@@ -19,20 +19,25 @@ import oracle.jdbc.logging.annotations.Log;
 public class ReservationController {
 
 	private Logger log = LoggerFactory.getLogger(ReservationController.class);
-	
-	@Autowired
-	private ReservationService reservationService;
-	
-	/*실시간 예약 폼*/
+
+	/*
+	 * @Autowired private ReservationService reservationService;
+	 */
+
+	/* 실시간 예약 폼 */
 	@RequestMapping(value = "/reservationDetail")
 	public String reservationDetail(Model model) {
 		log.info("reservationDetail 호출 성공");
-		
+
 		return "reservation/reservationDetail";
 	}
-	
-	
-	
-	
-	
+
+	/* 실시간 예약 생성 */
+	@RequestMapping(value = "/reservationAgreePage")
+	public String reservationAgreePage() {
+		log.info("reservationAgreePage 호출 성공");
+		
+		return "reservation/reservationAgreePage";
+	}
+
 }
