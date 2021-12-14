@@ -62,5 +62,17 @@ public class ProductServiceImpl implements ProductService {
 		
 		return result;
 	}
+	@Override
+	public int productDelete(int p_number) {
+		
+		int result = 0;
+		try {
+			result = productDAO.productDelete(p_number);
+		}catch(Exception e) {
+			e.printStackTrace();
+			result = 0;
+		}
+		return result;
+	}
 
 }

@@ -74,14 +74,28 @@ public class ProductController {
 			throws IllegalStateException, IOException {
 		log.info("상품 등록 호출");
 		log.info("fileName : " + pvo.getFile().getOriginalFilename());
+		log.info("fileName : " + pvo.getFile1().getOriginalFilename());
+		log.info("fileName : " + pvo.getFile2().getOriginalFilename());
+		log.info("fileName : " + pvo.getFile3().getOriginalFilename());
 		int result = 0;
 		String url = "";
 
 		if (pvo.getFile() != null) {
-			String p_photo = FileUploadUtil.fileUpload(pvo.getFile(), request, "product");
-			pvo.setP_photo(p_photo);
+			String p_mainphoto = FileUploadUtil.fileUpload(pvo.getFile(), request, "product");
+			pvo.setP_mainphoto(p_mainphoto);
 		}
-
+		if (pvo.getFile1() != null) {
+			String p_photo1 = FileUploadUtil.fileUpload1(pvo.getFile1(), request, "product");
+			pvo.setP_photo1(p_photo1);
+		}
+		if (pvo.getFile2() != null) {
+			String p_photo2 = FileUploadUtil.fileUpload2(pvo.getFile2(), request, "product");
+			pvo.setP_photo2(p_photo2);
+		}
+		if (pvo.getFile3() != null) {
+			String p_photo3 = FileUploadUtil.fileUpload3(pvo.getFile3(), request, "product");
+			pvo.setP_photo3(p_photo3);
+		}
 		result = productService.regProduct(pvo);
 		if (result == 1) {
 			url = "/admin/product/productList";
@@ -135,7 +149,7 @@ public class ProductController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updateProduct(@ModelAttribute ProductVO pvo, HttpServletRequest request)
 			throws IllegalStateException, IOException {
-		log.info("상품 수정 페이지 호출 성공");
+		log.info("상품 수정 성공");
 
 		int result = 0;
 		String url = "";
@@ -143,17 +157,19 @@ public class ProductController {
 
 		if (!pvo.getFile().isEmpty()) {
 			log.info("======== file = " + pvo.getFile().getOriginalFilename());
-			if (!pvo.getP_photo().isEmpty()) {
-				FileUploadUtil.fileDelete(pvo.getP_photo(), request);
+			if (!pvo.getP_mainphoto().isEmpty()) {
+				System.out.println("error is here?");
+				FileUploadUtil.fileDelete(pvo.getP_mainphoto(), request);
 			}
+			System.out.println("hello?");
 			p_photo = FileUploadUtil.fileUpload(pvo.getFile(), request, "product");
-			pvo.setP_photo(p_photo);
+			pvo.setP_mainphoto(p_photo);
 		} else {
 			log.info("첨부 파일 없음");
-			pvo.setP_photo("");
+			pvo.setP_mainphoto("");
 		}
 
-		log.info("======== p_photo = " + pvo.getP_photo());
+		log.info("======== p_photo = " + pvo.getP_mainphoto());
 		result = productService.updateProduct(pvo);
 
 		if (result == 1) {
@@ -161,5 +177,24 @@ public class ProductController {
 		}
 		return "redirect:" + url;
 	}
+	
+	/**************************************
+	 * 상품 삭제 구현 (안 쓸 예정)
+	 **************************************/
+	/*
+	 * @RequestMapping(value = "/productDelete") public String
+	 * productDelete(@ModelAttribute ProductVO pvo, HttpServletRequest
+	 * request)throws IOException{ log.info("상품삭제 호출 성공");
+	 * 
+	 * // 아래 변수에는 입력 성공에 대한 상태값을 담는다. (1 or 0) int result = 0; String url = "";
+	 * 
+	 * if(!pvo.getP_photo().isEmpty()) { FileUploadUtil.fileDelete(pvo.getP_photo(),
+	 * request); }
+	 * 
+	 * result = productService.productDelete(pvo.getP_number()); if(result == 1) {
+	 * System.out.println("success"); url = "/admin/product/productList"; }else {
+	 * System.out.println("fail"); url = "/admin/product/productDetail?p_number=" +
+	 * pvo.getP_number(); } return "redirect:" + url; }
+	 */
 
 }

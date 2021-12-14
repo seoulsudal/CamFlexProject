@@ -43,4 +43,10 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSession.update(namespace + ".updateProduct", pvo);
 	}
 
+	@Override
+	public int productDelete(int p_number) {
+		
+		return sqlSession.delete(namespace + ".productDelete", p_number);
+	}
+
 }

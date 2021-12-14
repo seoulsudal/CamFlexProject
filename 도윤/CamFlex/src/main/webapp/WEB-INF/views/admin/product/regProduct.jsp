@@ -12,11 +12,27 @@
 <script type="text/javascript">
 $(function(){
 	$("#regProductBtn").click(function(){
+		if(!chkSubmit($('#p_type'), "상품 구분을")) return;
+		else if(!chkSubmit($('#p_name'), "상품명을")) return;
+		else if(!chkSubmit($('#p_price'), "상품 금액을"))return;
+		else if(!chkSubmit($('#p_information'), "상품 안내를"))return;
+		else if(!chkSubmit($('#file'), "이미지를")) return;
+		else if(!chkSubmit($('#file1'), "이미지를")) return;
+		else if(!chkSubmit($('#file2'), "이미지를")) return;
+		else if(!chkSubmit($('#file3'), "이미지를")) return;
+		else{
+		if($('#file').val() != ""){
+			if(!chkFile($('#file')))return;
+		}
+		if(confirm('등록을 진핼할까요?')){	
 		$("#regProductForm").attr({
 			"method":"post",
 			"action":"/admin/product/reg"
 		});	
 		$("#regProductForm").submit();
+		
+		}
+		}
 	});
 	
 	$("#productListBtn").click(function(){
@@ -24,13 +40,22 @@ $(function(){
 	});
 });
 function chkFile(item){
-    alert("aaa");
 	var ext = item.val().split('.').pop().toLowerCase();
 	if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
 		alert('gif, png, jpg, jpeg 파일만 업로드 할 수 있습니다.');
 		return false;
 	}else{
 		return true;	
+	}
+}
+function chkSubmit(item, msg){
+	if(item.val().replace(/\s/g,"") == ""){
+		alert(msg + "입력해 주세요.");
+		item.val("");
+		item.focus();
+		return false();
+	}else{
+		return true;
 	}
 }
 </script>
@@ -68,8 +93,21 @@ function chkFile(item){
 				</tr>
 				<tr>
 					<td>이미지</td>
-					<td><input type="file" name="file" id="file" value="이미지"></td>
+					<td><input type="file" name="file" id="file" value="p_mainphoto"></td>
 				</tr>
+				<tr>
+					<td>이미지</td>
+					<td><input type="file" name="file1" id="file1" value="p_photo1"></td>
+				</tr>
+				<tr>
+					<td>이미지</td>
+					<td><input type="file" name="file2" id="file2" value="p_photo2"></td>
+				</tr>
+				<tr>
+					<td>이미지</td>
+					<td><input type="file" name="file3" id="file3" value="p_photo3"></td>
+				</tr>
+				
 			</table>
 		</form>
 	</div>

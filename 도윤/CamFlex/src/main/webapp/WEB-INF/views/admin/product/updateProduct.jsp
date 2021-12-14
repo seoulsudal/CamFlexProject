@@ -12,12 +12,43 @@
 </script>
 <script type="text/javascript">
 $(function(){
+	var value = "${update.p_photo}";
+	if(value != ""){
+		var img = $("<img>");
+		$("#imgView").hover(function(){
+			img.attr({
+				src:"/uploadStorage/product/${update.p_photo}",
+				width:"450px",
+				height:"300px"
+			});
+			img.addClass("imgViewDate");
+			$("#imgArea").append(img);
+		},function(){
+			img.remove();
+		});
+	}else{
+		$('#imgView').hide();
+	}
+	
 	$("#updateProductBtn").click(function(){
+		if(!chkSubmit($('#p_type'), "상품 구분을")) return;
+		else if(!chkSubmit($('#p_name'), "상품명을")) return;
+		else if(!chkSubmit($('#p_price'), "상품 금액을"))return;
+		else if(!chkSubmit($('#p_information'), "상품 안내를"))return;
+		else if(!chkSubmit($('#file'), "이미지를")) return;
+		else{
+			if($('#file').val() != ""){
+				if(!chkFile($('#file')))return;
+			}
+			if(confirm('수정을 진핼할까요?')){
 		$("#updateProductForm").attr({
 			"method":"post",
-			"action":"/admin/product/updateProduct"
+			"action":"/admin/product/update"
 		});	
+		
 		$("#updateProductForm").submit();
+		}
+		}
 	});
 	
 	$("#productListBtn").click(function(){
@@ -25,13 +56,24 @@ $(function(){
 	});
 });
 function chkFile(item){
-    alert("aaa");
+
 	var ext = item.val().split('.').pop().toLowerCase();
 	if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
 		alert('gif, png, jpg, jpeg 파일만 업로드 할 수 있습니다.');
 		return false;
 	}else{
 		return true;	
+	}
+	
+}
+function chkSubmit(item, msg){
+	if(item.val().replace(/\s/g,"") == ""){
+		alert(msg + "입력해 주세요.");
+		item.val("");
+		item.focus();
+		return false();
+	}else{
+		return true;
 	}
 }
 </script>
@@ -71,7 +113,19 @@ function chkFile(item){
 				</tr>
 				<tr>
 					<td>이미지</td>
-					<td><input type="file" name="file" id="file" value="${update.file}"></td>
+					<td><input type="file" name="file" id="file"><span id="imgView">기존 이미지 파일명: ${update.p_mainphoto}<span id="imgArea"></span></span></td>
+				</tr>
+				<tr>
+					<td>이미지</td>
+					<td><input type="file" name="file1" id="file1" value="p_photo1"></td>
+				</tr>
+				<tr>
+					<td>이미지</td>
+					<td><input type="file" name="file2" id="file2" value="p_photo2"></td>
+				</tr>
+				<tr>
+					<td>이미지</td>
+					<td><input type="file" name="file3" id="file3" value="p_photo3"></td>
 				</tr>
 			</table>
 		</form>

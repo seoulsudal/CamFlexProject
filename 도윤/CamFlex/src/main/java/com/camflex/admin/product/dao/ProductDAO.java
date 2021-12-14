@@ -14,5 +14,7 @@ public interface ProductDAO {
 	public ProductVO productDetail(ProductVO pvo);
 
 	public int updateProduct(ProductVO pvo);
+
+	public int productDelete(int p_number);
 	
 }
