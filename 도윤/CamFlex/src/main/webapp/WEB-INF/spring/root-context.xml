@@ -11,6 +11,10 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- DB Connection -->
+	
+	<!-- <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jbdc/Oracle" />
+	</bean> -->
 	<!-- DataSource 설정 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />

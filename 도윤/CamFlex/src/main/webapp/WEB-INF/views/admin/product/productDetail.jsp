@@ -10,39 +10,51 @@
 <script type="text/javascript">
 $(function(){
 	$("#productModifyBtn").click(function(){
-		$("#updateProductForm").attr({
-			"method":"GET",
+		$("#detailForm").attr({
+			"method":"post",
 			"action":"/admin/product/updateProduct"
 		});	
-		$("#updateProductForm").submit();
+		$("#detailForm").submit();
 	});
 	
 	$("#productListBtn").click(function(){
 		location.href="/admin/product/productList";
 	});
+	
+});
+$(function(){
+	var file = "<c:out value='${detail.p_photo}' />";
+	if(file != ""){
+		$("#fileImage").attr({
+			src:"/uploadStorage/product/${detail.p_photo}",
+			width:"450px",
+			height:"300px"
+		});
+	}
 });
 </script>
 </head>
 <body>
 <div>
 	<div align="center"><h2>캠핑장 상세 페이지</h2></div>
-	<form id="p_detail" method = "post">
-		<input type="hidden" name="p_number" value="${productDetail.p_number}"/>
+	<form id="p_detail" name="p_detail" method = "post">
+		<input type="hidden" name="p_number" value="${detail.p_number}"/>
+		<input type="hidden" name="p_photo" id="p_photo" value="${detail.p_photo}" />
 	</form>
-	<form>
+	<form id="detailForm" name="detailForm">
 		<table align="center" border="1">
 			<tr align="center">
-				<td width="400px" height="500px" rowspan="2">이미지</td>
-				<td width="600px" height="300px">상품유형 & 상품명 & 상품 안내</td>
+				<td width="400px" height="500px" rowspan="2"><img id="fileImage"></td>
+				<td width="600px" height="300px">${detail.p_name}<br>${detail.p_information}<br></td>
 			</tr>
 			<tr align="center">
-				<td>이용 금액 설명</td>
+				<td>${detail.p_price}</td>
 			</tr>
 		</table>
 	</form>
 	<div align="center">
-		<input type="button" value="목록" id="productListBtn">
 		<input type="button" value="수정" id="productModifyBtn">
+		<input type="button" value="목록" id="productListBtn">		
 	</div>
 </div>
 </body>
