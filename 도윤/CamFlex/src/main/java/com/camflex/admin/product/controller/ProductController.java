@@ -1,8 +1,10 @@
 package com.camflex.admin.product.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.camflex.admin.product.service.ProductService;
 import com.camflex.admin.product.vo.ProductVO;
+import com.camflex.common.file.FileUploadUtil;
 
 @Controller
 @RequestMapping(value = "/admin/product")
@@ -57,8 +60,8 @@ public class ProductController {
 	/*************************************
 	 * 상품 등록 폼 출력
 	 ************************************/
-	@RequestMapping(value = "/regForm", method = RequestMethod.GET)
-	public String regForm() {
+	@RequestMapping(value = "/regProduct", method = RequestMethod.GET)
+	public String regForm(HttpSession session) {
 		log.info("상품 등록 폼 호출 성공");
 		return "admin/product/regProduct";
 	}
@@ -66,38 +69,97 @@ public class ProductController {
 	/*************************************
 	 * 상품 등록 구현
 	 *************************************/
-	@RequestMapping(value = "/regProduct", method = RequestMethod.GET)
-	public String regProduct(@ModelAttribute ProductVO pvo, Model model) {
+	@RequestMapping(value = "/reg", method = RequestMethod.POST)
+	public String regProduct(@ModelAttribute ProductVO pvo, Model model, HttpServletRequest request)
+			throws IllegalStateException, IOException {
 		log.info("상품 등록 호출");
-
+		log.info("fileName : " + pvo.getFile().getOriginalFilename());
 		int result = 0;
 		String url = "";
+
+		if (pvo.getFile() != null) {
+			String p_photo = FileUploadUtil.fileUpload(pvo.getFile(), request, "product");
+			pvo.setP_photo(p_photo);
+		}
 
 		result = productService.regProduct(pvo);
 		if (result == 1) {
 			url = "/admin/product/productList";
 		} else {
 			model.addAttribute("code", 1);
-			url = "/admin/product/regForm";
+			url = "/admin/product/regProduct";
 		}
 		return "redirect:" + url;
 	}
-	
+
+	/************************************
+	 * 상품 상세 페이지
+	 ***********************************/
 	@RequestMapping(value = "/productDetail", method = RequestMethod.GET)
 	public String productDetail(@ModelAttribute ProductVO pvo, Model model) {
 		log.info("상품 상세 페이지 호출 성공");
 		log.info("p_number = " + pvo.getP_number());
-		
+
 		ProductVO detail = new ProductVO();
 		detail = productService.productDetail(pvo);
-		
-		if(detail != null) {
+
+		if (detail != null) {
 			detail.setP_information(detail.getP_information().toString().replaceAll("\n", "<br>"));
 		}
-		
+
 		model.addAttribute("detail", detail);
-		
+
 		return "admin/product/productDetail";
+	}
+
+	/****************************************
+	 * 상품 수정 폼
+	 ****************************************/
+	@RequestMapping(value = "/updateProduct", method = RequestMethod.POST)
+	public String updateForm(@ModelAttribute ProductVO pvo, Model model) {
+		log.info("상품 수정 폼 호출 성공");
+
+		log.info("p_number = " + pvo.getP_number());
+
+		ProductVO update = new ProductVO();
+		update = productService.productDetail(pvo);
+
+		model.addAttribute("update", update);
+
+		return "admin/product/updateProduct";
+	}
+
+	/*********************************
+	 * 상품 수정 구현
+	 *********************************/
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String updateProduct(@ModelAttribute ProductVO pvo, HttpServletRequest request)
+			throws IllegalStateException, IOException {
+		log.info("상품 수정 페이지 호출 성공");
+
+		int result = 0;
+		String url = "";
+		String p_photo = "";
+
+		if (!pvo.getFile().isEmpty()) {
+			log.info("======== file = " + pvo.getFile().getOriginalFilename());
+			if (!pvo.getP_photo().isEmpty()) {
+				FileUploadUtil.fileDelete(pvo.getP_photo(), request);
+			}
+			p_photo = FileUploadUtil.fileUpload(pvo.getFile(), request, "product");
+			pvo.setP_photo(p_photo);
+		} else {
+			log.info("첨부 파일 없음");
+			pvo.setP_photo("");
+		}
+
+		log.info("======== p_photo = " + pvo.getP_photo());
+		result = productService.updateProduct(pvo);
+
+		if (result == 1) {
+			url = "/admin/product/productDetail?p_number=" + pvo.getP_number();
+		}
+		return "redirect:" + url;
 	}
 
 }

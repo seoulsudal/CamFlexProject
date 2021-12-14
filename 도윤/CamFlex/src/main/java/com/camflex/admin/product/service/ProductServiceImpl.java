@@ -47,5 +47,20 @@ public class ProductServiceImpl implements ProductService {
 		detail = productDAO.productDetail(pvo);
 		return detail;
 	}
+	
+	// 상품 수정
+	@Override
+	public int updateProduct(ProductVO pvo) {
+		
+		int result = 0;
+		try {
+			result = productDAO.updateProduct(pvo);
+		}catch(Exception e) {
+			e.printStackTrace();
+			result = 0;
+		}
+		
+		return result;
+	}
 
 }

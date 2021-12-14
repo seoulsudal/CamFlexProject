@@ -37,4 +37,10 @@ public class ProductDAOImpl implements ProductDAO {
 		return (ProductVO)sqlSession.selectOne(namespace + ".productDetail", pvo);
 	}
 
+	@Override
+	public int updateProduct(ProductVO pvo) {
+		
+		return sqlSession.update(namespace + ".updateProduct", pvo);
+	}
+
 }

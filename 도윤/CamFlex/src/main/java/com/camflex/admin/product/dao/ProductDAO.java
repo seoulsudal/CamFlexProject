@@ -12,5 +12,7 @@ public interface ProductDAO {
 	public List<ProductVO> productList(ProductVO pvo);
 
 	public ProductVO productDetail(ProductVO pvo);
+
+	public int updateProduct(ProductVO pvo);
 	
 }
