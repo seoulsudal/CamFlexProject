@@ -1,0 +1,5 @@
+package com.camflex.admin.notice.vo;
+
+public class NoticeVO {
+
+}

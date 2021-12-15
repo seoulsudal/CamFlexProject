@@ -1,0 +1,19 @@
+package com.camflex.admin.notice.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.camflex.admin.notice.service.NoticeService;
+
+@Controller
+@RequestMapping(value = "/admin/notice")
+public class NoticeController {
+
+	@Autowired
+	private NoticeService noticeService;
+	
+	/*****************************************
+	 * 공지사항 기본 조회
+	 *****************************************/
+}

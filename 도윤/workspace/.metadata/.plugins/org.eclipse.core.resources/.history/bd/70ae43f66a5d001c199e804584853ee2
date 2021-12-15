@@ -1,0 +1,18 @@
+package com.camflex.admin.notice;
+
+import java.util.Date;
+
+import org.springframework.web.multipart.MultipartFile;
+
+public class NoticeVO {
+
+	private int n_number;		// 공지사항 게시글 번호
+	private String n_title;		// 공지사항 글제목
+	private String n_content;	// 공지사항 글내용
+	
+	private MultipartFile file;	// 공지사항 사진
+	private String n_photo;		// 공지사항 사진 파일 경로명
+	
+	private Date n_date;		// 공지사항 작성일
+	private String n_writer;	// 공지사항 작성자
+}

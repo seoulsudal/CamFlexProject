@@ -1,0 +1,6 @@
+package com.camflex.admin.notice.service;
+
+public interface NoticeService {
+
+	
+}
