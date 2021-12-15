@@ -52,7 +52,7 @@ public class FileUploadUtil {
 		}
 		return real_name;
 	}
-	public static String fileUpload1(MultipartFile file1, HttpServletRequest request, String fileName)throws IOException{
+	public static String fileUpload1(MultipartFile file1, HttpServletRequest request, String fileName1)throws IOException{
 		log.info("fileUpload 호출 성공");
 		
 		String real_name = null;
@@ -63,11 +63,11 @@ public class FileUploadUtil {
 		
 		// 파일명 변경(중복되지 않게)
 		if(org_name != null && (!org_name.equals(""))) {
-			real_name = fileName + "_" + System.currentTimeMillis() + "_" + org_name;
+			real_name = fileName1 + "_" + System.currentTimeMillis() + "_" + org_name;
 			// 저장할 파일 이름
 			
 			
-			String docRoot = request.getSession().getServletContext().getRealPath("/uploadStorage/" + fileName);
+			String docRoot = request.getSession().getServletContext().getRealPath("/uploadStorage/" + fileName1);
 			makeDir(docRoot);
 			
 			File fileAdd = new File(docRoot + "/" + real_name);		// 파일 생성 후
@@ -77,7 +77,7 @@ public class FileUploadUtil {
 		}
 		return real_name;
 	}
-	public static String fileUpload2(MultipartFile file2, HttpServletRequest request, String fileName)throws IOException{
+	public static String fileUpload2(MultipartFile file2, HttpServletRequest request, String fileName2)throws IOException{
 		log.info("fileUpload 호출 성공");
 		
 		String real_name = null;
@@ -88,11 +88,11 @@ public class FileUploadUtil {
 		
 		// 파일명 변경(중복되지 않게)
 		if(org_name != null && (!org_name.equals(""))) {
-			real_name = fileName + "_" + System.currentTimeMillis() + "_" + org_name;
+			real_name = fileName2 + "_" + System.currentTimeMillis() + "_" + org_name;
 			// 저장할 파일 이름
 			
 			
-			String docRoot = request.getSession().getServletContext().getRealPath("/uploadStorage/" + fileName);
+			String docRoot = request.getSession().getServletContext().getRealPath("/uploadStorage/" + fileName2);
 			makeDir(docRoot);
 			
 			File fileAdd = new File(docRoot + "/" + real_name);		// 파일 생성 후
@@ -102,7 +102,7 @@ public class FileUploadUtil {
 		}
 		return real_name;
 	}
-	public static String fileUpload3(MultipartFile file3, HttpServletRequest request, String fileName)throws IOException{
+	public static String fileUpload3(MultipartFile file3, HttpServletRequest request, String fileName3)throws IOException{
 		log.info("fileUpload 호출 성공");
 		
 		String real_name = null;
@@ -113,11 +113,11 @@ public class FileUploadUtil {
 		
 		// 파일명 변경(중복되지 않게)
 		if(org_name != null && (!org_name.equals(""))) {
-			real_name = fileName + "_" + System.currentTimeMillis() + "_" + org_name;
+			real_name = fileName3 + "_" + System.currentTimeMillis() + "_" + org_name;
 			// 저장할 파일 이름
 			
 			
-			String docRoot = request.getSession().getServletContext().getRealPath("/uploadStorage/" + fileName);
+			String docRoot = request.getSession().getServletContext().getRealPath("/uploadStorage/" + fileName3);
 			makeDir(docRoot);
 			
 			File fileAdd = new File(docRoot + "/" + real_name);		// 파일 생성 후

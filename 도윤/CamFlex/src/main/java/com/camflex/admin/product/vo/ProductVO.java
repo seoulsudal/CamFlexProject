@@ -17,10 +17,10 @@ public class ProductVO {
 	private MultipartFile file1;
 	private MultipartFile file2;
 	private MultipartFile file3;
-	private String p_mainphoto = "";	// 실제 서버에 저장한 파일명
-	private String p_photo1 = "";		
-	private String p_photo2 = "";
-	private String p_photo3 = "";
+	private String p_mainphoto = "";	// 실제 서버에 저장한 파일명(상세페이지에서 메인으로 보일 사진)
+	private String p_photo1 = "";		// 실제 서버에 저장한 파일명
+	private String p_photo2 = "";		// 실제 서버에 저장한 파일명
+	private String p_photo3 = "";		// 실제 서버에 저장한 파일명
  	private Date p_date;				// 상품 등록일
 	
 	public ProductVO() {

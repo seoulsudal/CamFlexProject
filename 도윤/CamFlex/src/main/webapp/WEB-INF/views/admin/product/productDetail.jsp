@@ -6,7 +6,17 @@
 <meta charset="UTF-8">
 <title>상품 상세 페이지</title>
 <style type="text/css">
-	ul li{list-style : none; float : left; margin-left : 10px;}
+	ul li{list-style : none; float:left; margin-right : 10px;}
+	
+	#target{
+		width:450px;
+		height:300px;
+	}
+	
+	.small{
+		width:75px;
+		height:45px;
+	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js">
 </script>
@@ -23,25 +33,24 @@ $(function(){
 	$("#productListBtn").click(function(){
 		location.href="/admin/product/productList";
 	});
-	$("#productDeleteBtn").click(function(){
+	/* $("#productDeleteBtn").click(function(){
 		$("#p_detail").attr({
 			"method":"get",
 			"action":"/admin/product/productDelete"
 		});	
 		$("#p_detail").submit();
-	});
+	}); */
 	
 });
-$(function(){
-	var file = "<c:out value='${detail.p_mainphoto}' />";
-	if(file != ""){
-		$("#fileImage").attr({
-			src:"/uploadStorage/product/${detail.p_mainphoto}",
-			width:"450px",
-			height:"300px"
-		});
-	}
-});
+
+function setImage(index){
+	var image_list = ['/uploadStorage/product/${detail.p_mainphoto}', '/uploadStorage/product/${detail.p_photo1}', '/uploadStorage/product/${detail.p_photo2}', '/uploadStorage/product/${detail.p_photo3}'];
+	
+	var image = document.getElementById("target");
+	
+	image.src = image_list[index];
+}
+
 
 </script>
 </head>
@@ -50,18 +59,23 @@ $(function(){
 	<div align="center"><h2>캠핑장 상세 페이지</h2></div>
 	<form id="p_detail" name="p_detail" method = "post">
 		<input type="hidden" name="p_number" id="p_number" value="${detail.p_number}"/>
-		<input type="hidden" name="p_mainphoto" id="p_mainphoto" value="${detail.p_mainphoto}"/>
+		<input type="hidden" name="p_mainphoto" id="p_mainphoto" value="${detail.p_mainphoto}" />
+		<input type="hidden" name="p_photo1" id="p_photo1" value="${detail.p_photo1}"/>
+		<input type="hidden" name="p_photo2" id="p_photo2" value="${detail.p_photo2}"/>
+		<input type="hidden" name="p_photo3" id="p_photo3" value="${detail.p_photo3}"/>
 	</form>
 	<div>
 		<table align="center" border="1">
 			<tr align="center">
-				<td width="400px" height="500px" rowspan="2"><img id="fileImage"><br>
+				<td width="400px" height="500px" rowspan="2"><div><img id="target" src="/uploadStorage/product/${detail.p_mainphoto}"></div><br>
+				<br><br>
+				<div>
 				<ul>
-					<li>${detail.p_mainphoto}</li>
-					<li>${detail.p_photo1}</li>
-					<li>${detail.p_photo2}</li>
-					<li>${detail.p_photo3}</li>
-				</ul></td>
+					<li><a href="#" onclick="setImage(0)"><img id="photo1" class="small" src="/uploadStorage/product/${detail.p_mainphoto}" width="75" height="45"></a></li>
+					<li><a href="#" onclick="setImage(1)"><img id="photo2" class="small" src="/uploadStorage/product/${detail.p_photo1}" width="75" height="45"></a></li>
+					<li><a href="#" onclick="setImage(2)"><img id="photo3" class="small" src="/uploadStorage/product/${detail.p_photo2}" width="75" height="45"></a></li>
+					<li><a href="#" onclick="setImage(3)"><img id="photo4" class="small" src="/uploadStorage/product/${detail.p_photo3}" width="75" height="45"></a></li>
+				</ul></div></td>
 				<td width="600px" height="300px"><h3>${detail.p_name}</h3><br><br><br><br><br>${detail.p_information}<br></td>
 			</tr>
 			<tr align="center">
@@ -72,7 +86,7 @@ $(function(){
 	<div align="center">
 		<input type="button" value="수정" id="productModifyBtn">
 		<input type="button" value="목록" id="productListBtn">
-		<input type="button" value="삭제" id="productDeleteBtn">	
+		<!-- <input type="button" value="삭제" id="productDeleteBtn"> -->	
 	</div>
 </div>
 </body>

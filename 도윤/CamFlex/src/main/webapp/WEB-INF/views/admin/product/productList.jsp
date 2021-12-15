@@ -20,11 +20,11 @@ $(function(){
 		$("#p_number").val(p_number);
 		console.log("상품 번호 : " + p_number);
 		
-		$("#detailForm").attr({
+		$("#listForm").attr({
 			"method":"get",
 			"action":"/admin/product/productDetail"
 		});
-		$("#detailForm").submit();
+		$("#listForm").submit();
 	});
 });
 </script>
@@ -33,7 +33,7 @@ $(function(){
 <div>
 	<div><h3 align="center">캠핑 리스트</h3></div>
 	
-	<form name="detailForm" id="detailForm">
+	<form name="listForm" id="listForm">
 		<input type="hidden" name="p_number" id="p_number">
 	</form>
 

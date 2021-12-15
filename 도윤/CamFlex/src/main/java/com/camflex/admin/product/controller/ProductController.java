@@ -153,7 +153,10 @@ public class ProductController {
 
 		int result = 0;
 		String url = "";
-		String p_photo = "";
+		String p_mainphoto = "";
+		String p_photo1 = "";
+		String p_photo2 = "";
+		String p_photo3 = "";
 
 		if (!pvo.getFile().isEmpty()) {
 			log.info("======== file = " + pvo.getFile().getOriginalFilename());
@@ -162,14 +165,55 @@ public class ProductController {
 				FileUploadUtil.fileDelete(pvo.getP_mainphoto(), request);
 			}
 			System.out.println("hello?");
-			p_photo = FileUploadUtil.fileUpload(pvo.getFile(), request, "product");
-			pvo.setP_mainphoto(p_photo);
+			p_mainphoto = FileUploadUtil.fileUpload(pvo.getFile(), request, "product");
+			pvo.setP_mainphoto(p_mainphoto);
 		} else {
 			log.info("첨부 파일 없음");
 			pvo.setP_mainphoto("");
 		}
+		if (!pvo.getFile1().isEmpty()) {
+			log.info("======== file1 = " + pvo.getFile1().getOriginalFilename());
+			if (!pvo.getP_photo1().isEmpty()) {
+				
+				FileUploadUtil.fileDelete(pvo.getP_photo1(), request);
+			}
+			
+			p_photo1 = FileUploadUtil.fileUpload(pvo.getFile1(), request, "product");
+			pvo.setP_photo1(p_photo1);
+		} else {
+			log.info("첨부 파일 없음");
+			pvo.setP_photo1("");
+		}
+		if (!pvo.getFile2().isEmpty()) {
+			log.info("======== file2 = " + pvo.getFile2().getOriginalFilename());
+			if (!pvo.getP_photo2().isEmpty()) {
+				
+				FileUploadUtil.fileDelete(pvo.getP_photo2(), request);
+			}
+			
+			p_photo2 = FileUploadUtil.fileUpload(pvo.getFile2(), request, "product");
+			pvo.setP_photo2(p_photo2);
+		} else {
+			log.info("첨부 파일 없음");
+			pvo.setP_photo2("");
+		}
+		if (!pvo.getFile3().isEmpty()) {
+			log.info("======== file3 = " + pvo.getFile3().getOriginalFilename());
+			if (!pvo.getP_photo3().isEmpty()) {
+				
+				FileUploadUtil.fileDelete(pvo.getP_photo3(), request);
+			}
+			p_photo3 = FileUploadUtil.fileUpload(pvo.getFile3(), request, "product");
+			pvo.setP_photo3(p_photo3);
+		} else {
+			log.info("첨부 파일 없음");
+			pvo.setP_photo3("");
+		}
 
-		log.info("======== p_photo = " + pvo.getP_mainphoto());
+		log.info("======== p_mainphoto = " + pvo.getP_mainphoto());
+		log.info("======== p_photo1 = " + pvo.getP_photo1());
+		log.info("======== p_photo2 = " + pvo.getP_photo2());
+		log.info("======== p_photo3 = " + pvo.getP_photo3());
 		result = productService.updateProduct(pvo);
 
 		if (result == 1) {
