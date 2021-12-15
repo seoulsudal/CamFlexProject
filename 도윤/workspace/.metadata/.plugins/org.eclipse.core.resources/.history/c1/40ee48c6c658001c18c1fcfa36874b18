@@ -1,0 +1,39 @@
+package com.camflex.admin.product.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.camflex.admin.product.dao.ProductDAO;
+import com.camflex.admin.product.vo.ProductVO;
+
+@Service
+@Transactional
+public class ProductServiceImpl implements ProductService {
+
+	@Autowired
+	private ProductDAO productDAO;
+	
+	@Override
+	public List<ProductVO> productList() {
+		
+		List<ProductVO> myList = null;
+		myList = productDAO.productList();
+		return myList;
+	}
+
+	@Override
+	public int regProduct(ProductVO pvo) {
+		int result = 0;
+		try {
+			result = productDAO.regProduct(pvo);
+		}catch(Exception e) {
+			e.printStackTrace();
+			result = 0;
+		}
+		return result;
+	}
+
+}
