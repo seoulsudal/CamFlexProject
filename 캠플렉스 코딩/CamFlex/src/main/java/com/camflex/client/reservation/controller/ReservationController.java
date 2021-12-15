@@ -1,5 +1,7 @@
 package com.camflex.client.reservation.controller;
 
+import java.sql.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +35,7 @@ public class ReservationController {
 	}
 
 	/* 실시간 예약 생성 */
-	@RequestMapping(value = "/reservationAgreePage")
+	@RequestMapping(value = "/reservationAgreePage", method = RequestMethod.POST)
 	public String reservationAgreePage() {
 		log.info("reservationAgreePage 호출 성공");
 		

@@ -8,7 +8,8 @@ public class ReservationVO {
 	private String m_id;
 	private int p_number;
 	private Date r_apllicationDate;
-	private Date r_date;
+	private Date r_startDate;
+	private Date r_endDate;
 	private int r_price;
 	private String r_state;
 	private int r_count;
@@ -48,12 +49,20 @@ public class ReservationVO {
 		this.r_apllicationDate = r_apllicationDate;
 	}
 
-	public Date getR_date() {
-		return r_date;
+	public Date getR_startDate() {
+		return r_startDate;
 	}
 
-	public void setR_date(Date r_date) {
-		this.r_date = r_date;
+	public void setR_startDate(Date r_startDate) {
+		this.r_startDate = r_startDate;
+	}
+
+	public Date getR_endDate() {
+		return r_endDate;
+	}
+
+	public void setR_endDate(Date r_endDate) {
+		this.r_endDate = r_endDate;
 	}
 
 	public int getR_price() {

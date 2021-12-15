@@ -14,19 +14,19 @@
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
-<body style="height: auto;">
+<body>
 	<div class="col-sm-12">
 		<div align="center">
 			<h2>예약 내용 확인</h2>
 		</div>
-		<div class="panel panel-default">
+		<div class="well">
 			<table>
 				<tr>
-					<td class="panel-heading">객실 정보</td>
-
+					<td><font size="4">객실 정보 : 객실 이름, 예약 일자</font></td>
 				</tr>
+				
 				<tr>
-					<td class="panel-body">객실 내용</td>
+					<td><font size="4">예약자 정보 : 회원 정보</font></td>
 				</tr>
 			</table>
 		</div>
@@ -54,8 +54,8 @@
 			</div>
 			<br>
 			<div align="center">
-				<label class="radio-inline"> <input type="radio" name="optradio">동의</label>
-				<label class="radio-inline"> <input type="radio" name="optradio" checked>비동의</label>
+				<label class="radio-inline"> <input type="radio" name="terms_of_Use" value="agree">동의</label>
+				<label class="radio-inline"> <input type="radio" name="terms_of_Use" value="disagree" checked>비동의</label>
 			</div>
 			<br>
 			<div class="panel panel-default">
@@ -72,6 +72,12 @@
 					</div>
 				</div>
 			</div>
+			<br>
+			<div align="center">
+				<label class="radio-inline"> <input type="radio" name="cancellation_Fee" value="agree">동의</label>
+				<label class="radio-inline"> <input type="radio" name="cancellation_Fee" value="disagree" checked>비동의</label>
+			</div>
+			<br>
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -97,6 +103,12 @@
 					</div>
 				</div>
 			</div>
+			<br>
+			<div align="center">
+				<label class="radio-inline"> <input type="radio" name="Privacy" value="agree">동의</label>
+				<label class="radio-inline"> <input type="radio" name="Privacy" value="disagree" checked>비동의</label>
+			</div>
+			<br>
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -107,6 +119,33 @@
 					<div class="panel-body">미성년자 입실 혼숙 금지 (관계 법령 의거)</div>
 				</div>
 			</div>
+			<br>
+			<div align="center">
+				<label class="radio-inline"> <input type="radio" name="adult" value="agree">동의</label>
+				<label class="radio-inline"> <input type="radio" name="adult" value="disagree" checked>비동의</label>
+			</div>
+			<br>
+		</div>
+	</div>
+	<div class="col-sm-12">
+		<div align="center">
+			<h2>업체 계좌번호 및 결제 금액</h2>
+		</div>
+		<div class="well" align="center" >
+		<table>
+				<tr>
+					<td align="left"><font size="4">계좌번호 : **은행 0000 – 000 – 000000</font></td>
+				</tr>
+				<tr>
+					<td align="left"><font size="4">예 금 주 : * * *</font></td>
+				</tr>
+				<tr align="center">
+					<td><font size="4">결제 금액</font></td>
+				</tr>
+				<tr align="center">
+					<td><font size="4">000,000 원</font></td>
+				</tr>
+			</table>
 		</div>
 	</div>
 

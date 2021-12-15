@@ -1,4 +1,3 @@
-<%@ page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -16,7 +15,7 @@
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
   	$(function() {
-		$("#reservationbtn").click(function() {
+		$("#btnReservation").click(function() {
 			$("#reservationForm").attr({
 				"method":"POST",
 				"action":"/reservation/reservationAgreePage"
@@ -24,6 +23,10 @@
 			$("#reservationForm").submit();
 		});
 	});
+  	
+  	function() {
+		
+	}
 </script>
 </head>
 <body>
@@ -51,6 +54,7 @@
     <div class="col-sm-6">
     	<div align="center">
     		<h2>예약 가능 리스트</h2>
+    		<br>
     		<table>
     			<c:choose>
 	    			<c:when test="${empty productList}">
@@ -61,7 +65,11 @@
 	    					<td>다른날을 선택해 주세요.</td>	    					
 	    				</tr>
 	    			</c:when>
-	    			
+	    			<c:otherwise>
+	    				<tr>
+	    					<td>오메?</td>
+	    				</tr>
+	    			</c:otherwise>
     			</c:choose>
     				
     			
@@ -71,7 +79,7 @@
     	<br>
     	<br>
     	<div align="center">
-    		<input type="button" value="예약 하기" style="font-size: 20px; height: 75px; width: 200px;" id="reservationbtn" name="reservationbtn" class="btn btn-success">
+    		<input type="button" value="예약 하기" style="font-size: 20px; height: 75px; width: 200px;" id="btnReservation" name="btnReservation" class="btn btn-success">
     	</div>
     </div>
 	
