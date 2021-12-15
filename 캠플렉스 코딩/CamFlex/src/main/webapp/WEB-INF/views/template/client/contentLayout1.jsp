@@ -44,7 +44,7 @@
 		</div>
 	</div>
 	
-	<footer class="footer">
+	<footer class="container-fluid">
 		<tiles:insertAttribute name="footer"/>
 	</footer>
 	
