@@ -25,7 +25,7 @@ public class ReservationController {
 	/*
 	 * @Autowired private ReservationService reservationService;
 	 */
-
+	 
 	/* 실시간 예약 폼 */
 	@RequestMapping(value = "/reservationDetail")
 	public String reservationDetail(Model model) {

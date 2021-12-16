@@ -22,9 +22,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 	public List<AdminProductVO> productList(AdminProductVO pvo) {
 
 		List<AdminProductVO> list = new ArrayList<AdminProductVO>();
-		System.out.println("서비스 1");
 		list = adminProductDAO.productList(pvo);
-		System.out.println("서비스 2");
 		return list;
 	}
 

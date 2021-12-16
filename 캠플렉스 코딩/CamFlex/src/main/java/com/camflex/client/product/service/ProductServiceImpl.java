@@ -1,14 +1,19 @@
 package com.camflex.client.product.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.camflex.admin.product.vo.AdminProductVO;
 import com.camflex.client.product.dao.ProductDAO;
 
+
+
 @Service
+@Transactional
 public class ProductServiceImpl implements ProductService {
 
 	@Autowired
@@ -16,7 +21,13 @@ public class ProductServiceImpl implements ProductService {
 
 	// 캠핑장 리스트
 	@Override
-	public List<AdminProductVO> list() throws Exception {
-		return productDAO.productList();
-	} 
+	public List<AdminProductVO> productList(AdminProductVO pvo) {
+
+		List<AdminProductVO> list = new ArrayList<AdminProductVO>();
+		list = productDAO.productList(pvo);
+		return list;
+	}
+
+
+
 }

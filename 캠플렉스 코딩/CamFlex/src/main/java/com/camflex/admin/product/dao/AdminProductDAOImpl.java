@@ -20,7 +20,6 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 
 	@Override
 	public List<AdminProductVO> productList(AdminProductVO pvo) {
-		System.out.println("dao 1");
 		return sqlSession.selectList(namespace + ".productList", pvo);
 	}
 
