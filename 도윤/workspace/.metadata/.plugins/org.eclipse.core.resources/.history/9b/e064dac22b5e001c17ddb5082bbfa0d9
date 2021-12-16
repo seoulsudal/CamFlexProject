@@ -1,0 +1,27 @@
+package com.camflex.admin.notice.service;
+
+import java.util.List;
+
+import com.camflex.admin.notice.vo.NoticeVO;
+
+public class AdminNoticeServiceImpl implements AdminNoticeService {
+
+	@Override
+	public List<NoticeVO> noticeList(NoticeVO nvo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int regNotice(NoticeVO nvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public NoticeVO noticeDetail(NoticeVO nvo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

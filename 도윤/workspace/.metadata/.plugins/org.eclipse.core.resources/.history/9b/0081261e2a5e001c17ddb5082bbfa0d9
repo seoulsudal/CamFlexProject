@@ -1,0 +1,12 @@
+package com.camflex.admin.notice.service;
+
+import java.util.List;
+
+import com.camflex.admin.notice.vo.NoticeVO;
+
+public interface AdminNoticeService {
+
+	// 기본 조회
+	public List<NoticeVO> noticeList(NoticeVO nvo);
+
+}

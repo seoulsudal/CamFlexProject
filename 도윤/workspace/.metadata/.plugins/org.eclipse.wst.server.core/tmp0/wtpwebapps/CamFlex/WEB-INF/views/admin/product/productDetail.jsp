@@ -33,13 +33,7 @@ $(function(){
 	$("#productListBtn").click(function(){
 		location.href="/admin/product/productList";
 	});
-	/* $("#productDeleteBtn").click(function(){
-		$("#p_detail").attr({
-			"method":"get",
-			"action":"/admin/product/productDelete"
-		});	
-		$("#p_detail").submit();
-	}); */
+
 	
 });
 
