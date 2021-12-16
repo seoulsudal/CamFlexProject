@@ -20,6 +20,16 @@ public class NoticeVO {
 		super();
 	}
 
+	public NoticeVO(int n_number, String n_title, String n_content, Date n_date, String n_writer) {
+		super();
+		this.n_number = n_number;
+		this.n_title = n_title;
+		this.n_content = n_content;
+		this.n_date = n_date;
+		this.n_writer = n_writer;
+	}
+	
+	
 	public NoticeVO(int n_number, String n_title, String n_content, MultipartFile file, String n_photo, Date n_date,
 			String n_writer) {
 		super();

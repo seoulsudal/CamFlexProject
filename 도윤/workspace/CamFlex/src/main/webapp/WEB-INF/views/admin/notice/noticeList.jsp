@@ -50,7 +50,7 @@ $(function(){
 					<th>글번호</th>
 					<th>작성자</th>
 					<th>공지사항</th>
-					<th>작성일</th>
+					<th data-value="n_date">작성일</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -59,17 +59,18 @@ $(function(){
 						<c:forEach var="notice" items="${noticeList}" varStatus="status">
 							<tr data-num="${notice.n_number}">
 								<td align="center">${notice.n_number}</td>
-								<td align="center">${notice.n_wrtier}</td>
+								<td align="center">${notice.n_writer}</td>
 								<td class="goDetail tal" align="center">${notice.n_title}</td>
 								<td align="center"><fmt:formatDate value="${notice.n_date}" pattern="yyyy/MM/dd" /></td>
 							</tr>
 						</c:forEach>
+						</c:when>
 						<c:otherwise>
 							<tr>
 								<td colspan="4" align="center">등록된 공지사항이 존재하지 않습니다.</td>
 							</tr>
 						</c:otherwise>
-					</c:when>
+					
 				</c:choose>
 			</tbody>
 		</table>

@@ -1,0 +1,33 @@
+package com.camflex.admin.notice.dao;
+
+import java.util.List;
+
+import com.camflex.admin.notice.vo.NoticeVO;
+
+public class AdminNoticeDAOImpl implements AdminNoticeDAO {
+
+	@Override
+	public List<NoticeVO> noticeList(NoticeVO nvo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int regProduct(NoticeVO nvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public NoticeVO noticeDetail(NoticeVO nvo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int updateNotice(NoticeVO nvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
