@@ -1,0 +1,7 @@
+package com.camflex.client.login.service;
+
+
+public interface LoginService {
+
+	
+}

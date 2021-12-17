@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.client.login.dao.LoginDAO">
+	<select id="selectMember" resultType="LoginVO" parameterType="String">
+		select * from member_tbl where m_id=#{m_id}
+	</select>
+	
+	<select id="selectMemberList" resultType="com.camflex.client.member.vo.LoginVO">
+		select * from member_tbl
+	</select>
+	
+	<insert id="insertMember">
+		select into member_tbl
+			(m_id, m_pw, m_name, m_birth, m_phone)
+		values
+			(#{m_id},#{m_pw},#{m_name},#{m_birth},#{m_phone})
+	</insert>
+	
+</mapper>

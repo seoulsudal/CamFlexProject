@@ -11,13 +11,15 @@ import com.camflex.admin.product.vo.AdminProductVO;
 @Repository
 public class ProductDAOImpl implements ProductDAO {
 	
-	@Autowired private SqlSession session;
+	@Autowired 
+	private SqlSession session;
+	
+	private static final String namespace = "com.camflex.client.product.dao.ProductDAO";
 
 	// 캠핑장 리스트
 	@Override
-	public List<AdminProductVO> productList() throws Exception {
-		return session.selectList("productList");
-	}
-	 
+	public List<AdminProductVO> productList(AdminProductVO pvo) {
+		return session.selectList(namespace + ".productList", pvo);
+	}	 
 	
 }

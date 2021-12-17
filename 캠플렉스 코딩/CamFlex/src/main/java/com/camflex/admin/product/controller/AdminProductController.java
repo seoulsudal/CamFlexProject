@@ -48,11 +48,8 @@ public class AdminProductController {
 
 		List<AdminProductVO> productList = adminProductService.productList(pvo);
 
-		System.out.println("1번 진행");
 		model.addAttribute("productList", productList);
-		System.out.println("2번 진행");
 		model.addAttribute("data", pvo);
-		System.out.println("3번 진행");
 
 		return "admin/product/productList";
 	}

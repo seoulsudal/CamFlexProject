@@ -24,9 +24,7 @@
 		});
 	});
   	
-  	function() {
-		
-	}
+  	
 </script>
 </head>
 <body>

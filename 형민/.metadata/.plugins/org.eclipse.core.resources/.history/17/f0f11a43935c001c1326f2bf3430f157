@@ -1,0 +1,51 @@
+/**
+ * 
+ */
+function joinForm_check(){
+	var m_id = document.getSortation("m_id");
+	var m_pw = document.getSortation("m_pw");
+	var m_name = document.getSortation("m_name");
+	var m_birth = document.getSortation("m_birth");
+	var m_phone = document.getSortation("m_phone");
+	
+	if(m_id.value==""){ // = if(m_id.value)
+		alert("아이디를 입력하세요.");
+		m_id.focus();
+		return false;
+	};
+	
+	if(m_pw.value==""){ 
+		alert("비밀번호를 입력하세요.");
+		m_pw.focus();
+		return false;
+	};
+	
+	if(m_name.value==""){ 
+		alert("이름을 입력하세요.");
+		m_name.focus();
+		return false;
+	};
+	
+	if(m_birth.value==""){
+		alert("생년월일을 입력하세요.");
+		m_birth.focus();
+		return false;
+	};
+	
+	var reg =/^[0-9]+/g; 	//숫자만 입력하는 정규식
+	if(m_phone.value==""){ 
+		alert("전화번호를 입력하세요.");
+		m_phone.focus();
+		return false;
+	} else {
+		if(!reg.test(m_phone.value)){
+			alert("전화번호는 숫자만 입력해주세요.")
+			m_phone.focus();
+		}
+	};
+	
+	
+	
+	
+	
+}

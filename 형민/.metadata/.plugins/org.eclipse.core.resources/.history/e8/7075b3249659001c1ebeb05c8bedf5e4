@@ -1,0 +1,16 @@
+package com.camflex.client.login.service;
+
+import com.camflex.client.login.vo.LoginVO;
+
+public interface LoginService {
+	// 로그인
+	public LoginVO loginSelect(String m_id, String m_pw);
+
+	// ㄷ
+	public LoginVO m_idSelect(String m_id);
+
+	// 회원가입
+	public int memberInsert(LoginVO lvo);
+	
+
+}

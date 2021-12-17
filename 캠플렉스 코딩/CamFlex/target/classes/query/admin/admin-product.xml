@@ -2,8 +2,7 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.camflex.admin.product.dao.AdminProductDAO">
-	<resultMap id="AdminproductVO"
-		type="com.camflex.admin.product.vo.AdminProductVO">
+	<resultMap id="AdminproductVO" type="com.camflex.admin.product.vo.AdminProductVO">
 		<result column="p_number" property="p_number" />
 		<result column="p_type" property="p_type" />
 		<result column="p_name" property="p_name" />

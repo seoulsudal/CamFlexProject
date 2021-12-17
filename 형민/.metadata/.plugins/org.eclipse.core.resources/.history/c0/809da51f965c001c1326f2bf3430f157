@@ -1,0 +1,46 @@
+/**
+ * 
+ */
+function joinForm_check() {
+	var m_id = document.getSortation("userId");
+	var m_pw = document.getSortation("m_pw");
+	var m_name = document.getSortation("m_name");
+	var m_birth = document.getSortation("m_birth");
+	var m_phone = document.getSortation("m_phone");
+
+	function joinForm_check() {
+		if (!checkUserId(joinForm.userId.value)) {
+			return false;
+		}
+		if (!checkUserPw(joinForm.userPw.value)) {
+			return false;
+		}
+		if (!checkUserName(joinForm.userName.value)) {
+			return false;
+		}
+		if (!checkUserBirth(joinForm.userBirth.value)) {
+			return false;
+		}
+		if (!checkUserPhone(joinForm.userPhone.value)) {
+			return false;
+		}
+		return true;
+	}
+
+	//공백확인 함수
+	function checkExistData(value, dataName) {
+		if (value == "") {
+			alert(dataName + "을(를) 입력해주세요.");
+			return false;
+		}
+		return true;
+	}
+
+
+
+
+
+
+
+
+}

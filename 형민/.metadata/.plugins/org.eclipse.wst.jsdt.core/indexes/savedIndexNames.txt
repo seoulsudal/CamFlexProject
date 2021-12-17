@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+F:\IT\project\CamFlex\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+84740795.index
+3153758534.index
+1392697514.index
+2957659116.index
+2782755963.index
+1714158828.index
+2498586540.index

@@ -7,6 +7,6 @@ import com.camflex.admin.product.vo.AdminProductVO;
 public interface ProductService {
 
 	// 캠핑장 리스트
-	public List<AdminProductVO> list() throws Exception;
+	public List<AdminProductVO> productList(AdminProductVO pvo);
 
 }

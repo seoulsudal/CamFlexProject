@@ -1,0 +1,8 @@
+
+$(function() {
+
+	/* 회원가입 버튼 클릭 처리 이벤트*/
+	$("#joinFormBtn").click(function() {
+		location.href = "/login/joinForm.do"
+	});
+});

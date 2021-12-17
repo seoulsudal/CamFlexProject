@@ -1,0 +1,54 @@
+/**
+ * 
+ */
+function inputCheck(){
+			/*$("#joinBtn").click(function(){
+			//테크.val(): 태그에 입력된 값
+			//테크.val("값"): 태그의 값을 변경
+			var m_id = $("#m_id").val();
+			var m_pw = $("#m_pw").val();
+			var m_name = $("#m_name").val();
+			var m_birth = $("#m_birth").val();
+			var m_phone = $("#m_phone").val();*/
+			
+			/*아이디 체크*/
+			if(m_id == ""){
+				alert("아이디를 입력하세요");
+				$("#m_id").focus();//입력포커스 이동
+				return;	//함수 종료
+			}
+			
+			/*비밀번호 체크*/
+			if(m_pw == ""){
+				alert("비밀번호를 입력하세요");
+				$("#m_pw").focus();
+				return;	
+			}
+			
+			/*이름 체크*/
+			if(m_name == ""){
+				alert("이름을 입력하세요");
+				$("#m_name").focus();
+				return;	
+			}
+			
+			/*생년월일 체크*/
+			if(m_birth == ""){
+				alert("생년월일을 입력하세요");
+				$("#m_birth").focus();
+				return;	
+			}
+			
+			/*전화번호 체크*/
+			if(m_phone == ""){
+				alert("전화번호를 입력하세요");
+				$("#m_phone").focus();
+				return;	
+			}
+			
+		};
+
+
+/**
+ * 
+ */
