@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.admin.product.service{ProductService.java[ProductService" modifiers="513" timestamp="1639455513239"/>
-    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.admin.product.dao{ProductDAO.java[ProductDAO" modifiers="513" timestamp="1639455612986"/>
+    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.admin.product.service{AdminProductService.java[AdminProductService" modifiers="513" timestamp="1639627571355"/>
+    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.admin.product.dao{AdminProductDAO.java[AdminProductDAO" modifiers="513" timestamp="1639627824916"/>
+    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.admin.notice.service{AdminNoticeService.java[AdminNoticeService" modifiers="513" timestamp="1639631464926"/>
+    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.admin.notice.dao{AdminNoticeDAO.java[AdminNoticeDAO" modifiers="513" timestamp="1639631730430"/>
 </typeInfoHistroy>

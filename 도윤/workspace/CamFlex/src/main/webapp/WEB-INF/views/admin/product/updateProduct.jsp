@@ -148,13 +148,11 @@ function chkSubmit(item, msg){
 		<div align="center">
 			<form id="updateProductForm" name="updateProductForm"
 				enctype="multipart/form-data">
-				<input type="hidden" id="p_number" name="p_number"
-					value="${update.p_number}" /> <input type="hidden"
-					id="p_mainphoto" name="p_mainphoto" value="${update.p_mainphoto}" />
-				<input type="hidden" id="p_photo1" name="p_photo1"
-					value="${update.p_photo1}" /> <input type="hidden" id="p_photo2"
-					name="p_photo2" value="${update.p_photo2}" /> <input type="hidden"
-					id="p_photo3" name="p_photo3" value="${update.p_photo3}" />
+				<input type="hidden" id="p_number" name="p_number" value="${update.p_number}" />
+				<input type="hidden"id="p_mainphoto" name="p_mainphoto" value="${update.p_mainphoto}" />
+				<input type="hidden" id="p_photo1" name="p_photo1" value="${update.p_photo1}" />
+				<input type="hidden" id="p_photo2" name="p_photo2" value="${update.p_photo2}" /> 
+				<input type="hidden" id="p_photo3" name="p_photo3" value="${update.p_photo3}" />
 				<table border="1">
 					<colgroup>
 						<col width="17%" />
@@ -181,7 +179,7 @@ function chkSubmit(item, msg){
 					<tr>
 						<td>상품 안내</td>
 						<td><textarea id="p_information" name="p_information"
-								maxlength="2000" rows="8" cols="50" placeholder="상품 안내"></textarea></td>
+								maxlength="2000" rows="8" cols="50" placeholder="상품 안내">${update.p_information}</textarea></td>
 					</tr>
 					<tr>
 						<td>이미지</td>

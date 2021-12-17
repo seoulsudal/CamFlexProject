@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="p_photo"/>
+		<item key="selection" value="updateNoticeBtn"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="updateNoticeBtn"/>
+			<item value="n_detail"/>
+			<item value="form"/>
+			<item value="notice"/>
 			<item value="p_photo"/>
 			<item value="chkFile"/>
 			<item value="chkfile"/>

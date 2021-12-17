@@ -79,13 +79,14 @@ function chkSubmit(item, msg){
 <div>
 	<div align="center"><h3>공지사항 글 수정</h3></div>
 	<div align="center">
-		<form id="updateForm" name="updateForm" enctype="multipart/form-date">
+		<form id="updateForm" name="updateForm" enctype="multipart/form-data">
 			<input type="hidden" id="n_number" name="n_number" value="${update.n_number}" />
-		</form>
+<!-- 		</form>
+		<form id="updateForm" name="updateForm" enctype="multipart/form-data"> -->
 			<table border="1">
 				<colgroup>
-					<col width="15%" />
-					<col width="85%" />
+					<col width="17%" />
+					<col width="83%" />
 				</colgroup>
 				<tr>
 					<td>글 제목</td>
@@ -97,11 +98,12 @@ function chkSubmit(item, msg){
 				</tr>
 				<tr>
 					<td>이미지</td>
-					<td><input type="file" name="file" id="file"><span
+					<td><input type="file" name="file" id="file" value="${update.n_photo}" /><span
 							id="imgView">기존 이미지 파일명: ${update.n_photo}<span
 								id="imgArea"></span></span></td>
 				</tr>
 			</table>
+		</form>
 	</div>
 	<div align="center">
 			<input type="button" value="수정" id="updateNoticeBtn"> <input
