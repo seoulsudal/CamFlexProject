@@ -1,0 +1,7 @@
+package com.camflex.client.login.vo;
+
+import java.util.Date;
+
+public class LoginVO {
+
+}
