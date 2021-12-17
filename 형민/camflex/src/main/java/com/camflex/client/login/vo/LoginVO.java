@@ -11,18 +11,20 @@ public class LoginVO {
 	private String m_phone = "";// 회원 전화번호
 	@DateTimeFormat(pattern = "yyyyMMdd")
 	private Date m_birth;// 회원 생년 월일
+	private Date m_date; // 회원 가입 날짜
 
 	public LoginVO() {
 
 	}
 
-	public LoginVO(String m_id, String m_pw, String m_name, String m_phone, Date m_birth) {
+	public LoginVO(String m_id, String m_pw, String m_name, String m_phone, Date m_birth, Date m_date) {
 		super();
 		this.m_id = m_id;
 		this.m_pw = m_pw;
 		this.m_name = m_name;
 		this.m_phone = m_phone;
 		this.m_birth = m_birth;
+		this.m_date = m_date;
 	}
 
 	public String getM_id() {
@@ -65,10 +67,12 @@ public class LoginVO {
 		this.m_birth = m_birth;
 	}
 
-	@Override
-	public String toString() {
-		return "LoginVO [m_id=" + m_id + ", m_pw=" + m_pw + ", m_name=" + m_name + ", m_phone=" + m_phone + ", m_birth="
-				+ m_birth + "]";
+	public Date getM_date() {
+		return m_date;
+	}
+
+	public void setM_date(Date m_date) {
+		this.m_date = m_date;
 	}
 
 }

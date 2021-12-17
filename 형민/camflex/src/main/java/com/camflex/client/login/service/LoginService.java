@@ -6,7 +6,8 @@ import com.camflex.client.login.vo.LoginVO;
 
 public interface LoginService {
 
-	public List<LoginVO> selectMemberList() throws Exception;
-
+	// 회원가입 처리
 	public void insertMember(LoginVO vo) throws Exception;
+
+	
 }
