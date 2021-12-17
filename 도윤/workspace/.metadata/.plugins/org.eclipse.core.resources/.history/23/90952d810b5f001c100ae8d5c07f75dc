@@ -1,0 +1,5 @@
+package com.camflex.admin.member.controller;
+
+public class AdminMemberController {
+
+}
