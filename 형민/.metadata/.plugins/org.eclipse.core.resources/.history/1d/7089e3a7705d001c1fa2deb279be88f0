@@ -1,0 +1,15 @@
+package com.camflex.client.login.service;
+
+import javax.servlet.http.HttpSession;
+
+import com.camflex.client.login.vo.LoginVO;
+import com.camflex.client.member.vo.MemberVO;
+
+public interface LoginService {
+
+	// 회원 로그인 정보
+	public LoginVO viewLogin(LoginVO lvo);
+
+	public void joinSuccess(LoginVO vo) throws Exception;
+
+}

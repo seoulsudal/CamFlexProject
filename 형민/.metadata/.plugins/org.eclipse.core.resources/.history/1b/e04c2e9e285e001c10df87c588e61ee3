@@ -1,0 +1,74 @@
+package com.camflex.client.login.controller;
+
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.camflex.client.login.service.LoginService;
+import com.camflex.client.login.vo.LoginVO;
+import com.camflex.client.member.vo.MemberVO;
+
+@Controller
+@RequestMapping(value = "/")
+public class LoginController {
+	// 로깅을 위한 변수
+	private Logger log = LoggerFactory.getLogger(LoginController.class);
+
+	@Inject
+	LoginService loginService;
+
+	/* 로그인 화면 */
+	@RequestMapping(value = "loginForm", method = RequestMethod.GET)
+	public String Login() {
+		log.info("loginForm.do get 호출 성공");
+		return "/login/loginForm"; // views/login/loginForm.jsp로 포워드
+	}
+
+	/* 회원가입 폼 */
+	@RequestMapping(value = "joinForm", method = RequestMethod.GET)
+	public String join() {
+		log.info("joinForm.do get 호출 성공");
+		return "/login/joinForm"; // views/login/joinForm.jsp로 포워드
+	}
+
+	/* 회원가입 처리 */
+	@SuppressWarnings("unused")
+	@RequestMapping(value = "addMember", method = RequestMethod.POST)
+	public ModelAndView addMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		log.info("addMember post 성공");
+		LoginVO loginVO = new LoginVO();
+
+		// 회원 가입창에서 전송된 회원 정보를 bidn() 메소드를 이용해 loginVO 해당 속성에 자동으로 설정
+		// bind(request, loginVO);
+
+		int result = 0;
+		result = loginService.addMember(loginVO);
+		// 회원정보 추가 후 ModelView 클래스의 redirect 속성을 이용
+		// /login/loginSuccess.do로 리다이렉트 한다.
+		ModelAndView mav = new ModelAndView("redirect:/login/listMember.do");
+		return mav;
+	}
+
+	/* 회원 리스트 */
+	@RequestMapping(value = "listMember", method = RequestMethod.GET)
+	public ModelAndView list(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		log.info("listMember.do get 호출 성공");
+		String viewName = getViewName(request);
+		List membersList = loginService.listMembers();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("membersList", membersList);
+		return mav;
+	}
+
+}

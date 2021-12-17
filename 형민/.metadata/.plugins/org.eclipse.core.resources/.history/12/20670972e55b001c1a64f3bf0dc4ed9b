@@ -1,0 +1,58 @@
+package com.camflex.client.login.vo;
+
+import java.util.Date;
+
+public class LoginVO {
+	private String m_id = "";// 아이디
+	private String m_pw = "";// 비밀번호
+	private String m_name = "";// 회원 이름
+	private String m_phone = "";// 회원 전화번호
+	private Date m_birth;// 회원 생년 월일
+	private String b_name = "";// 상호명
+	private int c_agree;// 취소 수수료 동의
+	private int p_u_agree;// 유의사항 동의
+	private int p_i_agree;// 이용약관 동의
+	private int a_agree;// 성인 동의
+	
+	public LoginVO() {
+
+	}
+
+	public LoginVO(String m_id, String m_pw, String m_name) {
+		super();
+		this.m_id = m_id;
+		this.m_pw = m_pw;
+		this.m_name = m_name;
+	}
+
+	public String getM_id() {
+		return m_id;
+	}
+
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
+
+	public String getM_pw() {
+		return m_pw;
+	}
+
+	public void setM_pw(String m_pw) {
+		this.m_pw = m_pw;
+	}
+
+	public String getM_name() {
+		return m_name;
+	}
+
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
+	}
+
+	@Override
+	public String toString() {
+		return "LoginVO [m_id=" + m_id + ", m_pw=" + m_pw + ", m_name=" + m_name + "]";
+	}
+
+	
+}
