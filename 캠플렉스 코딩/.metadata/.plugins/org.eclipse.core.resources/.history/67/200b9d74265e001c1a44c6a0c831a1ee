@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="admin" template="/WEB-INF/views/template/admin/mainLayout.jsp">
+		<put-attribute name="title" value="캠플렉스 예약 사이트"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/admin/header.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/admin/footer.jsp"/>
+	</definition>
+	
+	<definition name="admin/content1" template="/WEB-INF/views/template/admin/contentLayout1.jsp">
+		<put-attribute name="title" value="캠플렉스 예약 사이트"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/admin/header.jsp"/>
+		<put-attribute name="aside1" value="/WEB-INF/views/template/admin/aside1.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/admin/footer.jsp"/>
+	</definition>
+	
+	<definition name="admin/reservation/*" extends="content1">
+		<put-attribute name="title" value="예약"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/reservation/{1}.jsp"/>	
+	</definition>
+</tiles-definitions>

@@ -7,10 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.camflex.admin.product.vo.AdminProductVO;
 import com.camflex.client.reservation.service.ReservationService;
 import com.camflex.client.reservation.vo.ReservationVO;
 
@@ -22,15 +24,22 @@ public class ReservationController {
 
 	private Logger log = LoggerFactory.getLogger(ReservationController.class);
 
-	/*
-	 * @Autowired private ReservationService reservationService;
-	 */
+	
+	@Autowired 
+	private ReservationService reservationService;
 	 
 	/* 실시간 예약 폼 */
-	@RequestMapping(value = "/reservationDetail")
-	public String reservationDetail(Model model) {
+	@RequestMapping(value = "/reservationDetail", method = RequestMethod.POST)
+	public String reservationDetail(@ModelAttribute AdminProductVO pvo,ReservationVO rvo, Model model) throws Exception {
 		log.info("reservationDetail 호출 성공");
+		log.info("P_number = " + pvo.getP_number());
+		log.info("P_name = " + pvo.getP_name());
+		log.info("P_price = " + pvo.getP_price());
+		
+		
 
+		model.addAttribute("detail", pvo);
+		
 		return "reservation/reservationDetail";
 	}
 

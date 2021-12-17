@@ -39,6 +39,21 @@ public class ProductController {
 	
 	// 캠핑장 상세 페이지
 	@RequestMapping(value = "/productDetail", method = RequestMethod.GET)
-	public void productRead()
+	public String productDetail(@ModelAttribute AdminProductVO pvo, Model model) throws Exception {
+		log.info("productDetail 호출 성공");
+		log.info("p_number = " + pvo.getP_number());
+		
+		AdminProductVO detail = new AdminProductVO();
+		detail = productService.productDetail(pvo);
+		
+		if(detail != null && (!detail.equals(""))) {
+			detail.setP_information(detail.getP_information().toString().replaceAll("\n", "<br>"));
+		}
+		
+		model.addAttribute("detail", detail);
+		
+		return "product/productDetail";
+		
+	}
 	
 }

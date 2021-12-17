@@ -28,6 +28,15 @@ public class ProductServiceImpl implements ProductService {
 		return list;
 	}
 
+	// 상세 페이지
+	@Override
+	public AdminProductVO productDetail(AdminProductVO pvo) {
+		AdminProductVO detail = null;
+		detail = productDAO.productDetail(pvo);
+		
+		return detail;
+	}
+
 
 
 }

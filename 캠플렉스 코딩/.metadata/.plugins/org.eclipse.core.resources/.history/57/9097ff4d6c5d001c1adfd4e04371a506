@@ -1,0 +1,5 @@
+package com.camflex.client.reservation.vo;
+
+public class ReservationDate {
+
+}

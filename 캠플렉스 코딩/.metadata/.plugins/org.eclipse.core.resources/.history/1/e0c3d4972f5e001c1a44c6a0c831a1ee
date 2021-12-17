@@ -1,0 +1,23 @@
+package com.camflex.client.product.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.camflex.admin.product.vo.AdminProductVO;
+import com.camflex.client.product.dao.ProductDAO;
+
+@Service
+public class ProductServiceImpl implements ProductService {
+
+	@Autowired
+	private ProductDAO productDAO;
+
+	@Override
+	public List<AdminProductVO> productList() throws Exception {
+		return productDAO.productList();
+	}
+
+
+}

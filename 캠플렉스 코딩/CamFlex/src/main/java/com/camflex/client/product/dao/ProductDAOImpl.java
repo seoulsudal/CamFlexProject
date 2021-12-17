@@ -20,6 +20,12 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public List<AdminProductVO> productList(AdminProductVO pvo) {
 		return session.selectList(namespace + ".productList", pvo);
+	}
+
+	// 상세 페이지
+	@Override
+	public AdminProductVO productDetail(AdminProductVO pvo) {
+		return (AdminProductVO)session.selectOne("productDetail", pvo);
 	}	 
 	
 }

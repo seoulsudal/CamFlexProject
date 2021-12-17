@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="intro" template="/WEB-INF/views/template/client/mainLayout.jsp">
+		<put-attribute name="title" value="캠플렉스 예약 사이트"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/client/header.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/client/footer.jsp"/>
+	</definition>
+	
+	<definition name="content1" template="/WEB-INF/views/template/client/contentLayout1.jsp">
+		<put-attribute name="title" value="캠플렉스 예약 사이트"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/client/header.jsp"/>
+		<put-attribute name="aside1" value="/WEB-INF/views/template/client/aside1.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/client/footer.jsp"/>
+	</definition>
+	
+	<definition name="content2" template="/WEB-INF/views/template/client/contentLayout2.jsp">
+		<put-attribute name="title" value="캠플렉스 예약 사이트"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/client/header.jsp"/>
+		<put-attribute name="aside2" value="/WEB-INF/views/template/client/aside2.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/client/footer.jsp"/>
+	</definition>
+	
+	<definition name="reservation/*" extends="content1">
+		<put-attribute name="title" value="실시간 예약"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/reservation/{1}.jsp"/>	
+	</definition>
+	
+	<definition name="member/*" extends="content2">
+		<put-attribute name="title" value="마이 페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/client/member/{1}.jsp"/>
+	</definition>
+	
+</tiles-definitions>

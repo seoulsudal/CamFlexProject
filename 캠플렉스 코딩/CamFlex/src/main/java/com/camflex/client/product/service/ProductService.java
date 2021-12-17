@@ -9,4 +9,7 @@ public interface ProductService {
 	// 캠핑장 리스트
 	public List<AdminProductVO> productList(AdminProductVO pvo);
 
+	// 상세 페이지
+	public AdminProductVO productDetail(AdminProductVO pvo);
+
 }
