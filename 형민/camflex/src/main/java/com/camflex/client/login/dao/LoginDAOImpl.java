@@ -16,16 +16,14 @@ public class LoginDAOImpl implements LoginDAO {
 	@Inject
 	private SqlSession sqlSession;
 
-	private static final String Namespace = "com.spring.client.login.dao.LoginDAO";
+	private static final String namespace = "com.camflex.client.login.dao.LoginDAO";
+
+	// 회원가입 처리
 	@Override
-	public List<LoginVO> selectMemberList() throws Exception {
-		
-		return sqlSession.selectList(Namespace+".selectMemberList");
+	public void insert(LoginVO vo) throws Exception {
+		sqlSession.insert(namespace + ".insertMember", vo);
 	}
 
-	@Override
-	public void insertMember(LoginVO vo) throws Exception {
-		sqlSession.insert(Namespace +".insertMember", vo);
-	}
+	
 
 }

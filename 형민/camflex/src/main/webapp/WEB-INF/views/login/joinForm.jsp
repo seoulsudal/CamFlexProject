@@ -107,7 +107,7 @@
 <body>
 	<h2>회원가입</h2>
 	<form name="insert" action="/login/insert.do" method="POST" onsubmit="return joinForm_check()">
-		<!-- 아이디 --><!-- ${path}/login/insert.do  404-->
+		<!-- 아이디 -->
 		<div>
 			<label id="userInfo">아이디</label>
 			<input type="text" id="m_id" name="m_id" placeholder="email형식으로 입력" />
