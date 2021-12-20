@@ -6,32 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <title>예약 결제 및 약관 동의</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/common.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  	<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/resources/include/js/common.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
+<script type="text/javascript">
+  	$(function() {
+		
+		$("#BtnProductList").click(function(){
+			location.href="/product/productList";
+		});
+		
+  	});
+</script>
 </head>
 <body>
-	<div class="col-sm-12">
-		<div align="center">
-			<h2>예약 내용 확인</h2>
-		</div>
-		<div class="well">
-			<table>
-				<tr>
-					<td><font size="4">객실 정보 : 객실 이름, 예약 일자</font></td>
-				</tr>
-				
-				<tr>
-					<td><font size="4">예약자 정보 : 회원 정보</font></td>
-				</tr>
-			</table>
-		</div>
-	</div>
-	<br>
 	<div class="col-sm-12">
 		<div align="center">
 			<h2>이용약관 동의</h2>
@@ -128,6 +121,33 @@
 		</div>
 	</div>
 	<div class="col-sm-12">
+		<form id="p_detail" name="p_detail" method = "post">
+			<input type="hidden" name="p_number" id="p_number" value="${detail.p_number}"/>
+			<input type="hidden" name="p_name" id="p_name" value="${detail.p_name}"/>
+			<input type="hidden" name="p_price" id="p_price" value="${detail.p_price}"/>
+		</form>
+		<div align="center">
+			<h2>예약 내용 확인</h2>
+		</div>
+		<div class="well">
+			<table>
+				<tr>
+					<td><font size="4">객실 정보 : ${detail.p_name}</font></td>
+				</tr>
+				<tr>
+					<td><font size="4">예약 시작날짜 : ${reservation.r_startDate}</font></td>
+				</tr>
+				<tr>
+					<td><font size="4">예약 종료날짜 : ${reservation.r_endDate}</font></td>
+				</tr>
+				<tr>
+					<td><font size="4">예약자 정보 : 회원 정보</font></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<br>
+	<div class="col-sm-12">
 		<div align="center">
 			<h2>업체 계좌번호 및 결제 금액</h2>
 		</div>
@@ -143,11 +163,17 @@
 					<td><font size="4">결제 금액</font></td>
 				</tr>
 				<tr align="center">
-					<td><font size="4">000,000 원</font></td>
+					<td><font size="4">(${detail.p_price}*10) 원</font></td>
 				</tr>
 			</table>
 		</div>
 	</div>
-
+	<br>
+	<div class="col-sm-12" align="center">
+		<br>
+		<input type="button" value="예약" id="productReservation" class="btn btn-success" style="font-size: 20px; height: 75px; width: 150px;">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="목록" id="BtnProductList" class="btn btn-success" style="font-size: 20px; height: 75px; width: 150px;">
+	</div>
 </body>
 </html>

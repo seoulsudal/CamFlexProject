@@ -89,9 +89,9 @@ function setImage(index){
 	</div>
 	<div align="center">
 		<br>
-		<input type="button" value="예약" id="productReservation" class="btn btn-primary">
+		<input type="button" value="예약" id="productReservation" class="btn btn-success" style="font-size: 20px; height: 75px; width: 150px;">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="button" value="목록" id="productListBtn" class="btn btn-primary">
+		<input type="button" value="목록" id="productListBtn" class="btn btn-success" style="font-size: 20px; height: 75px; width: 150px;">
 	</div>
 </div>
 </body>

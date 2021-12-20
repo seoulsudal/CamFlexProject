@@ -39,7 +39,7 @@
 				<tiles:insertAttribute name="aside1"/>
 			</div>
 			<div class="col-sm-9">
-				<tiles:insertAttribute name="body"/>			
+				<tiles:insertAttribute name="body" ignore="true"/>			
 			</div>
 		</div>
 	</div>

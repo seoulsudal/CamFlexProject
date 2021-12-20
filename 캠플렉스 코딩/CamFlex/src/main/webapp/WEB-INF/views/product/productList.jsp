@@ -43,10 +43,10 @@ $(function(){
 		<c:choose>		
 			<c:when test="${empty productList}">
 				<div class="well" style="height: 150px">
-				<table>
+				<table align="center">
 					<tr>
 						<td>	
-						<font size="15" >등록된 상품이 없습니다.</font>
+						<font size="15">등록된 상품이 없습니다.</font>
 						</td>
 					</tr>
 				</table>
