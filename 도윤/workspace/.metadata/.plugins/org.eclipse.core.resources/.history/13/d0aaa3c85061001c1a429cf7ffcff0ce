@@ -1,0 +1,5 @@
+package com.camflex.common.page;
+
+public class PagingTag {
+
+}
