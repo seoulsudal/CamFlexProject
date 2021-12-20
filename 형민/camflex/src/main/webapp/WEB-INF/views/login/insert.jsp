@@ -13,7 +13,7 @@
 	<h2>회원가입 완료</h2>
 	<div>
 		<tr>
-			<td>{{m_id}}</td>
+			<td>${m_id} 님 반갑습니다.</td>
 		</tr>
 	</div>
 </body>

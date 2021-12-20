@@ -1,0 +1,17 @@
+package com.camflex.client.login.dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.camflex.client.login.vo.LoginVO;
+
+@Repository
+public interface LoginDAO {
+
+	// 회원가입 처리
+	public void insert(LoginVO vo) throws Exception;
+
+	// 로그인 처리
+	public LoginVO Success(LoginVO vo) throws Exception;
+}

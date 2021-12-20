@@ -75,4 +75,6 @@ public class LoginVO {
 		this.m_date = m_date;
 	}
 
+	
+
 }

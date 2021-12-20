@@ -38,7 +38,7 @@
 </head>
 <body>
 	<h2>로그인</h2>
-	<form id="loginForm" action="" method="POST" onsubmit="return userLogin()">
+	<form id="loginForm" action="/login/loginAccess.do" method="POST" >
 		<div style="width: 280px">
 			<label id="loginInfo"> 아이디</label>
 			<input type="text" id="login_id" name="login_id" placeholder="아이디">
