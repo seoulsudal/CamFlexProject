@@ -21,8 +21,15 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	public List<LoginVO> memberList(LoginVO lvo) {
 		
 		List<LoginVO> list = null;
+		
 		list = adminMemberDAO.memberList(lvo);
 		
 		return list;
+	}
+	// 전체 레코드 수 구현
+	@Override
+	public int memberListCnt(LoginVO lvo) {
+		
+		return adminMemberDAO.memberListCnt(lvo);
 	}
 }

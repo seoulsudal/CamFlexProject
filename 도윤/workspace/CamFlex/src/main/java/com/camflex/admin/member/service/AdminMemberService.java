@@ -8,5 +8,7 @@ public interface AdminMemberService {
 
 	// 회원 리스트
 	public List<LoginVO> memberList(LoginVO lvo);
+	// 전체 레코드 수
+	public int memberListCnt(LoginVO lvo);
 
 }
