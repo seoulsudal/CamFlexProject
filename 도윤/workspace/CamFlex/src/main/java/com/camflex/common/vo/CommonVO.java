@@ -11,6 +11,10 @@ public class CommonVO {
 	private String search = "";
 	private String keyword = "";
 	
+	// 코드나 결과 내용을 위한 필드
+	private String result_cd;
+	private String result_msg;
+	
 	// 날짜 검색시 사용할 필드
 	private String start_date = "";
 	private String end_date = "";
@@ -63,6 +67,18 @@ public class CommonVO {
 	}
 	public void setEnd_date(String end_date) {
 		this.end_date = end_date;
+	}
+	public String getResult_cd() {
+		return result_cd;
+	}
+	public void setResult_cd(String result_cd) {
+		this.result_cd = result_cd;
+	}
+	public String getResult_msg() {
+		return result_msg;
+	}
+	public void setResult_msg(String result_msg) {
+		this.result_msg = result_msg;
 	}
 	
 

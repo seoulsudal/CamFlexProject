@@ -1,0 +1,15 @@
+package com.camflex.admin.main.service;
+
+import java.util.List;
+
+import com.camflex.client.login.vo.LoginVO;
+
+public class AdminMainServiceImpl implements AdminMainService {
+
+	@Override
+	public List<LoginVO> mainList(LoginVO lvo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

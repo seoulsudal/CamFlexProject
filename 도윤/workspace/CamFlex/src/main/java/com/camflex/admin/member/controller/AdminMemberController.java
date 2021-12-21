@@ -31,7 +31,7 @@ public class AdminMemberController {
 	 * 회원 리스트 구현하기
 	 *******************************/
 	@RequestMapping(value = "/memberList", method = RequestMethod.GET)
-	public String memberList(@ModelAttribute LoginVO lvo, Model model, HttpServletRequest request) {
+	public String memberList(@ModelAttribute LoginVO lvo, Model model) {
 		log.info("회원 리스트 호출 성공");
 		
 		
@@ -43,14 +43,14 @@ public class AdminMemberController {
 		  log.info("total = " + total);
 		  
 		  // 글번호 재설정 
-		  int count = total -
-		  (Util.nvl(lvo.getPage())-1)*Util.nvl(lvo.getPageSize());
+		  int count = total - (Util.nvl(lvo.getPage())-1)*Util.nvl(lvo.getPageSize());
 		  log.info("count = " + count);
 		 
 		
 		List<LoginVO> memberList = adminMemberService.memberList(lvo);
 		
 		model.addAttribute("memberList", memberList);
+		model.addAttribute("count", count);
 		model.addAttribute("total", total);
 		model.addAttribute("data", lvo);
 		
