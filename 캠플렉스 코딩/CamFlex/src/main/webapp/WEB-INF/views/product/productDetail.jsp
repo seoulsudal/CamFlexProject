@@ -83,7 +83,7 @@ function setImage(index){
 				<td width="500px" height="300px" class="text-primary"><h3>${detail.p_name}</h3><br><br><br><br><br>${detail.p_information}<br></td>
 			</tr>
 			<tr align="center">
-				<td><h3>${detail.p_price}원</h3><br><br><br><br>부대시설 및 렌탈 가격 안내<br>...</td>
+				<td><h3><fmt:formatNumber value="${detail.p_price}" pattern="#,###원"/></h3><br><br><br><br>부대시설 및 렌탈 가격 안내<br>...</td>
 			</tr>
 		</table>
 	</div>

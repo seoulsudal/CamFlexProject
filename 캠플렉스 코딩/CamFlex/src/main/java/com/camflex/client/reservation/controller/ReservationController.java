@@ -1,6 +1,7 @@
 package com.camflex.client.reservation.controller;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.YearMonth;
 
@@ -82,20 +83,62 @@ public class ReservationController {
 		return "reservation/reservationDetail";
 	}
 
-	/* 실시간 예약 생성 */
+	/* 실시간 예약 동의페이지 */
 	@RequestMapping(value = "/reservationAgreePage", method = RequestMethod.POST)
-	public String reservationAgreePage(@ModelAttribute AdminProductVO pvo, ReservationVO rvo, Model model) throws Exception {
-		log.info("reservationAgreePage 호출 성공");
+	public String reservationAgreePageForm(@ModelAttribute AdminProductVO pvo, ReservationVO rvo, Model model) throws Exception {
+		log.info("reservationAgreePageForm 호출 성공");
 		log.info("P_number = " + pvo.getP_number());
 		log.info("P_name = " + pvo.getP_name());
 		log.info("P_price = " + pvo.getP_price());
 		log.info("R_startDate = " + rvo.getR_startDate());
 		log.info("R_endDate = " + rvo.getR_endDate());
+		// 예약 일수 계산
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		java.util.Date start = transFormat.parse(rvo.getR_startDate());
+		java.util.Date end = transFormat.parse(rvo.getR_endDate());
+		long startDate = start.getTime();
+		long endDate = end.getTime();
+		long resultDate = (endDate - startDate)/(1000*60*60*24);
+		log.info("예약 일수 = " + resultDate + " 일");
 
 		model.addAttribute("detail", pvo);
 		model.addAttribute("reservation", rvo);
+		model.addAttribute("resultDate", resultDate);
 
 		return "reservation/reservationAgreePage";
 	}
+	
+	/* 실시간 예약 생성 */	
+	@RequestMapping(value = "reservationRegister", method = RequestMethod.POST)
+	public String reservationRegister(@ModelAttribute AdminProductVO pvo, ReservationVO rvo, Model model) throws Exception {
+		log.info("reservationRegister 호출 성공");
+		log.info("P_number = " + pvo.getP_number());
+		log.info("P_price = " + pvo.getP_price());
+		log.info("R_startDate = " + rvo.getR_startDate());
+		log.info("R_endDate = " + rvo.getR_endDate());
+		// 예약 일수 계산
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		java.util.Date start = transFormat.parse(rvo.getR_startDate());
+		java.util.Date end = transFormat.parse(rvo.getR_endDate());
+		long startDate = start.getTime();
+		long endDate = end.getTime();
+		long resultDate = (endDate - startDate)/(1000*60*60*24);
+		log.info("예약 일수 = " + resultDate + " 일");
+		log.info("R_price = " + rvo.getR_price());
+		
+		int result = 0;
+		String url = "";
+		
+		result = reservationService.register(rvo);
+		if(result == 1) {
+			url = "/product/productList";
+		} else {
+			model.addAttribute("code", 1);
+			url = "/product/productList";
+		}
+		
+		return "redirect:" + url;
+	}
+	 
 
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,34 @@
 	
 <script type="text/javascript">
   	$(function() {
-		
+		$("#BtnReservation").click(function() {
+			var agree1 = document.getElementById("p_u_agree");
+			var agree2 = document.getElementById("c_agree");
+			var agree3 = document.getElementById("p_i_agree");
+			var agree4 = document.getElementById("a_agree");
+			
+			// 입력값 체크
+			if(!agree1.checked){
+				alert("이용시 유의사항에 동의를 체크해 주세요.");
+				return false;
+			} else if(!agree2.checked){
+				alert("취소 수수료에 동의를 체크해 주세요.");
+				return false;
+			} else if(!agree3.checked){
+				alert("개인정보 수집 및 이용에 동의를 체크해 주세요.");
+				return false;
+			} else if(!agree4.checked){
+				alert("예약자가 성인임에 동의를 체크해 주세요.");
+				return false;
+			} else {
+				$("#agreeForm").attr({
+					"method":"POST",
+					"action":"/reservation/reservationRegister"
+				});
+				$("#agreeForm").submit();		
+			}
+		});
+  		
 		$("#BtnProductList").click(function(){
 			location.href="/product/productList";
 		});
@@ -26,6 +54,13 @@
 </head>
 <body>
 	<div class="col-sm-12">
+	<form id="agreeForm">
+		<input type="hidden" name="p_number" id="p_number" value="${detail.p_number}"/>
+		<input type="hidden" name="p_price" id="p_price" value="${detail.p_price}"/>
+		<input type="hidden" id="r_startDate" name="r_startDate" value="${reservation.r_startDate}" />
+		<input type="hidden" id="r_endDate" name="r_endDate" value="${reservation.r_endDate}" />
+		<input type="hidden" id="r_price" name="r_price" value="${detail.p_price * resultDate}">
+		
 		<div align="center">
 			<h2>이용약관 동의</h2>
 		</div>
@@ -47,8 +82,7 @@
 			</div>
 			<br>
 			<div align="center">
-				<label class="radio-inline"> <input type="radio" name="terms_of_Use" value="agree">동의</label>
-				<label class="radio-inline"> <input type="radio" name="terms_of_Use" value="disagree" checked>비동의</label>
+				<label class="radio-inline"> <input type="checkbox" id="p_u_agree" value="1">동의</label>
 			</div>
 			<br>
 			<div class="panel panel-default">
@@ -67,8 +101,7 @@
 			</div>
 			<br>
 			<div align="center">
-				<label class="radio-inline"> <input type="radio" name="cancellation_Fee" value="agree">동의</label>
-				<label class="radio-inline"> <input type="radio" name="cancellation_Fee" value="disagree" checked>비동의</label>
+				<label class="radio-inline"> <input type="checkbox" id="c_agree" value="1">동의</label>
 			</div>
 			<br>
 			<div class="panel panel-default">
@@ -98,8 +131,7 @@
 			</div>
 			<br>
 			<div align="center">
-				<label class="radio-inline"> <input type="radio" name="Privacy" value="agree">동의</label>
-				<label class="radio-inline"> <input type="radio" name="Privacy" value="disagree" checked>비동의</label>
+				<label class="radio-inline"> <input type="checkbox" id="p_i_agree" value="1">동의</label>
 			</div>
 			<br>
 			<div class="panel panel-default">
@@ -114,18 +146,13 @@
 			</div>
 			<br>
 			<div align="center">
-				<label class="radio-inline"> <input type="radio" name="adult" value="agree">동의</label>
-				<label class="radio-inline"> <input type="radio" name="adult" value="disagree" checked>비동의</label>
+				<label class="radio-inline"> <input type="checkbox" id="a_agree" value="1">동의</label>
 			</div>
 			<br>
 		</div>
+	</form>
 	</div>
 	<div class="col-sm-12">
-		<form id="p_detail" name="p_detail" method = "post">
-			<input type="hidden" name="p_number" id="p_number" value="${detail.p_number}"/>
-			<input type="hidden" name="p_name" id="p_name" value="${detail.p_name}"/>
-			<input type="hidden" name="p_price" id="p_price" value="${detail.p_price}"/>
-		</form>
 		<div align="center">
 			<h2>예약 내용 확인</h2>
 		</div>
@@ -139,6 +166,9 @@
 				</tr>
 				<tr>
 					<td><font size="4">예약 종료날짜 : ${reservation.r_endDate}</font></td>
+				</tr>
+				<tr>
+					<td><font size="4">총 예약일 : ${resultDate}일</font></td>
 				</tr>
 				<tr>
 					<td><font size="4">예약자 정보 : 회원 정보</font></td>
@@ -163,7 +193,7 @@
 					<td><font size="4">결제 금액</font></td>
 				</tr>
 				<tr align="center">
-					<td><font size="4">(${detail.p_price}*10) 원</font></td>
+					<td><font size="4"><fmt:formatNumber value="${detail.p_price * resultDate}" pattern="#,###원"/></font></td>
 				</tr>
 			</table>
 		</div>
@@ -171,7 +201,7 @@
 	<br>
 	<div class="col-sm-12" align="center">
 		<br>
-		<input type="button" value="예약" id="productReservation" class="btn btn-success" style="font-size: 20px; height: 75px; width: 150px;">
+		<input type="button" value="예약" id="BtnReservation" class="btn btn-success" style="font-size: 20px; height: 75px; width: 150px;">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="button" value="목록" id="BtnProductList" class="btn btn-success" style="font-size: 20px; height: 75px; width: 150px;">
 	</div>

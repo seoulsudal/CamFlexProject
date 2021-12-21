@@ -7,15 +7,14 @@ public class ReservationVO {
 	private int r_number;
 	private String m_id;
 	private int p_number;
-	private Date r_apllicationDate;
 	private String r_startDate;
 	private String r_endDate;
 	private int r_price;
 	private String r_state;
-	private int r_count;
-	private int rv_number;
-	private Date rv_date;
-	private String rv_content;
+	private int c_agree;
+	private int p_u_agree;
+	private int p_i_agree;
+	private int a_agree;
 
 	public int getR_number() {
 		return r_number;
@@ -39,14 +38,6 @@ public class ReservationVO {
 
 	public void setP_number(int p_number) {
 		this.p_number = p_number;
-	}
-
-	public Date getR_apllicationDate() {
-		return r_apllicationDate;
-	}
-
-	public void setR_apllicationDate(Date r_apllicationDate) {
-		this.r_apllicationDate = r_apllicationDate;
 	}
 
 	public String getR_startDate() {
@@ -81,36 +72,36 @@ public class ReservationVO {
 		this.r_state = r_state;
 	}
 
-	public int getR_count() {
-		return r_count;
+	public int getC_agree() {
+		return c_agree;
 	}
 
-	public void setR_count(int r_count) {
-		this.r_count = r_count;
+	public void setC_agree(int c_agree) {
+		this.c_agree = c_agree;
 	}
 
-	public int getRv_number() {
-		return rv_number;
+	public int getP_u_agree() {
+		return p_u_agree;
 	}
 
-	public void setRv_number(int rv_number) {
-		this.rv_number = rv_number;
+	public void setP_u_agree(int p_u_agree) {
+		this.p_u_agree = p_u_agree;
 	}
 
-	public Date getRv_date() {
-		return rv_date;
+	public int getP_i_agree() {
+		return p_i_agree;
 	}
 
-	public void setRv_date(Date rv_date) {
-		this.rv_date = rv_date;
+	public void setP_i_agree(int p_i_agree) {
+		this.p_i_agree = p_i_agree;
 	}
 
-	public String getRv_content() {
-		return rv_content;
+	public int getA_agree() {
+		return a_agree;
 	}
 
-	public void setRv_content(String rv_content) {
-		this.rv_content = rv_content;
+	public void setA_agree(int a_agree) {
+		this.a_agree = a_agree;
 	}
 
 }

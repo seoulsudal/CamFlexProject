@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.client.notice.dao.NoticeDAO">
+	<resultMap type="com.camflex.admin.notice.vo.AdminNoticeVO" id="AdminNoticeVO">
+		<result column="" property=""/>
+		
+	</resultMap>
+	
+	<!-- 공지사항 조회 -->
+	<select id="noticeList" parameterType="notice">
+	
+	</select>
+</mapper>
