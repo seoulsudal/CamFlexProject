@@ -12,6 +12,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		/* 검색 후 검색 대상과 검색 단어 출력 */
 		var word = "<c:out value = '${data.keyword}' />";
 		var value = "";
 		if(word != ""){
@@ -19,19 +20,17 @@
 			$("#search").val("<c:out value = '${data.search}' />");
 			
 			if($("#search").val() != 'm_name')
-				value = "#list tt td.mName";
+				value = "#list tr td.mName";
 			else if($("#search").val() == 'm_phone')
 				value = "#list tr td.phone";
-			/* 
-			$(value+":contains('"+ word +"')").each(function(){
+			
+		/* 	$(value+":contains('"+ word +"')").each(function(){
 				var regex = new RegExp(word,'gi');
 				$(this).html($(this).text().replace(regex,"<span class='required'>" + word + "</span>"));
 			}); */
 		}
 		
-		if("<c:out value='${data.pageSize}' />" != ""){
-			$("#pageSize").val("<c:out value='${data.pageSize}' />");
-		}
+		
 		/* 검색 대상이 변경될 때마다 처리 이벤트 */
 		$("#search").change(function(){
 			if($("#search").val() == "all"){
@@ -50,6 +49,14 @@
 			goPage(1);
 		});
 	
+		/* 한 페이지에 보여줄 레코드 수 조회 후 선택한 값 그대로 유지하기 위한 설정 */
+		if("<c:out value='${data.pageSize}' />" != ""){
+			$("#pageSize").val("<c:out value='${data.pageSize}' />");
+		}
+		$("#pageSize").change(function(){
+			goPage(1);
+		});
+		
 	});
 	/* 검색과 한 페이지에 보여줄 레코드 수 처리 및 페이징을 위한 실질적인 처리 함수 */
 	function goPage(page){
@@ -63,6 +70,16 @@
 		});
 		$("#m_search").submit();
 	}
+	function chkSubmit(item, msg){
+		if(item.val().replace(/\s/g,"") == ""){
+			alert(msg + "입력해 주세요.");
+			item.val("");
+			item.focus();
+			return false();
+		}else{
+			return true;
+		}
+	}
 </script>
 </head>
 <body>
@@ -70,8 +87,7 @@
 <%--검색기능 시작 --%>
 <div id="memberSearch">
 	<form id="m_search" name="m_search">
-		<input type="hidden" id="page" name="page" value="${data.page}"/>
-		<input type="hidden" id="pageSize" name="pageSize" value="${data.pageSize}">
+		<%-- <input type="hidden" id="page" name="page" value="${data.page}"/> --%>
 		<table summary="검색" align="center">
 			<colgroup>
 				<col width="70%"></col>
@@ -87,21 +103,12 @@
 					<input type="text" name="keyword" id="keyword" value="검색어를 입력하세요" />
 					<input type="button" value="검색" id="searchData" />
 				</td>
-				<!-- <td id="btd2">한페이지에
-					<select id="pageSize" name="pageSize">
-						<option value="1">1줄</option>
-						<option value="2">2줄</option>
-						<option value="3">3줄</option>
-						<option value="5">5줄</option>
-						<option value="10">10줄</option>
-					</select>
-				</td> -->
 			</tr>
 		</table>
 	</form>
 </div>
 <%--검색기능 끝 --%>
-<div align="center">
+<div id="memberList" align="center">
 	<table border="1">
 		<thead>
 			<tr>
@@ -112,10 +119,10 @@
 				<th>가입일</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="list">
 			<c:choose>
 				<c:when test="${not empty memberList}">
-					<c:forEach var="member" items="${memberList}" varStatus="status" end="${data.pageSize-1}">
+					<c:forEach var="member" items="${memberList}" varStatus="status">
 						<tr>
 							<td>${status.count}</td>
 							<td class="mName">${member.m_id}</td>
@@ -134,7 +141,7 @@
 		</tbody>
 	</table>
 </div>
-<div align="center">
+<div id="memberPage" align="center">
 	<tag:paging page="${param.page}" total="${total}" list_size="${data.pageSize}" />
 </div>
 </body>

@@ -4,26 +4,27 @@
 	
 	<!-- 회원 검색 쿼리 분리 -->
 	<sql id="memberCommon">
-		SELECT m_id, m_name, m_date
+		SELECT m_id, m_name, m_phone, m_date
 		FROM member_tbl
 		<where>
-			<if test="search == 'm_id'">
-				<![CDATA[m_id like '%'||#{keyword}||'%']]>
-			</if>
 			<if test="search == 'm_name'">
 				<![CDATA[m_name like '%'||#{keyword}||'%']]>
+			</if>
+			<if test="search == 'm_phone'">
+				<![CDATA[m_phone like '%'||#{keyword}||'%']]>
 			</if>
 		</where>
 	</sql>
 	
 	<!-- 회원 리스트(마스킹 처리) -->
-	<select id="memberList" resultType="member">
+	<select id="memberList" parameterType="member" resultType="member">
 		SELECT 
 		m_id,
 		REGEXP_REPLACE(m_name, '.', '*', 2, 1)as m_name,
 		REGEXP_REPLACE(m_phone, '(\d{3})(\d{3,4})(\d{4})', '\1-****-\3')as m_phone,
 		m_date
-		FROM member_tbl
+		FROM member_tbl 
+		ORDER BY m_date DESC
 	</select>
 	
 	<!-- 회원 카운트 페이징 -->

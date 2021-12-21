@@ -48,7 +48,7 @@ public class PagingTag extends TagSupport{
 	
 	public String getPaging() {
 		String ret = "";
-		if(page<1)page = 1;
+		if(page < 1)page = 1;
 		if(total < 1)return "";
 		
 		int currentFirst = ((page-1)/page_size)*page_size + 1;

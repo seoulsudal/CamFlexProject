@@ -1,0 +1,5 @@
+package com.camflex.admin.main.dao;
+
+public interface AdminMainDAO {
+
+}

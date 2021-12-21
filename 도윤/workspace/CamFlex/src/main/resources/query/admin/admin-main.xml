@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.admin.main.dao.AdminMainDAO">
+	<!-- 오늘 날짜 기준 가입한 회원 수 -->
+	<select id="mainList" resultType="int">
+		select count(*) as mainList
+		from member_tbl
+		where to_char(m_date, 'yyyyMMdd') = to_char(sysdate, 'yyyymmdd')
+	</select>
+</mapper>
