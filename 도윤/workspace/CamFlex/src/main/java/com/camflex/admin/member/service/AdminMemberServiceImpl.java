@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.camflex.admin.member.dao.AdminMemberDAO;
 import com.camflex.client.login.vo.LoginVO;
+import com.camflex.common.vo.PageRequest;
 
 @Service
 @Transactional
@@ -18,18 +19,18 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 
 	// 회원 리스트
 	@Override
-	public List<LoginVO> memberList(LoginVO lvo) {
+	public List<LoginVO> memberList(PageRequest pageRequest) {
 		
-		List<LoginVO> list = null;
 		
-		list = adminMemberDAO.memberList(lvo);
 		
-		return list;
+		return adminMemberDAO.memberList(pageRequest);
 	}
-	// 전체 레코드 수 구현
+
+	// 회원 전체 수를 반환한다.
 	@Override
-	public int memberListCnt(LoginVO lvo) {
+	public int count(PageRequest pageRequest) {
 		
-		return adminMemberDAO.memberListCnt(lvo);
+		return adminMemberDAO.count(pageRequest);
 	}
+
 }

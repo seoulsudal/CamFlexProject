@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.camflex.admin.main.dao.AdminMainDAO;
 import com.camflex.client.login.vo.LoginVO;
+import com.camflex.client.reservation.vo.ReservationVO;
 
 @Service
 @Transactional
@@ -22,6 +23,24 @@ public class AdminMainServiceImpl implements AdminMainService {
 	public List<LoginVO> mainList(LoginVO lvo) {
 		List<LoginVO> list = new ArrayList<LoginVO>();
 		list = adminMainDAO.mainList(lvo);
+		return list;
+	}
+
+	// 신규 예약 대기
+	@Override
+	public List<ReservationVO> rsvList(ReservationVO rvo) {
+		
+		List<ReservationVO> list = new ArrayList<ReservationVO>();
+		list = adminMainDAO.rsvList(rvo);
+		return list;
+	}
+
+	// 오늘 날짜 방문 고객
+	@Override
+	public List<ReservationVO> visit(ReservationVO rvo) {
+		
+		List<ReservationVO> list = new ArrayList<ReservationVO>();
+		list = adminMainDAO.visit(rvo);
 		return list;
 	}
 
