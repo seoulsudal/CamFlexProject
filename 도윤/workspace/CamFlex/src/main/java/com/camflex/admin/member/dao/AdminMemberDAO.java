@@ -3,12 +3,14 @@ package com.camflex.admin.member.dao;
 import java.util.List;
 
 import com.camflex.client.login.vo.LoginVO;
+import com.camflex.common.vo.PageRequest;
 
 public interface AdminMemberDAO {
 
 	// 회원 리스트
-	public List<LoginVO> memberList(LoginVO lvo);
-	// 전체 레코드 수 구현
-	public int memberListCnt(LoginVO lvo);
+	public List<LoginVO> memberList(PageRequest pageRequest);
+
+	// 회원 전체 수를 반환한다.
+	public int count(PageRequest pageRequest);
 
 }

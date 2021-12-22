@@ -29,8 +29,8 @@
 				<tbody>
 					<tr>
 						<td align="center">미구현</td>
-						<td align="center">미구현</td>
-						<td align="center">미구현</td>
+						<td align="center">${newRsv}</td>
+						<td align="center">${visit}</td>
 						<td align="center">${todayMember}</td>
 					</tr>
 				</tbody>

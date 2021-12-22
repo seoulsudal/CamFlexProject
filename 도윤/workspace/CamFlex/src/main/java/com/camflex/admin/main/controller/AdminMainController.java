@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.camflex.admin.main.service.AdminMainService;
 import com.camflex.client.login.vo.LoginVO;
+import com.camflex.client.reservation.vo.ReservationVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -25,7 +26,7 @@ public class AdminMainController {
 	
 	// 메인 페이지
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String mainList(@ModelAttribute LoginVO lvo, Model model) {
+	public String mainList(@ModelAttribute LoginVO lvo, ReservationVO rvo, Model model) {
 		log.info("메인 페이지 호출 성공");
 		
 		
@@ -35,7 +36,11 @@ public class AdminMainController {
 		model.addAttribute("todayMember", todayMember);
 		model.addAttribute("data", lvo);
 		
+		List<ReservationVO> newRsv = adminMainService.rsvList(rvo);
+		model.addAttribute("newRsv", newRsv);
 		
+		List<ReservationVO> visit = adminMainService.visit(rvo);
+		model.addAttribute("visit", visit);
 		
 		return "admin/main";
 	}

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.camflex.client.login.vo.LoginVO;
+import com.camflex.client.reservation.vo.ReservationVO;
 
 @Repository
 public class AdminMainDAOImpl implements AdminMainDAO {
@@ -19,6 +20,20 @@ public class AdminMainDAOImpl implements AdminMainDAO {
 	public List<LoginVO> mainList(LoginVO lvo) {
 		
 		return sqlSession.selectList("com.camflex.admin.main.dao.AdminMainDAO.mainList", lvo);
+	}
+
+	// 신규 예약 대기
+	@Override
+	public List<ReservationVO> rsvList(ReservationVO rvo) {
+		
+		return sqlSession.selectList("com.camflex.admin.main.dao.AdminMainDAO.rsvList", rvo);
+	}
+
+	// 오늘 날짜 방문 고객
+	@Override
+	public List<ReservationVO> visit(ReservationVO rvo) {
+		
+		return sqlSession.selectList("com.camflex.admin.main.dao.AdminMainDAO.visit", rvo);
 	}
 
 }

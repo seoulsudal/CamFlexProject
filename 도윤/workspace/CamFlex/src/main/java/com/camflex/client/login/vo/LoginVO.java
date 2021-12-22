@@ -4,9 +4,8 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.camflex.common.vo.CommonVO;
 
-public class LoginVO extends CommonVO {
+public class LoginVO {
 	private String m_id = "";	// 아이디
 	private String m_pw = "";	// 비밀번호
 	private String m_name = "";	// 회원 이름
@@ -14,12 +13,13 @@ public class LoginVO extends CommonVO {
 	@DateTimeFormat(pattern = "yyyyMMdd")
 	private Date m_birth;		// 회원 생년 월일
 	private Date m_date;		// 회원 가입일
+	private int m_number;		// 회원 번호
 	
 	public LoginVO() {
 
 	}
 
-	public LoginVO(String m_id, String m_pw, String m_name, String m_phone, Date m_birth, Date m_date) {
+	public LoginVO(String m_id, String m_pw, String m_name, String m_phone, Date m_birth, Date m_date, int m_number) {
 		super();
 		this.m_id = m_id;
 		this.m_pw = m_pw;
@@ -27,6 +27,7 @@ public class LoginVO extends CommonVO {
 		this.m_phone = m_phone;
 		this.m_birth = m_birth;
 		this.m_date = m_date;
+		this.m_number = m_number;
 	}
 
 	public String getM_id() {
@@ -81,6 +82,14 @@ public class LoginVO extends CommonVO {
 
 	public void setM_date(Date m_date) {
 		this.m_date = m_date;
+	}
+
+	public int getM_number() {
+		return m_number;
+	}
+
+	public void setM_number(int m_number) {
+		this.m_number = m_number;
 	}
 
 	
