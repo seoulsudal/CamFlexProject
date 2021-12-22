@@ -25,6 +25,14 @@
 		<put-attribute name="footer" value="/WEB-INF/views/template/client/footer.jsp"/>
 	</definition>
 	
+	<definition name="content3" template="/WEB-INF/views/template/client/contentLayout3.jsp">
+		<put-attribute name="title" value="캠플렉스 예약 사이트"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/client/header.jsp"/>
+		<put-attribute name="aside3" value="/WEB-INF/views/template/client/aside3.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/client/footer.jsp"/>
+	</definition>
+	
 	<definition name="product/*" extends="content1">
 		<put-attribute name="title" value="캠핑장 리스트"/>
 		<put-attribute name="body" value="/WEB-INF/views/product/{1}.jsp"/>	
@@ -38,6 +46,11 @@
 	<definition name="member/*" extends="content2">
 		<put-attribute name="title" value="마이 페이지"/>
 		<put-attribute name="body" value="/WEB-INF/views/member/{1}.jsp"/>
+	</definition>
+	
+	<definition name="notice/*" extends="content3">
+		<put-attribute name="title" value="공지사항"/>
+		<put-attribute name="body" value="/WEB-INF/views/notice/{1}.jsp"/>	
 	</definition>
 	
 </tiles-definitions>

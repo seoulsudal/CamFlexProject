@@ -1,6 +1,5 @@
 package com.camflex.client.reservation.vo;
 
-import java.sql.Date;
 
 public class ReservationVO {
 

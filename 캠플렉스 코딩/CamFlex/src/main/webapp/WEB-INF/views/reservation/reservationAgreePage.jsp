@@ -60,6 +60,8 @@
 		<input type="hidden" id="r_startDate" name="r_startDate" value="${reservation.r_startDate}" />
 		<input type="hidden" id="r_endDate" name="r_endDate" value="${reservation.r_endDate}" />
 		<input type="hidden" id="r_price" name="r_price" value="${detail.p_price * resultDate}">
+		<input type="hidden" id="m_id" name="m_id" value="gudals960402@nate.com">
+		<input type="hidden" id="r_state" name="r_state" value="대기">
 		
 		<div align="center">
 			<h2>이용약관 동의</h2>

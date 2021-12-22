@@ -159,22 +159,14 @@
 				<c:choose>
 					<c:when test="${empty reservationList}">
 						<div class="well">
-							<font size="4">해당 상품은 현재 예약 없습니다.</font>
+							<font size="3">해당 상품은 현재 예약 없습니다.</font>
 						</div>
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${reservationList}" var="reservation">
-							<table align="center" border="1">
-								<tr>
-									<td>예약번호 : ${reservation.r_number}</td>
-								</tr>
-								<tr>
-									<td>예약 시작일 : ${reservation.r_startDate}</td>
-								</tr>
-								<tr>
-									<td>예약 시작일 : ${reservation.r_endDate}</td>
-								</tr>
-							</table>
+						<div style="border: 1px">
+							예약번호 : ${reservation.r_number},<br> 예약 시작일 : ${reservation.r_startDate},<br> 예약 종료일 : ${reservation.r_endDate}
+						</div>
 							<br>
 						</c:forEach>
 					</c:otherwise>
@@ -192,6 +184,7 @@
 				<input type="hidden" name="p_number" id="p_number" value="${detail.p_number}" />
 				<input type="hidden" name="p_name" id="p_name" value="${detail.p_name}" />
 				<input type="hidden" name="p_price" id="p_price" value="${detail.p_price}" />
+				<%-- <input type="hidden" id="m_id" name="m_id" value="${}"> --%>
 			</form>
 		</div>
 	</div>

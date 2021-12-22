@@ -21,5 +21,11 @@ public class NoticeDAOImpl implements NoticeDAO {
 	public List<AdminNoticeVO> noticeList(AdminNoticeVO nvo) throws Exception {
 		return sqlSession.selectList(namespace + ".noticeList", nvo);
 	}
+
+	// 상세 페이지
+	@Override
+	public AdminNoticeVO noticeDetail(AdminNoticeVO nvo) throws Exception {
+		return sqlSession.selectOne("noticeDetail", nvo);
+	}
 	
 }

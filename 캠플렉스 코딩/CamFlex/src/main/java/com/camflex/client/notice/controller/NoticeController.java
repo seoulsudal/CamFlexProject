@@ -36,4 +36,22 @@ public class NoticeController {
 		
 		return "notice/noticeList";
 	}
+	
+	// 공지사항 상세 페이지
+	@RequestMapping(value = "/noticeDetail", method = RequestMethod.GET)
+	public String noticeDetail(@ModelAttribute AdminNoticeVO nvo, Model model) throws Exception {
+		log.info("noticeDetail 호출 성공");
+		log.info("n_number = " + nvo.getN_number());
+		
+		AdminNoticeVO detail = new AdminNoticeVO();
+		detail = noticeService.noticeDetail(nvo);
+		
+		if(detail != null && (!detail.equals(""))) {
+			detail.setN_content(detail.getN_content().toString().replace("/n", "<br>"));
+		}
+		
+		model.addAttribute("detail", detail);
+		
+		return "notice/noticeDetail";
+	}
 }

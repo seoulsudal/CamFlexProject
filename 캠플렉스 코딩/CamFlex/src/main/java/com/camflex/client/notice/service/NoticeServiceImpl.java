@@ -23,5 +23,14 @@ public class NoticeServiceImpl implements NoticeService {
 		list = noticeDAO.noticeList(nvo);
 		return list;
 	}
+
+	// 상세 페이지
+	@Override
+	public AdminNoticeVO noticeDetail(AdminNoticeVO nvo) throws Exception {
+		AdminNoticeVO detail = null;
+		detail = noticeDAO.noticeDetail(nvo);
+		
+		return detail;
+	}
 	
 }

@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +38,10 @@ public class ReservationController {
 		log.info("P_number = " + pvo.getP_number());
 		log.info("P_name = " + pvo.getP_name());
 		log.info("P_price = " + pvo.getP_price());
+		log.info("m_id = " + rvo.getM_id());
 
+		List<ReservationVO> reservationList = reservationService.reservationList(rvo);
+				
 		// JAVA 8 이후 나온 달력 쓰는 클래스
 		LocalDate localDate;
 		YearMonth yearMonth;
@@ -77,6 +81,7 @@ public class ReservationController {
 		model.addAttribute("monthEndSecond", monthEndSecond);
 		model.addAttribute("monthStartSecond", monthStartSecond);
 
+		model.addAttribute("reservationList", reservationList);
 		model.addAttribute("detail", pvo);
 		model.addAttribute("reservation", rvo);
 
@@ -101,6 +106,8 @@ public class ReservationController {
 		long resultDate = (endDate - startDate)/(1000*60*60*24);
 		log.info("예약 일수 = " + resultDate + " 일");
 
+		model.addAttribute("start", start);
+		model.addAttribute("end", end);
 		model.addAttribute("detail", pvo);
 		model.addAttribute("reservation", rvo);
 		model.addAttribute("resultDate", resultDate);
@@ -125,6 +132,7 @@ public class ReservationController {
 		long resultDate = (endDate - startDate)/(1000*60*60*24);
 		log.info("예약 일수 = " + resultDate + " 일");
 		log.info("R_price = " + rvo.getR_price());
+		log.info("m_id = " + rvo.getM_id());
 		
 		int result = 0;
 		String url = "";
