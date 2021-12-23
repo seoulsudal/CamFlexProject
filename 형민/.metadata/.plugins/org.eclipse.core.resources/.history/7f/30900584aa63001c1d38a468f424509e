@@ -1,0 +1,10 @@
+package com.camflex.client.login.dao;
+
+import com.camflex.client.login.vo.LoginVO;
+
+public interface LoginDAO {
+
+	// 로그인 처리2
+	public LoginVO readMember(String m_id, String m_pw) throws Exception;
+
+}

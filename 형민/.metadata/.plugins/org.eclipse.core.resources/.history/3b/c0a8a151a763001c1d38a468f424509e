@@ -1,0 +1,41 @@
+package com.camflex.client.login.service;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.camflex.client.login.dao.LoginDAO;
+import com.camflex.client.member.vo.MemberVO;
+
+@Service
+@Transactional
+public class LoginServiceImpl implements LoginService {
+
+	@Inject 
+	private LoginDAO loginDAO;
+
+	@Override
+	public MemberVO loginMember(MemberVO vo) {
+		MemberVO memberVO = null;
+		try {
+			memberVO = loginDAO.readMember(vo.getM_id(), vo.getM_pw());
+		} catch (Exception e) {
+			e.printStackTrace();
+			memberVO = null;
+		}
+		return memberVO;
+	}
+
+	// 로그인 처리
+	/*
+	 * @Override public String loginCheck(LoginVO vo, HttpSession session) throws
+	 * Exception { String m_name = loginDAO.loginCheck(vo);
+	 * 
+	 * if (m_name != null) { session.setAttribute("m_id", vo.getM_id());
+	 * session.setAttribute("m_name", m_name); } return m_name; }
+	 */
+
+	// 로그인 처리2
+
+}

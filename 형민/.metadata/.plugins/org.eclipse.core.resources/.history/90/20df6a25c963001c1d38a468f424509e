@@ -1,0 +1,6 @@
+package com.camflex.client.login.dao;
+
+public interface LoginDAO {
+	public LoginVO login(LoginVO vo) throws Exception;
+
+}

@@ -1,0 +1,15 @@
+package com.camflex.client.login.service;
+
+import com.camflex.client.login.vo.LoginVO;
+
+public interface LoginService {
+
+	// public boolean loginAccess(LoginVO vo, HttpSession session) throws Exception
+
+	// 로그인 처리
+	public String loginAccess(LoginVO vo) ;
+
+	// 회원가입 처리
+	public void insertMember(LoginVO vo) throws Exception;
+
+}

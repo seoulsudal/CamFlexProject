@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.client.login.dao.LoginDAO">
+	<!-- 로그인 처리 -->
+	<select id="Check"
+		resultType="com.camflex.client.login.vo.LoginVO">
+		select *
+		from member_tbl
+		where m_id=#{m_id} and m_pw=#{m_pw}
+	</select>
+
+	<!-- 회원가입 처리 -->
+	<insert id="regNotice" parameterType="notice">
+		<selectKey keyProperty="n_number" resultType="int"
+			order="BEFORE">
+			SELECT notice_tbl_seq.nextval FROM DUAL
+		</selectKey>
+		INSERT INTO notice_tbl(
+		n_number, n_writer, n_title, n_content
+		<if test="n_photo != null and n_photo !=''">, n_photo</if>
+		)
+		VALUES(
+		#{n_number}, '관리자', #{n_title}, #{n_content}
+		<if test="n_photo != null and n_photo != ''">, #{n_photo}</if>
+		)
+	</insert>
+
+
+
+</mapper>

@@ -1,0 +1,16 @@
+package com.camflex.client.login.dao;
+
+import com.camflex.client.login.vo.LoginVO;
+
+//DB 연결 구현
+public interface LoginDAO {
+
+	// 회원가입 처리
+	public void insert(LoginVO vo) throws Exception;
+
+	//로그인 처리
+	public String loginCheck(LoginVO vo) throws Exception;
+
+	
+
+}
