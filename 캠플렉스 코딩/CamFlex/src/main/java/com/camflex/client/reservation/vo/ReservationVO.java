@@ -1,11 +1,13 @@
 package com.camflex.client.reservation.vo;
 
+import java.sql.Date;
 
 public class ReservationVO {
 
 	private int r_number;
 	private String m_id;
 	private int p_number;
+	private Date r_apllicationdate;
 	private String r_startDate;
 	private String r_endDate;
 	private int r_price;
@@ -37,6 +39,14 @@ public class ReservationVO {
 
 	public void setP_number(int p_number) {
 		this.p_number = p_number;
+	}
+
+	public Date getR_apllicationdate() {
+		return r_apllicationdate;
+	}
+
+	public void setR_apllicationdate(Date r_apllicationdate) {
+		this.r_apllicationdate = r_apllicationdate;
 	}
 
 	public String getR_startDate() {
