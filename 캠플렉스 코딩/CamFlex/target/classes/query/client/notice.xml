@@ -10,11 +10,28 @@
 		<result column="n_writer" property="n_writer"/>
 	</resultMap>
 	
+	<!-- 검색 조건울 나타내는 쿼리 조각 -->
+	<sql id="total_list">
+		<if test="searchType == null">
+			and rnum between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}
+		</if>
+	</sql>
+	
 	<!-- 공지사항 조회 -->
-	<select id="noticeList" parameterType="notice" resultMap="AdminNoticeVO">
+	<!-- <select id="noticeList" parameterType="notice" resultMap="AdminNoticeVO">
 		SELECT n_number, n_title, n_content, n_photo, n_date, n_writer
 		FROM notice_tbl
 		ORDER BY n_number DESC
+	</select> -->
+	
+	<!-- 공지사항 조회 페이징 추가 -->
+	<select id="noticeList" resultMap="AdminNoticeVO">
+		<![CDATA[
+			SELECT n_number, n_title, n_content, n_photo, n_date, n_writer
+			FROM notice_tbl
+			WHERE n_number > 0
+			ORDER BY n_number DESC
+		]]>
 	</select>
 	
 	<!-- 상세 페이지 -->
@@ -22,6 +39,15 @@
 		SELECT n_number, n_title, n_content, n_photo, n_date, n_writer
 		FROM notice_tbl
 		WHERE n_number = #{n_number}
+	</select>
+	
+	<!-- 회원 전체 명수를 조회한다. -->
+	<select id="count" resultType="int">
+		<![CDATA[
+		SELECT count(n_number)
+		FROM notice_tbl
+		WHERE n_number > 0
+		]]>
 	</select>
 	
 </mapper>

@@ -42,6 +42,9 @@ public class AdminMainController {
 		List<ReservationVO> visit = adminMainService.visit(rvo);
 		model.addAttribute("visit", visit);
 		
+		List<ReservationVO> yesterday = adminMainService.yesterday(rvo);
+	    model.addAttribute("yesterday", yesterday);
+		
 		return "admin/main";
 	}
 	

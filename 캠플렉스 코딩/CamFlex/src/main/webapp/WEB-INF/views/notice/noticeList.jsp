@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,7 @@
 		<input type="hidden" name="n_number" id="n_number">
 	</form>
 
-	<table border="1">
+	<table border="1" align="center">
 		<colgroup>
 			<col width="15%" />
 			<col width="52%" />
@@ -49,15 +50,28 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${noticeList}" var="notice">
-					<tr>
+					<tr align="center">
 						<td align="center">${notice.n_number}</td>
 						<td><a href="/notice/noticeDetail?n_number=${notice.n_number}">${notice.n_title}</a></td>
-						<td align="center">${notice.n_date}</td>
+						<td align="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.n_date}"/></td>
 						<td align="center">${notice.n_writer}</td>
 					</tr>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
 	</table>
+	<!-- 페이징 네비게이션 -->
+	<div align="center">
+	<br>
+		<c:if test="${pagination.prev}">
+			<a href="${pagination.startPage - 1}">&laquo;</a>
+		</c:if>
+		<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+			<a href="/notice/noticeList${pagination.makeQuery(idx)}">${idx}</a>
+		</c:forEach>
+		<c:if test="${pagination.next && pagination.endPage > 0}">
+			<a href="${pagination.endPage + 1}">&raquo;</a>
+		</c:if>
+	</div>
 </body>
 </html>
