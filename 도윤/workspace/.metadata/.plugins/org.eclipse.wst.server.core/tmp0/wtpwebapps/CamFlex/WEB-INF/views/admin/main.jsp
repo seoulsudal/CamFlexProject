@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,10 +29,10 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td align="center">미구현</td>
-						<td align="center">${newRsv}</td>
-						<td align="center">${visit}</td>
-						<td align="center">${todayMember}</td>
+						<td align="center">${yesterday}원</td>
+						<td align="center">${newRsv}건</td>
+						<td align="center">${visit}팀</td>
+						<td align="center">${todayMember}명</td>
 					</tr>
 				</tbody>
 			</table>
