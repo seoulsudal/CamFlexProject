@@ -17,7 +17,7 @@ public class AdminMainServiceImpl implements AdminMainService {
 
 	@Autowired
 	private AdminMainDAO adminMainDAO;
-	
+
 	// 오늘 날짜 기준 가입한 회원 수 출력
 	@Override
 	public List<LoginVO> mainList(LoginVO lvo) {
@@ -29,7 +29,7 @@ public class AdminMainServiceImpl implements AdminMainService {
 	// 신규 예약 대기
 	@Override
 	public List<ReservationVO> rsvList(ReservationVO rvo) {
-		
+
 		List<ReservationVO> list = new ArrayList<ReservationVO>();
 		list = adminMainDAO.rsvList(rvo);
 		return list;
@@ -38,9 +38,18 @@ public class AdminMainServiceImpl implements AdminMainService {
 	// 오늘 날짜 방문 고객
 	@Override
 	public List<ReservationVO> visit(ReservationVO rvo) {
-		
+
 		List<ReservationVO> list = new ArrayList<ReservationVO>();
 		list = adminMainDAO.visit(rvo);
+		return list;
+	}
+
+	// 전일 매출
+	@Override
+	public List<ReservationVO> yesterday(ReservationVO rvo) {
+
+		List<ReservationVO> list = new ArrayList<ReservationVO>();
+		list = adminMainDAO.yesterday(rvo);
 		return list;
 	}
 
