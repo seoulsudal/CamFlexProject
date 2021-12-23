@@ -14,26 +14,33 @@ public class AdminMainDAOImpl implements AdminMainDAO {
 
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	// 오늘 날짜 기준 가입한 회원 수 출력
 	@Override
 	public List<LoginVO> mainList(LoginVO lvo) {
-		
+
 		return sqlSession.selectList("com.camflex.admin.main.dao.AdminMainDAO.mainList", lvo);
 	}
 
 	// 신규 예약 대기
 	@Override
 	public List<ReservationVO> rsvList(ReservationVO rvo) {
-		
+
 		return sqlSession.selectList("com.camflex.admin.main.dao.AdminMainDAO.rsvList", rvo);
 	}
 
 	// 오늘 날짜 방문 고객
 	@Override
 	public List<ReservationVO> visit(ReservationVO rvo) {
-		
+
 		return sqlSession.selectList("com.camflex.admin.main.dao.AdminMainDAO.visit", rvo);
+	}
+
+	// 전일 매출
+	@Override
+	public List<ReservationVO> yesterday(ReservationVO rvo) {
+
+		return sqlSession.selectList("com.camflex.admin.main.dao.AdminMainDAO.yesterday", rvo);
 	}
 
 }

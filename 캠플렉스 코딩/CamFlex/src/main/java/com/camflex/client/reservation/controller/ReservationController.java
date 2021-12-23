@@ -98,16 +98,11 @@ public class ReservationController {
 		log.info("R_startDate = " + rvo.getR_startDate());
 		log.info("R_endDate = " + rvo.getR_endDate());
 		// 예약 일수 계산
-		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-		java.util.Date start = transFormat.parse(rvo.getR_startDate());
-		java.util.Date end = transFormat.parse(rvo.getR_endDate());
-		long startDate = start.getTime();
-		long endDate = end.getTime();
+		long startDate = rvo.getR_startDate().getTime();
+		long endDate = rvo.getR_endDate().getTime();
 		long resultDate = (endDate - startDate)/(1000*60*60*24);
 		log.info("예약 일수 = " + resultDate + " 일");
 
-		model.addAttribute("start", start);
-		model.addAttribute("end", end);
 		model.addAttribute("detail", pvo);
 		model.addAttribute("reservation", rvo);
 		model.addAttribute("resultDate", resultDate);
@@ -124,11 +119,8 @@ public class ReservationController {
 		log.info("R_startDate = " + rvo.getR_startDate());
 		log.info("R_endDate = " + rvo.getR_endDate());
 		// 예약 일수 계산
-		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-		java.util.Date start = transFormat.parse(rvo.getR_startDate());
-		java.util.Date end = transFormat.parse(rvo.getR_endDate());
-		long startDate = start.getTime();
-		long endDate = end.getTime();
+		long startDate = rvo.getR_startDate().getTime();
+		long endDate = rvo.getR_endDate().getTime();
 		long resultDate = (endDate - startDate)/(1000*60*60*24);
 		log.info("예약 일수 = " + resultDate + " 일");
 		log.info("R_price = " + rvo.getR_price());

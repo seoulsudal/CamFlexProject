@@ -1,18 +1,21 @@
 package com.camflex.client.reservation.vo;
 
+import java.util.Date;
+
 public class ReservationVO {
 
-	private int r_number;
-	private String m_id;
-	private int p_number;
-	private String r_startDate;
-	private String r_endDate;
-	private int r_price;
-	private String r_state;
-	private int c_agree;
-	private int p_u_agree;
-	private int p_i_agree;
-	private int a_agree;
+	private int r_number;		// 예약번호
+	private String m_id;		// 회원 아이디
+	private int p_number;		// 상품번호
+	private String r_startDate;	// 예약 시작일
+	private String r_endDate;	// 예약 종료일
+	private int r_price;		// 금액
+	private String r_state;		// 예약 상태
+	private int c_agree;		// 동의
+	private int p_u_agree;		// 동의
+	private int p_i_agree;		// 동의
+	private int a_agree;		// 동의
+	private Date r_apllicationDate;
 
 	public int getR_number() {
 		return r_number;
@@ -102,4 +105,13 @@ public class ReservationVO {
 		this.a_agree = a_agree;
 	}
 
+	public Date getR_apllicationDate() {
+		return r_apllicationDate;
+	}
+
+	public void setR_apllicationDate(Date r_apllicationDate) {
+		this.r_apllicationDate = r_apllicationDate;
+	}
+
+	
 }

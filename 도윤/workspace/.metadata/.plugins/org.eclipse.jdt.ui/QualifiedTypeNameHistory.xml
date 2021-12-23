@@ -32,9 +32,14 @@
     <fullyQualifiedTypeName name="com.camflex.client.login.vo.LoginVO"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
+    <fullyQualifiedTypeName name="com.camflex.common.vo.Pagination"/>
+    <fullyQualifiedTypeName name="com.camflex.common.vo.PageRequest"/>
+    <fullyQualifiedTypeName name="com.project.common.domain.CodeLabelValue"/>
+    <fullyQualifiedTypeName name="com.camflex.common.vo.CodeLabelValue"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.camflex.client.reservation.vo.ReservationVO"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

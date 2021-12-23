@@ -58,7 +58,7 @@
 							<td>${member.m_id}</td>
 							<td class="mName">${member.m_name}</td>
 							<td class="phone">${member.m_phone}</td>
-							<td><fmt:formatDate value="${member.m_date}" pattern="yyyy/MM/dd HH:mm" /></td>
+							<td><fmt:formatDate value="${member.m_date}" pattern="yyyy/MM/dd" /></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>

@@ -15,5 +15,8 @@ public interface AdminMainDAO {
 
 	// 오늘 날짜 방문 고객
 	public List<ReservationVO> visit(ReservationVO rvo);
+	
+	// 전일 매출
+	public List<ReservationVO> yesterday(ReservationVO rvo);
 
 }
