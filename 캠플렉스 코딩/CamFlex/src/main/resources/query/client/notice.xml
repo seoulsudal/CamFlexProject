@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.client.notice.dao.NoticeDAO">
+	<resultMap type="com.camflex.admin.notice.vo.AdminNoticeVO" id="AdminNoticeVO">
+		<result column="n_number" property="n_number"/>
+		<result column="n_title" property="n_title"/>
+		<result column="n_content" property="n_content"/>
+		<result column="n_photo" property="n_photo"/>
+		<result column="n_date" property="n_date"/>
+		<result column="n_writer" property="n_writer"/>
+	</resultMap>
+	
+	<!-- 공지사항 조회 -->
+	<select id="noticeList" parameterType="notice" resultMap="AdminNoticeVO">
+		SELECT n_number, n_title, n_content, n_photo, n_date, n_writer
+		FROM notice_tbl
+		ORDER BY n_number DESC
+	</select>
+	
+	<!-- 상세 페이지 -->
+	<select id="noticeDetail" parameterType="int" resultType="notice">
+		SELECT n_number, n_title, n_content, n_photo, n_date, n_writer
+		FROM notice_tbl
+		WHERE n_number = #{n_number}
+	</select>
+	
+</mapper>

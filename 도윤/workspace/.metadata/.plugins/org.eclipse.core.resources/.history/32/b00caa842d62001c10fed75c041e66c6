@@ -1,0 +1,10 @@
+package com.camflex.admin.main.dao;
+
+
+import com.camflex.client.login.vo.LoginVO;
+
+public interface AdminMainDAO {
+
+	public LoginVO mainList(LoginVO lvo);
+
+}

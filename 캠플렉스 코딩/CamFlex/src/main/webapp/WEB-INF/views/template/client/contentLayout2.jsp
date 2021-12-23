@@ -21,18 +21,18 @@
 <!--  Custom styles for this template -->
 <link href="/resources/include/dist/css/dashboard.css" rel="stylesheet">
 
-<script type="text/javascript" src="/resources/inclspring tiles left body 라인ude/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
 
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-
 </head>
 <body>
 	
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<tiles:insertAttribute name="header"/>
 	</nav>
+	
 	<div class="container">
 		<div class="row content">
 			<div class="col-sm-3 sidenav">

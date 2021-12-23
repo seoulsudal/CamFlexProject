@@ -83,15 +83,15 @@ function setImage(index){
 				<td width="500px" height="300px" class="text-primary"><h3>${detail.p_name}</h3><br><br><br><br><br>${detail.p_information}<br></td>
 			</tr>
 			<tr align="center">
-				<td><h3>${detail.p_price}원</h3><br><br><br><br>부대시설 및 렌탈 가격 안내<br>...</td>
+				<td><h3><fmt:formatNumber value="${detail.p_price}" pattern="#,###원"/></h3><br><br><br><br>부대시설 및 렌탈 가격 안내<br>...</td>
 			</tr>
 		</table>
 	</div>
 	<div align="center">
 		<br>
-		<input type="button" value="예약" id="productReservation" class="btn btn-primary">
+		<input type="button" value="예약" id="productReservation" class="btn btn-success" style="font-size: 20px; height: 75px; width: 150px;">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="button" value="목록" id="productListBtn" class="btn btn-primary">
+		<input type="button" value="목록" id="productListBtn" class="btn btn-success" style="font-size: 20px; height: 75px; width: 150px;">
 	</div>
 </div>
 </body>

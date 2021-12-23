@@ -1,0 +1,23 @@
+package com.camflex.admin.main.dao;
+
+
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.camflex.client.login.vo.LoginVO;
+
+@Repository
+public class AdminMainDAOImpl implements AdminMainDAO {
+
+	@Autowired
+	private SqlSession sqlSession;
+	
+	@Override
+	public LoginVO mainList(LoginVO lvo) {
+		
+		return sqlSession.selectOne("com.camflex.admin.main.dao.AdminMainDAO.mainList", lvo);
+	}
+
+}

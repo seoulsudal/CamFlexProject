@@ -53,7 +53,6 @@ public class ProductController {
 		model.addAttribute("detail", detail);
 		
 		return "product/productDetail";
-		
 	}
 	
 }

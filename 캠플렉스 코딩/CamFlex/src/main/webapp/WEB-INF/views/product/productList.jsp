@@ -24,7 +24,7 @@ $(function(){
 		
 		$("#listForm").attr({
 			"method":"get",
-			"action":"/admin/product/productDetail"
+			"action":"/product/productDetail"
 		});
 		$("#listForm").submit();
 	});
@@ -43,10 +43,10 @@ $(function(){
 		<c:choose>		
 			<c:when test="${empty productList}">
 				<div class="well" style="height: 150px">
-				<table>
+				<table align="center">
 					<tr>
 						<td>	
-						<font size="15" >등록된 상품이 없습니다.</font>
+						<font size="15">등록된 상품이 없습니다.</font>
 						</td>
 					</tr>
 				</table>
@@ -57,13 +57,13 @@ $(function(){
 					<div class="well" style="height: 190px">
 						<div class="col-sm-4">
 							<c:if test="${product.p_type  eq '오토'}">
-								<img src="/resources/images/common/1.png" class="col-sm-12">
+								<img src="/resources/images/common/1.png" class="col-sm-12" width="239.1" height="156.82">
 							</c:if>
 							<c:if test="${product.p_type eq '글램핑'}">
-								<img src="/resources/images/common/2.png" class="col-sm-12">
+								<img src="/resources/images/common/2.png" class="col-sm-12" width="239.1" height="156.82">
 							</c:if>
 							<c:if test="${product.p_type eq '차박'}">
-								<img src="/resources/images/common/3.png" class="col-sm-12">
+								<img src="/resources/images/common/3.png" class="col-sm-12" width="239.1" height="156.82">
 							</c:if>
 						</div>
 						<div class="col-sm-8">

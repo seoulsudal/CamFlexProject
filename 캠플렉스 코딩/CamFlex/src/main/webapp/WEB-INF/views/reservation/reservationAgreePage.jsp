@@ -1,38 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>예약 결제 및 약관 동의</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/common.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  	<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/resources/include/js/common.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
+<script type="text/javascript">
+  	$(function() {
+		$("#BtnReservation").click(function() {
+			var agree1 = document.getElementById("p_u_agree");
+			var agree2 = document.getElementById("c_agree");
+			var agree3 = document.getElementById("p_i_agree");
+			var agree4 = document.getElementById("a_agree");
+			
+			// 입력값 체크
+			if(!agree1.checked){
+				alert("이용시 유의사항에 동의를 체크해 주세요.");
+				return false;
+			} else if(!agree2.checked){
+				alert("취소 수수료에 동의를 체크해 주세요.");
+				return false;
+			} else if(!agree3.checked){
+				alert("개인정보 수집 및 이용에 동의를 체크해 주세요.");
+				return false;
+			} else if(!agree4.checked){
+				alert("예약자가 성인임에 동의를 체크해 주세요.");
+				return false;
+			} else {
+				$("#agreeForm").attr({
+					"method":"POST",
+					"action":"/reservation/reservationRegister"
+				});
+				$("#agreeForm").submit();		
+			}
+		});
+  		
+		$("#BtnProductList").click(function(){
+			location.href="/product/productList";
+		});
+		
+  	});
+</script>
 </head>
 <body>
 	<div class="col-sm-12">
-		<div align="center">
-			<h2>예약 내용 확인</h2>
-		</div>
-		<div class="well">
-			<table>
-				<tr>
-					<td><font size="4">객실 정보 : 객실 이름, 예약 일자</font></td>
-				</tr>
-				
-				<tr>
-					<td><font size="4">예약자 정보 : 회원 정보</font></td>
-				</tr>
-			</table>
-		</div>
-	</div>
-	<br>
-	<div class="col-sm-12">
+	<form id="agreeForm">
+		<input type="hidden" name="p_number" id="p_number" value="${detail.p_number}"/>
+		<input type="hidden" name="p_price" id="p_price" value="${detail.p_price}"/>
+		<input type="hidden" id="r_startDate" name="r_startDate" value="${reservation.r_startDate}" />
+		<input type="hidden" id="r_endDate" name="r_endDate" value="${reservation.r_endDate}" />
+		<input type="hidden" id="r_price" name="r_price" value="${detail.p_price * resultDate}">
+		<input type="hidden" id="m_id" name="m_id" value="gudals960402@nate.com">
+		<input type="hidden" id="r_state" name="r_state" value="대기">
+		
 		<div align="center">
 			<h2>이용약관 동의</h2>
 		</div>
@@ -54,8 +84,7 @@
 			</div>
 			<br>
 			<div align="center">
-				<label class="radio-inline"> <input type="radio" name="terms_of_Use" value="agree">동의</label>
-				<label class="radio-inline"> <input type="radio" name="terms_of_Use" value="disagree" checked>비동의</label>
+				<label class="radio-inline"> <input type="checkbox" id="p_u_agree" value="1">동의</label>
 			</div>
 			<br>
 			<div class="panel panel-default">
@@ -74,8 +103,7 @@
 			</div>
 			<br>
 			<div align="center">
-				<label class="radio-inline"> <input type="radio" name="cancellation_Fee" value="agree">동의</label>
-				<label class="radio-inline"> <input type="radio" name="cancellation_Fee" value="disagree" checked>비동의</label>
+				<label class="radio-inline"> <input type="checkbox" id="c_agree" value="1">동의</label>
 			</div>
 			<br>
 			<div class="panel panel-default">
@@ -105,8 +133,7 @@
 			</div>
 			<br>
 			<div align="center">
-				<label class="radio-inline"> <input type="radio" name="Privacy" value="agree">동의</label>
-				<label class="radio-inline"> <input type="radio" name="Privacy" value="disagree" checked>비동의</label>
+				<label class="radio-inline"> <input type="checkbox" id="p_i_agree" value="1">동의</label>
 			</div>
 			<br>
 			<div class="panel panel-default">
@@ -121,12 +148,37 @@
 			</div>
 			<br>
 			<div align="center">
-				<label class="radio-inline"> <input type="radio" name="adult" value="agree">동의</label>
-				<label class="radio-inline"> <input type="radio" name="adult" value="disagree" checked>비동의</label>
+				<label class="radio-inline"> <input type="checkbox" id="a_agree" value="1">동의</label>
 			</div>
 			<br>
 		</div>
+	</form>
 	</div>
+	<div class="col-sm-12">
+		<div align="center">
+			<h2>예약 내용 확인</h2>
+		</div>
+		<div class="well">
+			<table>
+				<tr>
+					<td><font size="4">객실 정보 : ${detail.p_name}</font></td>
+				</tr>
+				<tr>
+					<td><font size="4">예약 시작날짜 : ${reservation.r_startDate}</font></td>
+				</tr>
+				<tr>
+					<td><font size="4">예약 종료날짜 : ${reservation.r_endDate}</font></td>
+				</tr>
+				<tr>
+					<td><font size="4">총 예약일 : ${resultDate}일</font></td>
+				</tr>
+				<tr>
+					<td><font size="4">예약자 정보 : 회원 정보</font></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<br>
 	<div class="col-sm-12">
 		<div align="center">
 			<h2>업체 계좌번호 및 결제 금액</h2>
@@ -143,11 +195,17 @@
 					<td><font size="4">결제 금액</font></td>
 				</tr>
 				<tr align="center">
-					<td><font size="4">000,000 원</font></td>
+					<td><font size="4"><fmt:formatNumber value="${detail.p_price * resultDate}" pattern="#,###원"/></font></td>
 				</tr>
 			</table>
 		</div>
 	</div>
-
+	<br>
+	<div class="col-sm-12" align="center">
+		<br>
+		<input type="button" value="예약" id="BtnReservation" class="btn btn-success" style="font-size: 20px; height: 75px; width: 150px;">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="목록" id="BtnProductList" class="btn btn-success" style="font-size: 20px; height: 75px; width: 150px;">
+	</div>
 </body>
 </html>
