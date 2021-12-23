@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.camflex.client.login.vo.LoginVO;
+import com.camflex.client.member.vo.MemberVO;
 import com.camflex.client.reservation.vo.ReservationVO;
 
 @Repository
@@ -17,9 +17,9 @@ public class AdminMainDAOImpl implements AdminMainDAO {
 	
 	// 오늘 날짜 기준 가입한 회원 수 출력
 	@Override
-	public List<LoginVO> mainList(LoginVO lvo) {
+	public List<MemberVO> mainList(MemberVO mvo) {
 		
-		return sqlSession.selectList("com.camflex.admin.main.dao.AdminMainDAO.mainList", lvo);
+		return sqlSession.selectList("com.camflex.admin.main.dao.AdminMainDAO.mainList", mvo);
 	}
 
 	// 신규 예약 대기
@@ -34,6 +34,13 @@ public class AdminMainDAOImpl implements AdminMainDAO {
 	public List<ReservationVO> visit(ReservationVO rvo) {
 		
 		return sqlSession.selectList("com.camflex.admin.main.dao.AdminMainDAO.visit", rvo);
+	}
+
+	// 전일 매출
+	@Override
+	public List<ReservationVO> yesterday(ReservationVO rvo) {
+		
+		return sqlSession.selectList("com.camflex.admin.main.dao.AdminMainDAO.yesterday", rvo);
 	}
 
 }

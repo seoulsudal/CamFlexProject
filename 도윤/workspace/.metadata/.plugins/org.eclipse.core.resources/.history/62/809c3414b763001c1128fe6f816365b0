@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.admin.reservation.dao.AdminReservationDAO">
+	<!-- 검색 조건울 나타내는 쿼리 조각 -->
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 'm'.toString()">
+				and m_name like concat('%', concat(#{keyword}, '%'))
+			</if>
+			<if test="searchType == 'p'.toString()">
+				and p_name like concat('%', concat(#{keyword}, '%'))
+			</if>
+		</if>
+	</sql>
+	<sql id="total_list">
+		<if test="searchType == null">
+			and rnum between #{sizePerPage} * #{page} - 9 and #{sizePerPage} * #{page}
+		</if>
+	</sql>
+	
+	<!-- 예약 리스트 -->
+	<select id="reservationList" parameterType="reservation ">
+		SELECT a.r_number, b.p_name, c.m_name, a.r_price, a.r_apllicationdate, a.r_startdate, a.r_enddate, a.r_state
+		FROM reservation_tbl as a JOIN product_tbl as b JOIN member_tbl as c
+		ON a.p_number = b.p_number AND a.m_id = c.m_id
+
+	</select>
+	<!-- 예약 전체 명수를 조회한다. -->
+	<select id="count" resultType="int">
+		<![CDATA[
+		SELECT count(r_number)
+		FROM reservation_tbl
+		WHERE r_number > 0
+		]]>
+		<include refid="search"></include>
+	</select>
+</mapper>

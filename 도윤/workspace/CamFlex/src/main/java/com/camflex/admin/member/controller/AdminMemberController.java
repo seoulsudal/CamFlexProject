@@ -48,7 +48,9 @@ public class AdminMemberController {
 		// 검색 유형의 코드명과 코드값을 정의한다.
 		List<CodeLabelValue> searchTypeCodeValueList = new ArrayList<CodeLabelValue>();
 		searchTypeCodeValueList.add(new CodeLabelValue("a", "---"));
+		searchTypeCodeValueList.add(new CodeLabelValue("i", "아이디"));
 		searchTypeCodeValueList.add(new CodeLabelValue("n", "이름"));
+		searchTypeCodeValueList.add(new CodeLabelValue("p", "전화번호"));
 		model.addAttribute("searchTypeCodeValueList", searchTypeCodeValueList);
 	}
 

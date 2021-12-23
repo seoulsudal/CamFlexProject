@@ -1,5 +1,0 @@
-package com.camflex.admin.notice.dao;
-
-public class NoticeDAOImpl implements NoticeDAO {
-
-}

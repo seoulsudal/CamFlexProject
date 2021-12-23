@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.camflex.admin.member.dao.AdminMemberDAO;
-import com.camflex.client.login.vo.LoginVO;
+import com.camflex.client.member.vo.MemberVO;
 import com.camflex.common.vo.PageRequest;
 
 @Service
@@ -19,7 +19,7 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 
 	// 회원 리스트
 	@Override
-	public List<LoginVO> memberList(PageRequest pageRequest) {
+	public List<MemberVO> memberList(PageRequest pageRequest) {
 		
 		
 		

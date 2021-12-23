@@ -1,0 +1,57 @@
+package com.camflex.admin.reservation.vo;
+
+import java.util.Date;
+
+public class AdminReservationVO {
+	private int r_numner;
+	private String p_name;
+	private String m_name;
+	private int r_price;
+	private Date r_apllicationdate;
+	private String r_startDate;	
+	private String r_endDate;
+	public int getR_numner() {
+		return r_numner;
+	}
+	public void setR_numner(int r_numner) {
+		this.r_numner = r_numner;
+	}
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+	public String getM_name() {
+		return m_name;
+	}
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
+	}
+	public int getR_price() {
+		return r_price;
+	}
+	public void setR_price(int r_price) {
+		this.r_price = r_price;
+	}
+	public Date getR_apllicationdate() {
+		return r_apllicationdate;
+	}
+	public void setR_apllicationdate(Date r_apllicationdate) {
+		this.r_apllicationdate = r_apllicationdate;
+	}
+	public String getR_startDate() {
+		return r_startDate;
+	}
+	public void setR_startDate(String r_startDate) {
+		this.r_startDate = r_startDate;
+	}
+	public String getR_endDate() {
+		return r_endDate;
+	}
+	public void setR_endDate(String r_endDate) {
+		this.r_endDate = r_endDate;
+	}	
+	
+	
+}

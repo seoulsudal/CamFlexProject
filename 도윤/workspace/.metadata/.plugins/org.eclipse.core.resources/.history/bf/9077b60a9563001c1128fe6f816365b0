@@ -1,0 +1,5 @@
+package com.camflex.admin.reservation.dao;
+
+public class AdminReservationDAOImpl implements AdminReservationDAO {
+
+}
