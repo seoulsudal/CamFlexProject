@@ -1,0 +1,2 @@
+// 로그인 처리
+	public boolean loginAccess(LoginVO vo, HttpSession session) throws Exception;
