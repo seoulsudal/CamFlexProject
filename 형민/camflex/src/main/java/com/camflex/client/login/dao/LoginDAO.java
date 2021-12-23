@@ -1,19 +1,13 @@
 package com.camflex.client.login.dao;
 
-import org.springframework.stereotype.Repository;
-
 import com.camflex.client.login.vo.LoginVO;
 
-//DB 연결
-@Repository
 public interface LoginDAO {
 
-	// 회원가입 처리
-	public void insert(LoginVO vo) throws Exception;
+	// 로그인 처리(사용자 ID에 해당하는 정보 가져오기)
+	public LoginVO userIdSelect(String m_id);
 
-	//로그인 처리
-	public Integer loginAccess(LoginVO vo) throws Exception;
-
-
+	// 로그인 처리(ID, PW정보에 해당하는 사용자 정보
+	public LoginVO loginSelect(String m_id, String m_pw) throws Exception;
 
 }

@@ -9,15 +9,14 @@
 <title>로그인 성공</title>
 </head>
 <body>
+<c:if test="${message=='success' }">
 	<h2>로그인 성공</h2>
-	<table>
-		<tr>
-			<td><b>아이디</b>${member.m_id }</td>
-			<td><b>비밀번호</b>${member.m_pw }</td>
-			<td><b>이름</b>${member.m_name }</td>
-			<td><b>생년월일</b>${member.m_birth }</td>
-			<td><b>전화번호</b>${member.m_phone }</td>
-		</tr>
-	</table>
+		<table>
+			<tr>
+				<td>${sessionScope.m_name }(${sessionScope.m_id })님반갑습니다.</td>
+			</tr>
+		</table>
+	</c:if>
+
 </body>
 </html>

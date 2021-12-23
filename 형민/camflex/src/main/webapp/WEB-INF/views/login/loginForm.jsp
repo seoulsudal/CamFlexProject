@@ -9,10 +9,15 @@
 <script type="text/javascript">
 	function userLogin() {
 		var e_RegExp = /\w+@\w+\.\w+(\.\w+)?/; //아이디(이메일) 정규식
-		
-		
+
 		var id = document.getElementById("login_id");//아이디
 		var pw = document.getElementById("login_pw");//비밀번호
+
+		/*===============ID,PW 공백===============*/
+		if (id.value == '' || pw.value == '') {
+			alert("아이디와 비밀번호를 입력해주세요.");
+			return false;
+		}
 
 		/*===============아이디 유효성===============*/
 		if (id.value == '') {
@@ -21,7 +26,7 @@
 			return false;
 		}
 
-		if (!e_RegExp.test(id.value)){
+		if (!e_RegExp.test(id.value)) {
 			alert("로그인 아이디는 이메일 형식으로만 가능합니다.");
 			return false;
 		}
@@ -34,19 +39,22 @@
 		}
 
 	}
+	
+	
 </script>
 </head>
 <body>
 	<h2>로그인</h2>
-	<form id="loginForm" action="/login/loginAccess.do" method="POST" >
+	<form id="loginCheck"  action="/login"
+		method="POST" onsubmit="return userLogin()">
 		<div style="width: 280px">
-			<label id="loginInfo"> 아이디</label>
-			<input type="text" id="login_id" name="login_id" placeholder="아이디">
+			<label id="loginInfo"> 아이디</label> <input type="text" id="login_id"
+				name="login_id" placeholder="아이디">
 		</div>
 
 		<div style="width: 280px">
-			<label id="loginInfo"> 비밀번호</label>
-			<input type="password" id="login_pw" name="login_pw" placeholder="비밀번호">
+			<label id="loginInfo"> 비밀번호</label> <input type="password"
+				id="login_pw" name="login_pw" placeholder="비밀번호">
 		</div>
 		<p></p>
 
@@ -56,6 +64,7 @@
 			<input type="button" value="비밀번호 찾기" />
 			<input type="button" value="회원가입" onClick="location.href='joinForm.do'" />
 		</div>
+
 
 	</form>
 </body>
