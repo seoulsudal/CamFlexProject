@@ -4,7 +4,7 @@
 
 
 	<!-- 회원가입 처리 -->
-	<insert id="insert"
+	<insert id="insertMember"
 		parameterType="com.camflex.client.member.vo.MemberVO">
 		<selectKey keyProperty="m_number" resultType="int"
 			order="BEFORE">

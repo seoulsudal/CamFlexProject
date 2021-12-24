@@ -1,14 +1,13 @@
 package com.camflex.client.login.controller;
 
-import javax.inject.Inject;
-
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,42 +16,91 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.camflex.client.login.service.LoginService;
 
 import com.camflex.client.login.vo.LoginVO;
+import com.camflex.client.member.vo.MemberVO;
 
 @Controller
 public class LoginController {
 	// 로깅을 위한 변수
 	private Logger log = LoggerFactory.getLogger(LoginController.class);
 
-	@Inject
-	LoginService loginService;
+	@Autowired
+	private LoginService loginService;
 
-	/* 로그인 화면 */
+	/* 로그인 페이지 */
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String LoginForm() {
-		log.info("loginForm.do get 성공");
-		return "/login/loginForm"; // views/login/loginForm.jsp로 포워드
+		log.info("로그인 페이지 호출 성공");
+		return "/login/login"; // views/login/login.jsp로 포워드
 	}
 
-	/* 로그인 처리 2 */
+	/* 로그인 기능 */
+	@RequestMapping(value = "/loginCheck", method = RequestMethod.POST)
+	public String loginCheck(LoginVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
+		HttpSession session = req.getSession();
+		LoginVO login = loginService.loginCheck(vo);
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(LoginVO vo, HttpSession session, RedirectAttributes rttr) throws Exception {
-		log.info("로그인 처리 POST");
-		log.info(vo.getM_id() + vo.getM_pw());
-		System.out.println("0");
-		LoginVO loginVO = loginService.loginSelect(vo);
-		System.out.println("0-1");
-		log.info("리턴VO결과(서비스에서 예외처리를 진행했으므로 null이 출력되면 코드에 문제있다는 의미) " + loginVO);
-
-		if (loginVO != null) {
-			session.setAttribute("m_id", loginVO.getM_id());
-			rttr.addFlashAttribute("mvo", loginVO);
-
-			log.info("로그인 성공");
-			return "/listMember";
-		} else {
-			log.info("로그인 실패");
+		if (login == null) {
+			log.info("login false");
+			session.setAttribute("login", null);
+			rttr.addFlashAttribute("msg", false);
 			return "/login/loginForm";
+		} else {
+			log.info("login Success");
+			session.setAttribute("login", login);
 		}
+		return "/login/login";
 	}
+
+	/* 아이디 찾기 페이지 */
+	@RequestMapping(value = "findIdForm", method = RequestMethod.GET)
+	public String findIdForm() {
+		log.info("아이디 찾기 페이지 호출 성공");
+		return "/login/findId"; // views/login/findId.jsp로 포워드
+	}
+
+	/* 아이디 찾기 */
+	@RequestMapping(value = "findId", method = RequestMethod.POST)
+	public String findId(MemberVO vo, Model model, RedirectAttributes rttr) throws Exception {
+		log.info("findId post");
+		MemberVO mvo = loginService.findId(vo);
+
+		if (mvo == null) {
+			log.info("find ID 실패");
+			model.addAttribute("mvo", null);
+			rttr.addFlashAttribute("msg", false);
+			return "/login/findId";
+		} else {
+			log.info("find ID 성공");
+			model.addAttribute("mvo", mvo);
+		}
+		return "/login/findId";
+	}
+
+	/* 비밀번호 찾기 페이지 */
+	@RequestMapping(value = "findPw", method = RequestMethod.GET)
+	public String findPwForm() {
+		log.info("비밀번호 찾기 페이지 호출 성공");
+		return "/login/findPw"; // views/login/findPw.jsp로 포워드
+	}
+
+	/* 비밀번호 찾기 */
+	@RequestMapping(value = "findPw", method = RequestMethod.POST)
+	public String findPwForm(MemberVO vo, Model model, RedirectAttributes rttr) throws Exception {
+		log.info("findPw POST");
+		MemberVO mvo2 = loginService.findPw(vo);
+
+		if (mvo2 == null) {
+			log.info("find PW 실패");
+			model.addAttribute("mvo", null);
+			rttr.addFlashAttribute("msg", false);
+			return "/login/findPw";
+		} else {
+			log.info("find PW 성공");
+			model.addAttribute("mvo", mvo2);
+		}
+		return "/login/findpw";
+	}
+	
+	/*비밀번호 수정 */
+
 }

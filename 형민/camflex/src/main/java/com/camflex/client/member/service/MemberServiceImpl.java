@@ -1,7 +1,8 @@
 package com.camflex.client.member.service;
 
-import javax.inject.Inject;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,13 +13,13 @@ import com.camflex.client.member.vo.MemberVO;
 @Transactional
 public class MemberServiceImpl implements MemberService {
 
-	@Inject
+	@Autowired
 	private MemberDAO memberDAO;
 
 	// 회원가입 처리
 	@Override
 	public void insertMember(MemberVO vo) throws Exception {
-		memberDAO.insert(vo);
+		memberDAO.insertMember(vo);
 	}
 
 }

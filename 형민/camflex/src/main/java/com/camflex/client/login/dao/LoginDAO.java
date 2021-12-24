@@ -1,13 +1,16 @@
 package com.camflex.client.login.dao;
 
 import com.camflex.client.login.vo.LoginVO;
+import com.camflex.client.member.vo.MemberVO;
 
 public interface LoginDAO {
 
-	// 로그인 처리(사용자 ID에 해당하는 정보 가져오기)
-	public LoginVO userIdSelect(String m_id);
+	// 로그인 처리
+	public LoginVO loginCheck(LoginVO vo) throws Exception;
 
-	// 로그인 처리(ID, PW정보에 해당하는 사용자 정보
-	public LoginVO loginSelect(String m_id, String m_pw) throws Exception;
+	// 아이디 찾기
+	public MemberVO findId(MemberVO vo) throws Exception;
 
+	// 비밀번호 찾기
+	public MemberVO findPw(MemberVO vo) throws Exception;
 }

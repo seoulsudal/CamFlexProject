@@ -2,30 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.camflex.client.login.dao.LoginDAO">
 
-	<!-- <resultMap type="member" id="memberMap"> <result property="m_id" column="m_id"/> 
-		<result property="m_pw" column="m_pw"/> <result property="m_name" column="m_name"/> 
-		<result property="m_phone" column="m_phone"/> <result property="m_birth" 
-		column="m_birth"/> <result property="m_date" column="m_date"/> <result property="m_number" 
-		column="m_number"/> </resultMap> -->
-
-	<!-- 로그인 사용자ID -->
-	<select id="userIdSelect" parameterType="login"
-		resultType="login">
-		Select m_id,m_pw
+	<!-- 로그인 기능 -->
+	<select id="loginCheck"
+		resultType="com.camflex.client.login.vo.LoginVO">
+		Select *
 		from member_tbl
-		where m_id=#{m_id}
-	</select>
-
-	<!-- 로그인 ID,Pw -->
-	<select id="loginSelect" parameterType="login"
-		resultType="login">
-		select m_id,m_pw,m_name
-		from member_tbl
-		where m_id=#{m_id}
-		and
+		where m_id =#{m_id} AND
 		m_pw=#{m_pw}
 	</select>
 
+	<!-- 아이디 찾기 -->
+	<select id="findId"
+		resultType="com.camflex.client.member.vo.MemberVO">
+		select *
+		from member_tbl
+		WHERE m_name =#{m_name} AND
+		m_phone=#{m_phone}
+	</select>
+
+	<!-- 비밀번호 찾기 -->
+	<select id="findPw"
+		resultType="com.camflex.client.member.vo.MemberVO">
+		select *
+		from member_tbl
+		Where m_name=#{m_name} and m_id
+		=#{m_id} and m_phone=#{m_phone}
+	</select>
 
 
 
