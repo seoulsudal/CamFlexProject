@@ -1,9 +1,7 @@
 package com.camflex.client.member.dao;
 
-import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.camflex.client.member.vo.MemberVO;
@@ -12,14 +10,14 @@ import com.camflex.client.member.vo.MemberVO;
 @Repository
 public class MemberDAOImpl implements MemberDAO {
 
-	@Inject
+	@Autowired
 	private SqlSession sqlSession;
 
 	private static final String namespace = "com.camflex.client.member.dao.MemberDAO";
 
 	// 회원가입 처리
 	@Override
-	public void insert(MemberVO vo) throws Exception {
+	public void insertMember(MemberVO vo) throws Exception {
 		sqlSession.insert(namespace + ".insertMember", vo);
 	}
 
