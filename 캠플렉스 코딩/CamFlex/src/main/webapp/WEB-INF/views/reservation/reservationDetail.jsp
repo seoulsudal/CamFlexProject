@@ -111,23 +111,23 @@
 						<th class="saturday">토</th>
 					</tr>
 					<tr>
-						<c:forEach var="i" begin="1" end="${monthStartSecond%7 }">
+						<c:forEach var="i" begin="1" end="${monthStartSecond%7}">
 							<th></th>
 						</c:forEach>
-						<c:forEach var="i" begin="1" end="${monthEndSecond }">
+						<c:forEach var="i" begin="1" end="${monthEndSecond}">
 							<c:choose>
-								<c:when test="${(i+monthStartSecond-1)%7==0 }">
-									<td class="sun" id="date${i+32 }" onClick="dateClick(${i+32}, ${yearNext}, ${monthNext})">${i}</td>
+								<c:when test="${(i+monthStartSecond-1)%7==0}">
+									<td class="sun" id="date${i+32}" onClick="dateClick(${i+32}, ${yearNext}, ${monthNext})">${i}</td>
 								</c:when>
-								<c:when test="${(i+monthStartSecond-1)%7==6 }">
-									<td class="sat" id="date${i+32 }" onClick="dateClick(${i+32}, ${yearNext}, ${monthNext})">${i}</td>
+								<c:when test="${(i+monthStartSecond-1)%7==6}">
+									<td class="sat" id="date${i+32}" onClick="dateClick(${i+32}, ${yearNext}, ${monthNext})">${i}</td>
 								</c:when>
 								<c:otherwise>
-									<td class="etc" id="date${i+32 }" onClick="dateClick(${i+32}, ${yearNext}, ${monthNext})">${i}</td>
+									<td class="etc" id="date${i+32}" onClick="dateClick(${i+32}, ${yearNext}, ${monthNext})">${i}</td>
 								</c:otherwise>
 							</c:choose>
 							<c:choose>
-								<c:when test="${(i+monthStartSecond-1)%7==6 && i!=monthEndSecond }">
+								<c:when test="${(i+monthStartSecond-1)%7==6 && i!=monthEndSecond}">
 									<% out.println("</tr><tr>"); %>
 								</c:when>
 							</c:choose>
@@ -164,7 +164,7 @@
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${reservationList}" var="reservation">
-						<div style="border: 1px">
+						<div>
 							예약번호 : ${reservation.r_number},<br> 예약 시작일 : ${reservation.r_startDate},<br> 예약 종료일 : ${reservation.r_endDate}
 						</div>
 							<br>

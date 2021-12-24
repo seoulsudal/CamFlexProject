@@ -82,7 +82,7 @@ function setImage(index){
 					<li style="float: left; margin-right : 10px;"><a href="#" onclick="setImage(2)"><img id="photo3" class="small" src="/uploadStorage/product/${detail.p_photo2}" width="75" height="45"></a></li>
 					<li style="float: left; margin-right : 10px;"><a href="#" onclick="setImage(3)"><img id="photo4" class="small" src="/uploadStorage/product/${detail.p_photo3}" width="75" height="45"></a></li>
 				</ul></div></td>
-				<td width="600px" height="300px"><h3>${detail.p_name}</h3><br><br><br><br><br>${detail.p_information}<br></td>
+				<td width="600px" height="300px"><h3>${detail.p_name}</h3><br>${detail.p_information}<br></td>
 			</tr>
 			<tr align="center">
 				<td><h3>${detail.p_price}원</h3><br><br><br><br>부대시설 및 렌탈 가격 안내<br>...</td>

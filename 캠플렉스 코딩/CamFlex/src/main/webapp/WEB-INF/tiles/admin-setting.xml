@@ -2,9 +2,11 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	<definition name="admin" template="/WEB-INF/views/template/admin/mainLayout.jsp">
+
+	<definition name="admin/main" template="/WEB-INF/views/template/admin/mainLayout.jsp">
 		<put-attribute name="title" value="캠플렉스 관리자 사이트"/>
-		<put-attribute name="header" value="/WEB-INF/views/template/admin/header.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/admin/header.jsp"/>		
+		<put-attribute name="body" value="/WEB-INF/views/admin/main.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/views/template/admin/footer.jsp"/>
 	</definition>
 	
@@ -16,13 +18,66 @@
 		<put-attribute name="footer" value="/WEB-INF/views/template/admin/footer.jsp"/>
 	</definition>
 	
-	<definition name="admin/product/*" extends="content1">
-		<put-attribute name="title" value="상품"/>
+	<definition name="admin/chart/*" extends="admin/content1">
+		<put-attribute name="title" value="통계"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/chart/{1}.jsp"/>	
+	</definition>
+	
+	<definition name="admin/content2" template="/WEB-INF/views/template/admin/contentLayout2.jsp">
+		<put-attribute name="title" value="캠플렉스 관리자 사이트"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/admin/header.jsp"/>
+		<put-attribute name="aside2" value="/WEB-INF/views/template/admin/aside2.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/admin/footer.jsp"/>
+	</definition>
+	
+	<definition name="admin/member/*" extends="admin/content2">
+		<put-attribute name="title" value="회원 관리"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/member/{1}.jsp"/>	
+	</definition>
+	
+	<definition name="admin/content3" template="/WEB-INF/views/template/admin/contentLayout3.jsp">
+		<put-attribute name="title" value="캠플렉스 관리자 사이트"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/admin/header.jsp"/>
+		<put-attribute name="aside3" value="/WEB-INF/views/template/admin/aside3.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/admin/footer.jsp"/>
+	</definition>
+	
+	<definition name="admin/reservation/*" extends="admin/content3">
+		<put-attribute name="title" value="예약 관리"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/reservation/{1}.jsp"/>	
+	</definition>
+	
+	<definition name="admin/content4" template="/WEB-INF/views/template/admin/contentLayout4.jsp">
+		<put-attribute name="title" value="캠플렉스 관리자 사이트"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/admin/header.jsp"/>
+		<put-attribute name="aside4" value="/WEB-INF/views/template/admin/aside4.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/admin/footer.jsp"/>
+	</definition>
+	
+	<definition name="admin/notice/*" extends="admin/content4">
+		<put-attribute name="title" value="게시판 관리"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/notice/{1}.jsp"/>	
+	</definition>
+	
+	<definition name="admin/quiry/*" extends="admin/content4">
+		<put-attribute name="title" value="게시판 관리"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/quiry/{1}.jsp"/>	
+	</definition>
+	
+	<definition name="admin/content5" template="/WEB-INF/views/template/admin/contentLayout5.jsp">
+		<put-attribute name="title" value="캠플렉스 관리자 사이트"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/admin/header.jsp"/>
+		<put-attribute name="aside5" value="/WEB-INF/views/template/admin/aside5.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/admin/footer.jsp"/>
+	</definition>
+	
+	<definition name="admin/product/*" extends="admin/content5">
+		<put-attribute name="title" value="상품 관리"/>
 		<put-attribute name="body" value="/WEB-INF/views/admin/product/{1}.jsp"/>	
 	</definition>
 	
-	<definition name="admin/reservation/*" extends="content1">
-		<put-attribute name="title" value="예약"/>
-		<put-attribute name="body" value="/WEB-INF/views/admin/reservation/{1}.jsp"/>	
-	</definition>
 </tiles-definitions>

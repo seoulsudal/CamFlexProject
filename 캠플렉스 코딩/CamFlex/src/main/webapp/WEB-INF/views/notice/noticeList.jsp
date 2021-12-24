@@ -19,7 +19,7 @@
 </head>
 <body>
 	<div align="center">
-		<h3>캠핑장 리스트</h3>
+		<h2>공지사항 리스트</h2>
 	</div>
 	<br>
 	<%-- 상세 페이지 이동을 위한 FORM --%>
