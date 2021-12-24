@@ -34,9 +34,18 @@ public class AdminReservationServiceImpl implements AdminReservationService {
 
 	// 신규 예약 리스트
 	@Override
-	public List<ReservationVO> newRsvList(PageRequest pageRequest) {
+	public List<ReservationVO> newRsvList(ReservationVO rvo) {
 		
-		return adminReservationDAO.newRsvList(pageRequest);
+		return adminReservationDAO.newRsvList(rvo);
 	}
+
+	@Override
+	public int confirmRsv(int r_number) {
+		
+		return adminReservationDAO.confirmRsv(r_number);
+	}
+
+	
+	
 	
 }

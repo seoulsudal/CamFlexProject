@@ -1,5 +1,0 @@
-package com.camflex.admin.member.service;
-
-public class AdminMemberServiceImpl implements AdminMemberService {
-
-}
