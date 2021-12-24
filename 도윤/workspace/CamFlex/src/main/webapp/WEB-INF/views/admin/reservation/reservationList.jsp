@@ -43,6 +43,7 @@ function chkSubmit(item, msg){
 				<th>예약 신청일</th>
 				<th>예약 시작일</th>
 				<th>예약 종료일</th>
+				<th>예약 확정일</th>
 			</tr>
 		</thead>
 		<tbody id="list">
@@ -70,6 +71,7 @@ function chkSubmit(item, msg){
 							<td><fmt:formatDate value="${rs.r_apllicationDate}" pattern="yyyy/MM/dd" /></td>
 							<td>${rs.r_startDate}</td>
 							<td>${rs.r_endDate}</td>
+							<td><fmt:formatDate value="${rs.r_updDate}" pattern="yyyy/MM/dd" /></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>

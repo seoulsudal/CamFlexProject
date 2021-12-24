@@ -4,18 +4,19 @@ import java.util.Date;
 
 public class ReservationVO {
 
-	private int r_number;		// 예약번호
-	private String m_id;		// 회원 아이디
-	private int p_number;		// 상품번호
-	private String r_startDate;	// 예약 시작일
-	private String r_endDate;	// 예약 종료일
-	private int r_price;		// 금액
-	private String r_state;		// 예약 상태
-	private int c_agree;		// 동의
-	private int p_u_agree;		// 동의
-	private int p_i_agree;		// 동의
-	private int a_agree;		// 동의
-	private Date r_apllicationDate;
+	private int r_number;			// 예약번호
+	private String m_id;			// 회원 아이디
+	private int p_number;			// 상품번호
+	private String r_startDate;		// 예약 시작일
+	private String r_endDate;		// 예약 종료일
+	private int r_price;			// 금액
+	private String r_state;			// 예약 상태
+	private int c_agree;			// 동의
+	private int p_u_agree;			// 동의
+	private int p_i_agree;			// 동의
+	private int a_agree;			// 동의
+	private Date r_apllicationDate;	// 예약신청일
+	private Date r_updDate;			// 예약 확정일
 
 	public int getR_number() {
 		return r_number;
@@ -111,6 +112,14 @@ public class ReservationVO {
 
 	public void setR_apllicationDate(Date r_apllicationDate) {
 		this.r_apllicationDate = r_apllicationDate;
+	}
+
+	public Date getR_updDate() {
+		return r_updDate;
+	}
+
+	public void setR_updDate(Date r_updDate) {
+		this.r_updDate = r_updDate;
 	}
 
 	
