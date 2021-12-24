@@ -1,0 +1,8 @@
+package com.camflex.client.login.service;
+
+import com.camflex.client.login.vo.LoginVO;
+
+public interface LoginService {
+
+
+}
