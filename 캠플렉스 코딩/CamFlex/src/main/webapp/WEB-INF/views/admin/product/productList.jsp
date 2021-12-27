@@ -17,10 +17,6 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	$("#insertFormBtn").click(function(){
-		location.href = "/admin/product/regProduct";
-	});
-	
 	$(".goDetail").click(function(){
 		var p_number = $(this).parents("tr").attr("data-num");
 		$("#p_number").val(p_number);
@@ -80,10 +76,6 @@ $(function(){
 				</c:choose>
 			</tbody>
 		</table>
-	</div>
-	
-	<div>
-		<input type="button" value="등록" id="insertFormBtn">
 	</div>
 </div>
 </body>

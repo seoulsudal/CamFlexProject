@@ -3,6 +3,7 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 
 <ul class="nav nav-sidebar">
+	<li class="active"><a href="#">MENU<span class="sr-only">(current)</span></a></li>
 	<br>
-	<li><a href="/">통계</a></li>
+	<li><a href="/admin/main">통계</a></li>
 </ul>

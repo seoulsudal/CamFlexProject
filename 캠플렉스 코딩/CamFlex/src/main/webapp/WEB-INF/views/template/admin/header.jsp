@@ -16,17 +16,19 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="/" style="font-size: 50px">CamFlex</a>
+		<a class="navbar-brand" href="/admin/main" style="font-size: 50px">CamFlex</a>
 	</div>
 	<div id="navbar" class="collapse navbar-collapse">
 		<ul class="nav navbar-nav navbar-left">
-			<li><a href="/">공지사항</a></li>
-			<li><a href="/">예약</a></li>
-			<li><a href="/">마이 페이지</a></li>
+			<li><a href="/admin/main">통계</a></li>
+			<li><a href="/admin/member/memberList">회원 관리</a></li>
+			<li><a href="/admin/main">예약 관리</a></li>
+			<li><a href="/admin/notice/noticeList">게시판 관리</a></li>
+			<li><a href="/admin/product/productList">상품 관리</a></li>
 		</ul>
-		<ul class="nav navbar-nav navbar-right">
+		<!-- <ul class="nav navbar-nav navbar-right">
 			<li><a href="/">로그인</a></li>
 			<li><a href="/">회원가입</a></li>
-		</ul>
+		</ul> -->
 	</div>
 </div>

@@ -1,5 +1,0 @@
-package com.camflex.admin.member.dao;
-
-public class AdminMemberDAOImpl implements AdminMemberDAO {
-
-}

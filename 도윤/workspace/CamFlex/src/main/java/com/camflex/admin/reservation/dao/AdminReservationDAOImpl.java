@@ -31,8 +31,19 @@ public class AdminReservationDAOImpl implements AdminReservationDAO {
 
 	// 신규 예약 리스트
 	@Override
-	public List<ReservationVO> newRsvList(PageRequest pageRequest) {
+	public List<ReservationVO> newRsvList(ReservationVO rvo) {
 		
-		return sqlSession.selectList("newRsvList");
+		return sqlSession.selectList("newRsvList", rvo);
 	}
+
+	@Override
+	public int confirmRsv(int r_number) {
+		
+		return sqlSession.update("confirm", r_number);
+	}
+
+	
+
+
+
 }

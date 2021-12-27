@@ -53,26 +53,54 @@ public class AdminReservationController {
 	}
 	
 	/**************************
-	 * 신규 예약 리스트
+	 * 신규 예약 리스트 출력
 	 **************************/
 	@RequestMapping(value = "/newReservation", method = RequestMethod.GET)
-	public void newRsvList(@ModelAttribute("pgrq")PageRequest pageRequest, ReservationVO rvo, Model model) {
+	public void newRsvList(@ModelAttribute ReservationVO rvo, Model model) {
 		log.info("신규 예약 리스트 호출");
 		
+		List<ReservationVO> newRsvList = adminReservationService.newRsvList(rvo);
+		
+		model.addAttribute("newRsvList", newRsvList);
+		model.addAttribute("data", 1);
 		// 뷰에 페이징 처리를 한 신규 예약 목록을 전달한다.
-		model.addAttribute("newRsvList", adminReservationService.newRsvList(pageRequest));
+		//model.addAttribute("newRsvList", adminReservationService.newRsvList(pageRequest));
+		
 		
 		// 페이징 네비게이션 정보를 뷰에 전달한다.
-		Pagination pagination = new Pagination();
-		pagination.setPageRequest(pageRequest);
-		pagination.setTotalCount(adminReservationService.count(pageRequest));
-		model.addAttribute("pagination", pagination);
+		//Pagination pagination = new Pagination();
+		//pagination.setPageRequest(pageRequest);
+		//pagination.setTotalCount(adminReservationService.count(pageRequest));
+		//model.addAttribute("pagination", pagination);
 		
 		// 검색 유형의 코드명과 코드값을 정의한다.
-		List<CodeLabelValue> searchTypeCodeValueList = new ArrayList<CodeLabelValue>();
-		searchTypeCodeValueList.add(new CodeLabelValue("a", "---"));
-		searchTypeCodeValueList.add(new CodeLabelValue("m", "아이디"));
-		searchTypeCodeValueList.add(new CodeLabelValue("se", "시작일 or 종료일"));
-		model.addAttribute("searchTypeCodeValueList", searchTypeCodeValueList);
+		
+		//List<CodeLabelValue> searchTypeCodeValueList = new
+		//ArrayList<CodeLabelValue>(); searchTypeCodeValueList.add(new
+		//CodeLabelValue("a", "---")); searchTypeCodeValueList.add(new
+		//CodeLabelValue("m", "아이디")); searchTypeCodeValueList.add(new
+		//CodeLabelValue("se", "시작일 or 종료일"));
+		//model.addAttribute("searchTypeCodeValueList", searchTypeCodeValueList);
+		
+	}
+	/************************
+	 * 신규 예약 리스트 승인 구현
+	 ***********************/
+	@RequestMapping(value = "/confirmRsv")
+	public String confirmRsv(@ModelAttribute ReservationVO rvo, Model model) {
+		log.info("예약 승인 성공");
+		
+		log.info("확인" + rvo.getR_number());
+		int result = 0;
+		String url = "";
+		
+		result = adminReservationService.confirmRsv(rvo.getR_number());
+		
+		if(result == 1) {
+			url = "/admin/reservation/newReservation";
+		}
+
+		log.info("121");
+		return "rediect:" + url;
 	}
 }

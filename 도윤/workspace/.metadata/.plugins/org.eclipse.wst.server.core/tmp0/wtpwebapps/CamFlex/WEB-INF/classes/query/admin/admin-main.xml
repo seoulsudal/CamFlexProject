@@ -26,6 +26,6 @@
 	<select id="yesterday" resultType="int">
 		select sum(r_price)
         from reservation_tbl
-        where to_char(r_apllicationdate, 'yyyyMMdd') = to_char(sysdate - 1, 'yyyyMMdd')
+        where to_char(r_apllicationdate, 'yyyyMMdd') = to_char(sysdate - 1, 'yyyyMMdd') and r_state = '완료'
 	</select>
 </mapper>

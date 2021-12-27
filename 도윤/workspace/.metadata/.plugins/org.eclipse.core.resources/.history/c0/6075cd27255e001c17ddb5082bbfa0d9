@@ -1,5 +1,0 @@
-package com.camflex.admin.product.service;
-
-public interface AdminProductService {
-
-}

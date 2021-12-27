@@ -16,6 +16,7 @@ public class ReservationVO {
 	private int p_u_agree;
 	private int p_i_agree;
 	private int a_agree;
+	private Date r_updDate;
 
 	public int getR_number() {
 		return r_number;
@@ -111,6 +112,14 @@ public class ReservationVO {
 
 	public void setA_agree(int a_agree) {
 		this.a_agree = a_agree;
+	}
+
+	public Date getR_updDate() {
+		return r_updDate;
+	}
+
+	public void setR_updDate(Date r_updDate) {
+		this.r_updDate = r_updDate;
 	}
 
 }

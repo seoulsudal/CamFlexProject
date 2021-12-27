@@ -32,7 +32,7 @@ $(function(){
 </script>
 </head>
 <body>
-		<div align="center"><h3>캠핑장 리스트</h3></div>
+		<div align="center"><h2>캠핑장 리스트</h2></div>
 		
 		<%-- 상세 페이지 이동을 위한 FORM --%>
 		<form name="detailForm" id="detailForm">
@@ -57,13 +57,13 @@ $(function(){
 					<div class="well" style="height: 190px">
 						<div class="col-sm-4">
 							<c:if test="${product.p_type  eq '오토'}">
-								<img src="/resources/images/common/1.png" class="col-sm-12" width="239.1" height="156.82">
+								<img src="/resources/images/common/1.jpg" class="col-sm-12" width="239.1" height="156.82">
 							</c:if>
 							<c:if test="${product.p_type eq '글램핑'}">
-								<img src="/resources/images/common/2.png" class="col-sm-12" width="239.1" height="156.82">
+								<img src="/resources/images/common/2.jpg" class="col-sm-12" width="239.1" height="156.82">
 							</c:if>
 							<c:if test="${product.p_type eq '차박'}">
-								<img src="/resources/images/common/3.png" class="col-sm-12" width="239.1" height="156.82">
+								<img src="/resources/images/common/3.jpg" class="col-sm-12" width="239.1" height="156.82">
 							</c:if>
 						</div>
 						<div class="col-sm-8">

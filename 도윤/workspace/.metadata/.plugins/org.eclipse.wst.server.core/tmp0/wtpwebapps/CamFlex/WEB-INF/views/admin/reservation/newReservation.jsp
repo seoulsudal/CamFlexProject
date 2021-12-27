@@ -8,23 +8,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>예약 리스트</title>
+<title>신규 예약 리스트</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 
+function confirm(){
+	$("#confirmRsv").attr("action", "/admin/reservation/confirmRsv");
+	$("#confirmRsv").submit();
+	
+}
 </script>
 </head>
 <body>
-<h2 align="center">예약 리스트</h2>
-<div align="center">
+<h2 align="center">신규 예약 리스트</h2>
+<%-- <div align="center">
 <form:form modelAttribute="pgrq" method="get" action="newRsvList${pgrq.toUriStringByPage(1)}">
 	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
 	<form:input path="keyword"/>
 	<button id="searchBtn">검색</button>
 </form:form>
-</div>
-<div id="newRsvList" align="center">
-	<form action="newRsvList" method="get">
+</div> --%>
+<div align="center">
+	<form id="confirmRsv" action="newRsvList" method="get">
+	<%-- <input type="text" id="r_number" value="${r_number.r_number}"> --%>
 	<table border="1">
 		<thead>
 			<tr>
@@ -35,7 +41,7 @@
 				<th>예약 신청일</th>
 				<th>예약 시작일</th>
 				<th>예약 종료일</th>
-				<th>예약 상태</th>
+				<th>예약 승인</th>
 			</tr>
 		</thead>
 		<tbody id="list">
@@ -62,8 +68,8 @@
 							<td>${rs.r_price}</td>
 							<td><fmt:formatDate value="${rs.r_apllicationDate}" pattern="yyyy/MM/dd" /></td>
 							<td>${rs.r_startDate}</td>
-							<td>${rs.r_endDate}</td>
-							<td><button type="submit" value="${rs.r_state}">승인</button></td>
+							<td>${rs.r_endDate},<input type="hidden" value="${rs.r_number}"></td>
+							<td><button type="button" onclick="confirm()">예약승인</button></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
@@ -72,7 +78,7 @@
 	</table>
 	</form>
 	<!-- 페이징 네비게이션 -->
-	<div>
+	<%-- <div>
 		<c:if test="${pagination.prev}">
 			<a href="${pagination.startPage - 1}">&laquo;</a>
 		</c:if>
@@ -82,7 +88,7 @@
 		<c:if test="${pagination.next && pagination.endPage > 0}">
 			<a href="${pagination.endPage + 1}">&raquo;</a>
 		</c:if>
-	</div>
+	</div> --%>
 </div>
 </body>
 </html>
