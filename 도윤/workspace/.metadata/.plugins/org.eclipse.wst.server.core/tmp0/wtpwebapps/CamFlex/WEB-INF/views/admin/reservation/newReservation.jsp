@@ -12,8 +12,13 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 
-function confirm(){
-	$("#confirmRsv").attr("action", "/admin/reservation/confirmRsv");
+function confirm(r_number){
+	var r_number = $(this).parents("tr").attr("data-num");
+	$("#r_number").val(r_number);
+	$("#confirmRsv").attr({
+		"method":"get",
+		"action":"/admin/reservation/confirmRsv"
+	});
 	$("#confirmRsv").submit();
 	
 }
@@ -30,7 +35,6 @@ function confirm(){
 </div> --%>
 <div align="center">
 	<form id="confirmRsv" action="newRsvList" method="get">
-	<%-- <input type="text" id="r_number" value="${r_number.r_number}"> --%>
 	<table border="1">
 		<thead>
 			<tr>
@@ -53,7 +57,7 @@ function confirm(){
 					</c:when>
 					<c:otherwise>
 					<c:forEach var="rs" items="${newRsvList}">
-						<tr>
+						<tr data-num="${rs.r_number}">
 							<td>${rs.r_number}</td>
 							<td><c:if test="${rs.p_number eq '1'}">오토A</c:if>
 								<c:if test="${rs.p_number eq '41'}">오토B</c:if>
@@ -68,8 +72,8 @@ function confirm(){
 							<td>${rs.r_price}</td>
 							<td><fmt:formatDate value="${rs.r_apllicationDate}" pattern="yyyy/MM/dd" /></td>
 							<td>${rs.r_startDate}</td>
-							<td>${rs.r_endDate},<input type="hidden" value="${rs.r_number}"></td>
-							<td><button type="button" onclick="confirm()">예약승인</button></td>
+							<td>${rs.r_endDate}</td>
+							<td><button type="button" onclick="confirm('${rs.r_number}')">예약승인</button></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
