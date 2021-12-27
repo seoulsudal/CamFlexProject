@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>비밀번호 찾기 페이지</title>
+</head>
+<body>
+	<h2>아이디 찾기</h2>
+	<c:if test="${mvo == null }">
+		<form id="findId" name="findId" action="/findId" method="POST"
+			onsubmit="return find_id()">
+			<div>
+				<label id="find_pw_info">이름</label> <input type="text" id="m_name"
+					name="m_name" placeholder="이름">
+			</div>
+			<p></p>
+			<div>
+				<label id="find_pw_info">아이디</label> <input type="text" id="m_id"
+					name="m_id" placeholder="아이디">
+			</div>
+			<p></p>
+			<div>
+				<input type="submit" value="아이디 찾기" />
+			</div>
+		</form>
+	</c:if>
+
+	<c:if test="${mvo != null }">
+		<div>
+			<p>${mvo.m_name}님${mvo.m_id }아이디의비밀번호는</p>
+		</div>
+		<div>
+			<p>' ${mvo.m_pw } ' 입니다.</p>
+		</div>
+
+	</c:if>
+</body>
+</html>

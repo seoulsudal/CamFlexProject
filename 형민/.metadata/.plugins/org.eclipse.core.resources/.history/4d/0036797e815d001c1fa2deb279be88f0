@@ -1,9 +1,0 @@
-package com.camflex.client.login.service;
-
-import com.camflex.client.login.vo.LoginVO;
-
-public interface LoginService {
-
-	public int addMember(LoginVO loginVO) throws Exception;
-
-}

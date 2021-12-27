@@ -1,0 +1,9 @@
+package com.camflex.client.login.dao;
+
+import com.camflex.client.login.vo.LoginVO;
+
+public interface LoginDAO {
+
+	public LoginVO loginSelect(LoginVO lvo);
+
+}
