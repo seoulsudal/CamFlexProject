@@ -31,6 +31,7 @@
 						r_startdate,
 						r_enddate,
 						r_state,
+						r_upddate,
 						rownum as rnum
 				FROM reservation_tbl)
 		WHERE r_number > 0 and r_state = '확정'
@@ -38,7 +39,7 @@
 		<include refid="total_list"></include>
 		<include refid="search"></include>
 		<![CDATA[
-		ORDER BY r_apllicationdate
+		ORDER BY r_apllicationdate desc
 		]]>
 	</select>
 	

@@ -35,15 +35,11 @@ public class AdminReservationDAOImpl implements AdminReservationDAO {
 		
 		return sqlSession.selectList("newRsvList", rvo);
 	}
-
-	@Override
-	public int confirmRsv(int r_number) {
-		
-		return sqlSession.update("confirm", r_number);
-	}
-
 	
-
+	  @Override public int confirmRsv(ReservationVO rvo) {
+	  
+	  return sqlSession.update("confirmRsv", rvo); }
+	 
 
 
 }
