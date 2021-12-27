@@ -8,9 +8,6 @@
 <title>비밀번호 찾기 페이지</title>
 <script type="text/javascript">
 	function find_pw() {
-	if(m_name.value='' || m_id.value='' || m_phone.value=''){
-		alret("")
-	}
 	}
 </script>
 </head>
@@ -41,7 +38,7 @@
 		</form>
 	</c:if>
 
-	
+
 	<c:if test="${mvo1 != null }">
 		<div>
 			<p>${mvo1.m_name}님${mvo1.m_id }아이디의비밀번호는</p>

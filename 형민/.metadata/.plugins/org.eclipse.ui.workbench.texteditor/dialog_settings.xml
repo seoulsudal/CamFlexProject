@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="Dispatcher"/>
+		<item key="selection" value=""/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="pwEncoder"/>
+			<item value="SHA256_Encrypt"/>
+			<item value="encrypt"/>
+			<item value="insert"/>
+			<item value="in"/>
+			<item value="ins"/>
+			<item value="insatnce"/>
+			<item value="Instance"/>
+			<item value="Insatnce"/>
+			<item value="Sha256"/>
+			<item value="T1"/>
+			<item value="contextconfiglocation"/>
 			<item value="dispatcher"/>
 			<item value="com.camflex.client.login.dao.LoginDAO"/>
 			<item value="dao"/>
-			<item value="dis"/>
-			<item value="memberSe"/>
-			<item value="mapping"/>
-			<item value="ㄴ"/>
-			<item value="certified_mail"/>
-			<item value="view"/>
-			<item value="views"/>
-			<item value="dispa"/>
-			<item value="dispat"/>
-			<item value="Oracle"/>
-			<item value="member"/>
-			<item value="my"/>
 		</list>
 		<list key="replacehistory">
 		</list>
