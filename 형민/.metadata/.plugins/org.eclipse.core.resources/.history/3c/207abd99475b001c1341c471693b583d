@@ -1,9 +1,0 @@
-package com.camflex.client.login.dao;
-
-import com.camflex.client.login.vo.LoginVO;
-
-public interface LoginDAO {
-
-	boolean loginCheck(LoginVO vo);
-
-}

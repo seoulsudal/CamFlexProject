@@ -1,0 +1,10 @@
+package com.camflex.client.login.service;
+
+import com.camflex.client.login.vo.LoginVO;
+
+public interface LoginService {
+
+	//로그인
+	public LoginVO loginCheck(LoginVO vo) throws Exception;
+
+}

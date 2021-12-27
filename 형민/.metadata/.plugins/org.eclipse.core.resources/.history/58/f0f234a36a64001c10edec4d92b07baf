@@ -1,0 +1,26 @@
+package com.camflex.client.login.dao;
+
+import javax.inject.Inject;
+
+import org.apache.ibatis.session.SqlSession;
+
+import org.springframework.stereotype.Repository;
+
+import com.camflex.client.login.vo.LoginVO;
+
+//DB 연결 구현
+@Repository
+public class LoginDAOImpl implements LoginDAO {
+
+	@Inject
+	private SqlSession sqlSession;
+
+	private static final String namespace = "com.camflex.client.login.dao.LoginDAO";
+
+	// 로그인
+	@Override
+	public LoginVO loginCheck(LoginVO vo) throws Exception {
+		return sqlSession.selectOne(namespace + ".login", vo);
+	}
+
+}

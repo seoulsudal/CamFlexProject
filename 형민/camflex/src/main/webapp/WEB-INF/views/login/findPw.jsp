@@ -8,13 +8,15 @@
 <title>비밀번호 찾기 페이지</title>
 <script type="text/javascript">
 	function find_pw() {
-
+	if(m_name.value='' || m_id.value='' || m_phone.value=''){
+		alret("")
+	}
 	}
 </script>
 </head>
 <body>
-	<h2>아이디 찾기</h2>
-	<c:if test="${mvo2 == null }">
+	<h2>비밀번호 찾기</h2>
+	<c:if test="${mvo1 == null }">
 		<form id="findPw" name="findPw" action="/findPw" method="POST"
 			onsubmit="return find_pw()">
 			<div>
@@ -28,8 +30,8 @@
 			</div>
 			<p></p>
 			<div>
-				<label id="find_pw_info">전화번호</label> <input type="text" id="m_phone"
-					name="m_phone" placeholder="전화번호">
+				<label id="find_pw_info">전화번호</label> <input type="text"
+					id="m_phone" name="m_phone" placeholder="전화번호">
 			</div>
 			<p></p>
 
@@ -39,13 +41,14 @@
 		</form>
 	</c:if>
 
-	<c:if test="${mvo2 != null }">
+	
+	<c:if test="${mvo1 != null }">
 		<div>
-			<p>${mvo2.m_name}님${mvo2.m_id }아이디의비밀번호는</p>
-		</div>
-		<div>
-			<p>' ${mvo2.m_pw } ' 입니다.</p>
+			<p>${mvo1.m_name}님${mvo1.m_id }아이디의비밀번호는</p>
+			<p>' ${mvo1.m_pw } ' 입니다.</p>
 		</div>
 	</c:if>
+
+
 </body>
 </html>

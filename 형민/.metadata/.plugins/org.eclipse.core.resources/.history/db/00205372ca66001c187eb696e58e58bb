@@ -1,0 +1,51 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>비밀번호 찾기 페이지</title>
+<script type="text/javascript">
+	function find_pw() {
+
+	}
+</script>
+</head>
+<body>
+	<h2>아이디 찾기</h2>
+	<c:if test="${mvo2 == null }">
+		<form id="findPw" name="findPw" action="/findPw" method="POST"
+			onsubmit="return find_pw()">
+			<div>
+				<label id="find_pw_info">이름</label> <input type="text" id="m_name"
+					name="m_name" placeholder="이름">
+			</div>
+			<p></p>
+			<div>
+				<label id="find_pw_info">아이디</label> <input type="text" id="m_id"
+					name="m_id" placeholder="아이디">
+			</div>
+			<p></p>
+			<div>
+				<label id="find_pw_info">전화번호</label> <input type="text" id="m_phone"
+					name="m_phone" placeholder="전화번호">
+			</div>
+			<p></p>
+
+			<div>
+				<input type="submit" value="비밀번호 찾기" />
+			</div>
+		</form>
+	</c:if>
+
+	<c:if test="${mvo2 != null }">
+		<div>
+			<p>${mvo2.m_name}님${mvo2.m_id }아이디의비밀번호는</p>
+		</div>
+		<div>
+			<p>' ${mvo2.m_pw } ' 입니다.</p>
+		</div>
+	</c:if>
+</body>
+</html>

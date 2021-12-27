@@ -77,7 +77,7 @@ public class LoginController {
 	}
 
 	/* 비밀번호 찾기 페이지 */
-	@RequestMapping(value = "findPw", method = RequestMethod.GET)
+	@RequestMapping(value = "findPwForm", method = RequestMethod.GET)
 	public String findPwForm() {
 		log.info("비밀번호 찾기 페이지 호출 성공");
 		return "/login/findPw"; // views/login/findPw.jsp로 포워드
@@ -87,20 +87,20 @@ public class LoginController {
 	@RequestMapping(value = "findPw", method = RequestMethod.POST)
 	public String findPwForm(MemberVO vo, Model model, RedirectAttributes rttr) throws Exception {
 		log.info("findPw POST");
-		MemberVO mvo2 = loginService.findPw(vo);
+		MemberVO mvo1 = loginService.findPw(vo);
 
-		if (mvo2 == null) {
+		if (mvo1 == null) {
 			log.info("find PW 실패");
-			model.addAttribute("mvo", null);
+			model.addAttribute("mvo1", null);
 			rttr.addFlashAttribute("msg", false);
 			return "/login/findPw";
 		} else {
 			log.info("find PW 성공");
-			model.addAttribute("mvo", mvo2);
+			model.addAttribute("mvo1", mvo1);
 		}
-		return "/login/findpw";
+		return "/login/findPw";
 	}
-	
-	/*비밀번호 수정 */
+
+	/* 비밀번호 수정 */
 
 }
