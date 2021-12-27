@@ -1,0 +1,15 @@
+package com.camflex.admin.chart.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.camflex.admin.chart.dao.AdminChartDAO;
+
+@Service
+@Transactional
+public class AdminChartServiceImpl implements AdminChartService {
+
+	@Autowired
+	private AdminChartDAO adminChartDAO;
+}

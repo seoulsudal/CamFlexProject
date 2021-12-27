@@ -1,0 +1,10 @@
+package com.camflex.common.util;
+
+public class SHA256 {
+
+	public static SHA256 getInsatnce() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
