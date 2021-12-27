@@ -1,11 +1,17 @@
 package com.camflex.client.reservation.controller;
 
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.tiles.request.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,25 +26,28 @@ import com.camflex.admin.product.vo.AdminProductVO;
 import com.camflex.client.reservation.service.ReservationService;
 import com.camflex.client.reservation.vo.ReservationVO;
 
-import oracle.jdbc.logging.annotations.Log;
-
 @Controller
 @RequestMapping(value = "/reservation")
 public class ReservationController {
 
 	private Logger log = LoggerFactory.getLogger(ReservationController.class);
 
+	private HttpSession session;
+	private String m_id;
+	
 	@Autowired
 	private ReservationService reservationService;
-
+	
 	/* 실시간 예약 폼 */
 	@RequestMapping(value = "/reservationDetail", method = RequestMethod.POST)
-	public String reservationDetail(@ModelAttribute AdminProductVO pvo, ReservationVO rvo, Model model) throws Exception {
+	public String reservationDetail(HttpServletRequest request, HttpServletResponse response, @ModelAttribute AdminProductVO pvo, ReservationVO rvo, Model model) throws Exception {
+		sessionCheck(request, response, "로그인 후 예약 가능합니다.");
+		
 		log.info("reservationDetail 호출 성공");
 		log.info("P_number = " + pvo.getP_number());
 		log.info("P_name = " + pvo.getP_name());
 		log.info("P_price = " + pvo.getP_price());
-		log.info("m_id = " + rvo.getM_id());
+		log.info("m_id = " + session.getId());
 
 		List<ReservationVO> reservationList = reservationService.reservationList(rvo);
 				
@@ -90,7 +99,9 @@ public class ReservationController {
 
 	/* 실시간 예약 동의페이지 */
 	@RequestMapping(value = "/reservationAgreePage", method = RequestMethod.POST)
-	public String reservationAgreePageForm(@ModelAttribute AdminProductVO pvo, ReservationVO rvo, Model model) throws Exception {
+	public String reservationAgreePageForm(HttpServletRequest request, HttpServletResponse response, @ModelAttribute AdminProductVO pvo, ReservationVO rvo, Model model) throws Exception {
+		sessionCheck(request, response, "로그인 후 가능합니다.");
+		
 		log.info("reservationAgreePageForm 호출 성공");
 		log.info("P_number = " + pvo.getP_number());
 		log.info("P_name = " + pvo.getP_name());
@@ -102,7 +113,8 @@ public class ReservationController {
 		long endDate = rvo.getR_endDate().getTime();
 		long resultDate = (endDate - startDate)/(1000*60*60*24);
 		log.info("예약 일수 = " + resultDate + " 일");
-
+		
+		model.addAttribute("id", m_id);
 		model.addAttribute("detail", pvo);
 		model.addAttribute("reservation", rvo);
 		model.addAttribute("resultDate", resultDate);
@@ -112,7 +124,9 @@ public class ReservationController {
 	
 	/* 실시간 예약 생성 */	
 	@RequestMapping(value = "reservationRegister", method = RequestMethod.POST)
-	public String reservationRegister(@ModelAttribute AdminProductVO pvo, ReservationVO rvo, Model model) throws Exception {
+	public String reservationRegister(HttpServletRequest request, HttpServletResponse response, @ModelAttribute AdminProductVO pvo, ReservationVO rvo, Model model) throws Exception {
+		sessionCheck(request, response, "로그인 후 가능합니다.");
+		
 		log.info("reservationRegister 호출 성공");
 		log.info("P_number = " + pvo.getP_number());
 		log.info("P_price = " + pvo.getP_price());
@@ -140,5 +154,19 @@ public class ReservationController {
 		return "redirect:" + url;
 	}
 	 
-
+	private void sessionCheck(HttpServletRequest request, HttpServletResponse response, String message) throws Exception {
+		session = request.getSession();
+		m_id = (String) session.getAttribute("m_id");
+		log.info("여긴 m_id " + m_id);
+		
+		if(m_id == null) {
+			response.setContentType("text/html; charset=euc-kr");
+			PrintWriter out = response.getWriter();
+			out.println("<script type='text/javascript'>");
+			out.println("alert('" + message + "');");
+			out.println("location.href='/login/login'");
+			out.println("</script>");
+			out.flush();
+		}
+	}
 }

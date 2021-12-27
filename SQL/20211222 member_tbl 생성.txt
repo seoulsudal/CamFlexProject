@@ -1,0 +1,24 @@
+create table member_tbl (
+m_id varchar2(50) not null PRIMARY key,
+m_pw varchar2(20) not null,
+m_name varchar2(10) not null,
+m_phone varchar2(11) not null,
+m_birth date not null,
+m_date date not null,
+m_number number not null
+);
+
+comment on table member_tbl is '회원 정보';
+comment on column member_tbl.m_id is '아이디';
+comment on column member_tbl.m_pw is '비밀번호';
+comment on column member_tbl.m_name is '이름';
+comment on column member_tbl.m_phone is '전화번호';
+comment on column member_tbl.m_birth is '생년월일';
+comment on column member_tbl.m_date is '회원 가입 날짜';
+comment on column member_tbl.m_number is '회원 번호;
+
+create sequence member_tbl_seq
+start with 1
+increment by 1;
+
+commit;

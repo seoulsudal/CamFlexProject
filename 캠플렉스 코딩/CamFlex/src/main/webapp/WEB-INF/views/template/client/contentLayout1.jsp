@@ -37,7 +37,7 @@
 	<div class="container">
 		<div class="row content">
 			<div class="col-sm-3 sidenav">
-				<tiles:insertAttribute name="aside1"/>
+				<tiles:insertAttribute name="aside"/>
 			</div>
 			<div class="col-sm-9">
 				<tiles:insertAttribute name="body" ignore="true"/>			

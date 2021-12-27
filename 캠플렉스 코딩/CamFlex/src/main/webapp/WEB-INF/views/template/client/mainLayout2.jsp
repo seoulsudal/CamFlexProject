@@ -11,7 +11,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/resources/images/common/icon.png">
-<title><tiles:getAsString name="title"/></title>
+<title>로그인 화면</title>
 
 <!-- Bootstrap core CSS -->
 <link href="/resources/include/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -26,28 +26,21 @@
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 </head>
 <body>
-	
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<tiles:insertAttribute name="header"/>
 	</nav>
 	
 	<div class="container">
-		<div class="row content">
-			<div class="col-sm-3 sidenav">
-				<tiles:insertAttribute name="aside2"/>
-			</div>
-			<div class="col-sm-9">
-				<tiles:insertAttribute name="body"/>			
-			</div>
-		</div>
+		<tiles:insertAttribute name="body"/>			
 	</div>
 	
 	<footer class="footer">
 		<tiles:insertAttribute name="footer"/>
 	</footer>
-	
+
 	<script src="/resources/include/dist/js/bootstrap.min.js"></script>
 	<script src="/resources/include/dist/assets/js/docs.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
