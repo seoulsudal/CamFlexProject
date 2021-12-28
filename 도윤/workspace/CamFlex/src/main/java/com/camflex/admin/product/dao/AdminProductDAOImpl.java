@@ -14,7 +14,7 @@ public class AdminProductDAOImpl implements AdminProductDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
-private static final String namespace = "com.camflex.admin.product.dao.AdminProductDAO";
+	private static final String namespace = "com.camflex.admin.product.dao.AdminProductDAO";
 	
 	@Override
 	public List<ProductVO> productList(ProductVO pvo) {

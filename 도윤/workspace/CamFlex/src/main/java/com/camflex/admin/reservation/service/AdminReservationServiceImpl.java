@@ -39,13 +39,18 @@ public class AdminReservationServiceImpl implements AdminReservationService {
 		return adminReservationDAO.newRsvList(rvo);
 	}
 
-	@Override
-	public int confirmRsv(int r_number) {
-		
-		return adminReservationDAO.confirmRsv(r_number);
-	}
-
 	
+	  @Override public int confirmRsv(ReservationVO rvo) {
+	  
+	  int result = 0; 
+	  try { 
+		  return adminReservationDAO.confirmRsv(rvo);
+	  }catch(Exception e) { e.printStackTrace(); result = 0; }
+	  
+	  return result;
+	  
+	  }
+	 
 	
 	
 }
