@@ -32,6 +32,7 @@
 
 	<!-- Begin page content -->
 	<div class="container">
+		<br>
 		<div>
 			<p align="center"><font size="15">캠플렉스에 오신것을 환영합니다!</font></p>
 		</div>

@@ -184,7 +184,6 @@
 				<input type="hidden" name="p_number" id="p_number" value="${detail.p_number}" />
 				<input type="hidden" name="p_name" id="p_name" value="${detail.p_name}" />
 				<input type="hidden" name="p_price" id="p_price" value="${detail.p_price}" />
-				<%-- <input type="hidden" id="m_id" name="m_id" value="${}"> --%>
 			</form>
 		</div>
 	</div>

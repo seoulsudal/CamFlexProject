@@ -1,0 +1,16 @@
+create table INQUIRY_TBL(
+    i_number    number          PRIMARY key,
+    m_id        varchar2(50)    not null,
+    i_title     varchar2(50)    not null,
+    i_kinds     varchar2(10)    not null,
+    i_date      date            DEFAULT sysdate,
+    i_content   varchar2(2000)  not null
+);
+
+alter table INQUIRY_TBL add CONSTRAINT fk_member_tbl_INQUIRY_TBL_m_id FOREIGN key(m_id) REFERENCES member_tbl(m_id);
+
+create sequence INQUIRY_SEQ
+start with 1
+increment by 1;
+
+commit;
