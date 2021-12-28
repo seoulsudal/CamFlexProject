@@ -11,16 +11,13 @@
 <title>신규 예약 리스트</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
-
-function confirm(r_number){
-	var r_number = $(this).parents("tr").attr("data-num");
+var r_number = $(this).parents("tr").attr("data-num");
 	$("#r_number").val(r_number);
-	$("#confirmRsv").attr({
-		"method":"get",
-		"action":"/admin/reservation/confirmRsv"
-	});
-	$("#confirmRsv").submit();
+function confirm(r_number){
+
 	
+	self.location = "/admin/reservation/confirmRsv?r_number=" + r_number;
+	alert("승인되었습니다.");
 }
 </script>
 </head>
