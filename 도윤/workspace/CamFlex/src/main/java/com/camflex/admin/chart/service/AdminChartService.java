@@ -4,10 +4,13 @@ import java.util.Map;
 
 public interface AdminChartService {
 
+	// 캠핑존 별
 	public Map<String, Integer> campingZone();
 
-	//public Map<String, Integer> monthlySales();
+	// 월별 매출
+	public Map<String, Integer> monthlySales();
 
-	//public Map<String, Integer> cancel();
+	// 취소 사유
+	public Map<String, Integer> cancel();
 
 }

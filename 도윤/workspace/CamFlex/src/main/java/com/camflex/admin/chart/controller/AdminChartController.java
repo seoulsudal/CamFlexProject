@@ -35,13 +35,14 @@ public class AdminChartController {
 		ChartMake.pieChart(request, campingZone);
 		
 		// 매출
-		/*
-		 * Map<String, Integer>monthlySales = adminChartService.monthlySales();
-		 * ChartMake.barChart(request, monthlySales);
-		 * 
-		 * Map<String, Integer>cancel = adminChartService.cancel();
-		 * ChartMake.barChart(request, cancel);
-		 */
+	
+		Map<String, Integer>monthlySales = adminChartService.monthlySales();
+		ChartMake.barChart(request, monthlySales);
+		
+		// 취소 사유
+		Map<String, Integer>cancel = adminChartService.cancel();
+		ChartMake.barChart2(request, cancel);
+		
 		
 		return "admin/chart/chartList";
 	}

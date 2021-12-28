@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.camflex.admin.chart.dao.AdminChartDAO">
-	<resultMap type="java.util.TreeMap" id="graph"></resultMap>
+	<resultMap type="java.util.TreeMap" id="graph"/>
 	<!-- 상품별 -->
 	<select id="campingZone" resultMap="graph">
 		select count(case when p_number between 1 and 41 then 1 end)"오토",
@@ -10,12 +10,21 @@
 		from reservation_tbl
 	</select>
 	<!-- 월별 -->
-	<!-- <select id="monthlySales" resultMap="graph">
-		select to_char(r_upddate, "yyyy/MM") as "월별", nvl(count(*), 0) as "매출"
+	<select id="monthlySales" resultMap="graph">
+		select 	sum(case when to_char(r_upddate, 'mm') = to_char(sysdate, 'mm')-2 then r_price / 10 end)"저저번달",
+				sum(case when to_char(r_upddate, 'mm') = to_char(sysdate, 'mm')-1 then r_price / 10 end)"저번달",
+				sum(case when to_char(r_upddate, 'mm') = to_char(sysdate, 'mm') then r_price / 10 end)"이번달" 
 		from reservation_tbl
-		where to_char(r_upddate, "yyyy") = "2021"
-		group by to_char(r_upddate, "yyyy/MM")
-		order by to_char(r_upddate, "yyyy/MM")
-	</select> -->
+		where r_state = '확정'
+	</select>
+	
 	<!-- 취소 통계 아직 미구현 -->
+	<select id="cancel" resultMap="graph">
+		select count(case when r_cancel = '개인사유' then 1 end)"개인사유",
+        		count(case when r_cancel = '날짜변경' then 1 end)"날짜변경",
+        		count(case when r_cancel = '천재지변' then 1 end)"천재지변",
+        		count(case when r_cancel = '기타' then 1 end)"기타"
+		from reservation_tbl
+		where r_state = '취소'
+	</select>
 </mapper>

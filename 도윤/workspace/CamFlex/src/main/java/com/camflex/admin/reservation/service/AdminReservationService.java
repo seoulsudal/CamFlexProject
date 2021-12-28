@@ -20,5 +20,8 @@ public interface AdminReservationService {
 	// 신규 예약 승인
 	public int confirmRsv(ReservationVO rvo);
 
+	// 예약 취소 리스트
+	public List<ReservationVO> cancelList(ReservationVO rvo);
+
 
 }

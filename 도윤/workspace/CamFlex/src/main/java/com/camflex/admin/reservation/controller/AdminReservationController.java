@@ -107,4 +107,17 @@ public class AdminReservationController {
 
 		return "redirect:" + url;
 	}
+	
+	/***********************
+	 * 예약 취소 리스트
+	 **********************/
+	@RequestMapping(value = "/reservationCancelList", method = RequestMethod.GET)
+	public void reservationCancelList(@ModelAttribute ReservationVO rvo, Model model) {
+		log.info("예약 취소 리스트 호출 성공");
+		
+		List<ReservationVO>cancelList = adminReservationService.cancelList(rvo);
+		
+		model.addAttribute("cancelList", cancelList);
+		
+	}
 }

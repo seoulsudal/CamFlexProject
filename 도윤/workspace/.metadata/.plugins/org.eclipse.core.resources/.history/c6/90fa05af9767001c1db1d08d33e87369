@@ -1,0 +1,16 @@
+package com.camflex.admin.chart.service;
+
+import java.util.List;
+import java.util.Map;
+
+import com.camflex.client.reservation.vo.ReservationVO;
+
+public interface AdminChartService {
+
+	public Map<String, Integer> campingZone();
+
+	public List<ReservationVO> monthlySales();
+
+	//public Map<String, Integer> cancel();
+
+}

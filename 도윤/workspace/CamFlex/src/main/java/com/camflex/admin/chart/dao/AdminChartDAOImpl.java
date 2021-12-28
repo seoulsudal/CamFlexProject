@@ -18,15 +18,19 @@ public class AdminChartDAOImpl implements AdminChartDAO {
 		return sqlsession.selectMap("campinZone", "");
 	}
 
-	/*
-	 * @Override public Map<String, Integer> monthlySales() {
-	 * 
-	 * return sqlsession.selectMap("monthlySales", ""); }
-	 */
+	
+	@Override
+	public Map<String, Integer> monthlySales() {
+	  
+		return sqlsession.selectMap("monthlySales", "");
+	}
+	
 
-	/*
-	 * @Override public Map<String, Integer> cancel() {
-	 * 
-	 * return sqlsession.selectMap("cancel", ""); }
-	 */
+	
+	@Override public Map<String, Integer> cancel() {
+	 
+		return sqlsession.selectMap("cancel", "");
+	
+	}
+	
 }
