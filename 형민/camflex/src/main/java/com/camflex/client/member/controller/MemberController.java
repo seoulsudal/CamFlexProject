@@ -33,19 +33,20 @@ public class MemberController {
 		return "/member/join";
 	}
 
-	/* 회원가입 처리 (BCryptPasswordEncoder 사용)*/
+	/* 회원가입 처리 (BCryptPasswordEncoder 사용) */
 	@RequestMapping(value = "/insertMember", method = RequestMethod.POST)
 	public String insertMember(MemberVO vo) throws Exception {
-		String m_pw = "";	//인코딩 전 비밀번호
-		String encodePw = "";	//인코딩 후 비밀번호
+		String m_pw = ""; // 인코딩 전 비밀번호
+		String encodePw = ""; // 인코딩 후 비밀번호
 
-		m_pw = vo.getM_pw();	//비밀번호 데이터 얻음
-		encodePw = pwEncoder.encode(m_pw);	//비밀번호 인코딩
-		vo.setM_pw(encodePw);	//인코딩된 비밀번호 member객체에 다시 저장
+		m_pw = vo.getM_pw(); // 비밀번호 데이터 얻음
+		encodePw = pwEncoder.encode(m_pw); // 비밀번호 인코딩
+		vo.setM_pw(encodePw); // 인코딩된 비밀번호 member객체에 다시 저장
 
-		/*회원가입 쿼리 실행*/
+		/* 회원가입 쿼리 실행 */
 		memberService.insertMember(vo);
 		log.info("회원가입 처리 완료");
 		return "/member/insert";
 	}
+
 }
