@@ -1,5 +1,7 @@
 package com.camflex.client.login.service;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +31,10 @@ public class LoginServiceImpl implements LoginService {
 		return loginDAO.findId(vo);
 	}
 
-	// 비밀번호 찾기
+	// 인증 후 비밀번호 변경
 	@Override
-	public MemberVO findPw(MemberVO vo) throws Exception {
-		return loginDAO.findPw(vo);
+	public void change_pw(Map<String, Object> map, MemberVO mvo) throws Exception {
+		loginDAO.change_pw(map, mvo);
 	}
 
 }
