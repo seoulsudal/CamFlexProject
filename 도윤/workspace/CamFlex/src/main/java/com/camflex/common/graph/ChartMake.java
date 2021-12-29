@@ -43,7 +43,7 @@ public class ChartMake {
 				log.info(result.getKey() + "=" + result.getValue());
 				dataset.addValue(result.getValue(), result.getKey(), result.getKey());
 			}
-			JFreeChart chart = ChartFactory.createBarChart("월별 매출", "개월", "매출액(단위 : 10만원)", dataset, PlotOrientation.VERTICAL, true, true, false);
+			JFreeChart chart = ChartFactory.createBarChart("월별 매출", "개월", "매출액(단위 : 원)", dataset, PlotOrientation.VERTICAL, true, true, false);
 			
 			chart.setBackgroundPaint(Color.white);
 			chart.getTitle().setFont(new Font("sansserif", Font.BOLD,16));
@@ -55,7 +55,55 @@ public class ChartMake {
 			// X축 라벨
 			plot.getDomainAxis().setLabelFont(font);	// 개월
 			// X출 도메인
-			plot.getDomainAxis().setTickLabelFont(font);// 3개월, 2개월, 1개월, 이번달
+			plot.getDomainAxis().setTickLabelFont(font);//  2개월, 1개월, 이번달
+			// Y축 라벨
+			plot.getRangeAxis().setLabelFont(font);		// 매출금액
+			// Y출 범위
+			plot.getRangeAxis().setTickLabelFont(font);
+			
+			fos = new FileOutputStream(file);
+			
+			ChartUtilities.writeChartAsJPEG(fos, chart, 500, 280);
+		}catch(Exception e) {
+			e.getMessage();
+		}finally {
+			try {
+				if(fos != null)fos.close();
+			}catch(IOException e) {
+				e.getMessage();
+			}
+		}
+	}
+	public static void barChart2(HttpServletRequest request, Map<String, Integer>resultMap) {
+		String docRoot = request.getSession().getServletContext().getRealPath("/graph");
+		FileUploadUtil.makeDir(docRoot);
+		
+		log.info("업로드할 파일 경로(docRoot) : " + docRoot);
+		
+		File file = new File(docRoot + "/barChart2.jpg");
+		FileOutputStream fos = null;
+		
+		try {
+			// 데이터로 사용할 카테고리 데이터 셋을 생성
+			DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+			
+			for(Map.Entry<String, Integer>result : resultMap.entrySet()) {
+				log.info(result.getKey() + "=" + result.getValue());
+				dataset.addValue(result.getValue(), result.getKey(), result.getKey());
+			}
+			JFreeChart chart = ChartFactory.createBarChart("취소 사유", "사유", "단위(건)", dataset, PlotOrientation.VERTICAL, true, true, false);
+			
+			chart.setBackgroundPaint(Color.white);
+			chart.getTitle().setFont(new Font("sansserif", Font.BOLD,16));
+			
+			Font font = new Font("sansserif", Font.BOLD, 12);
+			chart.getLegend().setItemFont(font);
+			
+			CategoryPlot plot = chart.getCategoryPlot();
+			// X축 라벨
+			plot.getDomainAxis().setLabelFont(font);	// 개월
+			// X출 도메인
+			plot.getDomainAxis().setTickLabelFont(font);//  2개월, 1개월, 이번달
 			// Y축 라벨
 			plot.getRangeAxis().setLabelFont(font);		// 매출금액
 			// Y출 범위

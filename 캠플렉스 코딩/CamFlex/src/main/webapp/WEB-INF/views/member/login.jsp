@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인 화면</title>
+<title>로그인</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -52,40 +52,27 @@
 </script>
 </head>
 <body>
+	<div align="center">
 	<h2>로그인</h2>
-	<c:if test="${login == null }">
-		<form id="loginCheck" name="loginCheck" action="/login/login" method="POST" onsubmit="return userLogin()" >
+	<form id="loginCheck" name="loginCheck" action="/login/login" method="POST" onsubmit="return userLogin()" >
 		
-			<div class="input-group" style="width: 280px" align="center">
-      			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-	      		<input id="m_id" type="text" class="form-control" name="m_id" placeholder="Email">
-    		</div>
-			<div class="input-group" style="width: 280px">
-     			<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-      			<input id="m_pw" type="password" class="form-control" name="m_pw" placeholder="Password">
-    		</div>
-			<p></p>
-	
-			<div>
-				<input type="submit" value="로그인" />
-				<input type="button" value="아이디 찾기" onClick="location.href='findId'" />
-				<input type="button" value="비밀번호 찾기" onClick="location.href='findPw'"/>
-				<input type="button" value="회원가입" onClick="location.href='join'" />
-			</div>
-		</form>
-	</c:if>
-	
-	<c:if test="${login != null}">
-		<h2>로그인 성공</h2>
+		<div class="input-group" style="width: 280px" align="center">
+    		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	   		<input id="m_id" type="text" class="form-control" name="m_id" placeholder="Email">
+    	</div>
+    	<br>
+		<div class="input-group" style="width: 280px">
+    		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+    		<input id="m_pw" type="password" class="form-control" name="m_pw" placeholder="Password">
+    	</div>
+		<br>
 		<div>
-			<p>${login.m_name },${login.m_id}님환영합니다.</p>
-			<p>
+			<input type="submit" class="btn btn-success" value="로그인"/>
+			<input type="button" class="btn btn-info" value="아이디 찾기" onClick="location.href='findId'"/>
+			<input type="button" class="btn btn-info" value="비밀번호 찾기" onClick="location.href='findPw'"/>
+			<input type="button" class="btn btn-primary" value="회원가입" onClick="location.href='join'"/>
 		</div>
-	</c:if>
-
-	<c:if test="${msg == false}">
-		<h2>로그인 실패</h2>
-
-	</c:if>
+	</form>
+	</div>
 </body>
 </html>

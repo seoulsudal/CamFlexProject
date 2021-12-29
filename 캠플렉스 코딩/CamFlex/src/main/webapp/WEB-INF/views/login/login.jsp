@@ -67,10 +67,10 @@
 			<p></p>
 	
 			<div>
-				<input type="submit" value="로그인" />
-				<input type="button" value="아이디 찾기" onClick="location.href='findId'" />
-				<input type="button" value="비밀번호 찾기" onClick="location.href='findPw'"/>
-				<input type="button" value="회원가입" onClick="location.href='join'" />
+				<input type="submit" value="로그인" class="btn btn-success"/> 
+				<input type="button" value="아이디 찾기"  class="btn btn-info" onClick="location.href='findId'" />
+				<input type="button" value="비밀번호 찾기" class="btn btn-info" onClick="location.href='findPw'"/>
+				<input type="button" value="회원가입" class="btn btn-primary" onClick="location.href='join'" />
 			</div>
 		</form>
 	</c:if>

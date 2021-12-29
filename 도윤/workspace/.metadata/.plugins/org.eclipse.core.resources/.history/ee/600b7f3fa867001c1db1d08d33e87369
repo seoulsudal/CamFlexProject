@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.admin.chart.dao.AdminChartDAO">
+	<resultMap type="java.util.TreeMap" id="graph"/>
+	<!-- 상품별 -->
+	<select id="campingZone" resultMap="graph">
+		select count(case when p_number between 1 and 41 then 1 end)"오토",
+				count(case when p_number between 42 and 45 then 1 end)"글램핑",
+				count(case when p_number between 46 and 47 then 1 end)"차박"
+		from reservation_tbl
+	</select>
+	<!-- 월별 -->
+	<select id="monthlySales" resultMap="graph">
+		select sum(case when to_char(r_upddate, 'mm') = to_char(sysdate, 'mm')-2 then r_price end)"저저번달", 
+   				 sum(case when to_char(r_upddate, 'mm') = to_char(sysdate, 'mm')-1 then r_price end)"저번달",
+    			sum(case when to_char(r_upddate, 'mm') = to_char(sysdate, 'mm') then r_price end)"이번달"
+		from reservation_tbl
+	</select>
+	
+	<!-- 취소 통계 아직 미구현 -->
+</mapper>

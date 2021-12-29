@@ -13,7 +13,10 @@ public interface AdminReservationDAO {
 	public int count(PageRequest pageRequest);
 	// 신규 예약 리스트
 	public List<ReservationVO> newRsvList(ReservationVO rvo);
+	// 예약 승인 처리
 	public int confirmRsv(ReservationVO rvo);
+	// 예약 취소 리스트
+	public List<ReservationVO> cancelList(ReservationVO rvo);
 
 
 

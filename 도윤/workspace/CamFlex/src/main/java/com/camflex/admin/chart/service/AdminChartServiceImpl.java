@@ -15,6 +15,7 @@ public class AdminChartServiceImpl implements AdminChartService {
 	@Autowired
 	private AdminChartDAO adminChartDAO;
 
+	// 캠핑존 별
 	@Override
 	public Map<String, Integer> campingZone() {
 		Map<String, Integer>campList = null;
@@ -22,11 +23,19 @@ public class AdminChartServiceImpl implements AdminChartService {
 		return campList;
 	}
 
-	/*
-	 * @Override public Map<String, Integer> monthlySales() { Map<String,
-	 * Integer>sales = null; sales = adminChartDAO.monthlySales(); return sales; }
-	 * 
-	 * @Override public Map<String, Integer> cancel() { Map<String, Integer>cancel =
-	 * null; cancel = adminChartDAO.cancel(); return cancel; }
-	 */
+	// 월별
+	@Override
+	public Map<String, Integer> monthlySales() { 
+		Map<String, Integer>sales = null;
+		sales = adminChartDAO.monthlySales();
+		return sales; 
+	}
+	// 취소 사유 별
+	@Override public Map<String, Integer> cancel() { 
+		Map<String, Integer>cancel = null; 
+		
+		cancel = adminChartDAO.cancel();
+		
+		return cancel; }
+	
 }

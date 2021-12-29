@@ -37,10 +37,10 @@
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="com.camflex.common.vo.Pagination"/>
     <fullyQualifiedTypeName name="com.camflex.common.vo.CodeLabelValue"/>
+    <fullyQualifiedTypeName name="com.camflex.common.vo.PageRequest"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
-    <fullyQualifiedTypeName name="com.camflex.common.vo.PageRequest"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.camflex.client.reservation.vo.ReservationVO"/>
-    <fullyQualifiedTypeName name="java.lang.Override"/>
 </qualifiedTypeNameHistroy>

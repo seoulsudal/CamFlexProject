@@ -19,9 +19,9 @@ import com.camflex.client.login.vo.LoginVO;
 import com.camflex.client.member.vo.MemberVO;
 
 @Controller
-@RequestMapping(value = "/login")
+@RequestMapping("/login")
 public class LoginController {
-	// 로깅을 위한 변수
+	
 	private Logger log = LoggerFactory.getLogger(LoginController.class);
 
 	@Autowired
@@ -32,7 +32,7 @@ public class LoginController {
 	public String LoginForm() {
 		log.info("Login GET 호출 성공");
 		
-		return "/login/login"; // views/login/login.jsp로 포워드
+		return "login/login"; // views/login/login.jsp로 포워드
 	}
 
 	/* 로그인 기능 */
@@ -52,20 +52,20 @@ public class LoginController {
 			log.info("login Success");
 			log.info(session.getId());
 			session.setAttribute("m_id", vo.getM_id());
-			return "/index";
+			return "index";
 		}
 	}
 
 	/* 아이디 찾기 페이지 */
-	@RequestMapping(value = "findId", method = RequestMethod.GET)
+	@RequestMapping(value = "/findId", method = RequestMethod.GET)
 	public String findIdForm() {
 		log.info("FindId GET 호출 성공");
 		
-		return "/login/findId"; // views/login/findId.jsp로 포워드
+		return "login/findId"; 
 	}
 
 	/* 아이디 찾기 */
-	@RequestMapping(value = "findId", method = RequestMethod.POST)
+	@RequestMapping(value = "/findId", method = RequestMethod.POST)
 	public String findId(MemberVO vo, Model model, RedirectAttributes rttr) throws Exception {
 		log.info("FindId POST 호출 성공");
 		
@@ -76,25 +76,25 @@ public class LoginController {
 			model.addAttribute("mvo", null);
 			rttr.addFlashAttribute("msg", false);
 			
-			return "/login/findId";
+			return "login/findId";
 		} else {
 			log.info("find ID 성공");
 			model.addAttribute("mvo", mvo);
 
-			return "/login/findId";
+			return "login/findId";
 		}
 	}
 
 	/* 비밀번호 찾기 페이지 */
-	@RequestMapping(value = "findPw", method = RequestMethod.GET)
+	@RequestMapping(value = "/findPw", method = RequestMethod.GET)
 	public String findPwForm() {
 		log.info("FindPw GET 호출 성공");
 		
-		return "/login/findPw"; // views/login/findPw.jsp로 포워드
+		return "login/findPw"; // views/login/findPw.jsp로 포워드
 	}
 
 	/* 비밀번호 찾기 */
-	@RequestMapping(value = "findPw", method = RequestMethod.POST)
+	@RequestMapping(value = "/findPw", method = RequestMethod.POST)
 	public String findPwForm(MemberVO vo, Model model, RedirectAttributes rttr) throws Exception {
 		log.info("FindPw POST 호출 성공");
 		MemberVO mvo1 = loginService.findPw(vo);
@@ -104,12 +104,12 @@ public class LoginController {
 			model.addAttribute("mvo1", null);
 			rttr.addFlashAttribute("msg", false);
 			
-			return "/login/findPw";
+			return "login/findPw";
 		} else {
 			log.info("find PW 성공");
 			model.addAttribute("mvo1", mvo1);
 			
-			return "/login/findPw";
+			return "login/findPw";
 		}	
 	}
 

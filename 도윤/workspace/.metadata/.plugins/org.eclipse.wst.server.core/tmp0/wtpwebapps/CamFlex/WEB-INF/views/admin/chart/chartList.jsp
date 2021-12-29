@@ -8,8 +8,9 @@
 </head>
 <body>
 <div align="center">
-	<img src="/graph/pieChart.jpg"/>
-	<!-- <img src="/graph/barChart.jpg"/> -->
+	<img src="/graph/pieChart.jpg"/><br><br>
+	<img src="/graph/barChart.jpg"/><br><br>
+	<img src="/graph/barChart2.jpg"/>
 </div>
 </body>
 </html>

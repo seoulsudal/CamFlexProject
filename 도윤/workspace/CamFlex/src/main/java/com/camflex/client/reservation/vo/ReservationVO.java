@@ -17,6 +17,7 @@ public class ReservationVO {
 	private int a_agree;			// 동의
 	private Date r_apllicationDate;	// 예약신청일
 	private Date r_updDate;			// 예약 확정일
+	private String r_cancel;
 
 	public int getR_number() {
 		return r_number;
@@ -120,6 +121,14 @@ public class ReservationVO {
 
 	public void setR_updDate(Date r_updDate) {
 		this.r_updDate = r_updDate;
+	}
+
+	public String getR_cancel() {
+		return r_cancel;
+	}
+
+	public void setR_cancel(String r_cancel) {
+		this.r_cancel = r_cancel;
 	}
 
 	

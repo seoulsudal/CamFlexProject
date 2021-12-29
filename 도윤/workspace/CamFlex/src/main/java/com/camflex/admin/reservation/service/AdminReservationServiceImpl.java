@@ -50,6 +50,13 @@ public class AdminReservationServiceImpl implements AdminReservationService {
 	  return result;
 	  
 	  }
+
+	// 예약 취소 리스트
+	@Override
+	public List<ReservationVO> cancelList(ReservationVO rvo) {
+		
+		return adminReservationDAO.cancelList(rvo);
+	}
 	 
 	
 	
