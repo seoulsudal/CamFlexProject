@@ -15,13 +15,24 @@
 <script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script type="text/javascript">
+$(function() {
+	// 문의 작성 클릭 시
+	$("#insertFormBtn").click(function() {
+		location.href = "/inquiry/inquiryWrite";
+	});
+});
+</script>
+
 </head>
 <body>
 	<form name="detailForm" id="detailForm">
 		<input type="hidden" name="i_number" id="i_number">
+		<input type="hidden" id="m_id" name="m_id" value="${id}">
 	</form>
 	
-	<table>
+	<table border="1" style="text-align: center;">
 		<colgroup>
 			<col width="15%">
 			<col width="65%">
@@ -42,9 +53,17 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${inquiryList}" var="inquiry">
-					
+					<tr>
+						<td>${inquiry.i_number}</td>
+						<td><a href="/inquiry/inquiryDetails?i_number=${inquiry.i_number}">${inquiry.i_title}</a></td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${inquiry.i_date}"/></td>						
+					</tr>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
 	</table>
+	<br>
+	<div>
+		<input type="button" value="문의 작성" id="insertFormBtn" class="btn">
+	</div>
 </body>

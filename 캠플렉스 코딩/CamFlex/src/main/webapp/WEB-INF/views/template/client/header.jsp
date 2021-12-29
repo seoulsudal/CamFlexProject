@@ -22,11 +22,16 @@
 		<ul class="nav navbar-nav navbar-left">
 			<li><a href="/notice/noticeList">공지사항</a></li>
 			<li><a href="/product/productList">예약</a></li>
-			<li><a href="/">마이 페이지</a></li>
+			<li><a href="/inquiry/inquiryList">마이 페이지</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
+			<c:if test="${empty id}">
 			<li><a href="/login/login">로그인</a></li>
 			<li><a href="/">회원가입</a></li>
+			</c:if>
+			<c:if test="${!empty id}">
+			<li><a href="/login/logout">로그아웃</a></li>
+			</c:if>
 		</ul>
 	</div>
 </div>

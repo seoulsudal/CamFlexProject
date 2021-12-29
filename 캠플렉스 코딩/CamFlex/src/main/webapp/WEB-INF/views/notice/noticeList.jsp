@@ -25,6 +25,7 @@
 	<%-- 상세 페이지 이동을 위한 FORM --%>
 	<form name="detailForm" id="detailForm">
 		<input type="hidden" name="n_number" id="n_number">
+		<input type="hidden" name="m_id" id="m_id" value="${id}">
 	</form>
 
 	<table border="1" align="center">

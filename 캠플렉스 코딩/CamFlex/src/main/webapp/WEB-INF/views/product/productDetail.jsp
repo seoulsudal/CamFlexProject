@@ -67,6 +67,7 @@ function setImage(index){
 		<input type="hidden" name="p_photo1" id="p_photo1" value="${detail.p_photo1}"/>
 		<input type="hidden" name="p_photo2" id="p_photo2" value="${detail.p_photo2}"/>
 		<input type="hidden" name="p_photo3" id="p_photo3" value="${detail.p_photo3}"/>
+		<input type="hidden" id="m_id" name="m_id" value="${id}">
 	</form>
 	<div class="well">
 		<table border="1">

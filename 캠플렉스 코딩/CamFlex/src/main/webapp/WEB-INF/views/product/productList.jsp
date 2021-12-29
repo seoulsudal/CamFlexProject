@@ -38,6 +38,7 @@ $(function(){
 		<form name="detailForm" id="detailForm">
 		<input type="hidden" name="p_number" id="p_number">
 		<input type="hidden" name="p_mainphoto" id="p_mainphoto" value="${data.p_mainphoto}" />
+		<input type="hidden" id="m_id" name="m_id" value="${id}">
 		</form>
 		<br>
 		<c:choose>		

@@ -93,6 +93,7 @@ public class ReservationController {
 		model.addAttribute("reservationList", reservationList);
 		model.addAttribute("detail", pvo);
 		model.addAttribute("reservation", rvo);
+		model.addAttribute("id", m_id);
 
 		return "reservation/reservationDetail";
 	}
@@ -153,7 +154,8 @@ public class ReservationController {
 		
 		return "redirect:" + url;
 	}
-	 
+	
+	// 로그인 체크
 	private void sessionCheck(HttpServletRequest request, HttpServletResponse response, String message) throws Exception {
 		session = request.getSession();
 		m_id = (String) session.getAttribute("m_id");

@@ -1,5 +1,9 @@
 package com.camflex.client.notice.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,19 +28,17 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
+	private HttpSession session;
+	private String m_id;
+	
 	// 공지사항 조회
 	@RequestMapping(value = "/noticeList", method = RequestMethod.GET)
-	public void noticeList(@ModelAttribute("pgrq") PageRequest pageRequest, AdminNoticeVO nvo, Model model) throws Exception {
+	public String noticeList(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("pgrq") PageRequest pageRequest, AdminNoticeVO nvo, Model model) throws Exception {
+		sessionCheck(request, response);
+		log.info("접속한 ID = " + m_id);
+		
 		log.info("noticeList 호출 성공");
 		
-		/*
-		 * List<AdminNoticeVO> noticeList = noticeService.noticeList(nvo);
-		 * 
-		 * model.addAttribute("noticeList", noticeList); model.addAttribute("data",
-		 * nvo);
-		 * 
-		 * return "notice/noticeList";
-		 */
 		// 뷰에 페이징 처리를 한 게시글 목록을 전달한다.
 		model.addAttribute("noticeList", noticeService.noticeList(pageRequest));
 		
@@ -45,11 +47,17 @@ public class NoticeController {
 		pagination.setPageRequest(pageRequest);
 		pagination.setTotalCount(noticeService.count(pageRequest));
 		model.addAttribute("pagination", pagination);
+		model.addAttribute("id", m_id);
+		
+		return "notice/noticeList";
 	}
 	
 	// 공지사항 상세 페이지
 	@RequestMapping(value = "/noticeDetail", method = RequestMethod.GET)
-	public String noticeDetail(@ModelAttribute AdminNoticeVO nvo, Model model) throws Exception {
+	public String noticeDetail(HttpServletRequest request, HttpServletResponse response, @ModelAttribute AdminNoticeVO nvo, Model model) throws Exception {
+		sessionCheck(request, response);
+		log.info("접속한 ID = " + m_id);
+		
 		log.info("noticeDetail 호출 성공");
 		log.info("n_number = " + nvo.getN_number());
 		
@@ -61,7 +69,16 @@ public class NoticeController {
 		}
 		
 		model.addAttribute("detail", detail);
+		model.addAttribute("id", m_id);
 		
 		return "notice/noticeDetail";
 	}
+	
+	// 로그인 체크
+	private void sessionCheck(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		session = request.getSession();
+		m_id = (String) session.getAttribute("m_id");
+		log.info("여긴 m_id " + m_id);
+	}
+	
 }

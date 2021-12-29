@@ -55,7 +55,7 @@
 	<h2>로그인</h2>
 	<c:if test="${login == null }">
 		<form id="loginCheck" name="loginCheck" action="/login/login" method="POST" onsubmit="return userLogin()" >
-		
+			
 			<div class="input-group" style="width: 280px" align="center">
       			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 	      		<input id="m_id" type="text" class="form-control" name="m_id" placeholder="Email">

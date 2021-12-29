@@ -40,6 +40,7 @@ $(function(){
 <body>
 <div class="col-sm-12">
 	<div align="center"><h2>공지사항 상세 페이지</h2></div>
+	<input type="hidden" name="m_id" id="m_id" value="${id}">
 	<br>
 		<div class="well" align="center">
 			<table border="1">

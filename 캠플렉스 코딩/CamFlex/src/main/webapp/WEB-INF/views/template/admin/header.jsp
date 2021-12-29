@@ -20,9 +20,9 @@
 	</div>
 	<div id="navbar" class="collapse navbar-collapse">
 		<ul class="nav navbar-nav navbar-left">
-			<li><a href="/admin/main">통계</a></li>
+			<li><a href="/admin/chart/chartList">통계</a></li>
 			<li><a href="/admin/member/memberList">회원 관리</a></li>
-			<li><a href="/admin/main">예약 관리</a></li>
+			<li><a href="/admin/reservation/reservationList">예약 관리</a></li>
 			<li><a href="/admin/notice/noticeList">게시판 관리</a></li>
 			<li><a href="/admin/product/productList">상품 관리</a></li>
 		</ul>

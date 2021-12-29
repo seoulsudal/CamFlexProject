@@ -1,6 +1,7 @@
 package com.camflex.client.login.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -26,10 +27,16 @@ public class LoginController {
 
 	@Autowired
 	private LoginService loginService;
-
+	
+	private HttpSession session;
+	private String m_id;
+	
 	/* 로그인 페이지 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String LoginForm() {
+	public String LoginForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		sessionCheck(request, response);
+		log.info("접속한 ID = " + m_id);
+		
 		log.info("Login GET 호출 성공");
 		
 		return "login/login"; // views/login/login.jsp로 포워드
@@ -37,7 +44,10 @@ public class LoginController {
 
 	/* 로그인 기능 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(LoginVO vo, HttpSession session, HttpServletRequest request, RedirectAttributes rttr) throws Exception {
+	public String login(LoginVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response, RedirectAttributes rttr) throws Exception {
+		sessionCheck(request, response);
+		log.info("접속한 ID = " + m_id);
+		
 		log.info("Login POST 호출 성공");
 		
 		session = request.getSession();
@@ -47,12 +57,11 @@ public class LoginController {
 			log.info("login false");
 			session.setAttribute("login", null);
 			rttr.addFlashAttribute("msg", false);
-			return "/login/loginForm";
+			return "/login/login";
 		} else {
 			log.info("login Success");
-			log.info(session.getId());
 			session.setAttribute("m_id", vo.getM_id());
-			return "index";
+			return "redirect:/";
 		}
 	}
 
@@ -111,6 +120,24 @@ public class LoginController {
 			
 			return "login/findPw";
 		}	
+	}
+	
+	// 로그아웃
+	@RequestMapping("/logout")
+	public String logout(HttpSession session, HttpServletRequest request) throws Exception {
+		log.info("LogOut");
+		
+		session.invalidate();
+		session = request.getSession(true);
+		
+		return "redirect:/";
+	}
+	
+	// 로그인 체크
+	private void sessionCheck(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		session = request.getSession();
+		m_id = (String) session.getAttribute("m_id");
+		log.info("여긴 m_id " + m_id);
 	}
 
 }

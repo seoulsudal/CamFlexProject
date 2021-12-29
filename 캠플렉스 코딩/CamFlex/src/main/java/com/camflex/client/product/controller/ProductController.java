@@ -2,6 +2,10 @@ package com.camflex.client.product.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,25 +25,35 @@ public class ProductController {
 	
 	private Logger log = LoggerFactory.getLogger(ReservationController.class);
 	
+	private HttpSession session;
+	private String m_id;
+	
 	@Autowired 
 	private ProductService productService;
 	 
 	// 캠핑장 조회
 	@RequestMapping(value = "/productList", method = RequestMethod.GET)
-	public String productList(@ModelAttribute AdminProductVO pvo, Model model) throws Exception{
+	public String productList(HttpServletRequest request, HttpServletResponse response, @ModelAttribute AdminProductVO pvo, Model model) throws Exception{
+		sessionCheck(request, response);
+		log.info("접속한 ID = " + m_id);
+		
 		log.info("productList 호출 성공");
 		
 		List<AdminProductVO> productList = productService.productList(pvo);
 		
 		model.addAttribute("productList", productList);
 		model.addAttribute("data", pvo);
+		model.addAttribute("id", m_id);
 				
 		return "product/productList";
 	}
 	
 	// 캠핑장 상세 페이지
 	@RequestMapping(value = "/productDetail", method = RequestMethod.GET)
-	public String productDetail(@ModelAttribute AdminProductVO pvo, Model model) throws Exception {
+	public String productDetail(HttpServletRequest request, HttpServletResponse response, @ModelAttribute AdminProductVO pvo, Model model) throws Exception {
+		sessionCheck(request, response);
+		log.info("접속한 ID = " + m_id);
+		
 		log.info("productDetail 호출 성공");
 		log.info("p_number = " + pvo.getP_number());
 		
@@ -51,8 +65,16 @@ public class ProductController {
 		}
 		
 		model.addAttribute("detail", detail);
+		model.addAttribute("id", m_id);
 		
 		return "product/productDetail";
+	}
+	
+	// 로그인 체크
+	private void sessionCheck(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		session = request.getSession();
+		m_id = (String) session.getAttribute("m_id");
+		log.info("여긴 m_id " + m_id);
 	}
 	
 }

@@ -6,7 +6,32 @@
 	<select id="inquiryList" resultType="inquiry">
 		SELECT i_number, i_title, i_kinds, i_date, i_content
 		FROM inquiry_tbl
+		WHERE m_id = #{m_id}
 		ORDER BY i_date DESC
 	</select>
+	
+	<!-- 문의 등록 처리 -->
+	<insert id="inquiryWrite">
+		<selectKey keyProperty="i_number" resultType="int" order="BEFORE">
+			SELECT inquiry_seq.NEXTVAL
+			FROM dual
+		</selectKey>
+			INSERT INTO inquiry_tbl(i_number, m_id, i_title, i_kinds, i_content)
+			VALUES(#{i_number}, #{m_id}, #{i_title}, #{i_kinds}, #{i_content})
+	</insert>
+	
+	<!-- 문의 상세보기 -->
+	<select id="inquiryDetails" parameterType="int" resultType="inquiry">
+		SELECT i_title, i_kinds, i_content
+		FROM inquiry_tbl
+		WHERE i_number = #{i_number}
+	</select>
+	
+	<!-- 문의 수정 처리 -->
+	<update id="inquiryUpdate" parameterType="inquiry">
+		UPDATE inquiry_tbl
+		SET i_title = #{i_title}, i_content = #{i_content}
+		WHERE i_number = #{i_number}
+	</update>	
 	
 </mapper>

@@ -5,9 +5,9 @@
 <ul class="nav nav-sidebar">
 	<li class="active"><a href="#">MENU<span class="sr-only">(current)</span></a></li>
 	<br>
-	<li><a href="/admin/main">예약 리스트</a></li>
+	<li><a href="/admin/reservation/reservationList">예약 리스트</a></li>
 	<br>
-	<li><a href="/admin/main">신규 예약 리스트</a></li>
+	<li><a href="/admin/reservation/newReservation">신규 예약 리스트</a></li>
 	<br>
-	<li><a href="/admin/main">예약 취소</a></li>
+	<li><a href="/admin/reservation/reservationCancelList">예약 취소</a></li>
 </ul>
