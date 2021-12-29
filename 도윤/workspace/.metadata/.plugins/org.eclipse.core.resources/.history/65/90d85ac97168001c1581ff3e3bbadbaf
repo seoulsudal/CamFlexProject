@@ -1,0 +1,18 @@
+package com.camflex.admin.inquiry.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.camflex.admin.inquiry.service.AdminInquiryService;
+
+@Controller
+@RequestMapping("/admin/inquiry")
+public class AdminInquiryController {
+
+	@Autowired
+	private AdminInquiryService adminInquiryService;
+	
+	
+	
+}

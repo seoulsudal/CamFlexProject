@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 상세 페이지</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style type="text/css">
 	ul li{list-style : none; float:left; margin-right : 10px;}
 	
@@ -49,7 +52,7 @@ function setImage(index){
 </script>
 </head>
 <body>
-<div>
+<div class="container">
 	<div align="center"><h2>캠핑장 상세 페이지</h2></div>
 	<form id="p_detail" name="p_detail" method = "post">
 		<input type="hidden" name="p_number" id="p_number" value="${detail.p_number}"/>
@@ -59,7 +62,7 @@ function setImage(index){
 		<input type="hidden" name="p_photo3" id="p_photo3" value="${detail.p_photo3}"/>
 	</form>
 	<div>
-		<table align="center" border="1">
+		<table class="table" align="center" border="2">
 			<tr align="center">
 				<td width="400px" height="500px" rowspan="2"><div><img id="target" src="/uploadStorage/product/${detail.p_mainphoto}"></div><br>
 				<br><br>
@@ -78,8 +81,8 @@ function setImage(index){
 		</table>
 	</div>
 	<div align="center">
-		<input type="button" value="수정" id="productModifyBtn">
-		<input type="button" value="목록" id="productListBtn">
+		<input type="button" value="수정" id="productModifyBtn" class="btn btn-default">
+		<input type="button" value="목록" id="productListBtn" class="btn btn-default">
 		<!-- <input type="button" value="삭제" id="productDeleteBtn"> -->	
 	</div>
 </div>

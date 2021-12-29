@@ -8,6 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>캠핑 상품 리스트</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -30,7 +33,7 @@ $(function(){
 </script>
 </head>
 <body>
-<div>
+<div class="container">
 	<div><h3 align="center">캠핑 리스트</h3></div>
 	
 	<form name="listForm" id="listForm">
@@ -38,7 +41,7 @@ $(function(){
 	</form>
 
 	<div id="productList" align="center">
-		<table border="1">
+		<table class="table">
 			<colgroup>
 				<col width="10%" />
 				<col width="20%" />
@@ -47,10 +50,10 @@ $(function(){
 			</colgroup>
 			<thead>
 				<tr>
-					<th class="order">상품번호</th>
-					<th>구분</th>
-					<th>상품명</th>
-					<th data-value="p_date" class="order">등록일</th>
+					<td align="center" class="order">상품번호</td>
+					<td align="center">구분</td>
+					<td align="center">상품명</td>
+					<td align="center" data-value="p_date" class="order">등록일</td>
 				</tr>
 			</thead>
 			<tbody id="list">
@@ -75,10 +78,7 @@ $(function(){
 			</tbody>
 		</table>
 	</div>
-	
-	<div>
-		<input type="button" value="등록" id="insertFormBtn">
-	</div>
+
 </div>
 </body>
 </html>

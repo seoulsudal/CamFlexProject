@@ -1,0 +1,5 @@
+package com.camflex.client.inquiry.vo;
+
+public class InquiryVO {
+
+}

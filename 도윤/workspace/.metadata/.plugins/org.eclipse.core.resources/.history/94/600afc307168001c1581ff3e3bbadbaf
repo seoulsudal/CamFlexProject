@@ -1,0 +1,5 @@
+package com.camflex.admin.inquiry.dao;
+
+public class AdminInquiryDAOImpl implements AdminInquiryDAO {
+
+}

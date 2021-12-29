@@ -10,4 +10,6 @@
     <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.admin.main.dao{AdminMainDAO.java[AdminMainDAO" modifiers="513" timestamp="1640236574868"/>
     <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.admin.reservation.service{AdminReservationService.java[AdminReservationService" modifiers="513" timestamp="1640677653912"/>
     <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.admin.reservation.dao{AdminReservationDAO.java[AdminReservationDAO" modifiers="513" timestamp="1640677741556"/>
+    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.admin.inquiry.service{AdminInquiryService.java[AdminInquiryService" modifiers="513" timestamp="1640762796316"/>
+    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.admin.inquiry.dao{AdminInquiryDAO.java[AdminInquiryDAO" modifiers="513" timestamp="1640762877197"/>
 </typeInfoHistroy>

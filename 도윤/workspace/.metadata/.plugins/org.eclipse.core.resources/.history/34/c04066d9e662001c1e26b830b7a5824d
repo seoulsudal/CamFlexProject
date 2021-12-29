@@ -1,7 +1,0 @@
-package com.camflex.common.vo;
-
-public class CodeLabelValue {
-	
-	private final String value;
-	private final String label;
-}
