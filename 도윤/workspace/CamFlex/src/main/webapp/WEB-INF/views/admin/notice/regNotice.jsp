@@ -7,6 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 등록 페이지</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -55,22 +58,21 @@ function chkSubmit(item, msg){
 </script>
 </head>
 <body>
-<div>
 	<div align="center"><h3>공지사항 글 작성</h3></div>
-	<div align="center">
+	<div class="container" align="center">
 		<form id="regNoticeForm" name="regNoticeForm" enctype="multipart/form-data">
-			<table border="1">
+			<table class="table" border="1">
 				<colgroup>
 					<col width="15%" />
 					<col width="85%" />
 				</colgroup>
 				<tr>
 					<td>글 제목</td>
-					<td><input type="text" name="n_title" id="n_title"></td>
+					<td><input type="text" class="form-control" name="n_title" id="n_title"></td>
 				</tr>
 				<tr>
 					<td>글 내용</td>
-					<td><textarea name="n_content" id="n_content"></textarea></td>
+					<td><textarea name="n_content" id="n_content" class="form-control" rows="5" cols="50"></textarea></td>
 				</tr>
 				<tr>
 					<td>이미지</td>
@@ -80,9 +82,9 @@ function chkSubmit(item, msg){
 		</form>
 	</div>
 	<div align="center">
-		<input type="button" value="등록" id="regNoticeBtn">
-		<input type="button" value="목록" id="noticeListBtn">
+		<input type="button" value="등록" id="regNoticeBtn" class="btn btn-default">
+		<input type="button" value="목록" id="noticeListBtn" class="btn btn-default">
 	</div>
-</div>
+
 </body>
 </html>

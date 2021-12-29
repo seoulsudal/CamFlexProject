@@ -90,7 +90,7 @@ public class AdminNoticeController {
 		
 		
 		/*
-		 * if(detail != null) { // 상세 페이지에서 textarea 부분에 공백부분을 \n, <br>를 표기하는 방법
+		 if(detail != null) { // 상세 페이지에서 textarea 부분에 공백부분을 \n, <br>를 표기하는 방법
 		 * 
 		 * detail.setN_content(detail.getN_content().toString().replaceAll("\n",
 		 * "<br>"));

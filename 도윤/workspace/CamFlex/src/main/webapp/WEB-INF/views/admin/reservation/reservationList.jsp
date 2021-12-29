@@ -9,6 +9,9 @@
 <head>
 <meta charset="UTF-8">
 <title>예약 리스트</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 function chkSubmit(item, msg){
@@ -25,15 +28,16 @@ function chkSubmit(item, msg){
 </head>
 <body>
 <h2 align="center">예약 리스트</h2>
+<div class="container">
 <div align="center">
 <form:form modelAttribute="pgrq" method="get" action="reservationList${pgrq.toUriStringByPage(1)}">
-	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
+	<form:select path="searchType"  items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
 	<form:input path="keyword"/>
-	<button id="searchBtn">검색</button>
+	<button id="searchBtn" class="btn btn-default">검색</button>
 </form:form>
 </div>
 <div id="reservationList" align="center">
-	<table border="1">
+	<table class="table">
 		<thead>
 			<tr>
 				<th>예약번호</th>
@@ -90,6 +94,7 @@ function chkSubmit(item, msg){
 			<a href="${pagination.endPage + 1}">&raquo;</a>
 		</c:if>
 	</div>
+</div>
 </div>
 </body>
 </html>

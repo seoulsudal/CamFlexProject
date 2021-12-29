@@ -7,11 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>예약 취소 리스트</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <h2 align="center">예약 취소 리스트</h2>
-<div id="reservationList" align="center">
-	<table border="1">
+<div class="container" id="reservationList" align="center">
+	<table class="table">
 		<thead>
 			<tr>
 				<th>예약번호</th>

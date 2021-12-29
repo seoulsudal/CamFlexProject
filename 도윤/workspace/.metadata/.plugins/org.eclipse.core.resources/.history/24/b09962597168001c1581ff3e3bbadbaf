@@ -1,0 +1,5 @@
+package com.camflex.admin.inquiry.controller;
+
+public class AdminInquiryController {
+
+}
