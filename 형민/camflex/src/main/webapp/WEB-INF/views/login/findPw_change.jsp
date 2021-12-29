@@ -12,8 +12,12 @@
 		<tr>
 			<td>
 
-				<form id="change_pw" name="change_pw" action="/change_pw.do{m_id}"
+				<form id="change_pw" name="change_pw" action="change_pw"
 					method="post">
+					<div>
+						아이디 : <input type="text" id="m_id" name="m_id"
+							placeholder="아이디를 다시 입력해주세요.">
+					</div>
 					<div>
 						변경할 비밀번호 입력 : <input type="password" id="m_pw" name="m_pw"
 							placeholder="비밀번호를 입력하세요.">

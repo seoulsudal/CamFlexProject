@@ -1,9 +1,5 @@
 package com.camflex.client.login.service;
 
-import java.util.Map;
-
-import javax.inject.Inject;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,10 +27,10 @@ public class LoginServiceImpl implements LoginService {
 		return loginDAO.findId(vo);
 	}
 
-	// 인증 후 비밀번호 변경
+	// 인증 처리 후 비밀번호 변경
 	@Override
-	public void change_pw(Map<String, Object> map, MemberVO mvo) throws Exception {
-		loginDAO.change_pw(map, mvo);
+	public void change_pw(MemberVO vo) throws Exception {
+		loginDAO.change_pw(vo);
 	}
 
 }
