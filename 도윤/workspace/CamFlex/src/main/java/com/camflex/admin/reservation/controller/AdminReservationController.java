@@ -48,7 +48,8 @@ public class AdminReservationController {
 		List<CodeLabelValue> searchTypeCodeValueList = new ArrayList<CodeLabelValue>();
 		searchTypeCodeValueList.add(new CodeLabelValue("a", "---"));
 		searchTypeCodeValueList.add(new CodeLabelValue("m", "아이디"));
-		searchTypeCodeValueList.add(new CodeLabelValue("se", "시작일 or 종료일"));
+		searchTypeCodeValueList.add(new CodeLabelValue("s", "시작날짜"));
+		searchTypeCodeValueList.add(new CodeLabelValue("t", "오늘날짜"));
 		model.addAttribute("searchTypeCodeValueList", searchTypeCodeValueList);
 	}
 	

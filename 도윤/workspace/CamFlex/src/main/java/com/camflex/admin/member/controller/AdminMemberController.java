@@ -34,7 +34,7 @@ public class AdminMemberController {
 	 * 회원 리스트 구현하기
 	 *******************************/
 	@RequestMapping(value = "/memberList", method = RequestMethod.GET)
-	public void memberList(@ModelAttribute("pgrq") PageRequest pageRequest, LoginVO lvo, Model model) {
+	public void memberList(@ModelAttribute("pgrq") PageRequest pageRequest, Model model) {
 		log.info("회원 리스트 호출 성공");
 		// 뷰에 페이징 처리를 한 게시글 목록을 전달한다.
 		model.addAttribute("memberList", adminMemberService.memberList(pageRequest));
