@@ -64,7 +64,7 @@ function chkSubmit(item, msg){
 </script>
 </head>
 <body>
-<div class="container">
+<div>
 	<div align="center" ><h3>상품 등록</h3></div>
 	<div align="center">
 		<form id="regProductForm" name="regProductForm" enctype="multipart/form-data">
@@ -114,7 +114,7 @@ function chkSubmit(item, msg){
 			</table>
 		</form>
 	</div>
-	<div align="center">
+	<div align="right">
 		<input type="button" value="등록" id="regProductBtn" class="btn btn-default">
 		<input type="button" value="목록" id="productListBtn" class="btn btn-default">
 	</div>

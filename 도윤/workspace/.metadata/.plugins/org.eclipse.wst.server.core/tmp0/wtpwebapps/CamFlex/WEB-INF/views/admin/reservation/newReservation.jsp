@@ -34,7 +34,7 @@ function confirm(r_number){
 	<button id="searchBtn">검색</button>
 </form:form>
 </div> --%>
-<div class="container" align="center">
+<div align="center">
 	<form id="confirmRsv" action="newRsvList" method="get">
 	<table class="table">
 		<thead>

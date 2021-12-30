@@ -35,7 +35,7 @@ $(function(){
 		<input type="hidden" name="i_number" id="i_number">
 	</form>
 	
-	<div class="container" id="inquiryList" align="center">
+	<div id="inquiryList" align="center">
 		<table class="table">
 			<colgroup>
 				<col width="10%" />

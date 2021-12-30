@@ -39,7 +39,7 @@ $(function(){
 		<input type="hidden" name="n_number" id="n_number">
 	</form>
 	
-	<div class="container" id="noticeList" align="center">
+	<div id="noticeList" align="center">
 		<table class="table">
 			<colgroup>
 				<col width="10%" />
@@ -75,6 +75,9 @@ $(function(){
 				</c:choose>
 			</tbody>
 		</table>
+		<div align="right">
+		<input type="button" value="등록" id="insertFormBtn" class="btn btn-default">
+	</div>
 	</div>
 </body>
 </html>

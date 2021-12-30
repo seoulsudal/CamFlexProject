@@ -33,7 +33,7 @@ $(function(){
 </script>
 </head>
 <body>
-<div class="container">
+<div>
 	<div><h3 align="center">캠핑 리스트</h3></div>
 	
 	<form name="listForm" id="listForm">
