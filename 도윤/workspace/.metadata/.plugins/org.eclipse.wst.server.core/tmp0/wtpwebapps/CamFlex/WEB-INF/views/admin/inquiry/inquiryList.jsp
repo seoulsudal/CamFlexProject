@@ -29,7 +29,7 @@ $(function(){
 </script>
 </head>
 <body>
-<div><h3 align="center">공지사항 리스트</h3></div>
+<div><h3 align="center">문의사항 리스트</h3></div>
 	
 	<form name="listForm" id="listForm">
 		<input type="hidden" name="i_number" id="i_number">
@@ -60,7 +60,9 @@ $(function(){
 							<tr data-num="${i.i_number}">
 								<td align="center">${i.i_number}</td>
 								<td align="center">${i.i_kinds}</td>
-								<td align="center">${i.m_id}</td>
+								<td align="center"><c:if test="${i.parentNO eq '0'}">${i.m_id}</c:if>
+													<c:if test="${i.parentNO ne '0'}">관리자</c:if>
+								</td>
 								<td class="goDetail tal" align="center">${i.i_title}</td>
 								<td align="center"><fmt:formatDate value="${i.i_date}" pattern="yyyy/MM/dd" /></td>
 							</tr>
@@ -74,6 +76,18 @@ $(function(){
 				</c:choose>
 			</tbody>
 		</table>
+		<!-- 페이징 네비게이션 -->
+	<div>
+		<c:if test="${pagination.prev}">
+			<a href="${pagination.startPage - 1}">&laquo;</a>
+		</c:if>
+		<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+			<a href="/admin/inquiry/inquiryList${pagination.makeQuery(idx)}">${idx}</a>
+		</c:forEach>
+		<c:if test="${pagination.next && pagination.endPage > 0}">
+			<a href="${pagination.endPage + 1}">&raquo;</a>
+		</c:if>
+	</div>
 	</div>
 </body>
 </html>
