@@ -21,8 +21,6 @@
 		var Birth = document.getElementById("userBirth"); //생년월일  
 		var Phone = document.getElementById("userPhone"); //전화번호
 
-		
-
 		/*===============아이디 유효성===============*/
 		//공백 입력여부 검사
 		if (Id.value == '') {
@@ -32,7 +30,7 @@
 
 		// 아이디(이메일 형식) 유효성 검사
 		if (!e_RegExp.test(Id.value)) {
-			alert("아이디는 이메일 형식으로만 입력 가능합니다! 다시 입력해주세요.");
+			alert("아이디는 이메일 형식으로만 입력 가능합니다.");
 			return false;
 		}
 
@@ -51,13 +49,13 @@
 
 		//패스워드 유효성 검사
 		if (!p_RegExp.test(Pw.value)) {
-			alert("password는 8~20자의 영문 대소문자와 숫자로만 입력 해주세요! 다시 입력해주세요.");
+			alert("password는 8~20자의 영문 대소문자와 숫자로만 입력 해주세요.");
 			return false;
 		}
 
 		//비밀번호 재확인 검사
 		if (Pw.value != RePw.value) {
-			alert("비밀번호 재입력이 틀립니다! 다시 입력해주세요.");
+			alert("비밀번호 재확인이 틀립니다. 다시 확인하여 입력바랍니다.");
 			return false;
 		}
 
@@ -70,7 +68,7 @@
 
 		//한글,영어 유효성 검사
 		if (!n_RegExp.test(Name.value)) {
-			alert("이름에 특수문자,숫자는 입력할수 없습니다! 다시 입력해주세요.");
+			alert("이름에 특수문자,숫자는 입력할수 없습니다. 다시 입력해주세요.");
 			return false;
 		}
 
@@ -83,7 +81,7 @@
 
 		// 생년월일 유효성 검사
 		if (!b_RegExp.test(Birth.value)) {
-			alert("생년월일 형식이 올바르지 않습니다! 다시 입력해주세요.");
+			alert("생년월일 형식이 올바르지 않습니다. 다시 입력해주세요.");
 			return false;
 		}
 
@@ -96,7 +94,7 @@
 
 		//전화번호 유효성 검사
 		if (!t_RegExp.test(Phone.value)) {
-			alert("전화번호 형식이 올바르지 않습니다! 다시 입력해주세요.");
+			alert("전화번호 형식이 올바르지 않습니다. 다시 입력해주세요.");
 			return false;
 		}
 
@@ -105,8 +103,8 @@
 </head>
 <body>
 	<h2>회원가입</h2>
-	<form name="insertMember" id="insertMember" action="insertMember"
-		method="POST" onsubmit="return joinForm_check() ">
+	<form name="insertMember" id="insertMember" action="insertMember" method="POST"
+		onsubmit="return joinForm_check()">
 		<!-- 아이디 -->
 		<div>
 			<label id="userInfo">아이디</label> <input type="text" id="m_id"
