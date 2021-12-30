@@ -18,6 +18,21 @@
 
 <script type="text/javascript">
 $(function() {
+	// 제목 클릭시
+	$(".goDetail").click(function() {
+		var i_number = $(this).parents("tr").attr("data-num");
+		
+		$("#i_number").val(i_number);
+		
+		console.log("글번호 : " + i_number);
+		
+		$("#detailForm").attr({
+			"method":"get",
+			"action":"/inquiry/inquiryDetail"
+		});
+		$("#detailForm").submit();
+	});
+	
 	// 문의 작성 클릭 시
 	$("#insertFormBtn").click(function() {
 		location.href = "/inquiry/inquiryWrite";
@@ -28,7 +43,7 @@ $(function() {
 </head>
 <body>
 	<form name="detailForm" id="detailForm">
-		<input type="hidden" name="i_number" id="i_number">
+		<input type="hidden" name="i_number" id="i_number" value="${inquiry.i_number}">
 		<input type="hidden" id="m_id" name="m_id" value="${id}">
 	</form>
 	
@@ -53,9 +68,9 @@ $(function() {
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${inquiryList}" var="inquiry">
-					<tr>
+					<tr data-num="${inquiry.i_number}">
 						<td>${inquiry.i_number}</td>
-						<td><a href="/inquiry/inquiryDetails?i_number=${inquiry.i_number}">${inquiry.i_title}</a></td>
+						<td class="goDetail">${inquiry.i_title}</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${inquiry.i_date}"/></td>						
 					</tr>
 				</c:forEach>

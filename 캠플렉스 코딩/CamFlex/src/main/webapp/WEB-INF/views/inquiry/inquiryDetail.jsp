@@ -21,7 +21,7 @@ $(function() {
 	// 수정 버튼 클릭시
 	$("#btnInquiryUpdate").click(function() {
 		$("#data").attr({
-			"method":"post",
+			"method":"get",
 			"action":"/inquiry/inquiryUpdate"
 		});	
 		$("#data").submit();
@@ -37,9 +37,9 @@ $(function() {
 </head>
 <body>
 	<h3>문의글 상세보기</h3>
-	<form name="data" id="data" method="POST">
+	<form name="data" id="data">
 		<input type="hidden" name="m_id" id="m_id" value="${id}">
-		<input type="hidden" name="i_number" id="i_number" value="${detail.i_number}">
+		<input type="hidden" name="i_number" id="" value="${detail.i_number}">
 	</form>
 	
 	<table border="1">

@@ -21,32 +21,17 @@ $(function() {
 	// 수정 버튼 클릭시
 	$("#btnInquiryUpdate").click(function() {
 		// 입력값 체크
-		if(!chkSubmit($('#i_title'), "제목을")) return;
-		else if(!chkSubmit($('#i_content'), "내용을")) return;
-		else{
-			$("#data").attr({
-				"method":"POST",
-				"action":"/inquiry/inquiryUpdate"
-			});
-			$("#data").submit();
-		}		
-	});
+		$("#data").attr({
+			"method":"POST",
+			"action":"/inquiry/inquiryUpdate"
+		});
+		$("#data").submit();
+	});		
 
 	// 목록 버튼 클릭시
 	$("#btnInquiryList").click(function() {
 		location.href = "/inquiry/inquiryList";
 	});
-});
-
-$(function chkSubmit(item, msg) {
-	if(item.val().replace(/\s/g, "") == ""){
-		alert(msg + " 입력해 주세요.");
-		item.val("");
-		item.focus();
-		return false;
-	} else {
-		return true;
-	}
 });
 </script>
 
@@ -69,7 +54,7 @@ $(function chkSubmit(item, msg) {
 			</tr>
 			<tr>
 				<td>문의 항목</td>
-				<td>${updateData.i_kinds}</td>
+				<td><input type="text" name="i_kinds" id="i_kinds" value="${updateData.i_kinds}" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td>내용</td>

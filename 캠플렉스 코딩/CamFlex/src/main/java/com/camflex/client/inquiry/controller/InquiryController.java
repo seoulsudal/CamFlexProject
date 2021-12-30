@@ -86,23 +86,23 @@ public class InquiryController {
 	}
 	
 	// 문의 상세보기 구현
-	@RequestMapping(value = "/inquiryDetails", method = RequestMethod.GET)
-	public String inquiryDetails(HttpServletRequest request, HttpServletResponse response, @ModelAttribute InquiryVO ivo, Model model) throws Exception {
+	@RequestMapping(value = "/inquiryDetail", method = RequestMethod.GET)
+	public String inquiryDetail(HttpServletRequest request, HttpServletResponse response, @ModelAttribute InquiryVO ivo, Model model) throws Exception {
 		sessionCheck(request, response, "로그인 후 예약 가능합니다.");
 		log.info("접속 ID = " + m_id);
 		
 		log.info("inquiryDetails 호출 성공");
 				
 		InquiryVO detail = new InquiryVO();
-		detail = inquiryService.inquiryDetails(ivo);
+		detail = inquiryService.inquiryDetail(ivo);
 		
-		if(detail != null) {
+		if(detail != null && (!detail.equals(""))) {
 			detail.setI_content(detail.getI_content().toString().replaceAll("\n", "<br>"));
 		}
 		
 		model.addAttribute("detail", detail);
 		
-		return "inquiry/inquiryDetails";
+		return "inquiry/inquiryDetail";
 	}
 	
 	// 문의 수정 구현
@@ -112,10 +112,17 @@ public class InquiryController {
 		log.info("접속 ID = " + m_id);
 		
 		log.info("inquiryUpdateForm 호출 성공");
+		/* log.info("i_number : " + ivo.getI_number()); */
 		
 		InquiryVO updateData = new InquiryVO();
-		updateData = inquiryService.inquiryDetails(ivo);
+		updateData = inquiryService.inquiryDetail(ivo);
+
+		/*
+		 * log.info("title " + updateData.getI_title()); log.info("kinds " +
+		 * updateData.getI_kinds()); log.info("content " + updateData.getI_content());
+		 */
 		
+		model.addAttribute("number", ivo.getI_number());
 		model.addAttribute("updateData", updateData);
 		
 		return "inquiry/inquiryUpdate";
@@ -135,13 +142,16 @@ public class InquiryController {
 		result = inquiryService.inquiryUpdate(ivo);
 		
 		if(result == 1) {
-			url = "/inquiry/inquiryDetails?i_number=" + ivo.getI_number();
+			url = "/inquiry/inquiryDetail?i_number=" + ivo.getI_number();
 		} else {
 			url = "/inquiry/inquiryUpdate?i_number=" + ivo.getI_number();
 		}
 		
 		return "redirect:" + url;
 	}
+	
+	// 문의 삭제 처리
+	@RequestMapping(value = "/inquiryDelete", method = RequestMethod.)
 	
 	// 로그인 체크
 	private void sessionCheck(HttpServletRequest request, HttpServletResponse response, String message) throws Exception {

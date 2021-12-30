@@ -13,7 +13,7 @@ public interface InquiryService {
 	public int inquiryWrite(InquiryVO ivo) throws Exception;
 
 	// 문의 상세보기
-	public InquiryVO inquiryDetails(InquiryVO ivo) throws Exception;
+	public InquiryVO inquiryDetail(InquiryVO ivo) throws Exception;
 
 	// 문의 수정 처리
 	public int inquiryUpdate(InquiryVO ivo) throws Exception;

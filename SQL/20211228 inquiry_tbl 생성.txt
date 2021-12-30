@@ -5,6 +5,7 @@ create table INQUIRY_TBL(
     i_kinds     varchar2(10)    not null,
     i_date      date            DEFAULT sysdate,
     i_content   varchar2(2000)  not null
+    PARENTNO number not null default 0
 );
 
 alter table INQUIRY_TBL add CONSTRAINT fk_member_tbl_INQUIRY_TBL_m_id FOREIGN key(m_id) REFERENCES member_tbl(m_id);

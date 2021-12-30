@@ -41,9 +41,9 @@ public class InquiryServiceImpl implements InquiryService {
 
 	// 문의 상세보기
 	@Override
-	public InquiryVO inquiryDetails(InquiryVO ivo) throws Exception {
+	public InquiryVO inquiryDetail(InquiryVO ivo) throws Exception {
 		InquiryVO detail = null;
-		detail = inquiryDAO.inquiryDetails(ivo);
+		detail = inquiryDAO.inquiryDetail(ivo);
 			
 		return detail;
 	}
