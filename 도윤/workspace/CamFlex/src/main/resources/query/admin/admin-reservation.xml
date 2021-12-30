@@ -7,9 +7,11 @@
 			<if test="searchType == 'm'.toString()">
 				and m_id like concat('%', concat(#{keyword}, '%'))
 			</if>
-			<if test="searchType == 'se'.toString()">
-				and (r_startDate like concat('%', concat(#{keyword}, '%'))
-				or r_endDate like concat('%', concat(#{keyword}, '%')))
+			<if test="searchType == 's'.toString()">
+				and (r_startDate like concat('%', concat(#{keyword}, '%')))
+			</if>
+			<if test="searchType == 't'.toString()">
+				and (r_startdate like concat('%', concat(sysdate, '%')))
 			</if>
 		</if>
 	</sql>
