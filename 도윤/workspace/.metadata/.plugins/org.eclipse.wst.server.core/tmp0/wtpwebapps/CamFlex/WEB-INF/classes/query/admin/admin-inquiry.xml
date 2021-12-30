@@ -12,7 +12,7 @@
 	
 	<!-- 상세 페이지 -->
 	<select id="inquiryDetail" parameterType="int" resultType="inquiry">
-		SELECT i_number, parentno, m_id, i_title, i_content, i_date
+		SELECT i_number, parentno, i_kinds, m_id, i_title, i_content, i_date
 		FROM inquiry_tbl
 		WHERE i_number = #{i_number}
 	</select>

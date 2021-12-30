@@ -59,7 +59,7 @@ function chkSubmit(item, msg){
 </head>
 <body>
 	<div align="center"><h3>공지사항 글 작성</h3></div>
-	<div class="container" align="center">
+	<div align="center">
 		<form id="regNoticeForm" name="regNoticeForm" enctype="multipart/form-data">
 			<table class="table" border="1">
 				<colgroup>
@@ -81,7 +81,7 @@ function chkSubmit(item, msg){
 			</table>
 		</form>
 	</div>
-	<div align="center">
+	<div align="right">
 		<input type="button" value="등록" id="regNoticeBtn" class="btn btn-default">
 		<input type="button" value="목록" id="noticeListBtn" class="btn btn-default">
 	</div>

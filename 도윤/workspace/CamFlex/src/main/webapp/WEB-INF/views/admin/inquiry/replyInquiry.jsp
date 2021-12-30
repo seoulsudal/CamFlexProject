@@ -52,10 +52,10 @@
 
 </head>
 <body>
-<div class="container">
+<div>
 	<h3 align="center">문의사항 답글 페이지</h3>
 	<form id="replyForm" name="replyForm">
-	<input type="hidden" id="parentNO" name="parentNO" value="${reply.i_number }">
+	<input type="hidden" id="parentNO" name="parentNO" value="${reply.i_number}">
 	<input type="hidden" id="m_id" name="m_id" value="${reply.m_id}">
 		<table class="table">
 			<colgroup>
@@ -69,11 +69,7 @@
 			<tr>
 				<td>문의 항목</td>
 				<td>
-					<select class="form-control" id="i_kinds" name="i_kinds">
-						<option value="예약">예약관련</option>
-						<option value="시설">시설관련</option>
-						<option value="기타">기타관련</option>
-					</select>
+					<input type="text" readonly="true" class="form-control" name="i_kinds" id="i_kinds" value="${reply.i_kinds}">
 				</td>
 			</tr>
 			<tr>
@@ -83,7 +79,7 @@
 		</table>
 	</form>
 	<br>
-	<div align="center">
+	<div align="right">
 		<input type="button" value="등록" id="replyBtn" class="btn btn-default">
 		<input type="button" value="목록" id="inquiryListBtn" class="btn btn-default">
 	</div>

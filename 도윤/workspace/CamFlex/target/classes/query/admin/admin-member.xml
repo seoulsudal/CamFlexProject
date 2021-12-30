@@ -41,7 +41,7 @@
 		<include refid="total_list"></include>
 		<include refid="search"></include>
 		<![CDATA[
-		ORDER BY m_date 
+		ORDER BY m_date
 		]]>
 	</select>
 	

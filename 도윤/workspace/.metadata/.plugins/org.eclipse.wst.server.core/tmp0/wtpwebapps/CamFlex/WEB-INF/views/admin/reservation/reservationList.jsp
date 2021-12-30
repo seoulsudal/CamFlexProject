@@ -28,7 +28,7 @@ function chkSubmit(item, msg){
 </head>
 <body>
 <h2 align="center">예약 리스트</h2>
-<div class="container">
+<div>
 <div align="center">
 <form:form modelAttribute="pgrq" method="get" action="reservationList${pgrq.toUriStringByPage(1)}">
 	<form:select path="searchType"  items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />

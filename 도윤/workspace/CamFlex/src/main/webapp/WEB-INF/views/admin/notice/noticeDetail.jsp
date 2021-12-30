@@ -47,7 +47,7 @@ $(function(){
 	<form id="n_detail" name="n_detail" method = "post" >
 		<input type="hidden" name="n_number" id="n_number" value="${detail.n_number}" />
 	</form>
-		<div class="container" align="center">
+		<div align="center">
 			<table class="table" border="1">
 				<colgroup>
 					<col width="15%" />
@@ -70,7 +70,7 @@ $(function(){
 			</table>
 		
 	</div>
-	<div align="center">
+	<div align="right">
 		<input type="button" value="편집" id="updateNoticeBtn" class="btn btn-default">
 		<input type="button" value="목록" id="noticeListBtn" class="btn btn-default">
 	</div>

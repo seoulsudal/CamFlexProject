@@ -40,7 +40,7 @@ $(function(){
 		<input type="hidden" name="i_number" id="i_number" value="${detail.i_number}" />
 		<input type="hidden" name="m_id" id="m_id" value="${detail.m_id}" />
 	</form>
-		<div class="container" align="center">
+		<div align="center">
 			<table class="table" border="1">
 				<colgroup>
 					<col width="15%" />
@@ -65,7 +65,7 @@ $(function(){
 			</table>
 		
 	</div>
-	<div align="center">
+	<div align="right">
 		<c:if test="${detail.parentNO eq '0'}">
 			<input type="button" value="답글" id="replyBtn" class="btn btn-default">
 		</c:if>

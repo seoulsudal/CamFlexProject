@@ -144,7 +144,7 @@ function chkSubmit(item, msg){
 </script>
 </head>
 <body>
-	<div class="container">
+	<div>
 		<div align="center">
 			<h3>상품 수정</h3>
 		</div>
@@ -214,7 +214,7 @@ function chkSubmit(item, msg){
 				</table>
 			</form>
 		</div>
-		<div align="center">
+		<div align="right">
 			<input type="button" value="수정" id="updateProductBtn" class="btn btn-default"> <input
 				type="button" value="목록" id="productListBtn" class="btn btn-default">
 		</div>
