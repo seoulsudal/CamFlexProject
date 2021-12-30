@@ -2,20 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>상품 수정 화면</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/common.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js">
+</script>
 <script type="text/javascript">
 $(function(){
 	var value = "${update.p_mainphoto}";
@@ -153,21 +151,19 @@ function chkSubmit(item, msg){
 		<div align="center">
 			<form id="updateProductForm" name="updateProductForm"
 				enctype="multipart/form-data">
-				<input type="hidden" id="p_number" name="p_number"
-					value="${update.p_number}" /> <input type="hidden"
-					id="p_mainphoto" name="p_mainphoto" value="${update.p_mainphoto}" />
-				<input type="hidden" id="p_photo1" name="p_photo1"
-					value="${update.p_photo1}" /> <input type="hidden" id="p_photo2"
-					name="p_photo2" value="${update.p_photo2}" /> <input type="hidden"
-					id="p_photo3" name="p_photo3" value="${update.p_photo3}" />
-				<table border="1">
+				<input type="hidden" id="p_number" name="p_number" value="${update.p_number}" />
+				<input type="hidden"id="p_mainphoto" name="p_mainphoto" value="${update.p_mainphoto}" />
+				<input type="hidden" id="p_photo1" name="p_photo1" value="${update.p_photo1}" />
+				<input type="hidden" id="p_photo2" name="p_photo2" value="${update.p_photo2}" /> 
+				<input type="hidden" id="p_photo3" name="p_photo3" value="${update.p_photo3}" />
+				<table class="table" border="1">
 					<colgroup>
 						<col width="17%" />
 						<col width="83%" />
 					</colgroup>
 					<tr>
 						<td>구분</td>
-						<td><select id="p_type" name="p_type">
+						<td><select class="form-control" id="p_type" name="p_type">
 								<option value="오토">오토</option>
 								<option value="글램핑">글램핑</option>
 								<option value="차박">차박</option>
@@ -175,18 +171,18 @@ function chkSubmit(item, msg){
 					</tr>
 					<tr>
 						<td>상품명</td>
-						<td><input type="text" name="p_name" id="p_name"
+						<td><input type="text" class="form-control" name="p_name" id="p_name"
 							value="${update.p_name}" required="required" placeholder="상품명" /></td>
 					</tr>
 					<tr>
 						<td>가격</td>
-						<td><input type="text" name="p_price" id="p_price"
+						<td><input type="text" class="form-control" name="p_price" id="p_price"
 							value="${update.p_price}" required="required" placeholder="가격" /></td>
 					</tr>
 					<tr>
 						<td>상품 안내</td>
 						<td><textarea id="p_information" name="p_information"
-								maxlength="2000" rows="8" cols="50" placeholder="상품 안내">${update.p_information}</textarea></td>
+								maxlength="2000" class="form-control" rows="5" cols="50" placeholder="상품 안내">${update.p_information}</textarea></td>
 					</tr>
 					<tr>
 						<td>이미지</td>
@@ -218,9 +214,9 @@ function chkSubmit(item, msg){
 				</table>
 			</form>
 		</div>
-		<div align="center">
-			<input type="button" value="수정" id="updateProductBtn"> <input
-				type="button" value="목록" id="productListBtn">
+		<div align="right">
+			<input type="button" value="수정" id="updateProductBtn" class="btn btn-default"> <input
+				type="button" value="목록" id="productListBtn" class="btn btn-default">
 		</div>
 	</div>
 </body>

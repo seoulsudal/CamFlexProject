@@ -47,17 +47,22 @@ $(function() {
 		<input type="hidden" id="m_id" name="m_id" value="${id}">
 	</form>
 	
-	<table border="1" style="text-align: center;">
+	<div align="center">
+	<h2>1:1문의 리스트</h2>
+	</div>
+	<br>
+	<div class="well" align="center">
+	<table border="1" style="text-align: center; width: 90%;" class="table">
 		<colgroup>
 			<col width="15%">
-			<col width="65%">
-			<col width="20%">
+			<col width="60%">
+			<col width="25%">
 		</colgroup>
 		<thead>
 			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성일</th>
+				<td><font size="3px">번호</font></td>
+				<td><font size="3px">제목</font></td>
+				<td><font size="3px">작성일</font></td>
 			</tr>
 		</thead>
 		<c:choose>
@@ -77,8 +82,22 @@ $(function() {
 			</c:otherwise>
 		</c:choose>
 	</table>
+	</div>
 	<br>
-	<div>
+	<div align="center">
 		<input type="button" value="문의 작성" id="insertFormBtn" class="btn">
+	</div>
+	<!-- 페이징 네비게이션 -->
+	<div align="center">
+	<br>
+		<c:if test="${pagination.prev}">
+			<a href="${pagination.startPage - 1}">&laquo;</a>
+		</c:if>
+		<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+			<a href="/notice/noticeList${pagination.makeQuery(idx)}">${idx}</a>
+		</c:forEach>
+		<c:if test="${pagination.next && pagination.endPage > 0}">
+			<a href="${pagination.endPage + 1}">&raquo;</a>
+		</c:if>
 	</div>
 </body>

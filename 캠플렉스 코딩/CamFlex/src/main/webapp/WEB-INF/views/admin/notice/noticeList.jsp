@@ -8,6 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 리스트</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -30,7 +33,6 @@ $(function(){
 </script>
 </head>
 <body>
-<div>
 	<div><h3 align="center">공지사항 리스트</h3></div>
 	
 	<form name="listForm" id="listForm">
@@ -38,7 +40,7 @@ $(function(){
 	</form>
 	
 	<div id="noticeList" align="center">
-		<table border="1">
+		<table class="table">
 			<colgroup>
 				<col width="10%" />
 				<col width="15%" />
@@ -47,10 +49,10 @@ $(function(){
 			</colgroup>
 			<thead>
 				<tr>
-					<th>글번호</th>
-					<th>작성자</th>
-					<th>공지사항</th>
-					<th data-value="n_date">작성일</th>
+					<td align="center">글번호</td>
+					<td align="center">작성자</td>
+					<td align="center">공지사항</td>
+					<td align="center" data-value="n_date">작성일</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -69,15 +71,13 @@ $(function(){
 							<tr>
 								<td colspan="4" align="center">등록된 공지사항이 존재하지 않습니다.</td>
 							</tr>
-						</c:otherwise>
-					
+						</c:otherwise>					
 				</c:choose>
 			</tbody>
 		</table>
+		<div align="right">
+		<input type="button" value="등록" id="insertFormBtn" class="btn btn-default">
 	</div>
-	<div>
-		<input type="button" value="등록" id="insertFormBtn">
 	</div>
-</div>
 </body>
 </html>

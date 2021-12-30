@@ -53,7 +53,7 @@
 </head>
 <body>
 	<h2>로그인</h2>
-	<c:if test="${login == null }">
+	
 		<form id="loginCheck" name="loginCheck" action="/login/login" method="POST" onsubmit="return userLogin()" >
 			
 			<div class="input-group" style="width: 280px" align="center">
@@ -68,24 +68,10 @@
 	
 			<div>
 				<input type="submit" value="로그인" class="btn btn-success"/> 
-				<input type="button" value="아이디 찾기"  class="btn btn-info" onClick="location.href='findId'" />
-				<input type="button" value="비밀번호 찾기" class="btn btn-info" onClick="location.href='findPw'"/>
-				<input type="button" value="회원가입" class="btn btn-primary" onClick="location.href='join'" />
+				<input type="button" value="아이디 찾기"  class="btn" onClick="location.href='findId'" />
+				<input type="button" value="비밀번호 찾기" class="btn" onClick="location.href='findPw'"/>
+				<input type="button" value="회원가입" class="btn" onClick="location.href='join'" />
 			</div>
 		</form>
-	</c:if>
-	
-	<c:if test="${login != null}">
-		<h2>로그인 성공</h2>
-		<div>
-			<p>${login.m_name },${login.m_id}님환영합니다.</p>
-			<p>
-		</div>
-	</c:if>
-
-	<c:if test="${msg == false}">
-		<h2>로그인 실패</h2>
-
-	</c:if>
 </body>
 </html>

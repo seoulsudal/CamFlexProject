@@ -25,7 +25,16 @@ $(function() {
 			"action":"/inquiry/inquiryUpdate"
 		});	
 		$("#data").submit();
-	})
+	});
+	
+	// 삭제 버튼 클릭시
+	$("#btnInquiryDelete").click(function() {
+		$("#data").attr({
+			"method":"get",
+			"action":"/inquiry/inquiryDelete"
+		});	
+		$("#data").submit();
+	});
 
 	// 목록 버튼 클릭시
 	$("#btnInquiryList").click(function() {
@@ -36,13 +45,17 @@ $(function() {
 
 </head>
 <body>
-	<h3>문의글 상세보기</h3>
+	<div align="center">
+	<h2>문의글 상세보기</h2>
+	</div>
+	<br>
 	<form name="data" id="data">
 		<input type="hidden" name="m_id" id="m_id" value="${id}">
 		<input type="hidden" name="i_number" id="" value="${detail.i_number}">
 	</form>
 	
-	<table border="1">
+	<div class="well" align="center">
+	<table border="1" style="text-align: center; width: 90%;" class="table">
 		<colgroup>
 				<col width="17%">
 				<col width="83%">
@@ -60,10 +73,11 @@ $(function() {
 				<td>${detail.i_content}</td>
 			</tr>
 	</table>
+	</div>
 	<br>
-	<div>
-		<input type="button" value="수정" id="btnInquiryUpdate" class="btn">
-		<input type="button" value="삭제" id="btnInquiryDelete" class="btn">
+	<div align="center">
+		<!-- <input type="button" value="수정" id="btnInquiryUpdate" class="btn">
+		<input type="button" value="삭제" id="btnInquiryDelete" class="btn"> -->
 		<input type="button" value="목록" id="btnInquiryList" class="btn">
 	</div>
 </body>

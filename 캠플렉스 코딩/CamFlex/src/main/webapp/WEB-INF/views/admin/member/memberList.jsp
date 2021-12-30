@@ -9,6 +9,9 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 리스트 페이지</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 	
@@ -30,18 +33,18 @@
 <form:form modelAttribute="pgrq" method="get" action="memberList${pgrq.toUriStringByPage(1)}">
 	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
 	<form:input path="keyword"/>
-	<button id="searchBtn">검색</button>
+	<button id="searchBtn" class="btn btn-default">검색</button>
 </form:form>
 </div>
 <div id="memberList" align="center">
-	<table border="1">
+	<table class="table">
 		<thead>
 			<tr>
-				<th>번호</th>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>전화번호</th>
-				<th>가입일</th>
+				<td align="center">번호</td>
+				<td align="center">아이디</td>
+				<td align="center">이름</td>
+				<td align="center">전화번호</td>
+				<td align="center">가입일</td>
 			</tr>
 		</thead>
 		<tbody id="list">
@@ -54,11 +57,11 @@
 					<c:otherwise>
 					<c:forEach var="member" items="${memberList}">
 						<tr>
-							<td>${member.m_number}</td>
-							<td>${member.m_id}</td>
-							<td class="mName">${member.m_name}</td>
-							<td class="phone">${member.m_phone}</td>
-							<td><fmt:formatDate value="${member.m_date}" pattern="yyyy/MM/dd" /></td>
+							<td align="center">${member.m_number}</td>
+							<td align="center">${member.m_id}</td>
+							<td align="center">${member.m_name}</td>
+							<td align="center">${member.m_phone}</td>
+							<td align="center"><fmt:formatDate value="${member.m_date}" pattern="yyyy/MM/dd" /></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>

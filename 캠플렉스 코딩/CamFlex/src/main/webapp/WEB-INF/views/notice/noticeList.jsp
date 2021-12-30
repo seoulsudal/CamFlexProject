@@ -27,8 +27,8 @@
 		<input type="hidden" name="n_number" id="n_number">
 		<input type="hidden" name="m_id" id="m_id" value="${id}">
 	</form>
-
-	<table border="1" align="center">
+	<div class="well" align="center">
+	<table border="1" class="table">
 		<colgroup>
 			<col width="15%" />
 			<col width="52%" />
@@ -61,6 +61,7 @@
 			</c:otherwise>
 		</c:choose>
 	</table>
+	</div>
 	<!-- 페이징 네비게이션 -->
 	<div align="center">
 	<br>
