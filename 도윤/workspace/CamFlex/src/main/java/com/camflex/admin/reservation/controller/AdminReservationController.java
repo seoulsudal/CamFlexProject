@@ -32,7 +32,7 @@ public class AdminReservationController {
 	 * 예약 리스트 조회
 	 ***************************/
 	@RequestMapping(value = "/reservationList", method = RequestMethod.GET)
-	public void reservationList(@ModelAttribute("pgrq") PageRequest pageRequest, ReservationVO rvo, Model model) {
+	public void reservationList(@ModelAttribute("pgrq") PageRequest pageRequest, Model model) {
 		
 		log.info("예약 리스트 호출 성공");
 		// 뷰에 페이징 처리를 한 예약 목록을 전달한다.

@@ -52,7 +52,7 @@ function setImage(index){
 </script>
 </head>
 <body>
-<div class="container">
+<div>
 	<div align="center"><h2>캠핑장 상세 페이지</h2></div>
 	<form id="p_detail" name="p_detail" method = "post">
 		<input type="hidden" name="p_number" id="p_number" value="${detail.p_number}"/>
@@ -80,7 +80,7 @@ function setImage(index){
 			</tr>
 		</table>
 	</div>
-	<div align="center">
+	<div align="right">
 		<input type="button" value="수정" id="productModifyBtn" class="btn btn-default">
 		<input type="button" value="목록" id="productListBtn" class="btn btn-default">
 		<!-- <input type="button" value="삭제" id="productDeleteBtn"> -->	

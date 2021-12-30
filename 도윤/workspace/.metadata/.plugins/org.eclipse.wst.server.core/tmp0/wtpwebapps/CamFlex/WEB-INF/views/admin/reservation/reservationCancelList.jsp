@@ -13,7 +13,7 @@
 </head>
 <body>
 <h2 align="center">예약 취소 리스트</h2>
-<div class="container" id="reservationList" align="center">
+<div id="reservationList" align="center">
 	<table class="table">
 		<thead>
 			<tr>

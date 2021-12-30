@@ -29,7 +29,7 @@
 </head>
 <body>
 <h2 align="center">회원 리스트</h2>
-<div class="container" align="center">
+<div align="center">
 <form:form modelAttribute="pgrq" method="get" action="memberList${pgrq.toUriStringByPage(1)}">
 	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
 	<form:input path="keyword"/>
@@ -61,7 +61,7 @@
 							<td align="center">${member.m_id}</td>
 							<td align="center">${member.m_name}</td>
 							<td align="center">${member.m_phone}</td>
-							<td><fmt:formatDate value="${member.m_date}" pattern="yyyy/MM/dd" /></td>
+							<td align="center"><fmt:formatDate value="${member.m_date}" pattern="yyyy/MM/dd" /></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>

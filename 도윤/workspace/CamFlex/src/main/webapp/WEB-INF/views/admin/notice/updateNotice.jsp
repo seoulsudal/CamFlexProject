@@ -81,7 +81,7 @@ function chkSubmit(item, msg){
 <body>
 
 	<div align="center"><h3>공지사항 글 수정</h3></div>
-	<div class="container" align="center">
+	<div align="center">
 		<form id="updateForm" name="updateForm" enctype="multipart/form-data">
 			<input type="hidden" id="n_number" name="n_number" value="${update.n_number}" />
 
@@ -107,7 +107,7 @@ function chkSubmit(item, msg){
 			</table>
 		</form>
 	</div>
-	<div align="center">
+	<div align="right">
 			<input type="button" value="수정" id="updateNoticeBtn" class="btn btn-default"> <input
 				type="button" value="목록" id="noticeListBtn" class="btn btn-default">
 		</div>

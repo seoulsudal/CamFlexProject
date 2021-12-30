@@ -16,7 +16,7 @@
 		<div align="center" id="list">
 			<h2>관리자 페이지</h2>
 		</div>
-		<div class="container" align="center">
+		<div align="center">
 			<form>
 				<table class="table">
 					<colgroup>
