@@ -10,6 +10,8 @@ public class InquiryVO {
    private String i_kinds;
    private Date i_date;
    private String i_content;
+   private int level;
+   private int parentNO;
 
    public int getI_number() {
       return i_number;
@@ -57,6 +59,22 @@ public class InquiryVO {
 
    public void setI_content(String i_content) {
       this.i_content = i_content;
+   }
+
+   public int getLevel() {
+      return level;
+   }
+
+   public void setLevel(int level) {
+      this.level = level;
+   }
+
+   public int getParentNO() {
+      return parentNO;
+   }
+
+   public void setParentNO(int parentNO) {
+      this.parentNO = parentNO;
    }
 
 }

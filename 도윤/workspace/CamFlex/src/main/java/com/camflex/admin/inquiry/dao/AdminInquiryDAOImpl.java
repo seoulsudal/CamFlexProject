@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.camflex.client.inquiry.vo.InquiryVO;
+import com.camflex.common.vo.PageRequest;
 
 @Repository
 public class AdminInquiryDAOImpl implements AdminInquiryDAO {
@@ -16,7 +17,7 @@ public class AdminInquiryDAOImpl implements AdminInquiryDAO {
 
 	// 리스트 조회
 	@Override
-	public List<InquiryVO> inquiryList(InquiryVO ivo) {
+	public List<InquiryVO> inquiryList(PageRequest pageRequest) {
 		
 		return sqlSession.selectList("inquiryList");
 	}
@@ -26,5 +27,24 @@ public class AdminInquiryDAOImpl implements AdminInquiryDAO {
 	public InquiryVO inquiryDetail(InquiryVO ivo) {
 		
 		return sqlSession.selectOne("inquiryDetail", ivo);
+	}
+	
+	// 답글 등록
+	@Override
+	public int replyInquiry(InquiryVO ivo) {
+		
+		return sqlSession.insert("replyInquiry", ivo);
+	}
+
+	@Override
+	public int count(PageRequest pageRequest) {
+		
+		return sqlSession.selectOne("count");
+	}
+
+	@Override
+	public int update(InquiryVO ivo) {
+		
+		return sqlSession.update("update", ivo);
 	}
 }
