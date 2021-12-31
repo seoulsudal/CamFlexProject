@@ -3,11 +3,13 @@
 <mapper namespace="com.camflex.admin.inquiry.dao.AdminInquiryDAO">
 	<!-- 리스트 조회 -->
 	<select id="inquiryList" parameterType="inquiry" resultType="inquiry">
+		<![CDATA[
 		SELECT level, i_number, parentno, i_kinds, m_id, i_title, i_date
 		FROM inquiry_tbl
 		START WITH parentno = 0
 		CONNECT BY PRIOR i_number = parentno
 		ORDER SIBLINGS BY i_number desc
+		]]>
 	</select>
 	
 	<!-- 상세 페이지 -->
@@ -39,6 +41,9 @@
 		SELECT count(i_number)
 		FROM inquiry_tbl
 		WHERE i_number > 0
+		START WITH parentno = 0
+		CONNECT BY PRIOR i_number = parentno
+		ORDER SIBLINGS BY i_number desc
 		]]>
 	</select>
 </mapper>

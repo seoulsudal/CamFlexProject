@@ -70,13 +70,13 @@ $(function(){
 						</c:when>
 						<c:otherwise>
 							<tr>
-								<td colspan="4" align="center">등록된 공지사항이 존재하지 않습니다.</td>
+								<td colspan="5" align="center">등록된 공지사항이 존재하지 않습니다.</td>
 							</tr>
 						</c:otherwise>					
 				</c:choose>
 			</tbody>
 		</table>
-		<!-- 페이징 네비게이션 -->
+			<!-- 페이징 네비게이션 -->
 	<div>
 		<c:if test="${pagination.prev}">
 			<a href="${pagination.startPage - 1}">&laquo;</a>

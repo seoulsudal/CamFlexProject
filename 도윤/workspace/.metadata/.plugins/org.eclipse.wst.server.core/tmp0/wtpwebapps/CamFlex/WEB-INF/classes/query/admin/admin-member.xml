@@ -10,6 +10,9 @@
 			<if test="searchType == 'n'.toString()">
 				and m_name like concat('%', concat(#{keyword}, '%'))
 			</if>
+			<if test="searchType == 'd'.toString()">
+				and m_date like concat('%', concat(sysdate, '%'))
+			</if>
 			<if test="searchType == 'p'.toString()">
 				and m_phone like concat('%', concat(#{keyword}, '%'))
 			</if>

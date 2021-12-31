@@ -54,7 +54,7 @@ function chkSubmit(item, msg){
 			<c:choose>
 				<c:when test="${empty reservationList}">
 					<tr>
-						<td colspan="7" align="center">예약이 존재하지 않습니다.</td>
+						<td colspan="8" align="center">예약이 존재하지 않습니다.</td>
 					</tr>
 					</c:when>
 					<c:otherwise>
@@ -73,8 +73,8 @@ function chkSubmit(item, msg){
 							<td align="center">${rs.m_id}</td>
 							<td align="center">${rs.r_price}</td>
 							<td align="center"><fmt:formatDate value="${rs.r_apllicationDate}" pattern="yyyy/MM/dd" /></td>
-							<td align="center">${rs.r_startDate}</td>
-							<td align="center">${rs.r_endDate}</td>
+							<td align="center"><fmt:formatDate value="${rs.r_startDate}" pattern="yyyy/MM/dd" /></td>
+							<td align="center"><fmt:formatDate value="${rs.r_endDate}" pattern="yyyy/MM/dd" /></td>
 							<td align="center"><fmt:formatDate value="${rs.r_updDate}" pattern="yyyy/MM/dd" /></td>
 						</tr>
 					</c:forEach>

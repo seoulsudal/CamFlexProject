@@ -48,6 +48,7 @@ public class AdminMemberController {
 		searchTypeCodeValueList.add(new CodeLabelValue("a", "---"));
 		searchTypeCodeValueList.add(new CodeLabelValue("i", "아이디"));
 		searchTypeCodeValueList.add(new CodeLabelValue("n", "이름"));
+		searchTypeCodeValueList.add(new CodeLabelValue("d", "신규가입"));		
 		searchTypeCodeValueList.add(new CodeLabelValue("p", "전화번호"));
 		model.addAttribute("searchTypeCodeValueList", searchTypeCodeValueList);
 	}

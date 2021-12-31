@@ -27,7 +27,7 @@ public class AdminInquiryController {
 	 * 문의사항 리스트
 	 ****************************/
 	@RequestMapping(value = "/inquiryList", method = RequestMethod.GET)
-	public void inquiryList(@ModelAttribute("pgrq")PageRequest pageRequest, Model model) {
+	public void inquiryList(@ModelAttribute PageRequest pageRequest, Model model) {
 		log.info("문의사항 게시판 리스트 호출 성공");
 		
 		// List<InquiryVO> inquiryList = adminInquiryService.inquiryList(ivo);

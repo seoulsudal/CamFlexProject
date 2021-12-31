@@ -18,7 +18,7 @@
 		where r_state = '확정'
 	</select>
 	
-	<!-- 취소 통계 아직 미구현 -->
+	<!-- 취소 통계 -->
 	<select id="cancel" resultMap="graph">
 		select count(case when r_cancel = '개인사유' then 1 end)"개인사유",
         		count(case when r_cancel = '날짜변경' then 1 end)"날짜변경",

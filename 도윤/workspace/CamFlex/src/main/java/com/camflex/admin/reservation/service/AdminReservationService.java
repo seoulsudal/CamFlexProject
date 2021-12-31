@@ -29,5 +29,8 @@ public interface AdminReservationService {
 
 	public int count2(PageRequest pageRequest);
 
+	// 예약 취소 구현
+	public int cancelRsv(ReservationVO rvo);
+
 
 }
