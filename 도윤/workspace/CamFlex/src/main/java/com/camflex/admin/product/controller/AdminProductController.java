@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.camflex.admin.product.service.AdminProductService;
 import com.camflex.admin.product.vo.ProductVO;
 import com.camflex.common.file.FileUploadUtil;
+import com.camflex.common.vo.PageRequest;
+import com.camflex.common.vo.Pagination;
 
 @Controller
 @RequestMapping(value = "/admin/product")
@@ -32,16 +34,21 @@ public class AdminProductController {
 	 * 상품 목록 구현
 	 ************************************/
 	@RequestMapping(value = "/productList", method = RequestMethod.GET)
-	public String productList(@ModelAttribute ProductVO pvo, Model model) {
+	public void productList(@ModelAttribute("pgrq")PageRequest pageRequest, Model model) {
 		log.info("상품 목록 호출 성공");
 
-		List<ProductVO> productList = adminProductService.productList(pvo);
+		// List<ProductVO> productList = adminProductService.productList(pvo);
 
-		model.addAttribute("productList", productList);
+		model.addAttribute("productList", adminProductService.productList(pageRequest));
 
-		model.addAttribute("data", pvo);
+		//model.addAttribute("data", pvo);
 
-		return "admin/product/productList";
+		// 페이징 네비게이션 정보를 뷰에 전달한다.
+		Pagination pagination = new Pagination();
+		pagination.setPageRequest(pageRequest);
+		pagination.setTotalCount(adminProductService.count(pageRequest));
+		model.addAttribute("pagination", pagination);
+		
 	}
 	
 	/*************************************

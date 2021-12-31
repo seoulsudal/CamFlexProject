@@ -57,6 +57,15 @@
 		where p_number = #{p_number}
 	</update>
 	
+	<!-- 전체 글 수를 조회 -->
+	<select id="count" resultType="int">
+		<![CDATA[
+		SELECT count(p_number)
+		FROM product_tbl
+		WHERE p_number > 0
+		]]>
+	</select>
+	
 <!-- 	<delete id="productDelete" parameterType="product">
 		delete from product_tbl where p_number = #{p_number}
 	</delete> -->

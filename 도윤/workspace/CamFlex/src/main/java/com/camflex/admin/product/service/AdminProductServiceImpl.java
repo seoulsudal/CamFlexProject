@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.camflex.admin.product.dao.AdminProductDAO;
 import com.camflex.admin.product.vo.ProductVO;
+import com.camflex.common.vo.PageRequest;
 
 @Service
 @Transactional
@@ -19,11 +20,9 @@ public class AdminProductServiceImpl implements AdminProductService {
 	
 	// 전체 리스트 조회
 	@Override
-	public List<ProductVO> productList(ProductVO pvo) {
+	public List<ProductVO> productList(PageRequest pageRequest) {
 
-		List<ProductVO> list = new ArrayList<ProductVO>();
-		list = adminProductDAO.productList(pvo);
-		return list;
+		return adminProductDAO.productList(pageRequest);
 	}
 
 	// 상품 등록
@@ -60,6 +59,12 @@ public class AdminProductServiceImpl implements AdminProductService {
 		}
 		
 		return result;
+	}
+	
+	@Override
+	public int count(PageRequest pageRequest) {
+		
+		return adminProductDAO.count(pageRequest);
 	}
 
 }
