@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.camflex.admin.notice.service.AdminNoticeService;
 import com.camflex.admin.notice.vo.AdminNoticeVO;
 import com.camflex.common.file.FileUploadUtil;
+import com.camflex.common.vo.PageRequest;
+import com.camflex.common.vo.Pagination;
 
 @Controller
 @RequestMapping(value = "/admin/notice")
@@ -32,15 +34,20 @@ public class AdminNoticeController {
 	 * 공지사항 기본 조회
 	 *****************************************/
 	@RequestMapping(value = "/noticeList", method = RequestMethod.GET)
-	public String noticeList(@ModelAttribute AdminNoticeVO nvo, Model model) {
+	public void noticeList(@ModelAttribute("pgrq")PageRequest pageRequest, Model model) {
 		log.info("공지사항 목록 호출 성공");
 		
-		List<AdminNoticeVO> noticeList = adminNoticeService.noticeList(nvo);
+		//List<NoticeVO> noticeList = adminNoticeService.noticeList(nvo);
 		
-		model.addAttribute("noticeList", noticeList);
-		model.addAttribute("data", nvo);
+		model.addAttribute("noticeList", adminNoticeService.noticeList(pageRequest));
+		//model.addAttribute("data", nvo);
 		
-		return "admin/notice/noticeList";
+		// 페이징 네비게이션 정보를 뷰에 전달한다.
+		Pagination pagination = new Pagination();
+		pagination.setPageRequest(pageRequest);
+		pagination.setTotalCount(adminNoticeService.count(pageRequest));
+		model.addAttribute("pagination", pagination);
+		
 	}
 	
 	/****************************************
@@ -90,7 +97,7 @@ public class AdminNoticeController {
 		
 		
 		/*
-		 * if(detail != null) { // 상세 페이지에서 textarea 부분에 공백부분을 \n, <br>를 표기하는 방법
+		 if(detail != null) { // 상세 페이지에서 textarea 부분에 공백부분을 \n, <br>를 표기하는 방법
 		 * 
 		 * detail.setN_content(detail.getN_content().toString().replaceAll("\n",
 		 * "<br>"));

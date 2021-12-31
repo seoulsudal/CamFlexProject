@@ -12,14 +12,14 @@
 	<select id="rsvList" resultType="int">
 		select count(*) as rsvList
 		from reservation_tbl
-		where to_char(r_apllicationdate, 'yyyyMMdd') = to_char(sysdate, 'yyyyMMdd') AND r_state = '대기'
+		where to_char(r_apllicationdate, 'yyyyMMdd') = to_char(sysdate, 'yyyyMMdd') and r_state = '대기'
 	</select>
 	
 	<!-- 오늘 날짜 방문 고객 수 -->
 	<select id="visit" resultType="int">
 		select count(*) as visit
 		from reservation_tbl
-		where to_char(r_startdate, 'yyyyMMdd') = to_char(sysdate, 'yyyyMMdd') AND r_state = '확정'
+		where to_char(r_startdate, 'yyyyMMdd') = to_char(sysdate, 'yyyyMMdd') and r_state = '확정'
 	</select>
 	
 	<!-- 전일 매출 -->

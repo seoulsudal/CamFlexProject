@@ -32,7 +32,7 @@ public class AdminReservationController {
 	 * 예약 리스트 조회
 	 ***************************/
 	@RequestMapping(value = "/reservationList", method = RequestMethod.GET)
-	public void reservationList(@ModelAttribute("pgrq") PageRequest pageRequest, ReservationVO rvo, Model model) {
+	public void reservationList(@ModelAttribute("pgrq") PageRequest pageRequest, Model model) {
 		
 		log.info("예약 리스트 호출 성공");
 		// 뷰에 페이징 처리를 한 예약 목록을 전달한다.
@@ -48,7 +48,8 @@ public class AdminReservationController {
 		List<CodeLabelValue> searchTypeCodeValueList = new ArrayList<CodeLabelValue>();
 		searchTypeCodeValueList.add(new CodeLabelValue("a", "---"));
 		searchTypeCodeValueList.add(new CodeLabelValue("m", "아이디"));
-		searchTypeCodeValueList.add(new CodeLabelValue("se", "시작일 or 종료일"));
+		searchTypeCodeValueList.add(new CodeLabelValue("s", "시작날짜"));
+		searchTypeCodeValueList.add(new CodeLabelValue("t", "오늘날짜"));
 		model.addAttribute("searchTypeCodeValueList", searchTypeCodeValueList);
 	}
 	
@@ -56,22 +57,20 @@ public class AdminReservationController {
 	 * 신규 예약 리스트 출력
 	 **************************/
 	@RequestMapping(value = "/newReservation", method = RequestMethod.GET)
-	public void newRsvList(@ModelAttribute ReservationVO rvo, Model model) {
+	public void newRsvList(@ModelAttribute("pgrq")PageRequest pageRequest, Model model) {
 		log.info("신규 예약 리스트 호출");
 		
-		List<ReservationVO> newRsvList = adminReservationService.newRsvList(rvo);
+		// List<ReservationVO> newRsvList = adminReservationService.newRsvList(rvo);
 		
-		model.addAttribute("newRsvList", newRsvList);
+		model.addAttribute("newRsvList", adminReservationService.newRsvList(pageRequest));
 		
-		// 뷰에 페이징 처리를 한 신규 예약 목록을 전달한다.
-		//model.addAttribute("newRsvList", adminReservationService.newRsvList(pageRequest));
 		
 		
 		// 페이징 네비게이션 정보를 뷰에 전달한다.
-		//Pagination pagination = new Pagination();
-		//pagination.setPageRequest(pageRequest);
-		//pagination.setTotalCount(adminReservationService.count(pageRequest));
-		//model.addAttribute("pagination", pagination);
+		Pagination pagination = new Pagination();
+		pagination.setPageRequest(pageRequest);
+		pagination.setTotalCount(adminReservationService.count1(pageRequest));
+		model.addAttribute("pagination", pagination);
 		
 		// 검색 유형의 코드명과 코드값을 정의한다.
 		
@@ -112,12 +111,16 @@ public class AdminReservationController {
 	 * 예약 취소 리스트
 	 **********************/
 	@RequestMapping(value = "/reservationCancelList", method = RequestMethod.GET)
-	public void reservationCancelList(@ModelAttribute ReservationVO rvo, Model model) {
+	public void reservationCancelList(@ModelAttribute("pgrq")PageRequest pageRequest, Model model) {
 		log.info("예약 취소 리스트 호출 성공");
 		
-		List<ReservationVO>cancelList = adminReservationService.cancelList(rvo);
+		//List<ReservationVO>cancelList = adminReservationService.cancelList(rvo);
 		
-		model.addAttribute("cancelList", cancelList);
-		
+		model.addAttribute("cancelList", adminReservationService.cancelList(pageRequest));
+		// 페이징 네비게이션 정보를 뷰에 전달한다.
+		Pagination pagination = new Pagination();
+		pagination.setPageRequest(pageRequest);
+		pagination.setTotalCount(adminReservationService.count2(pageRequest));
+		model.addAttribute("pagination", pagination);
 	}
 }

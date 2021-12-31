@@ -1,6 +1,6 @@
 package com.camflex.admin.notice.service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.camflex.admin.notice.dao.AdminNoticeDAO;
 import com.camflex.admin.notice.vo.AdminNoticeVO;
+import com.camflex.common.vo.PageRequest;
 
 
 
@@ -21,10 +22,9 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 	
 	// 글 전체 조회
 	@Override
-	public List<AdminNoticeVO> noticeList(AdminNoticeVO nvo) {
-		List<AdminNoticeVO> list = new ArrayList<AdminNoticeVO>();
-		list = adminNoticeDAO.noticeList(nvo);
-		return list;
+	public List<AdminNoticeVO> noticeList(PageRequest pageRequest) {
+		
+		return adminNoticeDAO.noticeList(pageRequest);
 	}
 
 	// 글 등록
@@ -62,4 +62,10 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 		return result;
 	}
 
+	
+	@Override
+	public int count(PageRequest pageRequest) {
+		
+		return adminNoticeDAO.count(pageRequest);
+	}
 }

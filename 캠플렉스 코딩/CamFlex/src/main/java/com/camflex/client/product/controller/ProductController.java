@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.camflex.admin.product.vo.AdminProductVO;
 import com.camflex.client.product.service.ProductService;
 import com.camflex.client.reservation.controller.ReservationController;
+import com.camflex.client.review.vo.ReviewVO;
+import com.camflex.client.review.service.ReviewService;
+import com.camflex.common.vo.PageRequest;
 
 @Controller
 @RequestMapping("/product")
@@ -30,6 +33,8 @@ public class ProductController {
 	
 	@Autowired 
 	private ProductService productService;
+	@Autowired
+	private ReviewService reviewService;
 	 
 	// 캠핑장 조회
 	@RequestMapping(value = "/productList", method = RequestMethod.GET)
@@ -50,7 +55,7 @@ public class ProductController {
 	
 	// 캠핑장 상세 페이지
 	@RequestMapping(value = "/productDetail", method = RequestMethod.GET)
-	public String productDetail(HttpServletRequest request, HttpServletResponse response, @ModelAttribute AdminProductVO pvo, Model model) throws Exception {
+	public String productDetail(HttpServletRequest request, HttpServletResponse response, @ModelAttribute AdminProductVO pvo, ReviewVO rvvo, Model model) throws Exception {
 		sessionCheck(request, response);
 		log.info("접속한 ID = " + m_id);
 		
@@ -66,6 +71,14 @@ public class ProductController {
 		
 		model.addAttribute("detail", detail);
 		model.addAttribute("id", m_id);
+		
+		// 댓글 목록 구현
+		log.info("reviewList 호출 성공");
+		log.info("상품 rv " + rvvo.getP_number());
+		log.info("상품 p " + pvo.getP_number()); 
+			
+		model.addAttribute("reviewList", reviewService.reviewList(pvo.getP_number()));
+		model.addAttribute("id", m_id); 
 		
 		return "product/productDetail";
 	}

@@ -15,21 +15,7 @@
 <script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	$(".goDetail").click(function(){
-		var p_number = $(this).parents("tr").attr("data-num");
-		$("#p_number").val(p_number);
-		console.log("상품 번호 : " + p_number);
-		
-		$("#listForm").attr({
-			"method":"get",
-			"action":"/product/productDetail"
-		});
-		$("#listForm").submit();
-	});
-});
-</script>
+
 </head>
 <body>
 		<div align="center"><h2>캠핑장 리스트</h2></div>

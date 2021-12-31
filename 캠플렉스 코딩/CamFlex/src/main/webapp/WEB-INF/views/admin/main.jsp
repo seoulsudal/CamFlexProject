@@ -36,8 +36,8 @@
 					<tbody>
 						<tr>
 							<td align="center">${yesterday}원</td>
-							<td align="center">${newRsv}건</td>
-							<td align="center">${visit}팀</td>
+							<td align="center"><a href="/admin/reservation/newReservation">${newRsv}건</a></td>
+							<td align="center"><a href="/admin/reservation/reservationList?searchType=t&keyword=">${visit}팀</a></td>
 							<td align="center">${todayMember}명</td>
 						</tr>
 					</tbody>

@@ -75,6 +75,18 @@ $(function(){
 				</c:choose>
 			</tbody>
 		</table>
+			<!-- 페이징 네비게이션 -->
+	<div>
+		<c:if test="${pagination.prev}">
+			<a href="${pagination.startPage - 1}">&laquo;</a>
+		</c:if>
+		<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+			<a href="/admin/notice/noticeList${pagination.makeQuery(idx)}">${idx}</a>
+		</c:forEach>
+		<c:if test="${pagination.next && pagination.endPage > 0}">
+			<a href="${pagination.endPage + 1}">&raquo;</a>
+		</c:if>
+	</div>
 		<div align="right">
 		<input type="button" value="등록" id="insertFormBtn" class="btn btn-default">
 	</div>

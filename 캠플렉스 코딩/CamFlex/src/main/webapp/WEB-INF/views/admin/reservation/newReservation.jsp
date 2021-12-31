@@ -18,7 +18,6 @@ var r_number = $(this).parents("tr").attr("data-num");
 	$("#r_number").val(r_number);
 function confirm(r_number){
 
-	
 	self.location = "/admin/reservation/confirmRsv?r_number=" + r_number;
 	alert("승인되었습니다.");
 }
@@ -27,13 +26,6 @@ function confirm(r_number){
 <body>
 
 <h2 align="center">신규 예약 리스트</h2>
-<%-- <div align="center">
-<form:form modelAttribute="pgrq" method="get" action="newRsvList${pgrq.toUriStringByPage(1)}">
-	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
-	<form:input path="keyword"/>
-	<button id="searchBtn">검색</button>
-</form:form>
-</div> --%>
 <div align="center">
 	<form id="confirmRsv" action="newRsvList" method="get">
 	<table class="table">
@@ -81,9 +73,10 @@ function confirm(r_number){
 			</c:choose>
 		</tbody>
 	</table>
+		
 	</form>
 	<!-- 페이징 네비게이션 -->
-	<%-- <div>
+	<div>
 		<c:if test="${pagination.prev}">
 			<a href="${pagination.startPage - 1}">&laquo;</a>
 		</c:if>
@@ -93,7 +86,7 @@ function confirm(r_number){
 		<c:if test="${pagination.next && pagination.endPage > 0}">
 			<a href="${pagination.endPage + 1}">&raquo;</a>
 		</c:if>
-	</div> --%>
+	</div>
 </div>
 
 </body>

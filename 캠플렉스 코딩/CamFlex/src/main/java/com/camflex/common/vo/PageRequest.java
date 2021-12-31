@@ -9,6 +9,7 @@ public class PageRequest {
 	private int sizePerPage;
 
 	private String m_id;
+	private int p_number;
 
 	// 검색 유형과 검색어를 멤버 변수(필드)로 선언한다.
 	private String searchType;
@@ -20,6 +21,14 @@ public class PageRequest {
 
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
+	}
+
+	public int getP_number() {
+		return p_number;
+	}
+
+	public void setP_number(int p_number) {
+		this.p_number = p_number;
 	}
 
 	public PageRequest() {
@@ -84,7 +93,8 @@ public class PageRequest {
 
 	public String toUriString(int page) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", this.page)
-				.queryParam("size", this.sizePerPage).build();
+				.queryParam("size", this.sizePerPage).queryParam("searchType", this.searchType)
+				.queryParam("keyword", this.keyword).build();
 
 		return uriComponents.toUriString();
 	}

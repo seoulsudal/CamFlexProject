@@ -94,6 +94,10 @@ function setImage(index){
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="button" value="목록" id="productListBtn" class="btn btn-success" style="font-size: 20px; height: 75px; width: 150px;">
 	</div>
+	
+	<div>
+		<jsp:include page="reviewList.jsp"></jsp:include>
+	</div>
 </div>
 </body>
 </html>

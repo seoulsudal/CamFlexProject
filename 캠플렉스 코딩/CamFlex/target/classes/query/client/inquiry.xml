@@ -50,12 +50,12 @@
 		WHERE i_number = #{i_number}
 	</delete> -->
 	
-	<!-- 전체 글 수를 조회 -->
+	<!-- 회원 전체 명수를 조회한다. -->
 	<select id="count" resultType="int">
 		<![CDATA[
-		SELECT count(i_number)
-		FROM inquiry_tbl
-		WHERE i_number > 0
+		SELECT count(n_number)
+		FROM notice_tbl
+		WHERE n_number > 0
 		]]>
 	</select>
 	

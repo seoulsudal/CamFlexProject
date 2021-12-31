@@ -7,6 +7,8 @@ create table REVIEW_TBL(
 
 alter table REVIEW_TBL add CONSTRAINT fk_member_tbl_REVIEW_TBL_m_id FOREIGN key(m_id) REFERENCES member_tbl(m_id);
 
+alter table review_tbl add CONSTRAINT fk_product_tbl_review_tbl_p_number FOREIGN key(p_number) REFERENCES product_tbl(p_number);
+
 create sequence REVIEW_TBL_SEQ
 start with 1
 increment by 1;

@@ -10,11 +10,11 @@
 <title>문의 리스트</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/common.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/resources/include/js/common.js"></script>
 
 <script type="text/javascript">
 $(function() {
@@ -94,7 +94,7 @@ $(function() {
 			<a href="${pagination.startPage - 1}">&laquo;</a>
 		</c:if>
 		<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
-			<a href="/notice/noticeList${pagination.makeQuery(idx)}">${idx}</a>
+			<a href="/inquiry/inquiryList${pagination.makeQuery(idx)}">${idx}</a>
 		</c:forEach>
 		<c:if test="${pagination.next && pagination.endPage > 0}">
 			<a href="${pagination.endPage + 1}">&raquo;</a>

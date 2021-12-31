@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.camflex.admin.notice.vo.AdminNoticeVO;
+import com.camflex.common.vo.PageRequest;
 
 @Repository
 public class AdminNoticeDAOImpl implements AdminNoticeDAO {
@@ -17,9 +18,9 @@ public class AdminNoticeDAOImpl implements AdminNoticeDAO {
 	private static final String namespace = "com.camflex.admin.notice.dao.AdminNoticeDAO";
 	
 	@Override
-	public List<AdminNoticeVO> noticeList(AdminNoticeVO nvo) {
+	public List<AdminNoticeVO> noticeList(PageRequest pageRequest) {
 
-		return sqlSession.selectList(namespace + ".noticeList", nvo);
+		return sqlSession.selectList(namespace + ".noticeList");
 	}
 
 	@Override
@@ -40,4 +41,10 @@ public class AdminNoticeDAOImpl implements AdminNoticeDAO {
 		return sqlSession.update(namespace + ".updateNotice", nvo);
 	}
 
+	
+	@Override
+	public int count(PageRequest pageRequest) {
+		
+		return sqlSession.selectOne("count");
+	}
 }

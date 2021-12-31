@@ -22,18 +22,13 @@ public class AdminReservationDAOImpl implements AdminReservationDAO {
 		return sqlSession.selectList("reservationList");
 	}
 
-	// 예약 전체 수를 반환
-	@Override
-	public int count(PageRequest pageRequest) {
-		
-		return sqlSession.selectOne("count");
-	}
+
 
 	// 신규 예약 리스트
 	@Override
-	public List<ReservationVO> newRsvList(ReservationVO rvo) {
+	public List<ReservationVO> newRsvList(PageRequest pageRequest) {
 		
-		return sqlSession.selectList("newRsvList", rvo);
+		return sqlSession.selectList("newRsvList");
 	}
 	// 예약 승인 처리
 	  @Override public int confirmRsv(ReservationVO rvo) {
@@ -43,9 +38,28 @@ public class AdminReservationDAOImpl implements AdminReservationDAO {
 
 	// 예약 취소 리스트
 	@Override
-	public List<ReservationVO> cancelList(ReservationVO rvo) {
+	public List<ReservationVO> cancelList(PageRequest pageRequest) {
 		
-		return sqlSession.selectList("cancelList", rvo);
+		return sqlSession.selectList("cancelList");
+	}
+
+	// 예약 전체 수를 반환
+	@Override
+	public int count(PageRequest pageRequest) {
+		
+		return sqlSession.selectOne("count");
+	}	
+	
+	@Override
+	public int count1(PageRequest pageRequest) {
+		
+		return sqlSession.selectOne("count1");
+	}
+
+	@Override
+	public int count2(PageRequest pageRequest) {
+		
+		return sqlSession.selectOne("count2");
 	}
 	 
 
