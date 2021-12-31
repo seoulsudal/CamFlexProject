@@ -16,10 +16,30 @@
 <script type="text/javascript">
 var r_number = $(this).parents("tr").attr("data-num");
 	$("#r_number").val(r_number);
-function confirm(r_number){
+function confirmBtn(r_number){
+	if(confirm("예약을 승인하시겠습니까?")){
+		self.location = "/admin/reservation/confirmRsv?r_number=" + r_number;
+		alert("승인되었습니다.");
+	}
+	else{
+		self.location = "/admin/reservation/newReservation";
+	}
+}
+function cancelBtn(r_number){
 
+<<<<<<< HEAD
 	self.location = "/admin/reservation/confirmRsv?r_number=" + r_number;
 	alert("승인되었습니다.");
+=======
+	if(confirm("예약을 취소시키겠습니까?")){
+		self.location = "/admin/reservation/cancelRsv?r_number=" + r_number;
+		alert("예약이 취소되었습니다.");
+	}
+	else{
+	self.location = "/admin/reservation/newReservation";
+	}
+	
+>>>>>>> 8524851fc190f1f3901eb091d63b5e2355c7d092
 }
 </script>
 </head>
@@ -39,6 +59,7 @@ function confirm(r_number){
 				<td align="center">예약 시작일</td>
 				<td align="center">예약 종료일</td>
 				<td align="center">예약 승인</td>
+				<td align="center">예약 취소</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -64,9 +85,16 @@ function confirm(r_number){
 							<td align="center">${rs.m_id}</td>
 							<td align="center">${rs.r_price}</td>
 							<td align="center"><fmt:formatDate value="${rs.r_apllicationDate}" pattern="yyyy/MM/dd" /></td>
+<<<<<<< HEAD
 							<td align="center">${rs.r_startDate}</td>
 							<td align="center">${rs.r_endDate}</td>
 							<td align="center"><button type="button" onclick="confirm('${rs.r_number}')">예약승인</button></td>
+=======
+							<td align="center"><fmt:formatDate value="${rs.r_startDate}" pattern="yyyy/MM/dd" /></td>
+							<td align="center"><fmt:formatDate value="${rs.r_endDate}" pattern="yyyy/MM/dd" /></td>
+							<td align="center"><button type="button" onclick="confirmBtn('${rs.r_number}')">예약승인</button></td>
+							<td align="center"><button type="button" onclick="cancelBtn('${rs.r_number}')">예약취소</button></td>
+>>>>>>> 8524851fc190f1f3901eb091d63b5e2355c7d092
 						</tr>
 					</c:forEach>
 				</c:otherwise>

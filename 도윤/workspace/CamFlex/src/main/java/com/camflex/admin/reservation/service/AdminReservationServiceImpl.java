@@ -68,8 +68,30 @@ public class AdminReservationServiceImpl implements AdminReservationService {
 
 	@Override
 	public int count2(PageRequest pageRequest) {
+<<<<<<< HEAD
 		
 		return adminReservationDAO.count2(pageRequest);
+=======
+		
+		return adminReservationDAO.count2(pageRequest);
+	}
+
+
+	
+	// 예약 취소 구현
+	@Override
+	public int cancelRsv(ReservationVO rvo) {
+		
+		int result = 0;
+		try {
+			result = adminReservationDAO.cancelRsv(rvo);
+		}catch(Exception e) {
+			e.printStackTrace();
+			result = 0;
+		}
+		
+		return result;
+>>>>>>> 8524851fc190f1f3901eb091d63b5e2355c7d092
 	}
 	 
 	

@@ -1,3 +1,7 @@
 #Tomcat publish data
+<<<<<<< HEAD
 #Fri Dec 31 09:50:55 KST 2021
+=======
+#Fri Dec 31 17:29:35 KST 2021
+>>>>>>> 8524851fc190f1f3901eb091d63b5e2355c7d092
 org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\a\\.m2\\repository\\org\\springframework\\spring-web\\5.0.7.RELEASE\\spring-web-5.0.7.RELEASE.jar=WEB-INF/lib/spring-web-5.0.7.RELEASE.jar

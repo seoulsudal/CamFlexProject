@@ -48,7 +48,11 @@ public class AdminReservationController {
 		List<CodeLabelValue> searchTypeCodeValueList = new ArrayList<CodeLabelValue>();
 		searchTypeCodeValueList.add(new CodeLabelValue("a", "---"));
 		searchTypeCodeValueList.add(new CodeLabelValue("m", "아이디"));
+<<<<<<< HEAD
 		searchTypeCodeValueList.add(new CodeLabelValue("s", "시작날짜"));
+=======
+		searchTypeCodeValueList.add(new CodeLabelValue("d", "날짜검색"));
+>>>>>>> 8524851fc190f1f3901eb091d63b5e2355c7d092
 		searchTypeCodeValueList.add(new CodeLabelValue("t", "오늘날짜"));
 		model.addAttribute("searchTypeCodeValueList", searchTypeCodeValueList);
 	}
@@ -57,7 +61,11 @@ public class AdminReservationController {
 	 * 신규 예약 리스트 출력
 	 **************************/
 	@RequestMapping(value = "/newReservation", method = RequestMethod.GET)
+<<<<<<< HEAD
 	public void newRsvList(@ModelAttribute("pgrq")PageRequest pageRequest, Model model) {
+=======
+	public void newRsvList(@ModelAttribute PageRequest pageRequest, Model model) {
+>>>>>>> 8524851fc190f1f3901eb091d63b5e2355c7d092
 		log.info("신규 예약 리스트 호출");
 		
 		// List<ReservationVO> newRsvList = adminReservationService.newRsvList(rvo);
@@ -107,11 +115,41 @@ public class AdminReservationController {
 		return "redirect:" + url;
 	}
 	
+	/************************
+	 * 신규 예약 취소 구현
+	 ************************/
+	@RequestMapping(value = "/cancelRsv")
+	public String cancelRsv(@ModelAttribute ReservationVO rvo) {
+		log.info("예약 취소");
+		log.info("예약 번호: " + rvo.getR_number());
+		
+		int result = 0;
+		String url = "";
+		
+		result = adminReservationService.cancelRsv(rvo);
+		
+		if(result == 1) {
+			System.out.println("취소가 성공적으로 이루어졌습니다.");
+			url = "/admin/reservation/newReservation";
+		}
+		else {
+			System.out.println("취소를 실패했습니다.");
+			url = "/admin/reservation/newReservation";
+		}
+		return "redirect:" + url;
+	}
+
+	
+	
 	/***********************
 	 * 예약 취소 리스트
 	 **********************/
 	@RequestMapping(value = "/reservationCancelList", method = RequestMethod.GET)
+<<<<<<< HEAD
 	public void reservationCancelList(@ModelAttribute("pgrq")PageRequest pageRequest, Model model) {
+=======
+	public void reservationCancelList(@ModelAttribute PageRequest pageRequest, Model model) {
+>>>>>>> 8524851fc190f1f3901eb091d63b5e2355c7d092
 		log.info("예약 취소 리스트 호출 성공");
 		
 		//List<ReservationVO>cancelList = adminReservationService.cancelList(rvo);
