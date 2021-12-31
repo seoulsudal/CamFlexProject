@@ -5,8 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 상세 페이지</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style type="text/css">
-	ul li{list-style : none;}
+	ul li{list-style : none; float:left; margin-right : 10px;}
 	
 	#target{
 		width:450px;
@@ -18,14 +21,8 @@
 		height:45px;
 	}
 </style>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/common.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js">
+</script>
 <script type="text/javascript">
 $(function(){
 	$("#productModifyBtn").click(function(){
@@ -39,13 +36,7 @@ $(function(){
 	$("#productListBtn").click(function(){
 		location.href="/admin/product/productList";
 	});
-	/* $("#productDeleteBtn").click(function(){
-		$("#p_detail").attr({
-			"method":"get",
-			"action":"/admin/product/productDelete"
-		});	
-		$("#p_detail").submit();
-	}); */
+
 	
 });
 
@@ -71,27 +62,27 @@ function setImage(index){
 		<input type="hidden" name="p_photo3" id="p_photo3" value="${detail.p_photo3}"/>
 	</form>
 	<div>
-		<table align="center" border="1">
+		<table class="table" align="center" border="2">
 			<tr align="center">
 				<td width="400px" height="500px" rowspan="2"><div><img id="target" src="/uploadStorage/product/${detail.p_mainphoto}"></div><br>
 				<br><br>
 				<div>
 				<ul>
-					<li style="float: left; margin-right : 10px;"><a href="#" onclick="setImage(0)"><img id="photo1" class="small" src="/uploadStorage/product/${detail.p_mainphoto}" width="75" height="45"></a></li>
-					<li style="float: left; margin-right : 10px;"><a href="#" onclick="setImage(1)"><img id="photo2" class="small" src="/uploadStorage/product/${detail.p_photo1}" width="75" height="45"></a></li>
-					<li style="float: left; margin-right : 10px;"><a href="#" onclick="setImage(2)"><img id="photo3" class="small" src="/uploadStorage/product/${detail.p_photo2}" width="75" height="45"></a></li>
-					<li style="float: left; margin-right : 10px;"><a href="#" onclick="setImage(3)"><img id="photo4" class="small" src="/uploadStorage/product/${detail.p_photo3}" width="75" height="45"></a></li>
+					<li><a href="#" onclick="setImage(0)"><img id="photo1" class="small" src="/uploadStorage/product/${detail.p_mainphoto}" width="75" height="45"></a></li>
+					<li><a href="#" onclick="setImage(1)"><img id="photo2" class="small" src="/uploadStorage/product/${detail.p_photo1}" width="75" height="45"></a></li>
+					<li><a href="#" onclick="setImage(2)"><img id="photo3" class="small" src="/uploadStorage/product/${detail.p_photo2}" width="75" height="45"></a></li>
+					<li><a href="#" onclick="setImage(3)"><img id="photo4" class="small" src="/uploadStorage/product/${detail.p_photo3}" width="75" height="45"></a></li>
 				</ul></div></td>
-				<td width="600px" height="300px"><h3>${detail.p_name}</h3><br>${detail.p_information}<br></td>
+				<td width="600px" height="300px"><h3>${detail.p_name}</h3><br><br><br><br><br>${detail.p_information}<br></td>
 			</tr>
 			<tr align="center">
 				<td><h3>${detail.p_price}원</h3><br><br><br><br>부대시설 및 렌탈 가격 안내<br>...</td>
 			</tr>
 		</table>
 	</div>
-	<div align="center">
-		<input type="button" value="수정" id="productModifyBtn">
-		<input type="button" value="목록" id="productListBtn">
+	<div align="right">
+		<input type="button" value="수정" id="productModifyBtn" class="btn btn-default">
+		<input type="button" value="목록" id="productListBtn" class="btn btn-default">
 		<!-- <input type="button" value="삭제" id="productDeleteBtn"> -->	
 	</div>
 </div>

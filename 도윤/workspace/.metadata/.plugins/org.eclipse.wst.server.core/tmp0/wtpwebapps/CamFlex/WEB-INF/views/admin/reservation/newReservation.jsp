@@ -18,7 +18,6 @@ var r_number = $(this).parents("tr").attr("data-num");
 	$("#r_number").val(r_number);
 function confirm(r_number){
 
-	
 	self.location = "/admin/reservation/confirmRsv?r_number=" + r_number;
 	alert("승인되었습니다.");
 }
@@ -27,13 +26,6 @@ function confirm(r_number){
 <body>
 
 <h2 align="center">신규 예약 리스트</h2>
-<%-- <div align="center">
-<form:form modelAttribute="pgrq" method="get" action="newRsvList${pgrq.toUriStringByPage(1)}">
-	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
-	<form:input path="keyword"/>
-	<button id="searchBtn">검색</button>
-</form:form>
-</div> --%>
 <div align="center">
 	<form id="confirmRsv" action="newRsvList" method="get">
 	<table class="table">
@@ -59,8 +51,8 @@ function confirm(r_number){
 					<c:otherwise>
 					<c:forEach var="rs" items="${newRsvList}">
 						<tr data-num="${rs.r_number}">
-							<td>${rs.r_number}</td>
-							<td><c:if test="${rs.p_number eq '1'}">오토A</c:if>
+							<td align="center">${rs.r_number}</td>
+							<td align="center"><c:if test="${rs.p_number eq '1'}">오토A</c:if>
 								<c:if test="${rs.p_number eq '41'}">오토B</c:if>
 								<c:if test="${rs.p_number eq '42'}">글램핑A</c:if>
 								<c:if test="${rs.p_number eq '43'}">글램핑B</c:if>
@@ -69,21 +61,22 @@ function confirm(r_number){
 								<c:if test="${rs.p_number eq '46'}">차박A</c:if>
 								<c:if test="${rs.p_number eq '47'}">차박B</c:if>
 							</td>
-							<td>${rs.m_id}</td>
-							<td>${rs.r_price}</td>
-							<td><fmt:formatDate value="${rs.r_apllicationDate}" pattern="yyyy/MM/dd" /></td>
-							<td>${rs.r_startDate}</td>
-							<td>${rs.r_endDate}</td>
-							<td><button type="button" onclick="confirm('${rs.r_number}')">예약승인</button></td>
+							<td align="center">${rs.m_id}</td>
+							<td align="center">${rs.r_price}</td>
+							<td align="center"><fmt:formatDate value="${rs.r_apllicationDate}" pattern="yyyy/MM/dd" /></td>
+							<td align="center">${rs.r_startDate}</td>
+							<td align="center">${rs.r_endDate}</td>
+							<td align="center"><button type="button" onclick="confirm('${rs.r_number}')">예약승인</button></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
 		</tbody>
 	</table>
+		
 	</form>
 	<!-- 페이징 네비게이션 -->
-	<%-- <div>
+	<div>
 		<c:if test="${pagination.prev}">
 			<a href="${pagination.startPage - 1}">&laquo;</a>
 		</c:if>
@@ -93,7 +86,7 @@ function confirm(r_number){
 		<c:if test="${pagination.next && pagination.endPage > 0}">
 			<a href="${pagination.endPage + 1}">&raquo;</a>
 		</c:if>
-	</div> --%>
+	</div>
 </div>
 
 </body>

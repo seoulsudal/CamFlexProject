@@ -21,11 +21,15 @@ $(function() {
 	// 수정 버튼 클릭시
 	$("#btnInquiryUpdate").click(function() {
 		// 입력값 체크
-		$("#data").attr({
-			"method":"POST",
-			"action":"/inquiry/inquiryUpdate"
-		});
-		$("#data").submit();
+		if(!chkSubmit($('#i_title'), "제목을")) return; 
+		else if(!chkSubmit($('#i_content'), "내용을")) return;
+		else{
+			$("#data").attr({
+				"method":"POST",
+				"action":"/inquiry/inquiryUpdate"
+			});
+			$("#data").submit();
+		}
 	});		
 
 	// 목록 버튼 클릭시
@@ -43,7 +47,7 @@ $(function() {
 		<input type="hidden" name="i_number" id="i_number" value="${updateData.i_number}">
 	
 	
-	<table border="1">
+	<table border="1" class="table">
 		<colgroup>
 				<col width="17%">
 				<col width="83%">

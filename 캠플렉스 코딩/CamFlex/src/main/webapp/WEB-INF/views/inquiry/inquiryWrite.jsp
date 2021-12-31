@@ -38,53 +38,47 @@
 			location.href = "/inquiry/inquiryList";
 		});
 	});
-	
-	$(function chkSubmit(item, msg) {
-		
-		if(item.val().replace(/\s/g, "") == ""){
-			alert(msg + " 입력해 주세요.");
-			item.val("");
-			item.focus();
-			return false;
-		} else {
-			return true;
-		}
-	});
 </script>
 
 </head>
 <body>
-	<h3>문의글 작성</h3>
+	<div align="center">
+		<h2>문의글 작성</h2>
+	</div>
+	<br>
+	<div class="well" align="center">
 	<form id="writeForm" name="writeForm">
 		<input type="hidden" name="m_id" id="m_id" value="${id}">
-		<table>
+		<table style="text-align: center; width: 90%;" class="table">
 			<colgroup>
 				<col width="17%">
 				<col width="83%">
 			</colgroup>
 			<tr>
 				<td>제목</td>
-				<td><input type="text" name="i_title" id="i_title"></td>
+				<td><input type="text" name="i_title" id="i_title" style="width: 90%"><p></p></td>				
 			</tr>
 			<tr>
 				<td>문의 항목</td>
 				<td>
-					<select id="i_kinds" name="i_kinds">
+					<select id="i_kinds" name="i_kinds" style="width: 90%">
 						<option value="예약">예약관련</option>
 						<option value="시설">시설관련</option>
 						<option value="기타">기타관련</option>
 					</select>
-				</td>
+				<p></p></td>
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea name="i_content" id="i_content"></textarea></td>
+				<td><textarea name="i_content" id="i_content" style="width: 90%"></textarea><p></p></td>
 			</tr>
 		</table>
 	</form>
+	</div>
 	<br>
-	<div>
+	<div align="center">
 		<input type="button" value="작성" id="btnInquiryWrite" class="btn">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="button" value="목록" id="btnInquiryList" class="btn">
 	</div>
 </body>

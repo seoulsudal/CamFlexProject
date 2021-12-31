@@ -7,5 +7,5 @@
 	<br>
 	<li><a href="/admin/notice/noticeList">공지사항</a></li>
 	<br>
-	<li><a href="/admin/main">문의 게시판</a></li>
+	<li><a href="/admin/inquiry/inquiryList">문의 게시판</a></li>
 </ul>

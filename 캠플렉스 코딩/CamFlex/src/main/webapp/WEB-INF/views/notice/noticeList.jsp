@@ -13,9 +13,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/common.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/resources/include/js/common.js"></script>
 </head>
 <body>
 	<div align="center">
@@ -27,8 +27,8 @@
 		<input type="hidden" name="n_number" id="n_number">
 		<input type="hidden" name="m_id" id="m_id" value="${id}">
 	</form>
-
-	<table border="1" align="center">
+	<div class="well" align="center">
+	<table border="1" class="table">
 		<colgroup>
 			<col width="15%" />
 			<col width="52%" />
@@ -61,6 +61,7 @@
 			</c:otherwise>
 		</c:choose>
 	</table>
+	</div>
 	<!-- 페이징 네비게이션 -->
 	<div align="center">
 	<br>

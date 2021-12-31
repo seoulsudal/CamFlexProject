@@ -17,14 +17,14 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th>예약번호</th>
-				<th>상품명</th>
-				<th>아이디</th>
-				<th>금액</th>
-				<th>예약 시작일</th>
-				<th>예약 종료일</th>
-				<th>예약 확정일</th>
-				<th>취소 사유</th>
+				<td align="center">예약번호</td>
+				<td align="center">상품명</td>
+				<td align="center">아이디</td>
+				<td align="center">금액</td>
+				<td align="center">예약 시작일</td>
+				<td align="center">예약 종료일</td>
+				<td align="center">예약 확정일</td>
+				<td align="center">취소 사유</td>
 			</tr>
 		</thead>
 		<tbody id="list">
@@ -37,8 +37,8 @@
 					<c:otherwise>
 					<c:forEach var="rs" items="${cancelList}">
 						<tr>
-							<td>${rs.r_number}</td>
-							<td><c:if test="${rs.p_number eq '1'}">오토A</c:if>
+							<td align="center">${rs.r_number}</td>
+							<td align="center"><c:if test="${rs.p_number eq '1'}">오토A</c:if>
 								<c:if test="${rs.p_number eq '41'}">오토B</c:if>
 								<c:if test="${rs.p_number eq '42'}">글램핑A</c:if>
 								<c:if test="${rs.p_number eq '43'}">글램핑B</c:if>
@@ -47,18 +47,30 @@
 								<c:if test="${rs.p_number eq '46'}">차박A</c:if>
 								<c:if test="${rs.p_number eq '47'}">차박B</c:if>
 							</td>
-							<td>${rs.m_id}</td>
-							<td>${rs.r_price}</td>
-							<td>${rs.r_startDate}</td>
-							<td>${rs.r_endDate}</td>
-							<td><fmt:formatDate value="${rs.r_updDate}" pattern="yyyy/MM/dd" /></td>
-							<td>${rs.r_cancel}</td>
+							<td align="center">${rs.m_id}</td>
+							<td align="center">${rs.r_price}</td>
+							<td align="center">${rs.r_startDate}</td>
+							<td align="center">${rs.r_endDate}</td>
+							<td align="center"><fmt:formatDate value="${rs.r_updDate}" pattern="yyyy/MM/dd" /></td>
+							<td align="center">${rs.r_cancel}</td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
 		</tbody>
 	</table>
+		<!-- 페이징 네비게이션 -->
+	<div>
+		<c:if test="${pagination.prev}">
+			<a href="${pagination.startPage - 1}">&laquo;</a>
+		</c:if>
+		<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+			<a href="/admin/reservation/reservationCancelList${pagination.makeQuery(idx)}">${idx}</a>
+		</c:forEach>
+		<c:if test="${pagination.next && pagination.endPage > 0}">
+			<a href="${pagination.endPage + 1}">&raquo;</a>
+		</c:if>
+	</div>
 </div>
 </body>
 </html>

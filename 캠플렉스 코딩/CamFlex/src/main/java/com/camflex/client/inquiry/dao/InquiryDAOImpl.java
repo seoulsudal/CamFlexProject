@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.camflex.client.inquiry.vo.InquiryVO;
+import com.camflex.common.vo.PageRequest;
 
 @Repository
 public class InquiryDAOImpl implements InquiryDAO {
@@ -18,8 +19,8 @@ public class InquiryDAOImpl implements InquiryDAO {
 	
 	// 문의 목록 구현
 	@Override
-	public List<InquiryVO> inquiryList(String m_id) throws Exception {
-		return sqlSession.selectList(namespace + "inquiryList", m_id);
+	public List<InquiryVO> inquiryList(PageRequest pageRequest) throws Exception {
+		return sqlSession.selectList(namespace + "inquiryList");
 	}
 
 	// 문의 글쓰기 처리
@@ -38,6 +39,18 @@ public class InquiryDAOImpl implements InquiryDAO {
 	@Override
 	public int inquiryUpdate(InquiryVO ivo) throws Exception {
 		return sqlSession.update(namespace + "inquiryUpdate", ivo);
+	}
+
+	// 문의 삭제 처리
+	@Override
+	public int inquiryDelete(int i_number) throws Exception {
+		return sqlSession.delete("inquiryDelete", i_number);
+	}
+
+	// 문의 전체 수
+	@Override
+	public int count(PageRequest pageRequest) throws Exception{
+		return sqlSession.selectOne("count");
 	}
 
 	

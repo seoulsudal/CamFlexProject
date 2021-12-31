@@ -14,46 +14,43 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.camflex.admin.product.service.AdminProductService;
 import com.camflex.admin.product.vo.AdminProductVO;
 import com.camflex.common.file.FileUploadUtil;
+import com.camflex.common.vo.PageRequest;
+import com.camflex.common.vo.Pagination;
 
 @Controller
 @RequestMapping(value = "/admin/product")
 public class AdminProductController {
 
 	private Logger log = LoggerFactory.getLogger(AdminProductController.class);
-
+	
 	@Autowired
 	private AdminProductService adminProductService;
-
+	
 	/************************************
 	 * 상품 목록 구현
 	 ************************************/
-	/*
-	 * @RequestMapping(value = "/productList") public ModelAndView
-	 * productList(@ModelAttribute ProductVO pvo) { List<ProductVO> list =
-	 * adminProductService.productList(pvo); System.out.println("controller 1");
-	 * ModelAndView mav = new ModelAndView(); System.out.println("controller 2");
-	 * mav.addObject("productList", list); System.out.println("controller 3");
-	 * mav.setViewName("admin/product" + "/productList");
-	 * System.out.println("controller 4"); return mav; }
-	 */
-
 	@RequestMapping(value = "/productList", method = RequestMethod.GET)
-	public String productList(@ModelAttribute AdminProductVO pvo, Model model) {
+	public void productList(@ModelAttribute("pgrq")PageRequest pageRequest, Model model) {
 		log.info("상품 목록 호출 성공");
 
-		List<AdminProductVO> productList = adminProductService.productList(pvo);
+		// List<ProductVO> productList = adminProductService.productList(pvo);
 
-		model.addAttribute("productList", productList);
-		model.addAttribute("data", pvo);
+		model.addAttribute("productList", adminProductService.productList(pageRequest));
 
-		return "admin/product/productList";
+		//model.addAttribute("data", pvo);
+
+		// 페이징 네비게이션 정보를 뷰에 전달한다.
+		Pagination pagination = new Pagination();
+		pagination.setPageRequest(pageRequest);
+		pagination.setTotalCount(adminProductService.count(pageRequest));
+		model.addAttribute("pagination", pagination);
+		
 	}
-
+	
 	/*************************************
 	 * 상품 등록 폼 출력
 	 ************************************/
@@ -102,7 +99,7 @@ public class AdminProductController {
 		}
 		return "redirect:" + url;
 	}
-
+	
 	/************************************
 	 * 상품 상세 페이지
 	 ***********************************/
@@ -158,10 +155,10 @@ public class AdminProductController {
 		if (!pvo.getFile().isEmpty()) {
 			log.info("======== file = " + pvo.getFile().getOriginalFilename());
 			if (!pvo.getP_mainphoto().isEmpty()) {
-				System.out.println("error is here?");
+
 				FileUploadUtil.fileDelete(pvo.getP_mainphoto(), request);
 			}
-			System.out.println("hello?");
+
 			p_mainphoto = FileUploadUtil.fileUpload(pvo.getFile(), request, "product");
 			pvo.setP_mainphoto(p_mainphoto);
 		} else {
@@ -218,5 +215,4 @@ public class AdminProductController {
 		}
 		return "redirect:" + url;
 	}
-	
 }

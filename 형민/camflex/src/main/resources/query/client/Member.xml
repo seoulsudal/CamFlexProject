@@ -17,4 +17,47 @@
 	</insert>
 
 
+	<!-- 내 정보 보기 -->
+	<select id="readMember"
+		resultType="com.camflex.client.member.vo.MemberVO">
+		select *
+		from member_tbl
+		where
+		m_id=#{m_id}
+	</select>
+
+	<!-- 회원정보 수정 -->
+	<update id="MemberModify">
+		update member_tbl
+		set
+		m_phone=#{m_phone}
+		where
+		m_id=#{m_id}
+	</update>
+
+
+	<!-- 비밀번호 체크 -->
+	<select id="PwCheck"
+		resultType="com.camflex.client.member.vo.MemberVO">
+		select *
+		from member_tbl
+		where m_pw=#{m_pw}
+	</select>
+
+	<!-- 예약 정보 -->
+	<select id="ReserveList" resultType="com.camflex.client.reservation.vo.ReservationVO">
+		select
+		r_number,p_number, r_startdate, r_enddate, r_price, r_state
+		from reservation_tbl
+		where m_id=#{m_id} and r_state = '대기'
+	</select>
+	<!-- 페이징 카운트 -->
+	<select id="count" resultType="int">
+		<![CDATA[
+		select count(r_number)
+		from reservation_tbl
+		where m_id = #{m_id}  and r_state = '대기'
+		
+		]]>
+	</select>
 </mapper>

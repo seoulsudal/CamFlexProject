@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 상세 페이지</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style type="text/css">
 	#target{
 		width:450px;
@@ -40,24 +43,23 @@ $(function(){
 </script>
 </head>
 <body>
-<div>
 	<div align="center"><h2>공지사항 상세 페이지</h2></div>
 	<form id="n_detail" name="n_detail" method = "post" >
 		<input type="hidden" name="n_number" id="n_number" value="${detail.n_number}" />
 	</form>
 		<div align="center">
-			<table border="1">
+			<table class="table" border="1">
 				<colgroup>
 					<col width="15%" />
 					<col width="85%" />
 				</colgroup>
 				<tr>
 					<td>글 제목</td>
-					<td><input type="text" name="n_title" id="n_title" value="${detail.n_title}" readonly="readonly"></td>
+					<td><input type="text" class="form-control" name="n_title" id="n_title" value="${detail.n_title}" readonly="readonly"></td>
 				</tr>
 				<tr>
 					<td>글 내용</td>
-					<td><textarea name="n_content" id="n_content" readonly="readonly">${detail.n_content}</textarea></td>
+					<td><textarea class="form-control" name="n_content" id="n_content" readonly="readonly">${detail.n_content}</textarea></td>
 				</tr>
 				<c:if test="${detail.n_photo != ''}">
 				<tr>
@@ -68,10 +70,10 @@ $(function(){
 			</table>
 		
 	</div>
-	<div align="center">
-		<input type="button" value="편집" id="updateNoticeBtn">
-		<input type="button" value="목록" id="noticeListBtn">
+	<div align="right">
+		<input type="button" value="편집" id="updateNoticeBtn" class="btn btn-default">
+		<input type="button" value="목록" id="noticeListBtn" class="btn btn-default">
 	</div>
-</div>
+
 </body>
 </html>

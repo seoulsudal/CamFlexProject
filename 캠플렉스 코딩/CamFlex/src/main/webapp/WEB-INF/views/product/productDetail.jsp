@@ -84,7 +84,7 @@ function setImage(index){
 				<td width="500px" height="300px" class="text-primary"><h3>${detail.p_name}</h3><br>${detail.p_information}<br></td>
 			</tr>
 			<tr align="center">
-				<td><h2>가격 안내</h2><br><h3><fmt:formatNumber value="${detail.p_price}" pattern="#,###원"/></h3></td>
+				<td><h2>가격 안내</h2><br><h3>1박 당&nbsp;<fmt:formatNumber value="${detail.p_price}" pattern="#,###원"/></h3></td>
 			</tr>
 		</table>
 	</div>
@@ -93,6 +93,10 @@ function setImage(index){
 		<input type="button" value="예약" id="productReservation" class="btn btn-success" style="font-size: 20px; height: 75px; width: 150px;">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="button" value="목록" id="productListBtn" class="btn btn-success" style="font-size: 20px; height: 75px; width: 150px;">
+	</div>
+	
+	<div>
+		<jsp:include page="reviewList.jsp"></jsp:include>
 	</div>
 </div>
 </body>

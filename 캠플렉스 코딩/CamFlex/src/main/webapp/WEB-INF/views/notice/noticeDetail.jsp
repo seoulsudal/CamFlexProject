@@ -43,7 +43,7 @@ $(function(){
 	<input type="hidden" name="m_id" id="m_id" value="${id}">
 	<br>
 		<div class="well" align="center">
-			<table border="1">
+			<table border="1" class="table">
 				<tr>
 					<td align="center"><font size="5">글 제목</font></td>
 					<td align="center"><font size="5">${detail.n_title}</font></td>
@@ -61,7 +61,7 @@ $(function(){
 			</table>
 	</div>
 	<div align="center">
-		<input type="button" value="목록" id="BtnNoticeList">
+		<input type="button" value="목록" id="BtnNoticeList" class="btn">
 	</div>
 </div>
 </body>
