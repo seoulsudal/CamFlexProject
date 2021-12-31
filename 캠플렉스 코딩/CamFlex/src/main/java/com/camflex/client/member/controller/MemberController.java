@@ -33,10 +33,34 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	// 지난 예약 리스트 구현
+	@RequestMapping(value = "/pastList", method = RequestMethod.GET)
+	private String pastList(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("pgrq")PageRequest pageRequest, Model model) throws Exception {
+		sessionCheck(request, response, "로그인 후 확인 가능합니다."); 
+
+		log.info("pastList 호출 성공");
+		log.info("접속 ID = " + m_id);
+		log.info("접속 상품 = " + pageRequest.getP_number());
+		
+		pageRequest.setM_id(m_id);
+		
+		model.addAttribute("pastList", memberService.pastList(pageRequest));
+		
+		// 페이징 기법
+		Pagination pagination = new Pagination();
+		pagination.setPageRequest(pageRequest);
+		pagination.setTotalCount(memberService.count(pageRequest));
+		model.addAttribute("pagination", pagination);	
+		model.addAttribute("id", m_id); 
+				
+		return "member/pastList";
+	}
+	
+	
 	// 예약 취소 리스트 구현
 	@RequestMapping(value = "/cancelList", method = RequestMethod.GET)
 	private String cancelList(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("pgrq")PageRequest pageRequest, Model model) throws Exception {
-		sessionCheck(request, response, "로그인 후 예약 가능합니다."); 
+		sessionCheck(request, response, "로그인 후 확인 가능합니다."); 
 
 		log.info("cancelList 호출 성공");
 		log.info("접속 ID = " + m_id);

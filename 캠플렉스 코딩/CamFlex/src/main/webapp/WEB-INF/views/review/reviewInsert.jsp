@@ -33,7 +33,7 @@
 	
 		// 취소 버튼 클릭시
 		$("#btnMemberList").click(function() {
-			location.href = "/member/ReserveList";
+			location.href = "/member/pastList";
 		});
 	});
 </script>
@@ -41,13 +41,13 @@
 </head>
 <body>
 	<div align="center">
-		<h2>문의글 작성</h2>
+		<h2>댓글 작성</h2>
 	</div>
 	<br>
 	<div class="well" align="center">
 	<form id="writeForm" name="writeForm">
-		<input type="text" name="m_id" id="m_id" value="${id}">
-		<input type="text" name="p_number" id="p_number" value="${p_number}">
+		<input type="hidden" name="m_id" id="m_id" value="${id}">
+		<input type="hidden" name="p_number" id="p_number" value="${p_number}">
 		<table style="text-align: center; width: 90%;" class="table">
 			<tr>
 				<td>내용</td>

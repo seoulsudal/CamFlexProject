@@ -28,6 +28,12 @@ public class MemberServiceImpl implements MemberService {
 	public int count(PageRequest pageRequest) throws Exception {
 		return memberDAO.count(pageRequest);
 	}
+
+	// 지난 예약 리스트 구현
+	@Override
+	public List<MemberVO> pastList(PageRequest pageRequest) throws Exception {
+		return memberDAO.pastList(pageRequest);
+	}
 	
 	
 }

@@ -18,6 +18,7 @@ public class ReservationVO {
 	private int a_agree;
 	private Date r_updDate;
 	private String r_cancel;
+	private int rv_status;
 
 	public int getR_number() {
 		return r_number;
@@ -129,6 +130,14 @@ public class ReservationVO {
 
 	public void setR_cancel(String r_cancel) {
 		this.r_cancel = r_cancel;
+	}
+
+	public int getRv_status() {
+		return rv_status;
+	}
+
+	public void setRv_status(int rv_status) {
+		this.rv_status = rv_status;
 	}
 
 }

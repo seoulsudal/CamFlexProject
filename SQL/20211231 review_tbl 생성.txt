@@ -3,6 +3,7 @@ create table REVIEW_TBL(
     m_id        varchar2(50)    not null,
     rv_date     date            default SYSDATE,
     rv_content  varchar2(2000)  not null
+    rv_status number not null default 0
 );
 
 alter table REVIEW_TBL add CONSTRAINT fk_member_tbl_REVIEW_TBL_m_id FOREIGN key(m_id) REFERENCES member_tbl(m_id);

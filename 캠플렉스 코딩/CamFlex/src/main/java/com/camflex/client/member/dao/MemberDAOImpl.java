@@ -26,5 +26,11 @@ public class MemberDAOImpl implements MemberDAO {
 	public int count(PageRequest pageRequest) throws Exception {
 		return sqlSession.selectOne("count");
 	}
+
+	// 지난 예약 리스트 구현
+	@Override
+	public List<MemberVO> pastList(PageRequest pageRequest) throws Exception {
+		return sqlSession.selectList("pastList");
+	}
 	
 }

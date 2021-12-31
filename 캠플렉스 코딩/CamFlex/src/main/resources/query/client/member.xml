@@ -18,4 +18,13 @@
 		]]>
 	</select>
 	
+	<!-- 지난 예약 리스트 -->
+	<select id="pastList" parameterType="reservation" resultType="reservation">
+		<![CDATA[
+		SELECT r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel, rv_status
+		FROM reservation_tbl 
+		WHERE m_id = #{m_id} AND r_enddate < sysdate
+		]]>
+	</select>
+	
 </mapper>
