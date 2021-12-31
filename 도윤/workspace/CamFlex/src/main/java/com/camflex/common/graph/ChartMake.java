@@ -91,7 +91,7 @@ public class ChartMake {
 				log.info(result.getKey() + "=" + result.getValue());
 				dataset.addValue(result.getValue(), result.getKey(), result.getKey());
 			}
-			JFreeChart chart = ChartFactory.createBarChart("취소 사유", "사유", "단위(건)", dataset, PlotOrientation.VERTICAL, true, true, false);
+			JFreeChart chart = ChartFactory.createBarChart("사용자 측 취소 사유", "사유", "단위(건)", dataset, PlotOrientation.VERTICAL, true, true, false);
 			
 			chart.setBackgroundPaint(Color.white);
 			chart.getTitle().setFont(new Font("sansserif", Font.BOLD,16));

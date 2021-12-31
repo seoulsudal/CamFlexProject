@@ -24,6 +24,9 @@ public interface AdminReservationDAO {
 	
 	public int count2(PageRequest pageRequest);
 
+	// 예약 취소
+	public int cancelRsv(ReservationVO rvo);
+
 
 
 }

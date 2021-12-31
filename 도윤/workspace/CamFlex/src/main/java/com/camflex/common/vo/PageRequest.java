@@ -65,7 +65,7 @@ public class PageRequest {
 	}
 	
 	public String toUriString(int page) {
-		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", this.page).queryParam("size", this.sizePerPage).build();
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", this.page).queryParam("size", this.sizePerPage).queryParam("searchType", this.searchType).queryParam("keyword", this.keyword).build();
 		
 		return uriComponents.toUriString();
 	}

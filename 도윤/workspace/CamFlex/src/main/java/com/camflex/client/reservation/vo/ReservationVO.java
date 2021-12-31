@@ -7,8 +7,8 @@ public class ReservationVO {
 	private int r_number;			// 예약번호
 	private String m_id;			// 회원 아이디
 	private int p_number;			// 상품번호
-	private String r_startDate;		// 예약 시작일
-	private String r_endDate;		// 예약 종료일
+	private Date r_startDate;		// 예약 시작일
+	private Date r_endDate;		// 예약 종료일
 	private int r_price;			// 금액
 	private String r_state;			// 예약 상태
 	private int c_agree;			// 동의
@@ -43,19 +43,19 @@ public class ReservationVO {
 		this.p_number = p_number;
 	}
 
-	public String getR_startDate() {
+	public Date getR_startDate() {
 		return r_startDate;
 	}
 
-	public void setR_startDate(String r_startDate) {
+	public void setR_startDate(Date r_startDate) {
 		this.r_startDate = r_startDate;
 	}
 
-	public String getR_endDate() {
+	public Date getR_endDate() {
 		return r_endDate;
 	}
 
-	public void setR_endDate(String r_endDate) {
+	public void setR_endDate(Date r_endDate) {
 		this.r_endDate = r_endDate;
 	}
 

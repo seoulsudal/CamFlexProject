@@ -7,8 +7,10 @@
 			<if test="searchType == 'm'.toString()">
 				and m_id like concat('%', concat(#{keyword}, '%'))
 			</if>
-			<if test="searchType == 's'.toString()">
-				and (r_startDate like concat('%', concat(#{keyword}, '%')))
+			<if test="searchType == 'd'.toString()">
+				and (r_startDate like concat('%', concat(#{keyword}, '%'))
+				or r_endDate like concat('%', concat(#{keyword}, '%'))
+				or r_upddate like concat('%', concat(#{keyword}, '%')))
 			</if>
 			<if test="searchType == 't'.toString()">
 				and (r_startdate like concat('%', concat(sysdate, '%')))
@@ -17,31 +19,22 @@
 	</sql>
 	<sql id="total_list">
 		<if test="searchType == null">
-			and rnum between #{sizePerPage} * #{page} - 9 and #{sizePerPage} * #{page}
+			and rnum between #{sizePerPage}*#{page}-9 and #{sizePerPage}*#{page}
 		</if>
 	</sql>
 	
 	<!-- 예약 리스트 -->
-	<select id="reservationList" parameterType="reservation" resultType="reservation">
+	<select id="reservationList" resultType="reservation">
 		<![CDATA[
 		SELECT r_number, p_number, m_id, r_price, r_apllicationdate, r_startdate, r_enddate, r_state, r_upddate
-		FROM (SELECT r_number,
-						p_number,
-						m_id,
-						r_price,
-						r_apllicationdate,
-						r_startdate,
-						r_enddate,
-						r_state,
-						r_upddate,
-						rownum as rnum
+		FROM (SELECT r_number, p_number, m_id, r_price, r_apllicationdate, r_startdate, r_enddate, r_state, r_upddate, rownum as rnum
 				FROM reservation_tbl)
-		WHERE r_number > 0 and r_state = '확정'
+		WHERE r_state = '확정'
 		]]>
 		<include refid="total_list"></include>
 		<include refid="search"></include>
 		<![CDATA[
-		ORDER BY r_apllicationdate desc
+		ORDER BY r_upddate desc, r_number desc
 		]]>
 	</select>
 	
@@ -50,11 +43,11 @@
 		<![CDATA[
 		SELECT r_number, p_number, m_id, r_price, r_apllicationdate, r_startdate, r_enddate, r_state
 		FROM reservation_tbl
-		WHERE r_number > 0 and r_state = '대기'
+		WHERE r_number > 0 AND r_state = '대기'
 		]]>
 		
 		<![CDATA[
-		ORDER BY r_apllicationdate
+		ORDER BY r_apllicationdate desc
 		]]>
 	</select>
 	
@@ -68,9 +61,10 @@
 	
 	<!-- 예약 취소 리스트 -->
 	<select id="cancelList" parameterType="reservation" resultType="reservation">
-		select r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel
-		from reservation_tbl
-		where r_state = '취소'
+		SELECT r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel
+		FROM reservation_tbl
+		WHERE r_state = '취소'
+		ORDER BY r_upddate desc
 	</select>
 	
 	<!-- 예약 전체 명수를 조회한다. -->
@@ -90,7 +84,7 @@
 		FROM reservation_tbl
 		WHERE r_number > 0 and r_state = '대기'
 		]]>
-		<include refid="search"></include>
+		
 	</select>
 	
 	<!-- 예약 취소 수를 조회한다. -->
@@ -100,6 +94,12 @@
 		FROM reservation_tbl
 		WHERE r_number > 0 and r_state = '취소'
 		]]>
-		<include refid="search"></include>
 	</select>
+	
+	<!-- 예약 취소 -->
+	<update id="cancelRsv">
+		UPDATE reservation_tbl
+		SET r_state = '취소', r_upddate = sysdate, r_cancel = '관리자 취소'
+		WHERE r_number = #{r_number}
+	</update>
 </mapper>

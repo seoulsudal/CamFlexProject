@@ -49,8 +49,8 @@
 							</td>
 							<td align="center">${rs.m_id}</td>
 							<td align="center">${rs.r_price}</td>
-							<td align="center">${rs.r_startDate}</td>
-							<td align="center">${rs.r_endDate}</td>
+							<td align="center"><fmt:formatDate value="${rs.r_startDate}" pattern="yyyy/MM/dd" /></td>
+							<td align="center"><fmt:formatDate value="${rs.r_endDate}" pattern="yyyy/MM/dd" /></td>
 							<td align="center"><fmt:formatDate value="${rs.r_updDate}" pattern="yyyy/MM/dd" /></td>
 							<td align="center">${rs.r_cancel}</td>
 						</tr>
