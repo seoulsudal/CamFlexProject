@@ -45,4 +45,13 @@
 			<if test="n_photo != null and n_photo != ''">, n_photo = #{n_photo}</if>
 		WHERE n_number = #{n_number}
 	</update>
+	
+	<!-- 전체 글 수를 조회 -->
+	<select id="count" resultType="int">
+		<![CDATA[
+		SELECT count(n_number)
+		FROM notice_tbl
+		WHERE n_number > 0
+		]]>
+	</select>
 </mapper>

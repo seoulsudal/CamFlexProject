@@ -78,7 +78,27 @@
 		<![CDATA[
 		SELECT count(r_number)
 		FROM reservation_tbl
-		WHERE r_number > 0
+		WHERE r_number > 0 and r_state = '확정'
+		]]>
+		<include refid="search"></include>
+	</select>
+	
+	<!-- 신규 예약 수를 조회한다. -->
+	<select id="count1" resultType="int">
+		<![CDATA[
+		SELECT count(r_number)
+		FROM reservation_tbl
+		WHERE r_number > 0 and r_state = '대기'
+		]]>
+		<include refid="search"></include>
+	</select>
+	
+	<!-- 예약 취소 수를 조회한다. -->
+	<select id="count2" resultType="int">
+		<![CDATA[
+		SELECT count(r_number)
+		FROM reservation_tbl
+		WHERE r_number > 0 and r_state = '취소'
 		]]>
 		<include refid="search"></include>
 	</select>

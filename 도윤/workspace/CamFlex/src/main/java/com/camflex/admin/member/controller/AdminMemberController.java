@@ -3,7 +3,6 @@ package com.camflex.admin.member.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.camflex.admin.member.service.AdminMemberService;
-import com.camflex.client.login.vo.LoginVO;
 import com.camflex.common.vo.PageRequest;
 import com.camflex.common.vo.Pagination;
 import com.camflex.common.vo.CodeLabelValue;

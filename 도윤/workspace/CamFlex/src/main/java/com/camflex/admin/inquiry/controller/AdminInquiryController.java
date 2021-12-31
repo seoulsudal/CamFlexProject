@@ -1,10 +1,6 @@
 package com.camflex.admin.inquiry.controller;
 
-import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
-import org.jfree.util.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.camflex.admin.inquiry.service.AdminInquiryService;
-import com.camflex.admin.notice.controller.AdminNoticeController;
+
 import com.camflex.client.inquiry.vo.InquiryVO;
 import com.camflex.common.vo.PageRequest;
 import com.camflex.common.vo.Pagination;
