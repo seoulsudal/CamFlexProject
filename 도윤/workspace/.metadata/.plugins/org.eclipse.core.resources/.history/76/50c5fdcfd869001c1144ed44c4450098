@@ -3,6 +3,21 @@ package com.camflex.client.reservation.vo;
 import java.util.Date;
 
 public class ReservationVO {
+<<<<<<< HEAD:형민/camflex/src/main/java/com/camflex/client/reservation/vo/ReservationVO.java
+	private int r_number; // 예약번호
+	private String m_id; // 회원 아이디
+	private int p_number; // 상품번호
+	private String r_startDate; // 예약 시작일
+	private String r_endDate; // 예약 종료일
+	private int r_price; // 금액
+	private String r_state; // 예약 상태
+	private int c_agree; // 동의
+	private int p_u_agree; // 동의
+	private int p_i_agree; // 동의
+	private int a_agree; // 동의
+	private Date r_apllicationDate; // 예약신청일
+	private Date r_updDate; // 예약 확정일
+=======
 
 	private int r_number;			// 예약번호
 	private String m_id;			// 회원 아이디
@@ -17,6 +32,7 @@ public class ReservationVO {
 	private int a_agree;			// 동의
 	private Date r_apllicationDate;	// 예약신청일
 	private Date r_updDate;			// 예약 확정일
+>>>>>>> 8524851fc190f1f3901eb091d63b5e2355c7d092:도윤/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/76/50c5fdcfd869001c1144ed44c4450098
 	private String r_cancel;
 
 	public int getR_number() {
@@ -130,6 +146,9 @@ public class ReservationVO {
 	public void setR_cancel(String r_cancel) {
 		this.r_cancel = r_cancel;
 	}
+<<<<<<< HEAD:형민/camflex/src/main/java/com/camflex/client/reservation/vo/ReservationVO.java
+=======
 
 	
+>>>>>>> 8524851fc190f1f3901eb091d63b5e2355c7d092:도윤/workspace/.metadata/.plugins/org.eclipse.core.resources/.history/76/50c5fdcfd869001c1144ed44c4450098
 }

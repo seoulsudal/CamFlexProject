@@ -1,9 +1,5 @@
 package com.camflex.client.login.dao;
 
-import java.util.Map;
-
-import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -32,19 +28,10 @@ public class LoginDAOImpl implements LoginDAO {
 		return sqlSession.selectOne(namespace + ".findId", vo);
 	}
 
-	// 비밀번호 찾기
+	// 인증 처리 후 비밀번호 변경
 	@Override
-	public MemberVO findPw(MemberVO vo) throws Exception {
-		return sqlSession.selectOne(namespace + ".findPw", vo);
-	}
-
-	// 인증 후 비밀번호 변
-	@Override
-	public Object change_pw(Map<String, Object> map, MemberVO mvo) throws Exception {
-		map.get("m_pw");
-		map.get("m_id");
-
-		return sqlSession.update(namespace + ".change_pw", map);
+	public void change_pw(MemberVO vo) throws Exception {
+		sqlSession.update(namespace + ".change_pw", vo);
 	}
 
 }

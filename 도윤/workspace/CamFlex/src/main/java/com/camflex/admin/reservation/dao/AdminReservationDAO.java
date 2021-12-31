@@ -23,9 +23,12 @@ public interface AdminReservationDAO {
 	public int count1(PageRequest pageRequest);
 	
 	public int count2(PageRequest pageRequest);
+<<<<<<< HEAD
+=======
 
 	// 예약 취소
 	public int cancelRsv(ReservationVO rvo);
+>>>>>>> 8524851fc190f1f3901eb091d63b5e2355c7d092
 
 
 

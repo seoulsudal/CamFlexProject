@@ -7,10 +7,15 @@
 			<if test="searchType == 'm'.toString()">
 				and m_id like concat('%', concat(#{keyword}, '%'))
 			</if>
+<<<<<<< HEAD
+			<if test="searchType == 's'.toString()">
+				and (r_startDate like concat('%', concat(#{keyword}, '%')))
+=======
 			<if test="searchType == 'd'.toString()">
 				and (r_startDate like concat('%', concat(#{keyword}, '%'))
 				or r_endDate like concat('%', concat(#{keyword}, '%'))
 				or r_upddate like concat('%', concat(#{keyword}, '%')))
+>>>>>>> 8524851fc190f1f3901eb091d63b5e2355c7d092
 			</if>
 			<if test="searchType == 't'.toString()">
 				and (r_startdate like concat('%', concat(sysdate, '%')))
@@ -73,6 +78,29 @@
 		SELECT count(r_number)
 		FROM reservation_tbl
 		WHERE r_number > 0 and r_state = '확정'
+<<<<<<< HEAD
+		]]>
+		<include refid="search"></include>
+	</select>
+	
+	<!-- 신규 예약 수를 조회한다. -->
+	<select id="count1" resultType="int">
+		<![CDATA[
+		SELECT count(r_number)
+		FROM reservation_tbl
+		WHERE r_number > 0 and r_state = '대기'
+		]]>
+		<include refid="search"></include>
+	</select>
+	
+	<!-- 예약 취소 수를 조회한다. -->
+	<select id="count2" resultType="int">
+		<![CDATA[
+		SELECT count(r_number)
+		FROM reservation_tbl
+		WHERE r_number > 0 and r_state = '취소'
+=======
+>>>>>>> 8524851fc190f1f3901eb091d63b5e2355c7d092
 		]]>
 		<include refid="search"></include>
 	</select>

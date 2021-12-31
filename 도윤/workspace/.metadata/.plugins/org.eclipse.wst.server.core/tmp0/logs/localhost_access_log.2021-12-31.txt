@@ -104,6 +104,8 @@
 0:0:0:0:0:0:0:1 - - [31/Dec/2021:09:50:58 +0900] "GET /admin/reservation/reservationList HTTP/1.1" 200 4840
 0:0:0:0:0:0:0:1 - - [31/Dec/2021:09:51:04 +0900] "GET /admin/reservation/reservationList HTTP/1.1" 200 4760
 0:0:0:0:0:0:0:1 - - [31/Dec/2021:09:51:05 +0900] "GET /admin/reservation/reservationList HTTP/1.1" 200 4760
+<<<<<<< HEAD
+=======
 0:0:0:0:0:0:0:1 - - [31/Dec/2021:10:13:08 +0900] "GET /admin/reservation/reservationList HTTP/1.1" 200 4760
 0:0:0:0:0:0:0:1 - - [31/Dec/2021:10:13:11 +0900] "GET /admin/member/memberList HTTP/1.1" 200 4382
 0:0:0:0:0:0:0:1 - - [31/Dec/2021:10:13:18 +0900] "GET /admin/member/memberList?searchType=d&keyword=24 HTTP/1.1" 200 2069
@@ -1202,3 +1204,4 @@
 0:0:0:0:0:0:0:1 - - [31/Dec/2021:17:28:58 +0900] "GET /admin/reservation/newReservation HTTP/1.1" 200 3269
 0:0:0:0:0:0:0:1 - - [31/Dec/2021:17:29:11 +0900] "GET /admin/reservation/reservationList HTTP/1.1" 200 6467
 0:0:0:0:0:0:0:1 - - [31/Dec/2021:17:29:36 +0900] "GET /admin/reservation/newReservation HTTP/1.1" 200 3269
+>>>>>>> 8524851fc190f1f3901eb091d63b5e2355c7d092

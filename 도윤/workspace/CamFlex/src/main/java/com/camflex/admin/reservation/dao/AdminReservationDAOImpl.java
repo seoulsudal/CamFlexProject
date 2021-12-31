@@ -58,6 +58,10 @@ public class AdminReservationDAOImpl implements AdminReservationDAO {
 
 	@Override
 	public int count2(PageRequest pageRequest) {
+<<<<<<< HEAD
+		
+		return sqlSession.selectOne("count2");
+=======
 		
 		return sqlSession.selectOne("count2");
 	}
@@ -67,6 +71,7 @@ public class AdminReservationDAOImpl implements AdminReservationDAO {
 	public int cancelRsv(ReservationVO rvo) {
 		
 		return sqlSession.update("cancelRsv", rvo);
+>>>>>>> 8524851fc190f1f3901eb091d63b5e2355c7d092
 	}
 	 
 
