@@ -34,6 +34,12 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> pastList(PageRequest pageRequest) throws Exception {
 		return memberDAO.pastList(pageRequest);
 	}
+
+	// 리뷰 카운트
+	@Override
+	public int rv_count() throws Exception {
+		return memberDAO.rv_count();
+	}
 	
 	
 }

@@ -1,10 +1,6 @@
 package com.camflex.admin.inquiry.controller;
 
-import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
-import org.jfree.util.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.camflex.admin.inquiry.service.AdminInquiryService;
-import com.camflex.admin.notice.controller.AdminNoticeController;
+
 import com.camflex.client.inquiry.vo.InquiryVO;
 import com.camflex.common.vo.PageRequest;
 import com.camflex.common.vo.Pagination;
@@ -31,7 +27,7 @@ public class AdminInquiryController {
 	 * 문의사항 리스트
 	 ****************************/
 	@RequestMapping(value = "/inquiryList", method = RequestMethod.GET)
-	public void inquiryList(@ModelAttribute("pgrq")PageRequest pageRequest, Model model) {
+	public void inquiryList(@ModelAttribute PageRequest pageRequest, Model model) {
 		log.info("문의사항 게시판 리스트 호출 성공");
 		
 		// List<InquiryVO> inquiryList = adminInquiryService.inquiryList(ivo);
@@ -41,7 +37,7 @@ public class AdminInquiryController {
 		// 페이징 네비게이션 정보를 뷰에 전달한다.
 		Pagination pagination = new Pagination();
 		pagination.setPageRequest(pageRequest);
-		pagination.setTotalCount(adminInquiryService.count(pageRequest));
+		pagination.setTotalCount(adminInquiryService.inquiryCount(pageRequest));
 		model.addAttribute("pagination", pagination);
 	}
 	

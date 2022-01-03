@@ -36,15 +36,17 @@ public class AdminInquiryDAOImpl implements AdminInquiryDAO {
 		return sqlSession.insert("replyInquiry", ivo);
 	}
 
-	@Override
-	public int count(PageRequest pageRequest) {
-		
-		return sqlSession.selectOne("count");
-	}
-
+	// 답글 수정
 	@Override
 	public int update(InquiryVO ivo) {
 		
 		return sqlSession.update("update", ivo);
+	}
+
+	// 문의 글 전체 수
+	@Override
+	public int inquiryCount(PageRequest pageRequest) {
+		
+		return sqlSession.selectOne("inquiryCount");
 	}
 }

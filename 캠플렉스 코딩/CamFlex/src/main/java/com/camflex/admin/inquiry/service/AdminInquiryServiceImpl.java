@@ -1,6 +1,5 @@
 package com.camflex.admin.inquiry.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,11 +47,7 @@ public class AdminInquiryServiceImpl implements AdminInquiryService {
 		return result;
 	}
 	
-	@Override
-	public int count(PageRequest pageRequest) {
-		
-		return adminInquiryDAO.count(pageRequest);
-	}
+	// 문의글 답글 수정
 	@Override
 	public int update(InquiryVO ivo) {
 		int result = 0;
@@ -64,5 +59,12 @@ public class AdminInquiryServiceImpl implements AdminInquiryService {
 		}
 		
 		return result;
+	}
+	
+	// 전체 문의글 수를 반환
+	@Override
+	public int inquiryCount(PageRequest pageRequest) {
+
+		return  adminInquiryDAO.inquiryCount(pageRequest);
 	}
 }

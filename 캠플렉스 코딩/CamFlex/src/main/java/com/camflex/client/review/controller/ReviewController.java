@@ -25,7 +25,7 @@ import com.camflex.common.vo.PageRequest;
 @RequestMapping("/review")
 public class ReviewController {
 
-	private Logger log = LoggerFactory.getLogger(ReservationController.class);
+	private Logger log = LoggerFactory.getLogger(ReviewController.class);
 	
 	@Autowired
 	private ReviewService reviewService;
@@ -41,9 +41,13 @@ public class ReviewController {
 		
 		log.info("reviewInsertForm 호출 성공");
 		log.info("p_number = " + rvvo.getP_number());
+		log.info("r_number = " + rvvo.getR_number());
+		log.info("rv_number = " + rvvo.getRv_number());
 		
 		model.addAttribute("id", m_id);
 		model.addAttribute("p_number", rvvo.getP_number());
+		model.addAttribute("r_number", rvvo.getR_number());
+		model.addAttribute("rv_number", rvvo.getRv_number());
 		
 		return "review/reviewInsert";
 	}
@@ -68,13 +72,6 @@ public class ReviewController {
 		}
 		
 		return "redirect:" + url;
-	}
-	
-	// 로그인 체크(비 로그인)
-	private void sessionCheck(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		session = request.getSession();
-		m_id = (String) session.getAttribute("m_id");
-		log.info("여긴 m_id " + m_id);
 	}
 	
 	// 로그인 체크(로그인)

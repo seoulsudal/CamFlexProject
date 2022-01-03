@@ -10,6 +10,7 @@ public class PageRequest {
 
 	private String m_id;
 	private int p_number;
+	private int rv_number;
 
 	// 검색 유형과 검색어를 멤버 변수(필드)로 선언한다.
 	private String searchType;
@@ -29,6 +30,14 @@ public class PageRequest {
 
 	public void setP_number(int p_number) {
 		this.p_number = p_number;
+	}
+
+	public int getRv_number() {
+		return rv_number;
+	}
+
+	public void setRv_number(int rv_number) {
+		this.rv_number = rv_number;
 	}
 
 	public PageRequest() {

@@ -16,4 +16,7 @@ public interface MemberDAO {
 	// 지난 예약 리스트 구현
 	public List<MemberVO> pastList(PageRequest pageRequest) throws Exception;
 
+	// 리뷰 카운트
+	public int rv_count() throws Exception;
+
 }

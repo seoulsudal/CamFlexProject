@@ -46,8 +46,10 @@
 	<br>
 	<div class="well" align="center">
 	<form id="writeForm" name="writeForm">
-		<input type="hidden" name="m_id" id="m_id" value="${id}">
-		<input type="hidden" name="p_number" id="p_number" value="${p_number}">
+		<input type="text" name="m_id" id="m_id" value="${id}">
+		<input type="text" name="p_number" id="p_number" value="${p_number}">
+		<input type="text" name="r_number" id="r_number" value="${r_number}">
+		<input type="text" name="rv_number" id="rv_number" value="${rv_number}">
 		<table style="text-align: center; width: 90%;" class="table">
 			<tr>
 				<td>내용</td>

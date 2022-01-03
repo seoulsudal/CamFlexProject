@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.camflex.client.member.service.MemberService;
-import com.camflex.client.notice.controller.NoticeController;
+import com.camflex.client.review.vo.ReviewVO;
 import com.camflex.common.vo.PageRequest;
 import com.camflex.common.vo.Pagination;
 
@@ -25,7 +25,7 @@ import org.springframework.ui.Model;
 @RequestMapping("/member")
 public class MemberController {
 
-	private Logger log = LoggerFactory.getLogger(NoticeController.class);
+	private Logger log = LoggerFactory.getLogger(MemberController.class);
 	
 	private HttpSession session;
 	private String m_id;
@@ -35,17 +35,18 @@ public class MemberController {
 	
 	// 지난 예약 리스트 구현
 	@RequestMapping(value = "/pastList", method = RequestMethod.GET)
-	private String pastList(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("pgrq")PageRequest pageRequest, Model model) throws Exception {
+	private String pastList(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("pgrq")PageRequest pageRequest, ReviewVO rvvo, Model model) throws Exception {
 		sessionCheck(request, response, "로그인 후 확인 가능합니다."); 
 
 		log.info("pastList 호출 성공");
 		log.info("접속 ID = " + m_id);
-		log.info("접속 상품 = " + pageRequest.getP_number());
+		log.info("rv_number = " + rvvo.getRv_number());
 		
 		pageRequest.setM_id(m_id);
 		
+		model.addAttribute("rv_count", memberService.rv_count());
 		model.addAttribute("pastList", memberService.pastList(pageRequest));
-		
+
 		// 페이징 기법
 		Pagination pagination = new Pagination();
 		pagination.setPageRequest(pageRequest);

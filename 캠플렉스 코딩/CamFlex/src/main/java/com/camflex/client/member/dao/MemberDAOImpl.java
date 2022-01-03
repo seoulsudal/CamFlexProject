@@ -32,5 +32,11 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<MemberVO> pastList(PageRequest pageRequest) throws Exception {
 		return sqlSession.selectList("pastList");
 	}
+
+	// 리뷰 카운트
+	@Override
+	public int rv_count() throws Exception {
+		return sqlSession.selectOne("rv_count");
+	}
 	
 }

@@ -16,8 +16,8 @@
 			SELECT REVIEW_SEQ.NEXTVAL
 			FROM dual
 		</selectKey>
-			INSERT INTO review_tbl(rv_number, m_id, p_number, rv_content)
-			VALUES(#{rv_number}, #{m_id}, #{p_number}, #{rv_content})
+			INSERT INTO review_tbl(rv_number, m_id, p_number, rv_content, r_number, rv_count)
+			VALUES(#{rv_number}, #{m_id}, #{p_number}, #{rv_content}, #{r_number}, 1)
 	</insert>
 
 	<!-- 전체 글 수를 조회 -->

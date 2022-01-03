@@ -21,10 +21,16 @@
 	<!-- 지난 예약 리스트 -->
 	<select id="pastList" parameterType="reservation" resultType="reservation">
 		<![CDATA[
-		SELECT r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel, rv_status
-		FROM reservation_tbl 
-		WHERE m_id = #{m_id} AND r_enddate < sysdate
+		SELECT rs.r_number, rs.p_number, rs.m_id, rs.r_price, rs.r_startdate, rs.r_enddate, rs.r_upddate, rs.r_cancel
+		FROM reservation_tbl rs
+		WHERE rs.m_id = #{m_id} AND rs.r_enddate < sysdate
 		]]>
+	</select>
+	
+	<!-- 리뷰 카운트 -->
+	<select id="rv_count" resultType="int">
+		SELECT rv_count
+		FROM review_tbl
 	</select>
 	
 </mapper>

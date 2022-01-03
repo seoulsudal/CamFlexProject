@@ -16,12 +16,18 @@
 <script type="text/javascript">
 $(function() {
 	// 후기 작성 클릭 시
-	$("#btnReviewInsert").click(function() {
-		var p_number = $(this).parents("tr").attr("data-num");
+	$(".btnReviewInsert").click(function() {
+		var p_number = $(this).parents("tr").attr("data-num1");
+		var r_number = $(this).parents("tr").attr("data-num2");
+		var rv_number = $(this).parents("tr").attr("data-num3");
 		
 		$("#p_number").val(p_number);
+		$("#r_number").val(r_number);
+		$("#rv_number").val(rv_number);
 		
 		console.log("상품 번호 : " + p_number);
+		console.log("예약 번호 : " + r_number);
+		console.log("후기 번호 : " + rv_number);
 		
 		$("#detailForm").attr({
 			"method":"get",
@@ -35,8 +41,10 @@ $(function() {
 <body>
 <h2 align="center">지난 예약 리스트</h2>
 <form name="detailForm" id="detailForm">
-		<input type="hidden" name="p_number" id="p_number" value="${past.p_number}">
-		<input type="hidden" id="m_id" name="m_id" value="${id}">
+		<input type="text" name="p_number" id="p_number" value="${past.p_number}">
+		<input type="text" id="m_id" name="m_id" value="${id}">
+		<input type="text" id="r_number" name="r_number" value="${past.r_number}">
+		<input type="text" id="rv_number" name="rv_number" value="${past.rv_number}">
 	</form>
 <div align="center">
 	<table class="table">
@@ -59,7 +67,7 @@ $(function() {
 					</c:when>
 					<c:otherwise>
 					<c:forEach var="past" items="${pastList}">
-						<tr data-num="${past.p_number}">
+						<tr data-num1="${past.p_number}" data-num2="${past.r_number}" data-num3="${past.rv_number}">
 							<td align="center">${past.r_number}</td>
 							<td align="center"><c:if test="${past.p_number eq '1'}">오토A</c:if>
 								<c:if test="${past.p_number eq '41'}">오토B</c:if>
@@ -74,9 +82,8 @@ $(function() {
 							<td align="center">${past.r_startDate}</td>
 							<td align="center">${past.r_endDate}</td>
 							<td align="center">
-							<c:if test="${past.rv_status eq 0}">
-								<input type="button" id="btnReviewInsert" name="btnReviewInsert" value="후기 작성">
-							</c:if>
+							<input type="text" id="rv_number" name="rv_number" value="${past.rv_number}">
+							<input type="button" class="btnReviewInsert" name="btnReviewInsert" value="후기 작성">										
 							</td>
 						</tr>
 					</c:forEach>

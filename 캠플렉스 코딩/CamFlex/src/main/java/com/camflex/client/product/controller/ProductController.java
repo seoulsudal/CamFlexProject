@@ -26,7 +26,7 @@ import com.camflex.common.vo.PageRequest;
 @RequestMapping("/product")
 public class ProductController {
 	
-	private Logger log = LoggerFactory.getLogger(ReservationController.class);
+	private Logger log = LoggerFactory.getLogger(ProductController.class);
 	
 	private HttpSession session;
 	private String m_id;

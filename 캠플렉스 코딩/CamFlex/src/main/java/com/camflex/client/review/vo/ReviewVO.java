@@ -9,6 +9,7 @@ public class ReviewVO {
 	private int p_number;
 	private Date rv_date;
 	private String rv_content;
+	private int r_number;
 
 	public int getRv_number() {
 		return rv_number;
@@ -48,6 +49,14 @@ public class ReviewVO {
 
 	public void setRv_content(String rv_content) {
 		this.rv_content = rv_content;
+	}
+
+	public int getR_number() {
+		return r_number;
+	}
+
+	public void setR_number(int r_number) {
+		this.r_number = r_number;
 	}
 
 }

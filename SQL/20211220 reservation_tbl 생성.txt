@@ -24,8 +24,4 @@ create sequence RESERVATION_SEQ
 start with 1
 increment by 1;
 
-create sequence REVIEW_SEQ
-start with 1
-increment by 1;
-
 commit;
