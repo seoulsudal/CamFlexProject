@@ -52,7 +52,7 @@ $(function(){
 					<td align="center">글번호</td>
 					<td align="center">작성자</td>
 					<td align="center">공지사항</td>
-					<td align="center" data-value="n_date">작성일</td>
+					<td align="center">작성일</td>
 				</tr>
 			</thead>
 			<tbody>
