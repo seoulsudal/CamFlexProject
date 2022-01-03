@@ -38,11 +38,7 @@
 							<td align="center">${yesterday}원</td>
 							<td align="center"><a href="/admin/reservation/newReservation">${newRsv}건</a></td>
 							<td align="center"><a href="/admin/reservation/reservationList?searchType=t&keyword=">${visit}팀</a></td>
-<<<<<<< HEAD
-							<td align="center">${todayMember}명</td>
-=======
 							<td align="center"><a href="/admin/member/memberList?searchType=d&keyword=">${todayMember}명</a></td>
->>>>>>> 8524851fc190f1f3901eb091d63b5e2355c7d092
 						</tr>
 					</tbody>
 				</table>

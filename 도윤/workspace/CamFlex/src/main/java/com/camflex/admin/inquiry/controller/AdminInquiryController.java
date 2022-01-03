@@ -37,7 +37,7 @@ public class AdminInquiryController {
 		// 페이징 네비게이션 정보를 뷰에 전달한다.
 		Pagination pagination = new Pagination();
 		pagination.setPageRequest(pageRequest);
-		pagination.setTotalCount(adminInquiryService.count(pageRequest));
+		pagination.setTotalCount(adminInquiryService.inquiryCount(pageRequest));
 		model.addAttribute("pagination", pagination);
 	}
 	

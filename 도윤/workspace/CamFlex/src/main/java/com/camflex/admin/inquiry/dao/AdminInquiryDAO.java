@@ -13,8 +13,8 @@ public interface AdminInquiryDAO {
 	public InquiryVO inquiryDetail(InquiryVO ivo);
 	// 답글 등록
 	public int replyInquiry(InquiryVO ivo);
-
-	public int count(PageRequest pageRequest);
 	// 답글 수정 처리
 	public int update(InquiryVO ivo);
+	// 문의글 전체 수 반환
+	public int inquiryCount(PageRequest pageRequest);
 }

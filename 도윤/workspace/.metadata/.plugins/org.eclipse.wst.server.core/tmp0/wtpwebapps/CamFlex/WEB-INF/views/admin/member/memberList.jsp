@@ -13,19 +13,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script type="text/javascript">
-	
-	function chkSubmit(item, msg){
-		if(item.val().replace(/\s/g,"") == ""){
-			alert(msg + "입력해 주세요.");
-			item.val("");
-			item.focus();
-			return false();
-		}else{
-			return true;
-		}
-	}
-</script>
+
 </head>
 <body>
 <h2 align="center">회원 리스트</h2>

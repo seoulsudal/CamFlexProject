@@ -23,9 +23,7 @@ public class AdminReservationServiceImpl implements AdminReservationService {
 	public List<ReservationVO> reservationList(PageRequest pageRequest) {
 		
 		return adminReservationDAO.reservationList(pageRequest);
-	}
-
-	
+	}	
 
 	// 신규 예약 리스트
 	@Override
@@ -68,10 +66,6 @@ public class AdminReservationServiceImpl implements AdminReservationService {
 
 	@Override
 	public int count2(PageRequest pageRequest) {
-<<<<<<< HEAD
-		
-		return adminReservationDAO.count2(pageRequest);
-=======
 		
 		return adminReservationDAO.count2(pageRequest);
 	}
@@ -91,7 +85,6 @@ public class AdminReservationServiceImpl implements AdminReservationService {
 		}
 		
 		return result;
->>>>>>> 8524851fc190f1f3901eb091d63b5e2355c7d092
 	}
 	 
 	

@@ -50,13 +50,18 @@ $(function(){
 					<td align="center">문의항목</td>
 					<td align="center">아이디</td>
 					<td align="center">제목</td>
-					<td align="center" data-value="n_date">작성일</td>
+					<td align="center">작성일</td>
 				</tr>
 			</thead>
 			<tbody>
 				<c:choose>
-					<c:when test="${not empty inquiryList}">
-						<c:forEach var="i" items="${inquiryList}" varStatus="status">
+					<c:when test="${empty inquiryList}">
+						<tr>
+								<td colspan="5" align="center">등록된 공지사항이 존재하지 않습니다.</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="i" items="${inquiryList}">
 							<tr data-num="${i.i_number}">
 								<td align="center">${i.i_number}</td>
 								<td align="center">${i.i_kinds}</td>
@@ -67,16 +72,11 @@ $(function(){
 								<td align="center"><fmt:formatDate value="${i.i_date}" pattern="yyyy/MM/dd" /></td>
 							</tr>
 						</c:forEach>
-						</c:when>
-						<c:otherwise>
-							<tr>
-								<td colspan="5" align="center">등록된 공지사항이 존재하지 않습니다.</td>
-							</tr>
 						</c:otherwise>					
 				</c:choose>
 			</tbody>
 		</table>
-			<!-- 페이징 네비게이션 -->
+	<!-- 페이징 네비게이션 -->
 	<div>
 		<c:if test="${pagination.prev}">
 			<a href="${pagination.startPage - 1}">&laquo;</a>
