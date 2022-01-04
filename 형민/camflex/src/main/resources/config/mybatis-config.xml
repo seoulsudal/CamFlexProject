@@ -3,20 +3,9 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-	<settings>
-		<setting name="jdbcTypeForNull" value="NULL" />
-	</settings>
-	
 	<typeAliases>
-		<typeAlias type="com.camflex.client.login.vo.LoginVO"
-			alias="login" />
-		<typeAlias type="com.camflex.client.member.vo.MemberVO"
-			alias="member" />
-
+		<typeAlias type="com.camflex.client.login.vo.LoginVO" alias="login" />
+		<typeAlias type="com.camflex.client.member.vo.MemberVO" alias="member" />
+		
 	</typeAliases>
-
 </configuration>
-
-
-
-
