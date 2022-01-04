@@ -1,6 +1,11 @@
 package com.camflex.admin.main.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,12 +26,17 @@ public class AdminMainController {
 	
 	private Logger log = LoggerFactory.getLogger(AdminMainController.class);
 	
+	private HttpSession session;
+	private String m_id;
+	
 	@Autowired
 	private AdminMainService adminMainService;
 	
 	// 메인 페이지
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String mainList(@ModelAttribute MemberVO mvo, ReservationVO rvo, Model model) {
+	public String mainList(@ModelAttribute MemberVO mvo, ReservationVO rvo, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
+		sessionCheck(request, response, "로그인 후 가능합니다.");
+		
 		log.info("메인 페이지 호출 성공");
 		
 		
@@ -46,6 +56,25 @@ public class AdminMainController {
 		model.addAttribute("yesterday", yesterday);
 		
 		return "admin/main";
+	}
+	
+	/***********************
+	 * 로그인 체크
+	 ***********************/
+	private void sessionCheck(HttpServletRequest request, HttpServletResponse response, String message) throws Exception {
+		session = request.getSession();
+		m_id = (String) session.getAttribute("m_id");
+		log.info("m_id : " + m_id);
+		
+		if(m_id == null) {
+			response.setContentType("text/html; charset=euc-kr");
+			PrintWriter out = response.getWriter();
+			out.println("<script type='text/javascript'>");
+			out.println("alert('" + message + "');");
+			out.println("location.href='/admin/login'");
+			out.println("</script>");
+			out.flush();
+		}
 	}
 	
 }

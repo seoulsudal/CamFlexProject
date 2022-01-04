@@ -1,8 +1,11 @@
 package com.camflex.admin.chart.controller;
 
+import java.io.PrintWriter;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,12 +25,16 @@ public class AdminChartController {
 
 	private Logger log = LoggerFactory.getLogger(AdminChartController.class);
 	
+	private HttpSession session;
+	private String m_id;
+	
 	@Autowired
 	private AdminChartService adminChartService;
 	
 	// 차트 출력
 	@RequestMapping(value = "/chartList")
-	public String chart(@ModelAttribute ReservationVO rvo, Model model, HttpServletRequest request) {
+	public String chart(@ModelAttribute ReservationVO rvo, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
+		sessionCheck(request, response, "로그인 후 가능합니다.");
 		log.info("차트페이지 호출 성공");
 		
 		// 캠핑존별 
@@ -46,4 +53,24 @@ public class AdminChartController {
 		
 		return "admin/chart/chartList";
 	}
+	
+	/****************************
+	 * 로그인 체크
+	 ***************************/
+	private void sessionCheck(HttpServletRequest request, HttpServletResponse response, String message) throws Exception {
+		session = request.getSession();
+		m_id = (String) session.getAttribute("m_id");
+		log.info("m_id : " + m_id);
+		
+		if(m_id == null) {
+			response.setContentType("text/html; charset=euc-kr");
+			PrintWriter out = response.getWriter();
+			out.println("<script type='text/javascript'>");
+			out.println("alert('" + message + "');");
+			out.println("location.href='/admin/login'");
+			out.println("</script>");
+			out.flush();
+		}
+	}
+
 }

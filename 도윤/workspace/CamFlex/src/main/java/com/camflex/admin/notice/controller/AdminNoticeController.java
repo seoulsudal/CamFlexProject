@@ -1,9 +1,10 @@
 package com.camflex.admin.notice.controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -27,6 +28,10 @@ public class AdminNoticeController {
 
 	private Logger log = LoggerFactory.getLogger(AdminNoticeController.class);
 	
+	private HttpSession session;
+	private String m_id;
+
+	
 	@Autowired
 	private AdminNoticeService adminNoticeService;
 	
@@ -34,7 +39,8 @@ public class AdminNoticeController {
 	 * 공지사항 기본 조회
 	 *****************************************/
 	@RequestMapping(value = "/noticeList", method = RequestMethod.GET)
-	public void noticeList(@ModelAttribute("pgrq")PageRequest pageRequest, Model model) {
+	public void noticeList(@ModelAttribute("pgrq")PageRequest pageRequest, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
+		sessionCheck(request, response, "로그인 후 가능합니다.");
 		log.info("공지사항 목록 호출 성공");
 		
 		//List<NoticeVO> noticeList = adminNoticeService.noticeList(nvo);
@@ -54,7 +60,8 @@ public class AdminNoticeController {
 	 * 공지사항 등록 폼 출력
 	 ****************************************/
 	@RequestMapping(value = "/regNotice", method = RequestMethod.GET)
-	public String regForm(HttpSession session) {
+	public String regForm(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		sessionCheck(request, response, "로그인 후 가능합니다.");
 		log.info("글 등록 폼 호출 성공");
 		return "admin/notice/regNotice";
 	}
@@ -87,7 +94,8 @@ public class AdminNoticeController {
 	 * 글 상세 페이지
 	 ***********************************/
 	@RequestMapping(value = "/noticeDetail", method = RequestMethod.GET)
-	public String noticeDetail(@ModelAttribute NoticeVO nvo, Model model) {
+	public String noticeDetail(@ModelAttribute NoticeVO nvo, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
+		sessionCheck(request, response, "로그인 후 가능합니다.");
 		log.info("글 상세 페이지 호출 성공");
 		log.info("글 번호 : " + nvo.getN_number());
 		
@@ -114,7 +122,8 @@ public class AdminNoticeController {
 	 * 글 수정 폼
 	 ****************************************/
 	@RequestMapping(value = "/updateNotice", method = RequestMethod.POST)
-	public String updateForm(@ModelAttribute NoticeVO nvo, Model model) {
+	public String updateForm(@ModelAttribute NoticeVO nvo, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
+		sessionCheck(request, response, "로그인 후 가능합니다.");
 		log.info("글 수정 폼 호출 성공");
 		log.info("글 번호 : " + nvo.getN_number());
 		
@@ -156,4 +165,24 @@ public class AdminNoticeController {
 		return "redirect:" + url;
 		
 	}
+	
+	/****************************
+	 * 로그인 체크
+	 ***************************/
+	private void sessionCheck(HttpServletRequest request, HttpServletResponse response, String message) throws Exception {
+		session = request.getSession();
+		m_id = (String) session.getAttribute("m_id");
+		log.info("m_id : " + m_id);
+		
+		if(m_id == null) {
+			response.setContentType("text/html; charset=euc-kr");
+			PrintWriter out = response.getWriter();
+			out.println("<script type='text/javascript'>");
+			out.println("alert('" + message + "');");
+			out.println("location.href='/admin/login'");
+			out.println("</script>");
+			out.flush();
+		}
+	}
+
 }

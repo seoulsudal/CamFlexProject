@@ -1,0 +1,5 @@
+package com.camflex.admin.login.controller;
+
+public class AdminLoginController {
+
+}

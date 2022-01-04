@@ -1,5 +1,0 @@
-package com.camflex.admin.chart.dao;
-
-public class AdminChartDAOImpl implements AdminChartDAO {
-
-}

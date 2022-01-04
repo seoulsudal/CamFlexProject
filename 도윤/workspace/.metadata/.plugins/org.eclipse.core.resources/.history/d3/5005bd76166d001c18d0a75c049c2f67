@@ -1,0 +1,14 @@
+package com.camflex.admin.login.service;
+
+import com.camflex.admin.login.controller.AdminLoginService;
+import com.camflex.client.login.vo.LoginVO;
+
+public class AdminLoginServiceImpl implements AdminLoginService {
+
+	@Override
+	public LoginVO loginCheck(LoginVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
