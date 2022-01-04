@@ -41,11 +41,11 @@ $(function() {
 <body>
 <h2 align="center">지난 예약 리스트</h2>
 <form name="detailForm" id="detailForm">
-		<input type="text" name="p_number" id="p_number" value="${past.p_number}">
-		<input type="text" id="m_id" name="m_id" value="${id}">
-		<input type="text" id="r_number" name="r_number" value="${past.r_number}">
-		<input type="text" id="rv_number" name="rv_number" value="${past.rv_number}">
-	</form>
+	<input type="hidden" name="p_number" id="p_number" value="${past.p_number}">
+	<input type="hidden" id="m_id" name="m_id" value="${id}">
+	<input type="hidden" id="r_number" name="r_number" value="${past.r_number}">
+	<input type="hidden" id="rv_number" name="rv_number" value="${past.rv_number}">
+</form>
 <div align="center">
 	<table class="table">
 		<thead>
@@ -82,7 +82,7 @@ $(function() {
 							<td align="center">${past.r_startDate}</td>
 							<td align="center">${past.r_endDate}</td>
 							<td align="center">
-							<input type="text" id="rv_number" name="rv_number" value="${past.rv_number}">
+							<%-- <input type="text" id="rv_number" name="rv_number" value="${rv_count}"> --%>
 							<input type="button" class="btnReviewInsert" name="btnReviewInsert" value="후기 작성">										
 							</td>
 						</tr>
@@ -93,13 +93,12 @@ $(function() {
 	</table>
 
 	<!-- 페이징 네비게이션 -->
-	<div align="center">
-	<br>
+	<div>
 		<c:if test="${pagination.prev}">
 			<a href="${pagination.startPage - 1}">&laquo;</a>
 		</c:if>
 		<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
-			<a href="/member/cancelList${pagination.makeQuery(idx)}">${idx}</a>
+			<a href="/member/pastList${pagination.makeQuery(idx)}">${idx}</a>
 		</c:forEach>
 		<c:if test="${pagination.next && pagination.endPage > 0}">
 			<a href="${pagination.endPage + 1}">&raquo;</a>

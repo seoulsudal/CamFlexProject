@@ -42,12 +42,12 @@ public class ReviewController {
 		log.info("reviewInsertForm 호출 성공");
 		log.info("p_number = " + rvvo.getP_number());
 		log.info("r_number = " + rvvo.getR_number());
-		log.info("rv_number = " + rvvo.getRv_number());
+		
+		model.addAttribute("rv_count", reviewService.rv_count(rvvo.getR_number()));
 		
 		model.addAttribute("id", m_id);
 		model.addAttribute("p_number", rvvo.getP_number());
 		model.addAttribute("r_number", rvvo.getR_number());
-		model.addAttribute("rv_number", rvvo.getRv_number());
 		
 		return "review/reviewInsert";
 	}

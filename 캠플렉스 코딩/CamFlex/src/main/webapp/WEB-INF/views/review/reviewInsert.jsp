@@ -46,21 +46,29 @@
 	<br>
 	<div class="well" align="center">
 	<form id="writeForm" name="writeForm">
-		<input type="text" name="m_id" id="m_id" value="${id}">
-		<input type="text" name="p_number" id="p_number" value="${p_number}">
-		<input type="text" name="r_number" id="r_number" value="${r_number}">
-		<input type="text" name="rv_number" id="rv_number" value="${rv_number}">
+		<input type="hidden" name="m_id" id="m_id" value="${id}">
+		<input type="hidden" name="p_number" id="p_number" value="${p_number}">
+		<input type="hidden" name="r_number" id="r_number" value="${r_number}">
+		<input type="hidden" name="rv_number" id="rv_number" value="${rv_count}">
 		<table style="text-align: center; width: 90%;" class="table">
 			<tr>
-				<td>내용</td>
+				<td><font size="3">내용</font></td>
 				<td><textarea name="rv_content" id="rv_content" style="width: 90%"></textarea><p></p></td>
 			</tr>
 		</table>
+		<div>
+		<font size="2" color="red">* 리뷰 1회등록 시 추가 리뷰 작성이 불가능합니다.</font>
+		</div>
 	</form>
 	</div>
 	<br>
 	<div align="center">
+		<c:if test="${empty rv_count}">
 		<input type="button" value="작성" id="btnReviewInsert" class="btn">
+		</c:if>
+		<c:if test="${not empty rv_count}">
+		<input type="button" value="작성" id="btnReviewInsert" class="btn" disabled="disabled">
+		</c:if>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="button" value="취소" id="btnMemberList" class="btn">
 	</div>

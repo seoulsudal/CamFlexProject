@@ -9,8 +9,6 @@ public interface AdminReservationService {
 
 	// 예약 리스트
 	public List<ReservationVO> reservationList(PageRequest pageRequest);
-
-	
 	
 	// 신규 예약 리스트
 	public List<ReservationVO> newRsvList(PageRequest pageRequest);
@@ -29,5 +27,7 @@ public interface AdminReservationService {
 
 	public int count2(PageRequest pageRequest);
 
+	// 예약 취소 구현
+	public int cancelRsv(ReservationVO rvo);
 
 }

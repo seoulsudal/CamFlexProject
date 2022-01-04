@@ -23,9 +23,7 @@ public class AdminReservationServiceImpl implements AdminReservationService {
 	public List<ReservationVO> reservationList(PageRequest pageRequest) {
 		
 		return adminReservationDAO.reservationList(pageRequest);
-	}
-
-	
+	}	
 
 	// 신규 예약 리스트
 	@Override
@@ -70,6 +68,23 @@ public class AdminReservationServiceImpl implements AdminReservationService {
 	public int count2(PageRequest pageRequest) {
 		
 		return adminReservationDAO.count2(pageRequest);
+	}
+
+
+	
+	// 예약 취소 구현
+	@Override
+	public int cancelRsv(ReservationVO rvo) {
+		
+		int result = 0;
+		try {
+			result = adminReservationDAO.cancelRsv(rvo);
+		}catch(Exception e) {
+			e.printStackTrace();
+			result = 0;
+		}
+		
+		return result;
 	}
 	 
 	

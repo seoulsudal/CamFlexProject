@@ -61,6 +61,13 @@ public class AdminReservationDAOImpl implements AdminReservationDAO {
 		
 		return sqlSession.selectOne("count2");
 	}
+
+	// 예약 취소
+	@Override
+	public int cancelRsv(ReservationVO rvo) {
+		
+		return sqlSession.update("cancelRsv", rvo);
+	}
 	 
 
 

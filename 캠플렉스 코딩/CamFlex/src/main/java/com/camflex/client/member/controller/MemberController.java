@@ -40,20 +40,18 @@ public class MemberController {
 
 		log.info("pastList 호출 성공");
 		log.info("접속 ID = " + m_id);
-		log.info("rv_number = " + rvvo.getRv_number());
 		
 		pageRequest.setM_id(m_id);
 		
-		model.addAttribute("rv_count", memberService.rv_count());
 		model.addAttribute("pastList", memberService.pastList(pageRequest));
-
+		model.addAttribute("id", m_id); 
+		
 		// 페이징 기법
 		Pagination pagination = new Pagination();
 		pagination.setPageRequest(pageRequest);
 		pagination.setTotalCount(memberService.count(pageRequest));
 		model.addAttribute("pagination", pagination);	
-		model.addAttribute("id", m_id); 
-				
+
 		return "member/pastList";
 	}
 	
@@ -69,13 +67,13 @@ public class MemberController {
 		pageRequest.setM_id(m_id);
 		
 		model.addAttribute("cancelList", memberService.cancelList(pageRequest));
+		model.addAttribute("id", m_id); 
 		
 		// 페이징 기법
 		Pagination pagination = new Pagination();
 		pagination.setPageRequest(pageRequest);
 		pagination.setTotalCount(memberService.count(pageRequest));
 		model.addAttribute("pagination", pagination);	
-		model.addAttribute("id", m_id); 
 		
 		return "member/cancelList";
 	}

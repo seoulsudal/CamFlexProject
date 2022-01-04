@@ -60,4 +60,17 @@
 		<put-attribute name="body" value="/WEB-INF/views/admin/product/{1}.jsp"/>	
 	</definition>
 	
+	<definition name="admin/product/*" extends="admin/content">
+		<put-attribute name="title" value="상품 관리"/>
+		<put-attribute name="aside" value="/WEB-INF/views/template/admin/aside5.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/product/{1}.jsp"/>	
+	</definition>
+	
+	<definition name="admin/login/*" template="/WEB-INF/views/template/admin/contentLayout2.jsp">
+		<put-attribute name="title" value="로그인"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/admin/header.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/login/{1}.jsp"/>	
+		<put-attribute name="footer" value="/WEB-INF/views/template/admin/footer.jsp"/>
+	</definition>	
+	
 </tiles-definitions>

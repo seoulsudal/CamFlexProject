@@ -33,5 +33,9 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return sqlSession.selectOne("count");
 	}
 
-	
+	@Override
+	public Integer rv_count(Integer r_number) throws Exception {
+		return sqlSession.selectOne("rv_count", r_number);
+	}
+
 }

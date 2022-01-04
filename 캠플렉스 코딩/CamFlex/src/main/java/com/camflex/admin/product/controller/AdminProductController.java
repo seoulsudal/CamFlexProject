@@ -1,9 +1,10 @@
 package com.camflex.admin.product.controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -26,6 +27,9 @@ import com.camflex.common.vo.Pagination;
 public class AdminProductController {
 
 	private Logger log = LoggerFactory.getLogger(AdminProductController.class);
+	private HttpSession session;
+	private String m_id;
+
 	
 	@Autowired
 	private AdminProductService adminProductService;
@@ -34,7 +38,9 @@ public class AdminProductController {
 	 * 상품 목록 구현
 	 ************************************/
 	@RequestMapping(value = "/productList", method = RequestMethod.GET)
-	public void productList(@ModelAttribute("pgrq")PageRequest pageRequest, Model model) {
+	public String productList(@ModelAttribute("pgrq")PageRequest pageRequest, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
+		sessionCheck(request, response, "로그인 후 가능합니다.");
+		
 		log.info("상품 목록 호출 성공");
 
 		// List<ProductVO> productList = adminProductService.productList(pvo);
@@ -49,13 +55,15 @@ public class AdminProductController {
 		pagination.setTotalCount(adminProductService.count(pageRequest));
 		model.addAttribute("pagination", pagination);
 		
+		return "admin/product/productList";
 	}
 	
 	/*************************************
 	 * 상품 등록 폼 출력
 	 ************************************/
 	@RequestMapping(value = "/regProduct", method = RequestMethod.GET)
-	public String regForm(HttpSession session) {
+	public String regForm(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		sessionCheck(request, response, "로그인 후 가능합니다.");
 		log.info("상품 등록 폼 호출 성공");
 		return "admin/product/regProduct";
 	}
@@ -104,7 +112,8 @@ public class AdminProductController {
 	 * 상품 상세 페이지
 	 ***********************************/
 	@RequestMapping(value = "/productDetail", method = RequestMethod.GET)
-	public String productDetail(@ModelAttribute AdminProductVO pvo, Model model) {
+	public String productDetail(@ModelAttribute AdminProductVO pvo, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
+		sessionCheck(request, response, "로그인 후 가능합니다.");
 		log.info("상품 상세 페이지 호출 성공");
 		log.info("p_number = " + pvo.getP_number());
 
@@ -124,7 +133,8 @@ public class AdminProductController {
 	 * 상품 수정 폼
 	 ****************************************/
 	@RequestMapping(value = "/updateProduct", method = RequestMethod.POST)
-	public String updateForm(@ModelAttribute AdminProductVO pvo, Model model) {
+	public String updateForm(@ModelAttribute AdminProductVO pvo, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
+		sessionCheck(request, response, "로그인 후 가능합니다.");
 		log.info("상품 수정 폼 호출 성공");
 
 		log.info("p_number = " + pvo.getP_number());
@@ -214,5 +224,24 @@ public class AdminProductController {
 			url = "/admin/product/productDetail?p_number=" + pvo.getP_number();
 		}
 		return "redirect:" + url;
+	}
+	
+	/****************************
+	 * 로그인 체크
+	 ***************************/
+	private void sessionCheck(HttpServletRequest request, HttpServletResponse response, String message) throws Exception {
+		session = request.getSession();
+		m_id = (String) session.getAttribute("m_id");
+		log.info("m_id : " + m_id);
+		
+		if(m_id == null) {
+			response.setContentType("text/html; charset=euc-kr");
+			PrintWriter out = response.getWriter();
+			out.println("<script type='text/javascript'>");
+			out.println("alert('" + message + "');");
+			out.println("location.href='/admin/login/login'");
+			out.println("</script>");
+			out.flush();
+		}
 	}
 }

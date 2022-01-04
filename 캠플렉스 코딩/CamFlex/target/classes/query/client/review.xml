@@ -29,4 +29,11 @@
 		]]>
 	</select>
 	
+	<!-- 리뷰 카운트 -->
+	<select id="rv_count" resultType="int">
+		SELECT rv_count
+		FROM review_tbl
+		WHERE r_number = #{r_number}
+	</select>
+	
 </mapper>

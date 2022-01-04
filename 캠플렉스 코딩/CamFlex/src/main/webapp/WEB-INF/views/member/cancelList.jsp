@@ -62,8 +62,7 @@
 	</table>
 
 	<!-- 페이징 네비게이션 -->
-	<div align="center">
-	<br>
+	<div>
 		<c:if test="${pagination.prev}">
 			<a href="${pagination.startPage - 1}">&laquo;</a>
 		</c:if>

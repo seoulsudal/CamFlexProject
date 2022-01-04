@@ -72,7 +72,7 @@ function setImage(index){
 	<div class="well">
 		<table border="1">
 			<tr align="center">
-				<td rowspan="2"><div><img id="target" src="/uploadStorage/product/${detail.p_mainphoto}" class="img-rounded"></div><br>
+				<td width="400px" height="500px" rowspan="2"><div><img id="target" src="/uploadStorage/product/${detail.p_mainphoto}" class="img-rounded"></div><br>
 				<br><br>
 				<div>
 				<ul class="views">

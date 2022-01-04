@@ -16,5 +16,6 @@ public interface ReviewDAO {
 	// 카운트
 	public int count(PageRequest pageRequest) throws Exception;
 
+	public Integer rv_count(Integer r_number) throws Exception;
 
 }

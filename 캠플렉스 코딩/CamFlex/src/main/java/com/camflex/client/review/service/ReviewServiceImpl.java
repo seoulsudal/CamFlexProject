@@ -44,5 +44,10 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewDAO.count(pageRequest);
 	}
 
+	@Override
+	public Integer rv_count(Integer r_number) throws Exception {
+		return reviewDAO.rv_count(r_number);
+	}
+
 	
 }
