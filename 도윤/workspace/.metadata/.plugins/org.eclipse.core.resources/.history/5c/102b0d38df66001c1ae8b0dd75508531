@@ -1,5 +1,0 @@
-package com.camflex.admin.chart.service;
-
-public interface AdminChartDAO {
-
-}

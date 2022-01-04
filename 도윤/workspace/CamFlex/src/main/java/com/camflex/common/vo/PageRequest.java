@@ -8,11 +8,31 @@ public class PageRequest {
 	
 	private int page;
 	private int sizePerPage;
+
+	private String m_id;
+	private int p_number;
+
 	
 	// 검색 유형과 검색어를 멤버 변수(필드)로 선언한다.
 	private String searchType;
 	private String keyword;
-	
+
+	public String getM_id() {
+		return m_id;
+	}
+
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
+
+	public int getP_number() {
+		return p_number;
+	}
+
+	public void setP_number(int p_number) {
+		this.p_number = p_number;
+	}
+
 	public PageRequest() {
 		this.page = 1;
 		this.sizePerPage = 10;
