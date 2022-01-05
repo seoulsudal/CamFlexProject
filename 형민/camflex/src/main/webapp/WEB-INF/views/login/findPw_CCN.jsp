@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>인증번호 입력 페이지</title>
+
+
 </head>
 <body>
 	<h2>입력한 이메일로 받은 인증번호를 입력하세요.</h2>
