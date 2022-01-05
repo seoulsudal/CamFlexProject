@@ -7,6 +7,9 @@ import com.camflex.common.vo.PageRequest;
 
 public interface MemberDAO {
 
+	// 회원가입 처리
+	public void insertMember(MemberVO vo) throws Exception;
+		
 	// 예약 취소 리스트 구현
 	public List<MemberVO> cancelList(PageRequest pageRequest) throws Exception;
 

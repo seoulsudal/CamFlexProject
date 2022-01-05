@@ -44,6 +44,7 @@ public class AdminMemberController {
 		log.info("회원 리스트 호출 성공");
 		// 뷰에 페이징 처리를 한 게시글 목록을 전달한다.
 		model.addAttribute("memberList", adminMemberService.memberList(pageRequest));
+		model.addAttribute("id", m_id);
 		
 		// 페이징 네비게이션 정보를 뷰에 전달한다.
 		Pagination pagination = new Pagination();

@@ -15,6 +15,14 @@ public class MemberDAOImpl implements MemberDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
+	private static final String namespace = "com.camflex.client.member.dao.MemberDAO";
+
+	// 회원가입 처리
+	@Override
+	public void insertMember(MemberVO vo) throws Exception {
+		sqlSession.insert(namespace + ".insertMember", vo);
+	}
+	
 	// 예약 취소 리스트 구현
 	@Override
 	public List<MemberVO> cancelList(PageRequest pageRequest) throws Exception {

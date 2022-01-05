@@ -37,7 +37,7 @@ public class InquiryController {
 	// 문의 목록 구현
 	@RequestMapping(value = "/inquiryList", method = RequestMethod.GET)
 	public String inquiryList(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("pgrq")PageRequest pageRequest, Model model) throws Exception {
-		sessionCheck(request, response, "로그인 후 예약 가능합니다."); 
+		sessionCheck(request, response, "로그인 후 이용 가능합니다."); 
 
 		log.info("inquiryList 호출 성공");
 		log.info("접속 ID = " + m_id);
@@ -59,7 +59,7 @@ public class InquiryController {
 	// 문의 글쓰기 구현
 	@RequestMapping(value = "/inquiryWrite", method = RequestMethod.GET)
 	public String inquiryWriteForm(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
-		sessionCheck(request, response, "로그인 후 예약 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다."); 
 
 		log.info("inquiryWriteForm 호출 성공");
 		log.info("접속 ID = " + m_id);
@@ -72,7 +72,7 @@ public class InquiryController {
 	// 문의 글쓰기 처리
 	@RequestMapping(value = "/inquiryWrite", method = RequestMethod.POST)
 	public String inquiryWrite(HttpServletRequest request, HttpServletResponse response, @ModelAttribute InquiryVO ivo, Model model) throws Exception {
-		sessionCheck(request, response, "로그인 후 예약 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다."); 
 
 		log.info("inquiryWrite 호출 성공");
 		log.info("접속 ID = " + m_id);
@@ -95,7 +95,7 @@ public class InquiryController {
 	// 문의 상세보기 구현
 	@RequestMapping(value = "/inquiryDetail", method = RequestMethod.GET)
 	public String inquiryDetail(HttpServletRequest request, HttpServletResponse response, @ModelAttribute InquiryVO ivo, Model model) throws Exception {
-		sessionCheck(request, response, "로그인 후 예약 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다."); 
 		log.info("접속 ID = " + m_id);
 
 		log.info("inquiryDetails 호출 성공");

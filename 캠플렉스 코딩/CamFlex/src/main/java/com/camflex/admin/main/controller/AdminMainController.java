@@ -39,6 +39,7 @@ public class AdminMainController {
 		
 		log.info("메인 페이지 호출 성공");
 		
+		model.addAttribute("id", m_id);
 		
 		// 오늘 날짜 기준 가입한 회원 수 출력
 		List<MemberVO> todayMember = adminMainService.mainList(mvo);

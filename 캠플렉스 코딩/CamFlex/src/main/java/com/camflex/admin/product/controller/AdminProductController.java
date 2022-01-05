@@ -46,7 +46,7 @@ public class AdminProductController {
 		// List<ProductVO> productList = adminProductService.productList(pvo);
 
 		model.addAttribute("productList", adminProductService.productList(pageRequest));
-
+		model.addAttribute("id", m_id);
 		//model.addAttribute("data", pvo);
 
 		// 페이징 네비게이션 정보를 뷰에 전달한다.
@@ -62,9 +62,12 @@ public class AdminProductController {
 	 * 상품 등록 폼 출력
 	 ************************************/
 	@RequestMapping(value = "/regProduct", method = RequestMethod.GET)
-	public String regForm(HttpServletRequest request, HttpServletResponse response)throws Exception {
+	public String regForm(HttpServletRequest request, HttpServletResponse response, Model model)throws Exception {
 		sessionCheck(request, response, "로그인 후 가능합니다.");
 		log.info("상품 등록 폼 호출 성공");
+		
+		model.addAttribute("id", m_id);
+		
 		return "admin/product/regProduct";
 	}
 
@@ -125,6 +128,7 @@ public class AdminProductController {
 		}
 
 		model.addAttribute("detail", detail);
+		model.addAttribute("id", m_id);
 
 		return "admin/product/productDetail";
 	}
@@ -143,6 +147,7 @@ public class AdminProductController {
 		update = adminProductService.productDetail(pvo);
 
 		model.addAttribute("update", update);
+		model.addAttribute("id", m_id);
 
 		return "admin/product/updateProduct";
 	}

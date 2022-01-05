@@ -51,7 +51,7 @@ $(function() {
 		<thead>
 			<tr>
 				<td align="center">예약번호</td>
-				<td align="center">상품명</td>
+				<td align="center">상품번호</td>
 				<td align="center">금액</td>
 				<td align="center">예약 시작일</td>
 				<td align="center">예약 종료일</td>
@@ -69,15 +69,7 @@ $(function() {
 					<c:forEach var="past" items="${pastList}">
 						<tr data-num1="${past.p_number}" data-num2="${past.r_number}" data-num3="${past.rv_number}">
 							<td align="center">${past.r_number}</td>
-							<td align="center"><c:if test="${past.p_number eq '1'}">오토A</c:if>
-								<c:if test="${past.p_number eq '41'}">오토B</c:if>
-								<c:if test="${past.p_number eq '42'}">글램핑A</c:if>
-								<c:if test="${past.p_number eq '43'}">글램핑B</c:if>
-								<c:if test="${past.p_number eq '44'}">글램핑C</c:if>
-								<c:if test="${past.p_number eq '45'}">글램핑D</c:if>
-								<c:if test="${past.p_number eq '46'}">차박A</c:if>
-								<c:if test="${past.p_number eq '47'}">차박B</c:if>
-							</td>
+							<td align="center">${past.p_number}</td>
 							<td align="center">${past.r_price}</td>
 							<td align="center">${past.r_startDate}</td>
 							<td align="center">${past.r_endDate}</td>

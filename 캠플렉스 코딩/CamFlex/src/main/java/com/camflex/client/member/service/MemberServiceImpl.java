@@ -17,6 +17,12 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 
+	// 회원가입 처리
+	@Override
+	public void insertMember(MemberVO vo) throws Exception {
+		memberDAO.insertMember(vo);
+	}
+
 	// 예약 취소 리스트 구현
 	@Override
 	public List<MemberVO> cancelList(PageRequest pageRequest) throws Exception {
@@ -34,5 +40,5 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> pastList(PageRequest pageRequest) throws Exception {
 		return memberDAO.pastList(pageRequest);
 	}
-	
+
 }

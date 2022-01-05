@@ -27,7 +27,7 @@
 		<ul class="nav navbar-nav navbar-right">
 			<c:if test="${empty id}">
 			<li><a href="/login/login">로그인</a></li>
-			<li><a href="/">회원가입</a></li>
+			<li><a href="/member/join">회원가입</a></li>
 			</c:if>
 			<c:if test="${!empty id}">
 			<li><a href="/login/logout">로그아웃</a></li>

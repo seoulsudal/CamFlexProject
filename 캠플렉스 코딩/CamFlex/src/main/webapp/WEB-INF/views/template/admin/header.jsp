@@ -26,9 +26,13 @@
 			<li><a href="/admin/notice/noticeList">게시판 관리</a></li>
 			<li><a href="/admin/product/productList">상품 관리</a></li>
 		</ul>
-		<!-- <ul class="nav navbar-nav navbar-right">
-			<li><a href="/">로그인</a></li>
-			<li><a href="/">회원가입</a></li>
-		</ul> -->
+		<ul class="nav navbar-nav navbar-right">
+			<c:if test="${empty id}">
+			<li><a href="/admin/login/login">로그인</a></li>
+			</c:if>
+			<c:if test="${!empty id}">
+			<li><a href="/admin/login/logout">로그아웃</a></li>
+			</c:if>
+		</ul>
 	</div>
 </div>

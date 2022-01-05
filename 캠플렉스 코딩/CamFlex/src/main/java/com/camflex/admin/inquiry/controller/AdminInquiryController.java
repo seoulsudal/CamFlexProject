@@ -44,6 +44,7 @@ public class AdminInquiryController {
 		// List<InquiryVO> inquiryList = adminInquiryService.inquiryList(ivo);
 		
 		model.addAttribute("inquiryList", adminInquiryService.inquiryList(pageRequest));
+		model.addAttribute("id", m_id);
 		
 		// 페이징 네비게이션 정보를 뷰에 전달한다.
 		Pagination pagination = new Pagination();
@@ -68,6 +69,7 @@ public class AdminInquiryController {
 		detail = adminInquiryService.inquiryDetail(ivo);
 		
 		model.addAttribute("detail", detail);
+		model.addAttribute("id", m_id);
 		
 		return "admin/inquiry/inquiryDetail";
 	}
@@ -84,6 +86,7 @@ public class AdminInquiryController {
 		reply = adminInquiryService.inquiryDetail(ivo);
 		
 		model.addAttribute("reply", reply);
+		model.addAttribute("id", m_id);
 		
 		return "admin/inquiry/replyInquiry";
 	}
@@ -119,6 +122,7 @@ public class AdminInquiryController {
 		reply = adminInquiryService.inquiryDetail(ivo);
 		
 		model.addAttribute("reply", reply);
+		model.addAttribute("id", m_id);
 		
 		return "admin/inquiry/updateReplyInquiry";
 	}

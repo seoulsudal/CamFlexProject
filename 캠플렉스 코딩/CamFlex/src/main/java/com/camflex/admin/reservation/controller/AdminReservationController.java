@@ -48,6 +48,7 @@ public class AdminReservationController {
 		
 		// 뷰에 페이징 처리를 한 예약 목록을 전달한다.
 		model.addAttribute("reservationList", adminReservationService.reservationList(pageRequest));
+		model.addAttribute("id", m_id);
 		
 		// 페이징 네비게이션 정보를 뷰에 전달한다.
 		Pagination pagination = new Pagination();
@@ -79,6 +80,7 @@ public class AdminReservationController {
 		// List<ReservationVO> newRsvList = adminReservationService.newRsvList(rvo);
 		
 		model.addAttribute("newRsvList", adminReservationService.newRsvList(pageRequest));
+		model.addAttribute("id", m_id);
 		
 		// 페이징 네비게이션 정보를 뷰에 전달한다.
 		Pagination pagination = new Pagination();
@@ -161,6 +163,8 @@ public class AdminReservationController {
 		//List<ReservationVO>cancelList = adminReservationService.cancelList(rvo);
 		
 		model.addAttribute("cancelList", adminReservationService.cancelList(pageRequest));
+		model.addAttribute("id", m_id);
+		
 		// 페이징 네비게이션 정보를 뷰에 전달한다.
 		Pagination pagination = new Pagination();
 		pagination.setPageRequest(pageRequest);

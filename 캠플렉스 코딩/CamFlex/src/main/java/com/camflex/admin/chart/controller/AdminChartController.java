@@ -37,6 +37,8 @@ public class AdminChartController {
 		sessionCheck(request, response, "로그인 후 가능합니다.");
 		log.info("차트페이지 호출 성공");
 
+		model.addAttribute("id", m_id);
+		
 		// 캠핑존별
 		Map<String, Integer> campingZone = adminChartService.campingZone();
 		ChartMake.pieChart(request, campingZone);
