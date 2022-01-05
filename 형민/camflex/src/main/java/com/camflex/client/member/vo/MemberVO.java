@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class MemberVO {
 	private String m_id = "";// 아이디
+	
 	private String m_pw = "";// 비밀번호
 	private String m_name = "";// 회원 이름
 	private String m_phone = "";// 회원 전화번호
