@@ -19,10 +19,10 @@
 	<!-- 상품 기본 조회 -->
 	<select id="productList" parameterType="product" resultMap="productVO">
 		SELECT p_number, p_type, p_name, p_date
-		FROM (SELECT p_number, p_type, p_name, p_date, rownum as rnum
-		FROM product_tbl)
-		WHERE rnum between #{sizePerPage}*#{page}-9 AND #{sizePerPage}*#{page}
-		ORDER BY p_number desc
+		FROM (SELECT p_number, p_type, p_name, p_date, ROWNUM AS RNUM
+			  FROM product_tbl
+			  ORDER BY p_number DESC)
+		WHERE RNUM between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}
 	</select>
 
 	<!-- 상품 등록 -->

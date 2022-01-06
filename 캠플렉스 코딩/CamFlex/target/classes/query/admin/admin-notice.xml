@@ -14,9 +14,9 @@
 	<select id="noticeList" parameterType="notice" resultMap="noticeVO">
 		SELECT n_number, n_writer, n_title, n_date
 		FROM (SELECT n_number, n_writer, n_title, n_date, rownum as rnum
-		FROM notice_tbl)
-		WHERE rnum between #{sizePerPage}*#{page}-9 AND #{sizePerPage}*#{page}
-		ORDER BY n_number desc
+			  FROM notice_tbl
+			  ORDER BY n_number DESC)
+		WHERE rnum between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}
 	</select>
 	
 	<!-- 글 등록 -->

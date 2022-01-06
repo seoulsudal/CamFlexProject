@@ -23,26 +23,14 @@
 	<!-- 회원 리스트 -->
 	<select id="memberList" parameterType="member" resultType="member">
 		<![CDATA[
-		SELECT
-		m_number,
-		m_id,
-		m_name,
-		m_phone,
-		m_date
-		FROM (SELECT m_number,
-						m_id,
-						m_name,
-						m_phone,
-						m_date,
-						rownum as rnum
-				FROM member_tbl) 
+		SELECT m_number, m_id, m_name, m_phone, m_date 
+		FROM (SELECT m_number, m_id, m_name, m_phone, m_date, rownum as rnum
+			  FROM member_tbl
+			  ORDER BY m_date) 
 		WHERE m_number > 0
 		]]>
 		<include refid="total_list"></include>
 		<include refid="search"></include>
-		<![CDATA[
-		ORDER BY m_date
-		]]>
 	</select>
 	
 	<!-- 회원 전체 명수를 조회한다. -->

@@ -5,12 +5,12 @@
 	<select id="inquiryList" parameterType="inquiry" resultType="inquiry">
 		<![CDATA[
 		SELECT i_number, parentno, i_kinds, m_id, i_title, i_date
-		FROM (SELECT i_number, parentno, i_kinds, m_id, i_title, i_date, rownum as rnum
-			 FROM inquiry_tbl)
-		WHERE rnum between #{sizePerPage}*#{page}-9 AND #{sizePerPage}*#{page}
-		START WITH parentno = 0
-		CONNECT BY PRIOR i_number = parentno
-		ORDER SIBLINGS BY i_number DESC
+		FROM (SELECT i_number, parentno, i_kinds, m_id, i_title, i_date, ROWNUM AS RNUM
+			  FROM inquiry_tbl
+			  START WITH parentno = 0
+			  CONNECT BY PRIOR i_number = parentno
+			  ORDER SIBLINGS BY i_number DESC)
+		WHERE RNUM between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}
 		]]>
 	</select>
 	

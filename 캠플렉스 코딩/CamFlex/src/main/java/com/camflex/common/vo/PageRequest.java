@@ -93,24 +93,32 @@ public class PageRequest {
 
 	// 멤버 변수를 활용하여 다양한 형태의 쿼리 파라미터를 생성한다(변경 추가).
 	public String toUriString() {
-		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", this.page)
-				.queryParam("size", this.sizePerPage).queryParam("searchType", this.searchType)
-				.queryParam("keyword", this.keyword).build();
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.queryParam("page", this.page)
+				.queryParam("size", this.sizePerPage)
+				.queryParam("searchType", this.searchType)
+				.queryParam("keyword", this.keyword)
+				.build();
 
 		return uriComponents.toUriString();
 	}
 
 	public String toUriString(int page) {
-		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", this.page)
-				.queryParam("size", this.sizePerPage).queryParam("searchType", this.searchType)
-				.queryParam("keyword", this.keyword).build();
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.queryParam("page", this.page)
+				.queryParam("size", this.sizePerPage)
+				.queryParam("searchType", this.searchType)
+				.queryParam("keyword", this.keyword)
+				.build();
 
 		return uriComponents.toUriString();
 	}
 
 	public String toUriStringByPage(int page) {
-		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
-				.queryParam("size", this.sizePerPage).build();
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.queryParam("page", page)
+				.queryParam("size", this.sizePerPage)
+				.build();
 
 		return uriComponents.toUriString();
 	}
