@@ -9,7 +9,7 @@
 <body>
 <div align="center">
 	<img src="/graph/pieChart.jpg"/><br><br>
-	<img src="/graph/barChart.jpg"/><br><br>
+	<img src="/graph/barChart1.jpg"/><br><br>
 	<img src="/graph/barChart2.jpg"/>
 </div>
 </body>

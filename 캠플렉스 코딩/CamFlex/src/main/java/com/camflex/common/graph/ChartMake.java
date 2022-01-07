@@ -26,13 +26,13 @@ public class ChartMake {
 
 	private static Logger log = LoggerFactory.getLogger(ChartMake.class);
 	
-	public static void barChart(HttpServletRequest request, Map<String, Integer>resultMap) {
+	public static void barChart1(HttpServletRequest request, Map<String, Integer>resultMap) {
 		String docRoot = request.getSession().getServletContext().getRealPath("/graph");
 		FileUploadUtil.makeDir(docRoot);
 		
 		log.info("업로드할 파일 경로(docRoot) : " + docRoot);
 		
-		File file = new File(docRoot + "/barChart.jpg");
+		File file = new File(docRoot + "/barChart1.jpg");
 		FileOutputStream fos = null;
 		
 		try {

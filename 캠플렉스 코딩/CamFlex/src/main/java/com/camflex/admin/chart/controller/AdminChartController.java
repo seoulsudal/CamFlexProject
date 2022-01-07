@@ -45,7 +45,7 @@ public class AdminChartController {
 
 		// 매출
 		Map<String, Integer> monthlySales = adminChartService.monthlySales();
-		ChartMake.barChart(request, monthlySales);
+		ChartMake.barChart1(request, monthlySales);
 
 		// 취소 사유
 		Map<String, Integer> cancel = adminChartService.cancel();

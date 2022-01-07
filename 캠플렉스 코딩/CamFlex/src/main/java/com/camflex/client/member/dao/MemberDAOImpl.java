@@ -19,8 +19,8 @@ public class MemberDAOImpl implements MemberDAO {
 
 	// 회원가입 처리
 	@Override
-	public void insertMember(MemberVO vo) throws Exception {
-		sqlSession.insert(namespace + ".insertMember", vo);
+	public int insertMember(MemberVO mvo) throws Exception {		
+		return sqlSession.insert(namespace + ".insertMember", mvo);
 	}
 	
 	// 예약 취소 리스트 구현

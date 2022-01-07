@@ -1,79 +1,89 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/common.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <script type="text/javascript">
-	$(function() {
-		$("#memberInsert").click(function() {
-			$("#insertMember").attr({
-				"method":"POST",
-				"action":"/member/join"
-			});
-			$("#insertMember").submit();
-		})
-	})
+
+$(function(){
+	$("#registerBtn").click(function(){
+		if(!chkSubmit($('#m_id'), "아이디를")) return;
+		else if(!chkSubmit($('#m_pw'), "비밀번호를")) return;
+		else if(!chkSubmit($('#m_name'), "이름을"))return;
+		else if(!chkSubmit($('#m_birth'), "생년월일을"))return;
+		else if(!chkSubmit($('#m_phone'), "전화번호를"))return;
+		else{
+		if(confirm('등록을 진핼할까요?')){	
+		$("#regForm").attr({
+			"method":"POST",
+			"action":"/member/insertMember"
+		});	
+		$("#regForm").submit();
+		
+		}
+		}
+	});	
+	$("#homeBtn").on("click", function(){
+		self.location = "/";
+	});
+});
+
+function chkSubmit(item, msg){
+	if(item.val().replace(/\s/g,"") == ""){
+		alert(msg + "입력해 주세요.");
+		item.val("");
+		item.focus();
+		return false();
+	}else{
+		return true;
+	}
+}
 </script>
 </head>
 <body>
-	<h2>회원가입</h2>
-	
-	<form name="insertMember" id="insertMember">
-		<!-- 아이디 -->
-		<div>
-			<label id="userInfo">아이디</label>
-			<input type="text" id="m_id" name="m_id" placeholder="email형식으로 입력" />
-		</div>
-		<p></p>
-
-		<!-- 비밀번호 -->
-		<div>
-			<label id="userInfo">비밀번호</label>
-			<input type="password" id="m_pw" name="m_pw" placeholder="영문/숫자 8~20자 (특수문자x)" maxlength="20"/>
-		</div>
-		<p></p>
-
-		<!-- 비밀번호 재확인 -->
-		<!-- <div>
-			<label id="userInfo">비밀번호 재확인</label>
-			<input type="password" id="m_Pw_check" name="m_Pw_check" placeholder="위 비밀번호와 동일하게 입력" maxlength="20"/>
-		</div>
-		<p></p> -->
-
-		<!-- 이름 -->
-		<div>
-			<label id="userInfo">이름</label>
-			<input type="text" id="m_name" name="m_name" placeholder="특수문자 or 숫자x 50자 미만" maxlength="50"/>
-		</div>
-		<p></p>
-
-		<!-- 생년월일 -->
-		<div>
-			<label id="userInfo">생년월일</label>
-			<input type="text" id="m_birth" name="m_birth" placeholder="생년월일 숫자 8자리" maxlength="8"/>
-		</div>
-		<p></p>
-
-		<!-- 전화번호 -->
-		<div>
-			<label id="userInfo">전화번호</label>
-			<input type="text" id="m_phone" name="m_phone" placeholder="(-)를 제외한 11자" maxlength="11"/>
-		</div>
-		<p></p>
-
-		<div>
-			<input type="button" id="memberInsert" value="회원가입" />
-		</div>
-	</form>
+<div>
+	<div align="center" ><h3>회원 등록</h3></div>
+	<div align="center">
+		<form id="regForm" name="regForm">
+			<table class="table" border="1">
+				<colgroup>
+					<col width="17%" />
+					<col width="83%" />
+				</colgroup>
+				<tr>
+					<td>ID</td>
+					<td><input type="text" class="form-control" name="m_id" id="m_id" /></td>
+				</tr>
+				<tr>
+					<td>패스워드</td>
+					<td><input type="password" class="form-control" name="m_pw" id="m_pw" /></td>
+				</tr>
+				<tr>
+					<td>이름</td>
+					<td><input type="text" class="form-control" name="m_name" id="m_name" /></td>
+				</tr>
+				<tr>
+					<td>생년월일</td>
+					<td><input type="date" class="form-control" name="m_birth" id="m_birth" /></td>
+				</tr>
+				<tr>
+					<td>전화번호</td>
+					<td><input type="text" class="form-control" name="m_phone" id="m_phone" /></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div align="right">
+		<input type="button" value="등록" id="registerBtn" class="btn btn-default">
+	</div>
+</div>
 </body>
 </html>

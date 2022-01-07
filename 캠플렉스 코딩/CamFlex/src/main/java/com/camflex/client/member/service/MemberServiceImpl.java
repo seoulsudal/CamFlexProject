@@ -19,8 +19,16 @@ public class MemberServiceImpl implements MemberService {
 
 	// 회원가입 처리
 	@Override
-	public void insertMember(MemberVO vo) throws Exception {
-		memberDAO.insertMember(vo);
+	public int insertMember(MemberVO mvo) throws Exception {
+		int result = 0;
+		
+		try {
+			result = memberDAO.insertMember(mvo);
+		}catch(Exception e) {
+			e.printStackTrace();
+			result = 0;
+		}
+		return result;
 	}
 
 	// 예약 취소 리스트 구현

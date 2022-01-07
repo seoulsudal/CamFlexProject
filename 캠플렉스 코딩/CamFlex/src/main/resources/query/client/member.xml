@@ -5,10 +5,10 @@
 	<!-- 회원가입 처리 -->
 	<insert id="insertMember" parameterType="member">
 		<selectKey keyProperty="m_number" resultType="int" order="BEFORE">
-			SELECT member_tbl_seq.nextval FROM DUAL
+			SELECT member_tbl_seq.nextval FROM dual
 		</selectKey>
 		INSERT INTO member_tbl(m_id, m_pw, m_name, m_birth, m_phone, m_number)
-		VALUES(#{m_id}, #{m_pw}, #{m_name}, #{m_birth}, #{m_phone}, #{m_number})
+		VALUES(#{m_id}, #{m_pw, jdbcType=VARCHAR}, #{m_name, jdbcType=VARCHAR}, #{m_birth}, #{m_phone, jdbcType=VARCHAR}, #{m_number})
 	</insert>
 	
 	<!-- 예약 취소 리스트 -->

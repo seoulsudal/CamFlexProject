@@ -46,15 +46,13 @@ public class MemberController {
 	}
 
 	// 회원가입 처리
-	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public ModelAndView join(@ModelAttribute MemberVO mvo, Model model) throws Exception {
-		log.info("join POST 성공");
+	@RequestMapping(value = "/insertMember", method = RequestMethod.POST)
+	public String insertMember(@ModelAttribute MemberVO mvo, Model model)throws Exception{
+		log.info("회원 등록 처리 호출 성공");
 		
 		memberService.insertMember(mvo);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/login/login");
 		
-		return mav;
+		return "redirect:/";
 	}
 
 	// 지난 예약 리스트 구현

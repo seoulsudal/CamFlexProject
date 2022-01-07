@@ -64,4 +64,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/login/{1}.jsp"/>	
 	</definition>
 	
+	<definition name="member/join" extends="content2">
+		<put-attribute name="title" value="로그인"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/join.jsp"/>	
+	</definition>
+	
 </tiles-definitions>
