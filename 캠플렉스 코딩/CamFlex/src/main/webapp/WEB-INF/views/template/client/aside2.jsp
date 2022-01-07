@@ -5,9 +5,9 @@
 <ul class="nav nav-sidebar">
 	<li class="active"><a href="#">MENU<span class="sr-only">(current)</span></a></li>
 	<br>
-	<li><a href="/">내 정보</a></li>
+	<li><a href="/member/memberDate">내 정보</a></li>
 	<br>
-	<li><a href="/">내 실시간 예약 리스트</a></li>
+	<li><a href="/member/reserveList">내 실시간 예약 리스트</a></li>
 	<br>
 	<li><a href="/member/pastList">내 지난 예약 리스트</a></li>
 	<br>

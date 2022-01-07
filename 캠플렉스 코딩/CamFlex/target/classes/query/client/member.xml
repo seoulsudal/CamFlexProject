@@ -3,13 +3,65 @@
 <mapper namespace="com.camflex.client.member.dao.MemberDAO">
 
 	<!-- 회원가입 처리 -->
-	<insert id="insertMember" parameterType="member">
-		<selectKey keyProperty="m_number" resultType="int" order="BEFORE">
-			SELECT member_tbl_seq.nextval FROM dual
-		</selectKey>
-		INSERT INTO member_tbl(m_id, m_pw, m_name, m_birth, m_phone, m_number)
-		VALUES(#{m_id}, #{m_pw, jdbcType=VARCHAR}, #{m_name, jdbcType=VARCHAR}, #{m_birth}, #{m_phone, jdbcType=VARCHAR}, #{m_number})
+	<insert parameterType="member" id="insertMember">
+		<selectKey order="BEFORE" resultType="int"
+			keyProperty="m_number">SELECT member_tbl_seq.nextval FROM dual </selectKey>
+		INSERT INTO member_tbl(m_id, m_pw, m_name, m_birth, m_phone,
+		m_number)VALUES(#{m_id}, #{m_pw, jdbcType=VARCHAR}, #{m_name,
+		jdbcType=VARCHAR}, #{m_birth}, #{m_phone, jdbcType=VARCHAR},
+		#{m_number})
 	</insert>
+
+	<!-- 내 정보 보기 -->
+	<select id="readMember" resultType="member">
+		select *
+		from member_tbl
+		where
+		m_id=#{m_id}
+	</select>
+
+	<!-- 회원정보 수정 -->
+	<update id="MemberModify">
+		update member_tbl
+		set
+		m_phone=#{m_phone}
+		where
+		m_id=#{m_id}
+	</update>
+
+
+	<!-- 비밀번호 체크 -->
+	<select id="PwCheck" resultType="member">
+		select *
+		from member_tbl
+		where
+		m_pw=#{m_pw}
+	</select>
+
+	<!-- 예약 정보 -->
+	<select id="reserveList" resultType="reservation">
+	 <![CDATA[
+		select
+		 m_id,r_number, p_number, r_startdate, r_enddate, r_price, r_state
+		from (select m_id,r_number, p_number, r_startdate, r_enddate, r_price, r_state, rownum as rnum
+				from reservation_tbl)
+		where rnum between #{sizePerPage}*#{page}-9 AND #{sizePerPage}*#{page} AND m_id=#{m_id} AND r_state = '대기'
+		]]>
+	</select>
+
+	<!-- 예약 취소 폼 -->
+	<!-- <select id="reserveCancel" resultType="reservation"> select m_id, r_number, 
+		r_price from reservation_tbl where m_id = #{m_id} AND r_number = #{r_number} 
+		</select> -->
+
+	<!-- 예약 취소 처리 -->
+	<update id="Cancel">
+		<![CDATA[
+		update Reservation_tbl 
+		set r_state='취소', r_upddate=sysdate, r_cancel=#{r_cancel}
+		where r_number= #{r_number} 
+		]]>
+	</update>
 	
 	<!-- 예약 취소 리스트 -->
 	<select id="cancelList" parameterType="reservation" resultType="reservation">
@@ -20,7 +72,7 @@
 			  ORDER BY r_number DESC)
 		WHERE RNUM between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}
 	</select>
-	
+	<select id=""></select>
 	<!-- 수를 조회한다. -->
 	<select id="count" resultType="int">
 		<![CDATA[
