@@ -47,7 +47,7 @@ function cancelBtn(r_number){
 		<thead>
 			<tr>
 				<td align="center">예약번호</td>
-				<td align="center">상품명</td>
+				<td align="center">상품번호</td>
 				<td align="center">아이디</td>
 				<td align="center">금액</td>
 				<td align="center">예약 신청일</td>
@@ -68,15 +68,7 @@ function cancelBtn(r_number){
 					<c:forEach var="rs" items="${newRsvList}">
 						<tr data-num="${rs.r_number}">
 							<td align="center">${rs.r_number}</td>
-							<td align="center"><c:if test="${rs.p_number eq '1'}">오토A</c:if>
-								<c:if test="${rs.p_number eq '41'}">오토B</c:if>
-								<c:if test="${rs.p_number eq '42'}">글램핑A</c:if>
-								<c:if test="${rs.p_number eq '43'}">글램핑B</c:if>
-								<c:if test="${rs.p_number eq '44'}">글램핑C</c:if>
-								<c:if test="${rs.p_number eq '45'}">글램핑D</c:if>
-								<c:if test="${rs.p_number eq '46'}">차박A</c:if>
-								<c:if test="${rs.p_number eq '47'}">차박B</c:if>
-							</td>
+							<td align="center">${rs.p_number}</td>
 							<td align="center">${rs.m_id}</td>
 							<td align="center">${rs.r_price}</td>
 							<td align="center"><fmt:formatDate value="${rs.r_apllicationDate}" pattern="yyyy/MM/dd" /></td>

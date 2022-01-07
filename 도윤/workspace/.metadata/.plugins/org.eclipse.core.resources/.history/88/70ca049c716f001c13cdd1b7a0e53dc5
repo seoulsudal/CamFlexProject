@@ -1,0 +1,5 @@
+package com.camflex.client.review.vo;
+
+public class ReviewVO {
+
+}

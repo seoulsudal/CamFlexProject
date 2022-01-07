@@ -13,7 +13,9 @@
 	<!-- 공지사항 기본 전체 조회 -->
 	<select id="noticeList" parameterType="notice" resultMap="noticeVO">
 		SELECT n_number, n_writer, n_title, n_date
-		FROM notice_tbl
+		FROM (SELECT n_number, n_writer, n_title, n_date, rownum as rnum
+		FROM notice_tbl)
+		WHERE rnum between #{sizePerPage}*#{page}-9 AND #{sizePerPage}*#{page}
 		ORDER BY n_number desc
 	</select>
 	

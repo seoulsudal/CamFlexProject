@@ -1,0 +1,35 @@
+package com.camflex.common.vo;
+
+import com.camflex.admin.product.vo.ProductVO;
+import com.camflex.client.reservation.vo.ReservationVO;
+
+public class CommonVO {
+
+	private ReservationVO reservation;
+	private ProductVO product;
+	
+	
+	
+	public CommonVO() {
+		super();
+	}
+	public CommonVO(ReservationVO reservation, ProductVO product) {
+		super();
+		this.reservation = reservation;
+		this.product = product;
+	}
+	public ReservationVO getReservation() {
+		return reservation;
+	}
+	public void setReservation(ReservationVO reservation) {
+		this.reservation = reservation;
+	}
+	public ProductVO getProduct() {
+		return product;
+	}
+	public void setProduct(ProductVO product) {
+		this.product = product;
+	}
+	
+	
+}

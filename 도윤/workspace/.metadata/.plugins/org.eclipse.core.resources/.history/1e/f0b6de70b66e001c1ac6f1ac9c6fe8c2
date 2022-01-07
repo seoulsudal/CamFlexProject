@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.client.member.dao.MemberDAO">
+	<insert id="regMember" parameterType="member">
+		<selectKey keyProperty="m_number" resultType="int" order="BEFORE">
+			SELECT member_tbl_seq.nextval FROM DUAL
+		</selectKey>
+		INSERT INTO member_tbl(m_number, m_id, m_pw, m_name, m_birth, m_phone)
+		VALUES(#{m_number}, #{m_id}, #{m_pw}, #{m_name}, #{m_birth}, #{m_phone})
+	</insert>
+</mapper>

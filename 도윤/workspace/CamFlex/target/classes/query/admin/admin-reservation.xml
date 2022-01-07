@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.camflex.admin.reservation.dao.AdminReservationDAO">
+
 	<!-- 검색 조건울 나타내는 쿼리 조각 -->
 	<sql id="search">
 		<if test="searchType != null">
@@ -30,6 +31,7 @@
 		FROM (SELECT r_number, p_number, m_id, r_price, r_apllicationdate, r_startdate, r_enddate, r_state, r_upddate, rownum as rnum
 				FROM reservation_tbl)
 		WHERE r_state = '확정'
+		
 		]]>
 		<include refid="total_list"></include>
 		<include refid="search"></include>
@@ -42,11 +44,9 @@
 	<select id="newRsvList" parameterType="reservation" resultType="reservation">
 		<![CDATA[
 		SELECT r_number, p_number, m_id, r_price, r_apllicationdate, r_startdate, r_enddate, r_state
-		FROM reservation_tbl
-		WHERE r_number > 0 AND r_state = '대기'
-		]]>
-		
-		<![CDATA[
+		FROM (SELECT r_number, p_number, m_id, r_price, r_apllicationdate, r_startdate, r_enddate, r_state, rownum as rnum
+		FROM reservation_tbl)
+		WHERE rnum between #{sizePerPage}*#{page}-9 AND #{sizePerPage}*#{page} AND r_state = '대기'
 		ORDER BY r_apllicationdate desc
 		]]>
 	</select>
@@ -61,10 +61,13 @@
 	
 	<!-- 예약 취소 리스트 -->
 	<select id="cancelList" parameterType="reservation" resultType="reservation">
-		SELECT r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel
-		FROM reservation_tbl
-		WHERE r_state = '취소'
+		<![CDATA[
+		SELECT r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel, r_state
+		FROM (SELECT r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel, r_state, rownum as rnum
+		FROM reservation_tbl)
+		WHERE rnum between #{sizePerPage}*#{page}-9 AND #{sizePerPage}*#{page} AND r_state = '취소'
 		ORDER BY r_upddate desc
+		]]>
 	</select>
 	
 	<!-- 예약 전체 명수를 조회한다. -->

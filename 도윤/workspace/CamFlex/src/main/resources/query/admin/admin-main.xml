@@ -5,7 +5,7 @@
 	<select id="mainList" resultType="int">
 		select count(*) as mainList
 		from member_tbl
-		where to_char(m_date, 'yyyyMMdd') = to_char(sysdate, 'yyyymmdd')
+		where to_char(m_date, 'yyyyMMdd') = to_char(sysdate, 'yyyymmdd') AND m_number > 0
 	</select>
 	
 	<!-- 신규 예약 대기자 수 -->
