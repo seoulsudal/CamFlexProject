@@ -157,7 +157,7 @@ public class AdminInquiryController {
 			PrintWriter out = response.getWriter();
 			out.println("<script type='text/javascript'>");
 			out.println("alert('" + message + "');");
-			out.println("location.href='/admin/login'");
+			out.println("location.href='/admin/login/login'");
 			out.println("</script>");
 			out.flush();
 		}

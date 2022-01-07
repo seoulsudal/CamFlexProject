@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.admin.reservation.dao.AdminReservationDAO">
+	<resultMap type="com.camflex.client.reservation.vo.ReservationVO" id="reservation">
+		<id property="r_number" column="r_number"/>
+		<id property="m_id" column="m_id"/>
+		<id property="p_number" column="p_number"/>
+		<id property="r_startDate" column="r_startdate"/>
+		<id property="r_endDate" column="r_enddate"/>
+		<id property="r_price" column="r_price"/>
+		<id property="r_state" column="r_state"/>
+		<id property="c_agree" column="c_agree"/>
+		<id property="p_u_agree" column="p_u_agree"/>
+		<id property="p_i_agree" column="p_i_agree"/>
+		<id property="a_agree" column="a_agree"/>
+		<id property="r_apllicationDate" column="r_apllicationdate"/>
+		<id property="r_updDate" column="r_upddate"/>
+		<id property="r_cancel" column="r_cancel"/>
+	</resultMap>
+	
+	<resultMap type="com.camflex.admin.product.vo.ProductVO" id="product">
+		<id property="p_number" column="p_number"/>
+		<id property="p_type" column="p_type"/>
+		<id property="p_name" column="p_name"/>
+		<id property="p_price" column="p_price"/>
+		<id property="p_information" column="p_information"/>
+		<id property="p_mainphoto" column="p_mainphoto"/>
+		<id property="p_photo1" column="p_photo1"/>
+		<id property="p_photo2" column="p_photo2"/>
+		<id property="p_photo3" column="p_photo3"/>
+		<id property="p_date" column="p_date"/>
+	</resultMap>
+	<resultMap type="com.camflex.common.vo.CommonVO" id="common">
+		<collection property="reservation" resultMap="ReservationVO" />
+		<collection property="product" resultMap="ProductVO" />
+	</resultMap>
+	<!-- 검색 조건울 나타내는 쿼리 조각 -->
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 'm'.toString()">
+				and m_id like concat('%', concat(#{keyword}, '%'))
+			</if>
+			<if test="searchType == 'd'.toString()">
+				and (r_startDate like concat('%', concat(#{keyword}, '%'))
+				or r_endDate like concat('%', concat(#{keyword}, '%'))
+				or r_upddate like concat('%', concat(#{keyword}, '%')))
+			</if>
+			<if test="searchType == 't'.toString()">
+				and (r_startdate like concat('%', concat(sysdate, '%')))
+			</if>
+		</if>
+	</sql>
+	<sql id="total_list">
+		<if test="searchType == null">
+			and rnum between #{sizePerPage}*#{page}-9 and #{sizePerPage}*#{page}
+		</if>
+	</sql>
+	
+	<!-- 예약 리스트 -->
+	<select id="reservationList" resultType="reservation">
+		<![CDATA[
+		SELECT r.r_number, p.p_name, r.m_id, r.r_price, r.r_apllicationdate, r.r_startdate, r.r_enddate, r.r_state, r.r_upddate, rownum as rnum
+		FROM reservation_tbl r, product_tbl p
+		WHERE r.p_number = p.p_number AND r_state = '확정'
+		]]>
+		<include refid="total_list"></include>
+		<include refid="search"></include>
+		<![CDATA[
+		ORDER BY r_upddate desc, r_number desc
+		]]>
+	</select>
+	
+	<!-- 신규 예약 리스트 -->
+	<select id="newRsvList" parameterType="reservation" resultType="reservation">
+		<![CDATA[
+		SELECT r_number, p_number, m_id, r_price, r_apllicationdate, r_startdate, r_enddate, r_state
+		FROM (SELECT r_number, p_number, m_id, r_price, r_apllicationdate, r_startdate, r_enddate, r_state, rownum as rnum
+		FROM reservation_tbl)
+		WHERE rnum between #{sizePerPage}*#{page}-9 AND #{sizePerPage}*#{page} AND r_state = '대기'
+		ORDER BY r_apllicationdate desc
+		]]>
+	</select>
+	
+	
+	<!-- 예약 승인 -->
+	<update id="confirmRsv">
+		UPDATE reservation_tbl
+		SET r_state = '확정', r_upddate = sysdate
+		WHERE r_number = #{r_number}
+	</update>
+	
+	<!-- 예약 취소 리스트 -->
+	<select id="cancelList" parameterType="reservation" resultType="reservation">
+		<![CDATA[
+		SELECT r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel, r_state
+		FROM (SELECT r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel, r_state, rownum as rnum
+		FROM reservation_tbl)
+		WHERE rnum between #{sizePerPage}*#{page}-9 AND #{sizePerPage}*#{page} AND r_state = '취소'
+		ORDER BY r_upddate desc
+		]]>
+	</select>
+	
+	<!-- 예약 전체 명수를 조회한다. -->
+	<select id="count" resultType="int">
+		<![CDATA[
+		SELECT count(r_number)
+		FROM reservation_tbl
+		WHERE r_number > 0 and r_state = '확정'
+		]]>
+		<include refid="search"></include>
+	</select>
+	
+	<!-- 신규 예약 수를 조회한다. -->
+	<select id="count1" resultType="int">
+		<![CDATA[
+		SELECT count(r_number)
+		FROM reservation_tbl
+		WHERE r_number > 0 and r_state = '대기'
+		]]>
+		
+	</select>
+	
+	<!-- 예약 취소 수를 조회한다. -->
+	<select id="count2" resultType="int">
+		<![CDATA[
+		SELECT count(r_number)
+		FROM reservation_tbl
+		WHERE r_number > 0 and r_state = '취소'
+		]]>
+	</select>
+	
+	<!-- 예약 취소 -->
+	<update id="cancelRsv">
+		UPDATE reservation_tbl
+		SET r_state = '취소', r_upddate = sysdate, r_cancel = '관리자 취소'
+		WHERE r_number = #{r_number}
+	</update>
+</mapper>

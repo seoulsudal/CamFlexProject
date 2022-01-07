@@ -7,7 +7,7 @@ public class MemberVO {
 	private String m_pw = "";		// 비밀번호
 	private String m_name = "";		// 회원 이름
 	private String m_phone = "";	// 회원 전화번호
-	private Date m_birth;			// 회원 생년 월일
+	private String m_birth;			// 회원 생년 월일
 	private int m_number; 			// 회원 번호
 	private Date m_date; 			// 회원 가입날짜
 
@@ -51,11 +51,11 @@ public class MemberVO {
 		this.m_phone = m_phone;
 	}
 
-	public Date getM_birth() {
+	public String getM_birth() {
 		return m_birth;
 	}
 
-	public void setM_birth(Date m_birth) {
+	public void setM_birth(String m_birth) {
 		this.m_birth = m_birth;
 	}
 

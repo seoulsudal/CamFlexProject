@@ -16,7 +16,7 @@ import com.camflex.admin.login.service.AdminLoginService;
 import com.camflex.client.login.vo.LoginVO;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/login")
 public class AdminLoginController {
 
 	private Logger log = LoggerFactory.getLogger(AdminLoginController.class);
@@ -37,7 +37,7 @@ public class AdminLoginController {
 		
 		log.info("관리자 Login GET 호출 성공");
 		
-		return "admin/login"; // /admin/login.jsp로 포워드
+		return "admin/login/login"; // /admin/login.jsp로 포워드
 	}
 	/***************************
 	 * 로그인 기능
@@ -56,7 +56,7 @@ public class AdminLoginController {
 			log.info("login false");
 			session.setAttribute("login", null);
 			rttr.addFlashAttribute("msg", false);
-			return "admin/login";
+			return "admin/login/login";
 		}
 		else {
 			log.info("login Success");

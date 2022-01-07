@@ -6,11 +6,12 @@
 		<![CDATA[
 		SELECT i_number, parentno, i_kinds, m_id, i_title, i_date
 		FROM (SELECT i_number, parentno, i_kinds, m_id, i_title, i_date, rownum as rnum
-			 FROM inquiry_tbl)
-		WHERE rnum between #{sizePerPage}*#{page}-9 AND #{sizePerPage}*#{page}
-		START WITH parentno = 0
+			 FROM inquiry_tbl
+			 START WITH parentno = 0
 		CONNECT BY PRIOR i_number = parentno
-		ORDER SIBLINGS BY i_number DESC
+		ORDER SIBLINGS BY i_number DESC)
+		WHERE rnum between #{sizePerPage}*#{page}-9 AND #{sizePerPage}*#{page}
+		
 		]]>
 	</select>
 	

@@ -39,7 +39,7 @@ public class AdminNoticeController {
 	 * 공지사항 기본 조회
 	 *****************************************/
 	@RequestMapping(value = "/noticeList", method = RequestMethod.GET)
-	public void noticeList(@ModelAttribute("pgrq")PageRequest pageRequest, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
+	public String noticeList(@ModelAttribute("pgrq")PageRequest pageRequest, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
 		sessionCheck(request, response, "로그인 후 가능합니다.");
 		log.info("공지사항 목록 호출 성공");
 		
@@ -54,6 +54,7 @@ public class AdminNoticeController {
 		pagination.setTotalCount(adminNoticeService.count(pageRequest));
 		model.addAttribute("pagination", pagination);
 		
+		return "admin/notice/noticeList";
 	}
 	
 	/****************************************
@@ -179,7 +180,7 @@ public class AdminNoticeController {
 			PrintWriter out = response.getWriter();
 			out.println("<script type='text/javascript'>");
 			out.println("alert('" + message + "');");
-			out.println("location.href='/admin/login'");
+			out.println("location.href='/admin/login/login'");
 			out.println("</script>");
 			out.flush();
 		}
