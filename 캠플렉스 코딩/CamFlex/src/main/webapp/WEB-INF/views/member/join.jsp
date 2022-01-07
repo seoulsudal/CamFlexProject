@@ -14,14 +14,21 @@
 <script type="text/javascript">
 
 $(function(){
+		
+	
+
 	$("#registerBtn").click(function(){
-		if(!chkSubmit($('#m_id'), "아이디를")) return;
+		
+		
+
+if(!chkSubmit($('#m_id'), "아이디를")) return;
 		else if(!chkSubmit($('#m_pw'), "비밀번호를")) return;
+		else if(!chkSubmit($('#m_pw_chk'), "비밀번호 재확인을")) return;
 		else if(!chkSubmit($('#m_name'), "이름을"))return;
 		else if(!chkSubmit($('#m_birth'), "생년월일을"))return;
 		else if(!chkSubmit($('#m_phone'), "전화번호를"))return;
 		else{
-		if(confirm('등록을 진핼할까요?')){	
+		if(confirm('등록을 진행할까요?')){	
 		$("#regForm").attr({
 			"method":"POST",
 			"action":"/member/insertMember"
@@ -34,6 +41,9 @@ $(function(){
 	$("#homeBtn").on("click", function(){
 		self.location = "/";
 	});
+
+	
+
 });
 
 function chkSubmit(item, msg){
@@ -65,6 +75,10 @@ function chkSubmit(item, msg){
 				<tr>
 					<td>패스워드</td>
 					<td><input type="password" class="form-control" name="m_pw" id="m_pw" /></td>
+				</tr>
+				<tr>
+					<td>패스워드 재확인</td>
+					<td><input type="password" class="form-control" name="m_pw_chk" id="m_pw_chk" /></td>
 				</tr>
 				<tr>
 					<td>이름</td>
