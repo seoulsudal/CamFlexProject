@@ -1,57 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 찾기</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/common.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<title>비밀번호 찾기 페이지</title>
 <script type="text/javascript">
-	function find_pw() {
-	if(m_name.value= '' || m_id.value= '' || m_phone.value=''){
-		alret("")
-	}
+	function find_password() {
+		var n_RegExp = /^[가-힣a-zA-Z]{0,50}$/; //이름 특수문자 사용불가 정규식(한글,영문만 가능)
+		var e_RegExp = /\w+@\w+\.\w+(\.\w+)?/; //아이디(이메일) 유효성 검사 정규식
+		var t_RegExp = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/;//전화번호 유효성 검사 정규식
+
+		var name = document.getElementById("m_name");
+		var id = document.getElementById("m_id");
+		var phone = document.getElementById("m_phone");
+
+		/*===============name 유효성===============*/
+		if (name.value == '') {
+			alert("이름을 입력해주세요.");
+			name.focus();
+			return false;
+		}
+		if (!n_RegExp.test(name.value)) {
+			alert("이름에 특수문자,숫자는 입력할수 없습니다. 다시 입력해주세요.");
+			name.focus();
+			return false;
+		}
+
+		/*===============ID 유효성===============*/
+		if (id.value == '') {
+			alert("아이디을 입력해주세요.");
+			id.focus();
+			return false;
+		}
+
+		if (!e_RegExp.test(id.value)) {
+			alert("아이디는 이메일 형식으로만 가능합니다! 다시 입력해주세요.");
+			id.focus();
+			return false;
+		}
+
 	}
 </script>
-</head>
 <body>
 	<h2>비밀번호 찾기</h2>
-	<c:if test="${mvo1 == null }">
-		<form id="findPw" name="findPw" action="/login/findPw" method="POST" onsubmit="return find_pw()">
-			<div class="form-group" style="width: 280px">
-				<label id="find_pw_info">이름</label><input type="text" class="form-control" id="m_name" name="m_name" placeholder="이름">
-			</div>
-			<div class="form-group" style="width: 280px">
-				<label id="find_pw_info">아이디</label><input type="text" class="form-control" id="m_id" name="m_id" placeholder="아이디">
-			</div>
-			<div class="form-group" style="width: 280px">
-				<label id="find_pw_info">전화번호</label><input type="text" class="form-control" id="m_phone" name="m_phone" placeholder="전화번호">
-			</div>
-			<div>
-				<input type="submit" class="btn btn-success" value="비밀번호 찾기" />
-			</div>
-		</form>
-	</c:if>
-	
-	<c:if test="${mvo1 != null}">
+	<form name="findPw" id="findPw" action="/findPw" method="POST" onsubmit="return find_password()">
 		<div>
-			<p>${mvo1.m_name}님${mvo1.m_id}아이디의비밀번호는</p>
-			<p>' ${mvo1.m_pw} ' 입니다.</p>
+			<label id="find_pw_info">이름</label> <input type="text" id="m_name"
+				name="m_name" placeholder="이름">
 		</div>
-		
+		<p></p>
 		<div>
-			<a href="/login/login">로그인 페이지로 이동하기</a>
+			<label id="find_pw_info">아이디</label> <input type="text" id="m_id"
+				name="m_id" placeholder="아이디">
 		</div>
-	</c:if>
+		<p></p>
+
+		<div>
+			<input type="submit" value="비밀번호 찾기" class="btn btn-success"/>
+		</div>
+	</form>
 </body>
 </html>

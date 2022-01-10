@@ -9,5 +9,5 @@
 	<br>
 	<li><a href="/admin/reservation/newReservation">신규 예약 리스트</a></li>
 	<br>
-	<li><a href="/admin/reservation/reservationCancelList">예약 취소</a></li>
+	<li><a href="/admin/reservation/reservationCancelList">예약 취소 리스트</a></li>
 </ul>

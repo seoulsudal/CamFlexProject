@@ -8,8 +8,10 @@
 <title>내 정보</title>
 </head>
 <body>
+	<input type="hidden" id="m_id" name="m_id" value="${id}">
+	<div align="center">
 	<h2>${memberVO.m_id}님의 정보</h2>
-	<table>
+	<table class="table">
 			<tr>
 				<td><div>아이디</div></td>
 				<td><div><input id="m_id" name="m_id" value="${memberVO.m_id}" readonly="true"/></div></td>
@@ -31,6 +33,7 @@
 				<td><input id="m_birth" name="m_birth" value="${memberVO.m_birth }" readonly="readonly"></td>
 			</tr>
 	</table>
-	<input type="button" id="memberModifyForm_btn" name="memberModifyForm_btn" value="수정하기" onclick="location.href='pwCheckForm.do'">
+	<input type="button" id="memberModifyForm_btn" name="memberModifyForm_btn" value="수정하기" onclick="location.href='pwCheck'" class="btn btn-success">
+	</div>
 </body>
 </html>

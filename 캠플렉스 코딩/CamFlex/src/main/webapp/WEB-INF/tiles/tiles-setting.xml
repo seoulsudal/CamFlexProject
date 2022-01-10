@@ -65,7 +65,7 @@
 	</definition>
 	
 	<definition name="member/join" extends="content2">
-		<put-attribute name="title" value="로그인"/>
+		<put-attribute name="title" value="회원가입"/>
 		<put-attribute name="body" value="/WEB-INF/views/member/join.jsp"/>	
 	</definition>
 	

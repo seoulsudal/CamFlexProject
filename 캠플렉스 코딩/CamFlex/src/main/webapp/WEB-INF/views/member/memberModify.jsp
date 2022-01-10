@@ -62,7 +62,7 @@
 			</div>
 
 			<div>
-				<input type="submit" value="수정하기" />
+				<input type="submit" value="수정하기" class="btn btn-success"/>
 			</div>
 		</form>
 	</c:if>

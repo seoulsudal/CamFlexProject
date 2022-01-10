@@ -45,6 +45,7 @@
 </script>
 </head>
 <body>
+
 	<form name="reserveListDetail" id="reserveListDetail">
 		<input type="hidden" id="m_id" name="m_id" value="${list.m_id}">
 		<input type="hidden" id="r_number" name="r_number"
@@ -53,25 +54,25 @@
 			id="r_startDate" name="r_startDate" value="${list.r_startDate}">
 
 	</form>
-
-	<h2>내 예약 정보</h2>
-	<table>
+<div align="center">
+<h2 align="center">실시간 예약 리스트</h2>
+	<table class="table">
 		<thead>
 			<tr>
-				<th>예약번호</th>
-				<th>상품명</th>
-				<th>예약일</th>
-				<th>예약 종료일</th>
-				<th>총 금액</th>
-				<th>결제 방법</th>
-				<th>취소 현황</th>
+				<th align="center">예약번호</th>
+				<th align="center">상품번호</th>
+				<th align="center">예약일</th>
+				<th align="center">예약 종료일</th>
+				<th align="center">총 금액</th>
+				<th align="center">결제 방법</th>
+				<th align="center">취소 현황</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:choose>
 				<c:when test="${empty reserveList}">
 					<tr>
-						<td colspan="7">예약이 존재하지 않습니다.</td>
+						<td colspan="7" align="center">예약이 존재하지 않습니다.</td>
 					</tr>
 				</c:when>
 				<c:otherwise>
@@ -79,23 +80,16 @@
 						<tr data-num1="${list.r_number}" data-num2="${list.r_price }"
 							data-num3="${list.r_startDate}">
 
-							<td>${list.r_number}</td>
-							<td><c:if test="${list.p_number eq '1' }">오토A</c:if> <c:if
-									test="${list.p_number eq '41' }">오토B</c:if> <c:if
-									test="${list.p_number eq '42' }">글램핑A</c:if> <c:if
-									test="${list.p_number eq '43' }">글램핑B</c:if> <c:if
-									test="${list.p_number eq '44' }">글램핑C</c:if> <c:if
-									test="${list.p_number eq '45' }">글램핑D</c:if> <c:if
-									test="${list.p_number eq '46' }">차박A</c:if> <c:if
-									test="${list.p_number eq '47' }">차박B</c:if>
-							<td><fmt:formatDate value="${list.r_startDate }"
+							<td  align="center">${list.r_number}</td>
+							<td align="center">${list.p_number}</td>
+							<td align="center"><fmt:formatDate value="${list.r_startDate }"
 									pattern="yyyy/MM/dd" /></td>
-							<td><fmt:formatDate value="${list.r_endDate }"
+							<td align="center"><fmt:formatDate value="${list.r_endDate }"
 									pattern="yyyy/MM/dd" /></td>
-							<td>${list.r_price }</td>
-							<td>현금</td>
+							<td align="center">${list.r_price }</td>
+							<td align="center">현금</td>
 
-							<td><input type="button" class="reserveCancel"
+							<td align="center"><input type="button" class="reserveCancel btn btn-success"
 								id="reserveCancel" name="btncancel" value="예약 취소" /></td>
 						</tr>
 					</c:forEach>
@@ -117,6 +111,6 @@
 			<a href="${pagination.endPage + 1}">&raquo;</a>
 		</c:if>
 	</div>
-
+</div>
 </body>
 </html>
