@@ -27,16 +27,16 @@ public class LoginServiceImpl implements LoginService {
 		return loginDAO.findId(vo);
 	}
 
-	//비밀번호 찾기 (이름,아이디)인증
+	// 비밀번호 찾기 (이름,아이디)인증
 	@Override
 	public MemberVO IdName(MemberVO vo) throws Exception {
 		return loginDAO.findId(vo);
 	}
+
 	// 인증 처리 후 비밀번호 변경
 	@Override
 	public void change_pw(MemberVO vo) throws Exception {
 		loginDAO.change_pw(vo);
 	}
-
 
 }

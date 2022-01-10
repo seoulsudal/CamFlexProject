@@ -31,6 +31,13 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return result;
 	}
+	
+	// 아이디 중복체크
+	/*@Override
+	public MemberVO check_id(String m_id) throws Exception {
+		return memberDAO.check_id(m_id);
+	}*/
+
 
 	// 내 정보 보기, 정보 수정 폼
 	@Override
@@ -80,5 +87,8 @@ public class MemberServiceImpl implements MemberService {
 	public int count(PageRequest pageRequest) {
 		return memberDAO.count(pageRequest);
 	}
+
+	
+
 
 }
