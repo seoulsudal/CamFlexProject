@@ -13,6 +13,8 @@
 		#{m_number})
 	</insert>
 
+
+
 	<!-- 내 정보 보기 -->
 	<select id="readMember" resultType="member">
 		select *
@@ -25,6 +27,7 @@
 	<update id="MemberModify">
 		update member_tbl
 		set
+		m_pw=#{m_pw},
 		m_phone=#{m_phone}
 		where
 		m_id=#{m_id}
@@ -49,11 +52,6 @@
 		where rnum between #{sizePerPage}*#{page}-9 AND #{sizePerPage}*#{page} AND m_id=#{m_id} AND r_state = '대기'
 		]]>
 	</select>
-
-	<!-- 예약 취소 폼 -->
-	<!-- <select id="reserveCancel" resultType="reservation"> select m_id, r_number, 
-		r_price from reservation_tbl where m_id = #{m_id} AND r_number = #{r_number} 
-		</select> -->
 
 	<!-- 예약 취소 처리 -->
 	<update id="Cancel">

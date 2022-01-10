@@ -11,6 +11,9 @@ public interface MemberService {
 	// 회원가입 처리
 	public int insertMember(MemberVO mvo) throws Exception;
 
+	// 아이디 중복 체크
+	//public MemberVO check_id(String m_id) throws Exception;
+
 	// 내 정보 보기, 정보 수정 폼
 	public MemberVO readMember(String m_id) throws Exception;
 
@@ -32,4 +35,5 @@ public interface MemberService {
 	// 페이징 카운트
 	public int count(PageRequest pageRequest);
 
+	
 }

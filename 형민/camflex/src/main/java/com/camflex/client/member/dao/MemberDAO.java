@@ -13,6 +13,9 @@ public interface MemberDAO {
 	// 회원가입 처리
 	public int insertMember(MemberVO mvo) throws Exception;
 
+	// 아이디 중복체크
+	//public MemberVO check_id(String m_id) throws Exception;
+
 	// 내 정보 보기, 정보 수정 폼
 	public MemberVO readMember(String m_id) throws Exception;
 

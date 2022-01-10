@@ -26,6 +26,12 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.insert(namespace + ".insertMember", mvo);
 	}
 
+	// 아이디 중복체크
+	/*@Override
+	public MemberVO check_id(String m_id) throws Exception {
+		return sqlSession.check_id(namespace + ".check_id", m_id);
+	}*/
+
 	// 내 정보 보기, 정보 수정 폼
 	@Override
 	public MemberVO readMember(String m_id) throws Exception {

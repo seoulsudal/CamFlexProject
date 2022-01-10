@@ -18,6 +18,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.camflex.client.member.service.MemberService;
 import com.camflex.client.member.vo.MemberVO;
@@ -44,14 +46,12 @@ public class MemberController {
 	/* 회원가입 폼 */
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String joinForm() {
-		log.info("join GET 성공");
 		return "/member/join";
 	}
 
 	/* 회원가입 처리 (BCryptPasswordEncoder 사용) */
 	@RequestMapping(value = "/insertMember", method = RequestMethod.POST)
-	public String insertMember(@ModelAttribute MemberVO mvo, Model model)throws Exception{
-		log.info("회원 등록 처리 호출 성공");
+	public String insertMember(@ModelAttribute MemberVO mvo, Model model) throws Exception {
 		String m_pw = ""; // 인코딩 전 비밀번호
 		String encodePw = ""; // 인코딩 후 비밀번호
 
@@ -60,7 +60,7 @@ public class MemberController {
 		mvo.setM_pw(encodePw); // 인코딩된 비밀번호 member객체에 다시 저장
 
 		memberService.insertMember(mvo);
-		
+
 		return "redirect:/";
 	}
 
@@ -68,51 +68,46 @@ public class MemberController {
 	@RequestMapping(value = "/MemberDate", method = RequestMethod.GET)
 	public String memberDate(@ModelAttribute MemberVO vo, HttpServletRequest request, HttpServletResponse response,
 			HttpSession session, Model model) throws Exception {
-		log.info("---------------");
 		log.info("내 정보 조회");
 		session = request.getSession();
 		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
+		m_id = (String) session.getAttribute("m_id");
 
 		model.addAttribute("memberVO", memberService.readMember((String) session.getAttribute("m_id")));
 
 		return "/member/MemberDate";
 	}
 
-	/* 비밀번호 인증 페이지 */
+	/* 내 정보 조회 비밀번호 인증 페이지 */
 	@RequestMapping(value = "/PwCheckForm", method = RequestMethod.GET)
 	public String PwCheckForm(@ModelAttribute MemberVO vo, HttpSession session, HttpServletRequest request,
 			HttpServletResponse response, Model model) throws Exception {
-		log.info("---------------");
-		log.info("PwCheckForm.do get 성공");
 		session = request.getSession();
 		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
+		m_id = (String) session.getAttribute("m_id");
 
 		model.addAttribute("memberVO", memberService.readMember((String) session.getAttribute("m_id")));
 
 		return "/member/pwCheck";
 	}
 
-	/* 내 정보 수정 페이지로 이동하기 위한 비밀번호 인증 */
+	/* 내 정보 수정 페이지로 이동하기 위한 비밀번호 인증 기능 */
 	@RequestMapping(value = "/PwCheck", method = RequestMethod.POST)
 	public String pwCheck(MemberVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response,
 			Model model) throws Exception {
-		log.info("---------------");
-		log.info("비밀번호 인증 ");
 		session = request.getSession();
 		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
 		m_id = (String) session.getAttribute("m_id");
+
 		MemberVO mvo = memberService.PwCheck(vo);
 
 		if (mvo == null) {
-			log.info("비밀번호 인증 실패");
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out_equals = response.getWriter();
 			out_equals.println("<script>alert('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');</script>");
 			out_equals.flush();
-			log.info("다시 인증 페이지로");
 
 		} else {
-			log.info("비밀번호 인증 성공");
 			model.addAttribute("memberVO", memberService.readMember((String) session.getAttribute("m_id")));
 			return "/member/MemberModify";
 		}
@@ -123,10 +118,9 @@ public class MemberController {
 	@RequestMapping(value = "/MemberModifyForm", method = RequestMethod.GET)
 	public String memberModifyForm(@ModelAttribute MemberVO vo, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session, Model model) throws Exception {
-		log.info("---------------");
-		log.info("내 정보 수정 폼");
 		session = request.getSession();
 		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
+		m_id = (String) session.getAttribute("m_id");
 
 		model.addAttribute("memberVO", memberService.readMember((String) session.getAttribute("m_id")));
 
@@ -137,20 +131,17 @@ public class MemberController {
 	@RequestMapping(value = "/MemberModify", method = RequestMethod.POST)
 	public String memberModify(MemberVO vo, HttpServletRequest request, HttpServletResponse response,
 			HttpSession session, Model model) throws Exception {
-
-		log.info("---------------");
 		session = request.getSession();
 		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
 		m_id = (String) session.getAttribute("m_id");
+
 		MemberVO mvo = new MemberVO();
 		mvo = memberService.MemberModify(vo);
 
 		if (mvo == null) {
-			log.info("개인정보 수정 실패");
 
 			return "/member/MemberModify";
 		} else {
-			log.info("개인정보 수정 성공");
 			model.addAttribute("memberVO", memberService.readMember((String) session.getAttribute("m_id")));
 			return "redirect:/member/MemberDate";
 
@@ -163,11 +154,10 @@ public class MemberController {
 	public String ReserveList(@ModelAttribute MemberVO vo, @ModelAttribute PageRequest pageRequest,
 			HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model)
 			throws Exception {
-		log.info("내 예약 정보");
 		session = request.getSession();
 		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
 		m_id = (String) session.getAttribute("m_id");
-		log.info(m_id);
+
 		pageRequest.setM_id(m_id);
 
 		model.addAttribute("reserveList", memberService.reserveList(pageRequest));
@@ -185,7 +175,6 @@ public class MemberController {
 	@RequestMapping(value = "/ReserveCancel", method = RequestMethod.GET)
 	public String ReserveCancel(@ModelAttribute ReservationVO rvo, Model model, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
-		log.info("예약 취소 페이지");
 		session = request.getSession();
 		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
 		m_id = (String) session.getAttribute("m_id");
@@ -197,15 +186,10 @@ public class MemberController {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date(today);
 
-		log.info("취소할 예약 번호 : " + rvo.getR_number());
-		log.info("예약 금액 : " + rvo.getR_price());
-		log.info("오늘 : " + dateFormat.format(date));
-		log.info("예약 날짜 : " + rvo.getR_startDate());
-
 		long startDate = rvo.getR_startDate().getTime();
 		long resultDate = (startDate - today) / (1000 * 60 * 60 * 24);
 		int result = Long.valueOf(resultDate).intValue();
-		log.info("두 날짜 의 차 " + result);
+
 		switch (result) {
 
 		case 7:
@@ -228,15 +212,10 @@ public class MemberController {
 			break;
 		}
 
-		log.info("수수료 퍼센트 : " + fee + "%");
-
 		double price_fee = (rvo.getR_price() * fee);
 		int p_fee = (int) Math.round(price_fee);
 
-		log.info("수수료 금액 : " + p_fee + "원");
-
 		total_price = rvo.getR_price() - p_fee;
-		log.info("환불금액:" + total_price);
 
 		model.addAttribute("m_id", m_id);
 		model.addAttribute("r_number", rvo.getR_number());
@@ -253,19 +232,14 @@ public class MemberController {
 	@RequestMapping(value = "/Cancel")
 	public String Cancel(@ModelAttribute ReservationVO vo, HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) throws Exception {
-		log.info("예약 취소 처리");
 		session = request.getSession();
 		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
 		m_id = (String) session.getAttribute("m_id");
-
-		log.info("선택한 예약 번호 : " + vo.getR_number());
 
 		int result = 0;
 		result = memberService.Cancel(vo);
 
 		if (result == 1) {
-			log.info("예약 번호 : " + vo.getR_number());
-			log.info("취소 사유  : " + vo.getR_cancel());
 
 			log.info("예약 취소 완료");
 		} else {

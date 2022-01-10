@@ -5,10 +5,14 @@
 	<!-- 로그인 기능 -->
 	<select id="loginCheck"
 		resultType="login">
-		Select *
+		<!-- Select *
 		from member_tbl
 		where m_id =#{m_id} AND
-		m_pw=#{m_pw}
+		m_pw=#{m_pw} -->
+		
+		select *
+		from member_tbl
+		where m_id =#{m_id}
 	</select>
 
 	<!-- 아이디 찾기 -->

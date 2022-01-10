@@ -19,9 +19,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -52,7 +52,6 @@ public class LoginController {
 	/* 로그인 페이지 */
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String LoginForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		log.info("로그인 페이지 호출 성공");
 		sessionCheck(request, response);
 		session = request.getSession();
 
@@ -61,9 +60,8 @@ public class LoginController {
 
 	/* 로그인 기능 */
 	@RequestMapping(value = "/loginCheck", method = RequestMethod.POST)
-	public String loginCheck(LoginVO vo, HttpServletRequest request, HttpServletResponse response,
+	public String loginCheck(LoginVO vo, HttpServletRequest request, HttpServletResponse response, HttpSession session,
 			RedirectAttributes rttr) throws Exception {
-		log.info("로그인 호출 성공");
 		sessionCheck(request, response);
 		session = request.getSession();
 		m_id = (String) session.getAttribute("m_id");
@@ -71,7 +69,15 @@ public class LoginController {
 
 		LoginVO login = loginService.loginCheck(vo);
 
-		if (login == null) {
+		if (login != null) {
+
+			log.info("login Success");
+			session.setAttribute("m_id", vo.getM_id());
+			session.setAttribute("login", login);
+			log.info(m_id);
+			return "/member/mypage";
+
+		} else {
 			log.info("login false");
 
 			response.setContentType("text/html; charset=UTF-8");
@@ -79,12 +85,6 @@ public class LoginController {
 			out_equals.println("<script>alert('입력하신 아이디, 비밀번호가 일치하지 않습니다. 다시 입력해주세요.');</script>");
 			out_equals.flush();
 
-		} else {
-			log.info("login Success");
-			session.setAttribute("m_id", vo.getM_id());
-			session.setAttribute("login", login);
-			log.info(m_id);
-			return "/member/mypage";
 		}
 		return "/login/login";
 	}
@@ -93,10 +93,10 @@ public class LoginController {
 	@RequestMapping(value = "findIdForm", method = RequestMethod.GET)
 	public String findIdForm() {
 		log.info("아이디 찾기 페이지 호출 성공");
-		return "/login/findId"; // views/login/findId.jsp로 포워드
+		return "/login/findId";
 	}
 
-	/* 아이디 찾기 */
+	/* 아이디 찾기 기능 */
 	@RequestMapping(value = "findId", method = RequestMethod.POST)
 	public String findId(MemberVO vo, Model model, HttpServletResponse response, RedirectAttributes rttr)
 			throws Exception {
@@ -128,17 +128,19 @@ public class LoginController {
 		return "/login/findPw"; // views/login/findPw.jsp로 포워드
 	}
 
-	/* 비밀번호 찾기 인증번호 이메일 발송 */
+	/* 비밀번호 찾기 인증번호 이메일 발송 기능 */
 	/* 이름과 아이디, 전화번호로 인증받는다. */
 	@RequestMapping(value = "findPw", method = RequestMethod.POST)
 	public ModelAndView findPw(Model model, HttpServletResponse response, HttpServletRequest request, MemberVO vo,
-			String m_name, String m_id, RedirectAttributes rttr) throws Exception {
+			RedirectAttributes rttr) throws Exception {
+
+		String m_id = (String) request.getParameter("m_id");
+		String m_name = (String) request.getParameter("m_name");
 
 		ModelAndView mav = new ModelAndView(); // ModelAndView로 보낼 페이지 지정
 		// 비밀번호 찾기 (이름,아이디)인증
 		MemberVO mvo = loginService.IdName(vo);
 		if (mvo != null) {
-			log.info("이름,아이디 인증 실패");
 
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out_equals = response.getWriter();
@@ -160,7 +162,7 @@ public class LoginController {
 					// 메일 내용
 					System.getProperty("line.separator") + System.getProperty("line.separator") + "안녕하십니까!"
 							+ System.getProperty("line.separator") + System.getProperty("line.separator")
-							+ "요청하신 비밀번호 찾기 인증번호는 " + dice + " 입니다." + System.getProperty("line.separator")
+							+ "요청하신 인증번호는 " + dice + " 입니다." + System.getProperty("line.separator")
 							+ System.getProperty("line.separator") + "받으신 인증번호를 홈페이지에 입력해 주시면 비밀번호 수정 페이지로 넘어갑니다 :)";
 
 			try {
@@ -178,13 +180,15 @@ public class LoginController {
 				System.out.println(e);
 			}
 
-			mav.setViewName("/login/findPw_CCN"); // 인증번호.jsp 뷰
 			mav.addObject("dice", dice);
 			mav.addObject("m_id", m_id);
+			mav.setViewName("/login/findPw_CCN"); // 인증번호 입력.jsp 뷰
 
+			log.info("--발송한 인증번호--");
+			log.info("ID : " + m_id);
 			log.info("dice : " + dice);
 			log.info("mav : " + mav);
-
+			log.info("---------------");
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out_m_id = response.getWriter();
 			out_m_id.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
@@ -197,19 +201,25 @@ public class LoginController {
 	}
 
 	/* 인증번호 받고 인증하는 페이지 */
-	// Certification Number = CCN
+	// Certification Number = CCN 인증번호
 	@RequestMapping(value = "CCN.do{dice},{m_id}", method = RequestMethod.POST)
-	public ModelAndView CCN(String CCN, @PathVariable String dice, @PathVariable String m_id,
-			HttpServletResponse response) throws IOException {
-		log.info("입력한 CCN : " + CCN);
+	public ModelAndView CCN(String CCN, @PathVariable(value = "dice") String dice,
+			@PathVariable(value = "m_id") String m_id, HttpServletResponse response) throws IOException {
 
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/login/findPw_change");
-		mav.addObject("m_id", m_id);
 
-		if (!CCN.equals(CCN)) {
-			mav.setViewName("/login/findPw_change");
+		mav.addObject("m_id", m_id);
+		mav.addObject("dice", dice);
+		mav.setViewName("/login/findPw_change");
+
+		log.info("찾을려는 ID : " + m_id);
+		log.info("입력한 CCN : " + CCN);
+		log.info("마지막 dice : " + dice);
+
+		if (CCN.equals(dice)) {
+			// 인증번호 일치 시
 			mav.addObject("m_id", m_id);
+			mav.setViewName("/login/findPw_change");
 
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out_equals = response.getWriter();
@@ -217,7 +227,8 @@ public class LoginController {
 			out_equals.flush();
 
 			return mav;
-		} else if (CCN.equals(CCN)) {
+		} else if (CCN != dice) {
+			// 인증번호 불일치 시
 			ModelAndView mav2 = new ModelAndView();
 
 			mav2.setViewName("/login/findPw_CCN");
@@ -234,19 +245,20 @@ public class LoginController {
 
 	// 비밀번호 변경
 	@RequestMapping(value = "change_pw", method = RequestMethod.POST)
-	public String change_pw(MemberVO vo, RedirectAttributes rttr) throws Exception {
+	public String change_pw(MemberVO vo, String m_id, HttpServletResponse response, RedirectAttributes rttr)
+			throws Exception {
 		log.info("비밀번호 변경 요청");
+		log.info("변경한 id : " + m_id);
 
-		/* 변경된 비밀번호 다시 암호화 */
-		String m_pw = ""; // 인코딩 전 비밀번호
-		String encodePw = ""; // 인코딩 후 비밀번호
+		/* 인코딩 후 비밀번호 */
+		String m_pw = "";// 인코딩 전 비밀번호
+		String encodePw = ""; // 변경된 비밀번호 다시 암호화
 
 		m_pw = vo.getM_pw();
 		encodePw = pwEncoder.encode(m_pw); // 비밀번호 인코딩
 		vo.setM_pw(encodePw);
 
-		/* 암호화 된 비밀번호 변경 */
-		loginService.change_pw(vo);
+		/* 암호화 된 비밀번호 변경 */ loginService.change_pw(vo);
 		session.invalidate();
 		rttr.addFlashAttribute("result", "updateOK");
 
