@@ -65,7 +65,7 @@
 				<th align="center">예약 종료일</th>
 				<th align="center">총 금액</th>
 				<th align="center">결제 방법</th>
-				<th align="center">취소 현황</th>
+				<th align="center">예약 취소</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -105,7 +105,7 @@
 		</c:if>
 		<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}"
 			var="idx">
-			<a href="/member/ReserveList${pagination.makeQuery(idx)}">${idx}</a>
+			<a href="/member/reserveList${pagination.makeQuery(idx)}">${idx}</a>
 		</c:forEach>
 		<c:if test="${pagination.next && pagination.endPage > 0}">
 			<a href="${pagination.endPage + 1}">&raquo;</a>

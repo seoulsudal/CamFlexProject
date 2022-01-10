@@ -69,4 +69,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/member/join.jsp"/>	
 	</definition>
 	
+	<definition name="review/reviewInsert" extends="content2">
+		<put-attribute name="title" value="후기 작성"/>
+		<put-attribute name="body" value="/WEB-INF/views/review/reviewInsert.jsp"/>	
+	</definition>
+	
 </tiles-definitions>

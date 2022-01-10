@@ -11,7 +11,7 @@
 	<br>
 	<li><a href="/member/pastList">내 지난 예약 리스트</a></li>
 	<br>
-	<li><a href="/member/cancelList">내 예약 취소 내역</a></li>
+	<li><a href="/member/cancelList">내 예약 취소 리스트</a></li>
 	<br>
 	<li><a href="/inquiry/inquiryList">1:1 문의</a></li>
 </ul>

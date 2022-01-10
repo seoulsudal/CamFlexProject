@@ -50,13 +50,13 @@ public class MemberController {
 	/* 회원가입 처리 (BCryptPasswordEncoder 사용) */
 	@RequestMapping(value = "/insertMember", method = RequestMethod.POST)
 	public String insertMember(@ModelAttribute MemberVO mvo, Model model) throws Exception {
-		String m_pw = ""; // 인코딩 전 비밀번호
-		String encodePw = ""; // 인코딩 후 비밀번호
-
-		m_pw = mvo.getM_pw(); // 비밀번호 데이터 얻음
-		encodePw = pwEncoder.encode(m_pw); // 비밀번호 인코딩
-		mvo.setM_pw(encodePw); // 인코딩된 비밀번호 member객체에 다시 저장
-
+		/*
+		 * String m_pw = ""; // 인코딩 전 비밀번호 String encodePw = ""; // 인코딩 후 비밀번호
+		 */
+		/*
+		 * m_pw = mvo.getM_pw(); // 비밀번호 데이터 얻음 encodePw = pwEncoder.encode(m_pw); //
+		 * 비밀번호 인코딩 mvo.setM_pw(encodePw); // 인코딩된 비밀번호 member객체에 다시 저장
+		 */
 		memberService.insertMember(mvo);
 
 		return "redirect:/";
