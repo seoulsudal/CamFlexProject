@@ -41,11 +41,11 @@
 	<!-- 예약 정보 -->
 	<select id="reserveList" resultType="reservation">
 	 <![CDATA[
-		select
-		 m_id,r_number, p_number, r_startdate, r_enddate, r_price, r_state
-		from (select m_id,r_number, p_number, r_startdate, r_enddate, r_price, r_state, rownum as rnum
-				from reservation_tbl)
-		where rnum between #{sizePerPage}*#{page}-9 AND #{sizePerPage}*#{page} AND m_id=#{m_id} AND r_state = '대기'
+		SELECT m_id,r_number, p_number, r_startdate, r_enddate, r_price, r_state
+		FROM (SELECT m_id,r_number, p_number, r_startdate, r_enddate, r_price, r_state, rownum as rnum
+			  FROM reservation_tbl
+			  WHERE m_id = #{m_id} AND (r_state = '대기' OR r_state = '확정') AND r_startdate > sysdate)
+		where rnum between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}
 		]]>
 	</select>
 

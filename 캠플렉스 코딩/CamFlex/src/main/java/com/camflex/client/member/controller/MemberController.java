@@ -242,13 +242,12 @@ public class MemberController {
 		result = memberService.Cancel(vo);
 
 		if (result == 1) {
-
 			log.info("예약 취소 완료");
 		} else {
 			log.info("예약 취소 실패");
-			return "/member/reserveCancel";
+			return "member/reserveCancel";
 		}
-		return "member/reserveList";
+		return "redirect:/member/reserveList";
 
 	}
 
