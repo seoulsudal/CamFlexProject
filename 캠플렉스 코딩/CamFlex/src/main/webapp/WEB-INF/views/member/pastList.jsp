@@ -75,7 +75,7 @@ $(function() {
 							<td align="center">${past.r_endDate}</td>
 							<td align="center">
 							<%-- <input type="text" id="rv_number" name="rv_number" value="${rv_count}"> --%>
-							<input type="button" class="btnReviewInsert" name="btnReviewInsert" value="후기 작성">										
+							<input type="button" class="btnReviewInsert btn btn-success" name="btnReviewInsert" value="후기 작성">										
 							</td>
 						</tr>
 					</c:forEach>

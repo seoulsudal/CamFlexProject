@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>댓글 작성</title>
+<title>후기 작성</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -49,7 +49,6 @@
 		<input type="hidden" name="m_id" id="m_id" value="${id}">
 		<input type="hidden" name="p_number" id="p_number" value="${p_number}">
 		<input type="hidden" name="r_number" id="r_number" value="${r_number}">
-		<input type="hidden" name="rv_number" id="rv_number" value="${rv_count}">
 		<table style="text-align: center; width: 90%;" class="table">
 			<tr>
 				<td><font size="3">내용</font></td>

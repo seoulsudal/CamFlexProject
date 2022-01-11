@@ -1,33 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>로그인 화면</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/common.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	function userLogin() {
 		var e_RegExp = /\w+@\w+\.\w+(\.\w+)?/; //아이디(이메일) 정규식
+		var p_RegExp = /^[a-zA-Z0-9]{8,20}$/; //비밀번호 유효성 검사 정규식
 
 		var id = document.getElementById("m_id");//아이디
 		var pw = document.getElementById("m_pw");//비밀번호
-
-		/*===============ID,PW 공백===============*/
-		if (id.value == '' || pw.value == '') {
-			alert("아이디와 비밀번호를 입력해주세요.");
-			return false;
-		}
 
 		/*===============아이디 유효성===============*/
 		if (id.value == '') {
@@ -37,41 +22,50 @@
 		}
 
 		if (!e_RegExp.test(id.value)) {
-			alert("로그인 아이디는 이메일 형식으로만 가능합니다.");
+			alert("아이디는 이메일 형식으로만 가능합니다! 다시 입력해주세요.");
+			id.focus();
 			return false;
 		}
 		/*===============비밀번호 유효성===============*/
 
 		if (pw.value == '') {
-			alert("비밀번호를 입력해주세요.");
-			id.focus();
+			alert("비밀번호를 입력해주세요!");
+			pw.focus();
 			return false;
 		}
 
+		if (!p_RegExp.test(pw.value)) {
+			alert("password는 8~20자의 영문 대소문자와 숫자로만 입력 해주세요.");
+			pw.focus();
+			return false;
+
+		}
 	}
 </script>
 </head>
 <body>
 	<h2>로그인</h2>
-	
-		<form id="loginCheck" name="loginCheck" action="/login/login" method="POST" onsubmit="return userLogin()" >
-			
-			<div class="input-group" style="width: 280px" align="center">
-      			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-	      		<input id="m_id" type="text" class="form-control" name="m_id" placeholder="Email">
-    		</div>
-			<div class="input-group" style="width: 280px">
-     			<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-      			<input id="m_pw" type="password" class="form-control" name="m_pw" placeholder="Password">
-    		</div>
+	<c:if test="${login == null }">
+		<form id="loginCheck" name="loginCheck" action="/login/loginCheck"
+			method="POST" onsubmit="return userLogin()">
+			<div style="width: 280px">
+				<label id="loginInfo"> 아이디</label> <input type="text" id="m_id"
+					name="m_id" placeholder="아이디">
+			</div>
+
+			<div style="width: 280px">
+				<label id="loginInfo"> 비밀번호</label> <input type="password" id="m_pw"
+					name="m_pw" placeholder="비밀번호">
+			</div>
 			<p></p>
-	
-			<div>
+<div>
 				<input type="submit" value="로그인" class="btn btn-success"/> 
 				<input type="button" value="아이디 찾기"  class="btn" onClick="location.href='findId'" />
 				<input type="button" value="비밀번호 찾기" class="btn" onClick="location.href='findPw'"/>
-				<input type="button" value="회원가입" class="btn" onClick="location.href='join'" />
+				<input type="button" value="회원가입" class="btn" onClick="location.href='/member/join'" />
 			</div>
 		</form>
+	</c:if>
+
 </body>
 </html>

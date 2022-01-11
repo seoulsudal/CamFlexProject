@@ -1,6 +1,7 @@
 package com.camflex.client.member.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,15 @@ public class MemberDAOImpl implements MemberDAO {
 
 	// 회원가입 처리
 	@Override
-	public void insertMember(MemberVO vo) throws Exception {
-		sqlSession.insert(namespace + ".insertMember", vo);
+	public int insertMember(MemberVO mvo) throws Exception {
+		return sqlSession.insert(namespace + ".insertMember", mvo);
 	}
+
+	// 아이디 중복체크
+	/*@Override
+	public MemberVO check_id(String m_id) throws Exception {
+		return sqlSession.check_id(namespace + ".check_id", m_id);
+	}*/
 
 	// 내 정보 보기, 정보 수정 폼
 	@Override
@@ -35,7 +42,6 @@ public class MemberDAOImpl implements MemberDAO {
 	// 내 정보 수정 처리
 	@Override
 	public int MemberModify(MemberVO vo) throws Exception {
-
 		return sqlSession.update(namespace + ".MemberModify", vo);
 	}
 
@@ -54,8 +60,8 @@ public class MemberDAOImpl implements MemberDAO {
 
 	// 예약 취소 폼
 	@Override
-	public MemberVO reserveCancel(ReservationVO rvo) throws Exception {
-		return sqlSession.selectOne(namespace + ".reserveCancel", rvo);
+	public ReservationVO reserveCancel(int r_number) throws Exception {
+		return sqlSession.selectOne(namespace + ".reserveCancel", r_number);
 	}
 
 	// 예약 취소 처리

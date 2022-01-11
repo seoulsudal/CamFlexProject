@@ -68,7 +68,7 @@ $(function() {
 		<c:choose>
 			<c:when test="${empty inquiryList}">
 				<tr>
-					<td colspan="3">등록된 문의 내역이 없습니다.</td>
+					<td colspan="3" style="text-align: center;">등록된 문의 내역이 없습니다.</td>
 				</tr>
 			</c:when>
 			<c:otherwise>

@@ -4,16 +4,15 @@
 
 
 	<!-- 회원가입 처리 -->
-	<insert id="insertMember" parameterType="member">
-		<selectKey keyProperty="m_number" resultType="int"
-			order="BEFORE">
-			SELECT member_tbl_seq.nextval FROM DUAL
-		</selectKey>
-		insert into member_tbl
-		(m_id, m_pw, m_name, m_birth,m_phone,m_number)
-		values
-		(#{m_id},#{m_pw},#{m_name},#{m_birth},#{m_phone},#{m_number})
+	<insert parameterType="member" id="insertMember">
+		<selectKey order="BEFORE" resultType="int"
+			keyProperty="m_number">SELECT member_tbl_seq.nextval FROM dual </selectKey>
+		INSERT INTO member_tbl(m_id, m_pw, m_name, m_birth, m_phone,
+		m_number)VALUES(#{m_id}, #{m_pw, jdbcType=VARCHAR}, #{m_name,
+		jdbcType=VARCHAR}, #{m_birth}, #{m_phone, jdbcType=VARCHAR},
+		#{m_number})
 	</insert>
+
 
 
 	<!-- 내 정보 보기 -->
@@ -28,6 +27,7 @@
 	<update id="MemberModify">
 		update member_tbl
 		set
+		m_pw=#{m_pw},
 		m_phone=#{m_phone}
 		where
 		m_id=#{m_id}
@@ -53,13 +53,6 @@
 		]]>
 	</select>
 
-	<!-- 예약 취소 폼 -->
-	<select id="reserveCancel" resultType="reservation">
-		select *
-		from reservation_tbl
-		where m_id=#{m_id} AND r_number=#{r_number}
-	</select>
-
 	<!-- 예약 취소 처리 -->
 	<update id="Cancel">
 		<![CDATA[
@@ -68,7 +61,7 @@
 		where r_number= #{r_number} 
 		]]>
 	</update>
-	
+
 	<!-- 페이징 카운트 -->
 	<select id="count" resultType="int">
 		<![CDATA[

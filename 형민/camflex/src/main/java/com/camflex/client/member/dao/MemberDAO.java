@@ -1,6 +1,7 @@
 package com.camflex.client.member.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.camflex.client.member.vo.MemberVO;
 import com.camflex.client.reservation.vo.ReservationVO;
@@ -10,7 +11,10 @@ import com.camflex.common.vo.PageRequest;
 public interface MemberDAO {
 
 	// 회원가입 처리
-	public void insertMember(MemberVO vo) throws Exception;
+	public int insertMember(MemberVO mvo) throws Exception;
+
+	// 아이디 중복체크
+	//public MemberVO check_id(String m_id) throws Exception;
 
 	// 내 정보 보기, 정보 수정 폼
 	public MemberVO readMember(String m_id) throws Exception;
@@ -25,7 +29,7 @@ public interface MemberDAO {
 	public MemberVO PwCheck(MemberVO vo) throws Exception;
 
 	// 예약 취소 폼
-	public MemberVO reserveCancel(ReservationVO rvo) throws Exception;
+	public ReservationVO reserveCancel(int r_number) throws Exception;
 
 	// 예약 취소 처리
 	public int Cancel(ReservationVO vo) throws Exception;

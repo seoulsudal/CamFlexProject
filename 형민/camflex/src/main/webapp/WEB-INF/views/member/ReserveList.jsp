@@ -19,33 +19,39 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-$(function () {
-	//예약 취소 클릭 시
-	$(".btncancel").click(function(){
-		var r_number = $(this).parents("tr").attr("data-num1");
-		var r_price = $(this).parents("tr").attr("data-num2");
-		
-		$("#r_number").val(r_number);
-		$("#r_price").val(r_price);
-		
-		console.log("예약번호 : " + r_number);
-		console.log("예약금액 : " + r_price);
-		
-		$("#reserveListDetail").attr({
-			"method":"get",
-			"action":"/member/ReserveCancel"
+	$(function() {
+		//예약 취소 클릭 (취소 페이지로 이동)
+		$(".reserveCancel").click(function() {
+
+			var r_number = $(this).parents("tr").attr("data-num1");
+			var r_price = $(this).parents("tr").attr("data-num2");
+			var r_startDate = $(this).parents("tr").attr("data-num3");
+
+			$("#r_number").val(r_number);
+			$("#r_price").val(r_price);
+			$("#r_startDate").val(r_startDate);
+
+			console.log("예약번호 : " + r_number);
+			console.log("예약금액 : " + r_price);
+			console.log("예약날짜 : " + r_startDate);
+
+			$("#reserveListDetail").attr({
+				"method" : "get",
+				"action" : "/member/ReserveCancel"
+			});
+			$("#reserveListDetail").submit();
 		});
-		$("#reserveListDetail").submit();
 	});
-	
-)};
 </script>
 </head>
 <body>
 	<form name="reserveListDetail" id="reserveListDetail">
 		<input type="hidden" id="m_id" name="m_id" value="${list.m_id}">
-		<input type="hidden" id="r_number" name="r_number" value="${list.r_number }">
-		<input type="hidden" id="r_price" name="r_price" value="${list.r_price }">
+		<input type="hidden" id="r_number" name="r_number"
+			value="${list.r_number }"> <input type="hidden" id="r_price"
+			name="r_price" value="${list.r_price }"> <input type="hidden"
+			id="r_startDate" name="r_startDate" value="${list.r_startDate}">
+
 	</form>
 
 	<h2>내 예약 정보</h2>
@@ -70,7 +76,9 @@ $(function () {
 				</c:when>
 				<c:otherwise>
 					<c:forEach var="list" items="${reserveList}">
-						<tr data-num1 ="${list.r_number}" data-num2 = "${list.r_price }">
+						<tr data-num1="${list.r_number}" data-num2="${list.r_price }"
+							data-num3="${list.r_startDate}">
+
 							<td>${list.r_number}</td>
 							<td><c:if test="${list.p_number eq '1' }">오토A</c:if> <c:if
 									test="${list.p_number eq '41' }">오토B</c:if> <c:if
@@ -87,7 +95,8 @@ $(function () {
 							<td>${list.r_price }</td>
 							<td>현금</td>
 
-							<td><input type="button" class="btncancel" id="btncancel" name="btncancel" value="예약 취소" onClick="location.href='ReserveCancel.do'" /></td>
+							<td><input type="button" class="reserveCancel"
+								id="reserveCancel" name="btncancel" value="예약 취소" /></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
@@ -108,5 +117,6 @@ $(function () {
 			<a href="${pagination.endPage + 1}">&raquo;</a>
 		</c:if>
 	</div>
+
 </body>
 </html>

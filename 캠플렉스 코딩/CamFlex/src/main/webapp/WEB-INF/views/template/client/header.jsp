@@ -22,7 +22,7 @@
 		<ul class="nav navbar-nav navbar-left">
 			<li><a href="/notice/noticeList">공지사항</a></li>
 			<li><a href="/product/productList">예약</a></li>
-			<li><a href="/inquiry/inquiryList">마이 페이지</a></li>
+			<li><a href="/member/memberDate">마이 페이지</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<c:if test="${empty id}">

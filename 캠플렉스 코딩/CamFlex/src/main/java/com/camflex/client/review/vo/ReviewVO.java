@@ -10,6 +10,7 @@ public class ReviewVO {
 	private Date rv_date;
 	private String rv_content;
 	private int r_number;
+	private int rv_count;
 
 	public int getRv_number() {
 		return rv_number;
@@ -57,6 +58,14 @@ public class ReviewVO {
 
 	public void setR_number(int r_number) {
 		this.r_number = r_number;
+	}
+
+	public int getRv_count() {
+		return rv_count;
+	}
+
+	public void setRv_count(int rv_count) {
+		this.rv_count = rv_count;
 	}
 
 }

@@ -18,96 +18,75 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-	function price_fee() {
+	$(function() {
+		//예약 취소하기 버튼 클릭시 
+		$("#btnCancel").click(function() {
 
-		var today = new Date(); //현재 날짜
-		var startDate = document.getElementById("r_startdate");//예약 시작날짜
+			$("#cancelCheck").attr({
 
-		var price = document.getElementById("r_price"); // 총 금액
-		var fee = 0; //수수료
-
-		var year = today.getFullYear(); //연도
-		var month = now.getMonth(); //월
-		var day = now.getDate(); //일
-
-		var stDate = new Date(startDate_arr[0], startDate_arr[1],
-				startDate_arr[2]);
-		var nowDate = new Date(year, month, day);
-
-		var btMs = stDate.getTime() - nowDate.getTime();
-		var btDay = btMs / (1000 * 60 * 60 * 24);
-
-		if (btDay >= 8) {
-			fee = 1;
-		}
-
-		if (btDay >= 6 && btDay <= 7) {
-			fee = 0.2;
-
-		}
-
-		if (btDay >= 4 && btDay <= 5) {
-			fee = 0.3;
-
-		}
-
-		if (btDay >= 2 && btDay <= 3) {
-			fee = 0.4;
-		}
-
-		if (btDay == 1) {
-			fee = 0.5;
-		}
-
-		var price_fee = price * fee
-
-		console.log(price_fee);
-
-		//var diff = today - startDate;
-		//var currDay = 24*60*60*1000;
-
-		$(function() {
-			//예약 취소하기 버튼 클릭시 
-			$("#btnCancel").click(function() {
-				$("#cancelCheck").attr({
-					"method" : "POST",
-					"action" : "/member/cancel"
-				});
-				$("#cancelCheck").submit();
+				"method" : "POST",
+				"action" : "/member/Cancel"
 			});
+			$("#cancelCheck").submit();
 
 		});
 
-	}}
+	});
 </script>
 </head>
 <body>
-	<form id="cancelCheck" name="cancelCheck">
-		<input type="hidden" id="m_id" name="m_id" value="${list.m_id}">
-		<input type="hidden" name="r_number" id="r_number" value="${r_number }">
-		<input type="hidden" id="r_price " name="r_price " value="${r_price }">
-	</form>
-	<table>
-		<tr>
-			<td>결제금액</td>
-			<td><input name="${list.r_price}" /></td>
-		</tr>
-		<tr>
-			<td>취소수수료</td>
-			<td><input name=price_fee /></td>
-		</tr>
-		<tr>
-			<td>환불금액</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>취소 사유</td>
-			<td></td>
-		</tr>
+	<form id="cancelCheck" name="cancelCheck" method="GET">
+		<input type="hidden" id="m_id" name="m_id" value="${m_id}"> <input
+			type="hidden" id="r_number" name="r_number" value="${r_number}">
+		<input type="hidden" id="r_price" name="r_price" value="${r_price}">
+		<input type="hidden" id="r_startDate" name="r_startDate"
+			value="${r_startDate}"> <input type="hidden" id="price_fee"
+			name="price_fee" value="${p_fee} "> <input type="hidden"
+			id="total_price" name="total_price" value="${total_price} ">
 
-		<tr>
-			<td><input type="button" id="btnCancel" value="예약 취소하기" /></td>
-		</tr>
-	</table>
+
+
+		<table>
+
+
+			<tr>
+				<td>결제금액</td>
+				<td><input id="r_price" name="r_price" value="${r_price}"
+					readonly="true" /></td>
+			</tr>
+			<tr>
+				<td>취소수수료</td>
+				<td><input id="price_fee" name="price_fee" value="${p_fee}"
+					readonly="true" /></td>
+			</tr>
+			<tr>
+				<td>환불금액</td>
+				<td><input id="total_price" name="total_price"
+					value="${total_price}" readonly="true" /></td>
+			</tr>
+
+			<tr>
+				<td>취소 사유</td>
+				<td><select id="r_cancel" name="r_cancel">
+						<option value="개인사유">개인사유</option>
+						<option value="예약날짜변경">예약날짜변경</option>
+						<option value="천재지변">천재지변</option>
+						<option value="기타">기타</option>
+				</select></td>
+
+			</tr>
+
+			<tr>
+				<!-- 취소 환불 규정 안내문 -->
+			</tr>
+
+			<tr>
+				<td><input type="button" id="btnCancel" name="btnCancel"
+					value="예약 취소하기" /></td>
+			</tr>
+
+
+		</table>
+	</form>
 </body>
 </html>

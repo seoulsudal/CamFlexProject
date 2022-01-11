@@ -11,11 +11,12 @@
 	</select>
 	<!-- 월별 -->
 	<select id="monthlySales" resultMap="graph">
-		select 	sum(case when to_char(r_upddate, 'mm') = to_char(sysdate, 'mm')-2 then r_price / 10 end)"저저번달",
-				sum(case when to_char(r_upddate, 'mm') = to_char(sysdate, 'mm')-1 then r_price / 10 end)"저번달",
-				sum(case when to_char(r_upddate, 'mm') = to_char(sysdate, 'mm') then r_price / 10 end)"이번달" 
-		from reservation_tbl
-		where r_state = '확정'
+		SELECT NVL(저저번달, 0)AS 저저번달, NVL(저번달, 0)AS 저번달, NVL(이번달, 0)AS 이번달
+		FROM (SELECT sum(case when to_char(r_upddate, 'mm') = to_char(sysdate, 'mm')-2 then r_price / 10 end)AS 저저번달,
+        			 sum(case when to_char(r_upddate, 'mm') = to_char(sysdate, 'mm')-1 then r_price / 10 end)AS 저번달,
+    				 sum(case when to_char(r_upddate, 'mm') = to_char(sysdate, 'mm') then r_price / 10 end)AS 이번달 
+			  FROM reservation_tbl
+			  WHERE r_state = '확정')
 	</select>
 	
 	<!-- 취소 통계 아직 미구현 -->

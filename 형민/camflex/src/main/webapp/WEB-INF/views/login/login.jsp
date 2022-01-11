@@ -58,12 +58,11 @@
 					name="m_pw" placeholder="비밀번호">
 			</div>
 			<p></p>
-
-			<div>
-				<input type="submit" value="로그인" />
-				<input type="button" value="아이디 찾기" onClick="location.href='findIdForm.do'" />
-				<input type="button" value="비밀번호 찾기" onClick="location.href='findPwForm.do'" />
-				<input type="button" value="회원가입" onClick="location.href='joinForm.do'" />
+<div>
+				<input type="submit" value="로그인" class="btn btn-success"/> 
+				<input type="button" value="아이디 찾기"  class="btn" onClick="location.href='findIdForm'" />
+				<input type="button" value="비밀번호 찾기" class="btn" onClick="location.href='findPwForm'"/>
+				<input type="button" value="회원가입" class="btn" onClick="location.href='/member/join'" />
 			</div>
 		</form>
 	</c:if>

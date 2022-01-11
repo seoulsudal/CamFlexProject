@@ -28,7 +28,7 @@
 		<input type="hidden" name="m_id" id="m_id" value="${id}">
 	</form>
 	<div class="well" align="center">
-	<table border="1" class="table">
+	<table border="1" class="table" style="text-align: center;">
 		<colgroup>
 			<col width="15%" />
 			<col width="52%" />

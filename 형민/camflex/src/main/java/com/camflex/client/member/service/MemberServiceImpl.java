@@ -20,9 +20,24 @@ public class MemberServiceImpl implements MemberService {
 
 	// 회원가입 처리
 	@Override
-	public void insertMember(MemberVO vo) throws Exception {
-		memberDAO.insertMember(vo);
+	public int insertMember(MemberVO mvo) throws Exception {
+		int result = 0;
+
+		try {
+			result = memberDAO.insertMember(mvo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = 0;
+		}
+		return result;
 	}
+	
+	// 아이디 중복체크
+	/*@Override
+	public MemberVO check_id(String m_id) throws Exception {
+		return memberDAO.check_id(m_id);
+	}*/
+
 
 	// 내 정보 보기, 정보 수정 폼
 	@Override
@@ -57,8 +72,8 @@ public class MemberServiceImpl implements MemberService {
 
 	// 예약 취소 폼
 	@Override
-	public MemberVO reserveCancel(ReservationVO rvo) throws Exception {
-		return memberDAO.reserveCancel(rvo);
+	public ReservationVO reserveCancel(int p_number) throws Exception {
+		return memberDAO.reserveCancel(p_number);
 	}
 
 	// 예약 취소 처리
@@ -72,5 +87,8 @@ public class MemberServiceImpl implements MemberService {
 	public int count(PageRequest pageRequest) {
 		return memberDAO.count(pageRequest);
 	}
+
+	
+
 
 }
