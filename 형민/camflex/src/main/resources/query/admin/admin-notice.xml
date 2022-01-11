@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.admin.notice.dao.AdminNoticeDAO">
+	<resultMap id="noticeVO" type="com.camflex.admin.notice.vo.AdminNoticeVO">
+		<result column="n_number" property="n_number" />
+		<result column="n_title" property="n_title" />
+		<result column="n_content" property="n_content" />
+		<result column="n_photo" property="n_photo" />
+		<result column="n_date" property="n_date" />
+		<result column="n_writer" property="n_writer" />
+	</resultMap>
+	
+	<!-- 공지사항 기본 전체 조회 -->
+	<select id="noticeList" parameterType="notice" resultMap="noticeVO">
+		SELECT n_number, n_writer, n_title, n_date
+		FROM (SELECT n_number, n_writer, n_title, n_date, rownum as rnum
+			  FROM notice_tbl
+			  ORDER BY n_number DESC)
+		WHERE rnum between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}
+	</select>
+	
+	<!-- 글 등록 -->
+	<insert id="regNotice" parameterType="notice">
+		<selectKey keyProperty="n_number" resultType="int" order="BEFORE">
+			SELECT notice_tbl_seq.nextval FROM DUAL
+		</selectKey>
+		INSERT INTO notice_tbl(
+		n_number, n_writer, n_title, n_content <if test="n_photo != null and n_photo !=''">, n_photo</if>
+		)
+		VALUES(
+		#{n_number}, '관리자', #{n_title}, #{n_content} <if test="n_photo != null and n_photo != ''">, #{n_photo}</if>
+		)
+	</insert>
+	
+	<!-- 글 상세 페이지를 위한 게시물 조회 -->
+	<select id="noticeDetail" parameterType="int" resultMap="noticeVO">
+		SELECT n_number, n_title, n_content, n_photo
+		FROM notice_tbl
+		WHERE n_number = #{n_number}
+	</select>
+	
+	<!-- 글 수정 -->
+	<update id="updateNotice" parameterType="notice">
+		UPDATE notice_tbl
+		SET n_title = #{n_title},
+			n_content = #{n_content}
+			<if test="n_photo != null and n_photo != ''">, n_photo = #{n_photo}</if>
+		WHERE n_number = #{n_number}
+	</update>
+	
+	<!-- 전체 글 수를 조회 -->
+	<select id="count" resultType="int">
+		<![CDATA[
+		SELECT count(n_number)
+		FROM notice_tbl
+		WHERE n_number > 0
+		]]>
+	</select>
+</mapper>

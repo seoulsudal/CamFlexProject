@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.admin.inquiry.dao.AdminInquiryDAO">
+	<!-- 리스트 조회 -->
+	<select id="inquiryList" parameterType="inquiry" resultType="inquiry">
+		<![CDATA[
+		SELECT i_number, parentno, i_kinds, m_id, i_title, i_date
+		FROM (SELECT i_number, parentno, i_kinds, m_id, i_title, i_date, ROWNUM AS RNUM
+			  FROM inquiry_tbl
+			  START WITH parentno = 0
+			  CONNECT BY PRIOR i_number = parentno
+			  ORDER SIBLINGS BY i_number DESC)
+		WHERE RNUM between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}
+		]]>
+	</select>
+	
+	<!-- 상세 페이지 -->
+	<select id="inquiryDetail" parameterType="int" resultType="inquiry">
+		SELECT i_number, parentno, i_kinds, m_id, i_title, i_content, i_date
+		FROM inquiry_tbl
+		WHERE i_number = #{i_number}
+	</select>
+	
+	<!-- 답글 등록 -->
+	<insert id="replyInquiry">
+		<selectKey keyProperty="i_number" resultType="int" order="BEFORE">
+			SELECT inquiry_seq.nextval FROM DUAL
+		</selectKey>
+		INSERT INTO inquiry_tbl(i_number, parentno, i_kinds, i_title, i_content, m_id)
+		VALUES(#{i_number}, #{parentNO}, #{i_kinds}, #{i_title}, #{i_content}, #{m_id})
+	</insert>
+	
+	<!-- 답글 수정 -->
+	<update id="update">
+		UPDATE inquiry_tbl
+		SET i_kinds = #{i_kinds}, i_content = #{i_content}
+		WHERE parentno = #{parentNO}
+	</update>
+	
+	<!-- 문의 글 전체 수를 조회한다. -->
+	<select id="inquiryCount" resultType="int">
+		<![CDATA[
+		SELECT count(i_number)
+		FROM inquiry_tbl
+		WHERE i_number > 0
+		]]>
+	</select>
+</mapper>

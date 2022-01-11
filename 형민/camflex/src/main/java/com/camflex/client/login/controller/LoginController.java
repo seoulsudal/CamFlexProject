@@ -2,7 +2,6 @@ package com.camflex.client.login.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -21,7 +20,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -31,8 +29,9 @@ import com.camflex.client.login.vo.LoginVO;
 import com.camflex.client.member.vo.MemberVO;
 
 @Controller
+@RequestMapping("/login")
 public class LoginController {
-	// 로깅을 위한 변수
+
 	private Logger log = LoggerFactory.getLogger(LoginController.class);
 
 	@Autowired
@@ -42,6 +41,7 @@ public class LoginController {
 	private String m_id;
 
 	/* 이메일 */
+
 	@Autowired
 	private JavaMailSenderImpl mailSender;
 
@@ -50,12 +50,12 @@ public class LoginController {
 	private BCryptPasswordEncoder pwEncoder;
 
 	/* 로그인 페이지 */
-	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String LoginForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		sessionCheck(request, response);
 		session = request.getSession();
 
-		return "/login/login"; // views/login/login.jsp로 포워드
+		return "login/login"; // views/login/login.jsp로 포워드
 	}
 
 	/* 로그인 기능 */
@@ -75,7 +75,7 @@ public class LoginController {
 			session.setAttribute("m_id", vo.getM_id());
 			session.setAttribute("login", login);
 			log.info(m_id);
-			return "/member/mypage";
+			return "redirect:/";
 
 		} else {
 			log.info("login false");
@@ -86,17 +86,18 @@ public class LoginController {
 			out_equals.flush();
 
 		}
-		return "/login/login";
+		return "login/login";
 	}
 
 	/* 아이디 찾기 페이지 */
-	@RequestMapping(value = "findIdForm", method = RequestMethod.GET)
+	@RequestMapping(value = "/findId", method = RequestMethod.GET)
 	public String findIdForm() {
-		log.info("아이디 찾기 페이지 호출 성공");
-		return "/login/findId";
+		log.info("FindId GET 호출 성공");
+
+		return "login/findId";
 	}
 
-	/* 아이디 찾기 기능 */
+	/* 아이디 찾기 */
 	@RequestMapping(value = "findId", method = RequestMethod.POST)
 	public String findId(MemberVO vo, Model model, HttpServletResponse response, RedirectAttributes rttr)
 			throws Exception {
@@ -113,41 +114,46 @@ public class LoginController {
 
 			model.addAttribute("mvo", null);
 			rttr.addFlashAttribute("msg", false);
-			return "/login/findId";
+			return "login/findId";
 		} else {
 			log.info("find ID 성공");
 			model.addAttribute("mvo", mvo);
 		}
-		return "/login/findId";
+		return "login/findId";
 	}
 
 	/* 비밀번호 찾기 페이지 */
-	@RequestMapping(value = "findPwForm", method = RequestMethod.GET)
+	@RequestMapping(value = "findPw", method = RequestMethod.GET)
 	public String findPwForm() {
 		log.info("비밀번호 찾기 페이지 호출 성공");
-		return "/login/findPw"; // views/login/findPw.jsp로 포워드
+		return "login/findPw"; // views/login/findPw.jsp로 포워드
 	}
 
 	/* 비밀번호 찾기 인증번호 이메일 발송 기능 */
 	/* 이름과 아이디, 전화번호로 인증받는다. */
-	@RequestMapping(value = "findPw", method = RequestMethod.POST)
+	@RequestMapping(value = "/findPw_check", method = RequestMethod.POST)
 	public ModelAndView findPw(Model model, HttpServletResponse response, HttpServletRequest request, MemberVO vo,
 			RedirectAttributes rttr) throws Exception {
 
 		String m_id = (String) request.getParameter("m_id");
 		String m_name = (String) request.getParameter("m_name");
 
+		log.info(m_name);
+		log.info(m_id);
+
 		ModelAndView mav = new ModelAndView(); // ModelAndView로 보낼 페이지 지정
+
 		// 비밀번호 찾기 (이름,아이디)인증
-		MemberVO mvo = loginService.IdName(vo);
-		if (mvo != null) {
+		MemberVO mvo = loginService.findPw_check(vo);
+
+		if (mvo == null) {
 
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out_equals = response.getWriter();
 			out_equals.println("<script>alert('입력하신 이름, 아이디가 일치하지 않습니다. 다시 입력해주세요.');</script>");
 			out_equals.flush();
 
-			mav.setViewName("/login/findPw");
+			mav.setViewName("redirect:/");
 
 			return mav;
 
@@ -158,8 +164,7 @@ public class LoginController {
 			String setfrom = "dlgudals0011@gmail.com"; // 보내는 사람(사이트 관리자)
 			String tomail = request.getParameter("m_id"); // 받는 사람의 이메일(아이디 m_id)
 			String title = "camflex 캠핑장에서 인증번호를 보냅니다!"; // 제목
-			String content =
-					// 메일 내용
+			String content = // 메일 내용
 					System.getProperty("line.separator") + System.getProperty("line.separator") + "안녕하십니까!"
 							+ System.getProperty("line.separator") + System.getProperty("line.separator")
 							+ "요청하신 인증번호는 " + dice + " 입니다." + System.getProperty("line.separator")
@@ -182,6 +187,8 @@ public class LoginController {
 
 			mav.addObject("dice", dice);
 			mav.addObject("m_id", m_id);
+			mav.addObject("m_name", m_name);
+
 			mav.setViewName("/login/findPw_CCN"); // 인증번호 입력.jsp 뷰
 
 			log.info("--발송한 인증번호--");
@@ -202,7 +209,7 @@ public class LoginController {
 
 	/* 인증번호 받고 인증하는 페이지 */
 	// Certification Number = CCN 인증번호
-	@RequestMapping(value = "CCN.do{dice},{m_id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/CCN.do{dice},{m_id}", method = RequestMethod.POST)
 	public ModelAndView CCN(String CCN, @PathVariable(value = "dice") String dice,
 			@PathVariable(value = "m_id") String m_id, HttpServletResponse response) throws IOException {
 
@@ -231,7 +238,7 @@ public class LoginController {
 			// 인증번호 불일치 시
 			ModelAndView mav2 = new ModelAndView();
 
-			mav2.setViewName("/login/findPw_CCN");
+			mav2.setViewName("login/findPw_CCN");
 
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out_equals = response.getWriter();
@@ -248,30 +255,46 @@ public class LoginController {
 	public String change_pw(MemberVO vo, String m_id, HttpServletResponse response, RedirectAttributes rttr)
 			throws Exception {
 		log.info("비밀번호 변경 요청");
-		log.info("변경한 id : " + m_id);
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("m_id", m_id);
+		
+		log.info("변경하는 id : " + m_id);
 
 		/* 인코딩 후 비밀번호 */
-		String m_pw = "";// 인코딩 전 비밀번호
+		/*String m_pw = "";// 인코딩 전 비밀번호
 		String encodePw = ""; // 변경된 비밀번호 다시 암호화
 
 		m_pw = vo.getM_pw();
 		encodePw = pwEncoder.encode(m_pw); // 비밀번호 인코딩
-		vo.setM_pw(encodePw);
+		vo.setM_pw(encodePw);*/
 
-		/* 암호화 된 비밀번호 변경 */ loginService.change_pw(vo);
+		/* 암호화 된 비밀번호 변경 */
+		/*loginService.change_pw(vo);*/
 		session.invalidate();
 		rttr.addFlashAttribute("result", "updateOK");
 
 		log.info("비밀번호 변경 완료");
-		return "/login/pw_result";
+		return "login/pw_result";
 
+	}
+
+	// 로그아웃
+	@RequestMapping("/logout")
+	public String logout(HttpSession session, HttpServletRequest request) throws Exception {
+		log.info("LogOut");
+
+		session.invalidate();
+		session = request.getSession(true);
+
+		return "redirect:/";
 	}
 
 	// 로그인 체크
 	private void sessionCheck(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		session = request.getSession();
 		m_id = (String) session.getAttribute("m_id");
-		log.info("접속한 ID " + m_id);
+		log.info("여긴 m_id " + m_id);
 	}
 
 }

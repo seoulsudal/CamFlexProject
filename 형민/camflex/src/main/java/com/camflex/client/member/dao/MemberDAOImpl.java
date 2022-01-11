@@ -1,7 +1,6 @@
 package com.camflex.client.member.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import com.camflex.client.member.vo.MemberVO;
 import com.camflex.client.reservation.vo.ReservationVO;
 import com.camflex.common.vo.PageRequest;
 
-//DB 연결 구현
 @Repository
 public class MemberDAOImpl implements MemberDAO {
 
@@ -25,12 +23,6 @@ public class MemberDAOImpl implements MemberDAO {
 	public int insertMember(MemberVO mvo) throws Exception {
 		return sqlSession.insert(namespace + ".insertMember", mvo);
 	}
-
-	// 아이디 중복체크
-	/*@Override
-	public MemberVO check_id(String m_id) throws Exception {
-		return sqlSession.check_id(namespace + ".check_id", m_id);
-	}*/
 
 	// 내 정보 보기, 정보 수정 폼
 	@Override
@@ -70,10 +62,22 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.update(namespace + ".Cancel", vo);
 	}
 
-	// 페이징 카운트
+	// 예약 취소 리스트 구현
 	@Override
-	public int count(PageRequest pageRequest) {
+	public List<MemberVO> cancelList(PageRequest pageRequest) throws Exception {
+		return sqlSession.selectList("cancelList");
+	}
+
+	// 카운트
+	@Override
+	public int count(PageRequest pageRequest) throws Exception {
 		return sqlSession.selectOne("count");
+	}
+
+	// 지난 예약 리스트 구현
+	@Override
+	public List<MemberVO> pastList(PageRequest pageRequest) throws Exception {
+		return sqlSession.selectList("pastList");
 	}
 
 }

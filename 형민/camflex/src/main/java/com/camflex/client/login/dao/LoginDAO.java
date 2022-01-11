@@ -12,7 +12,7 @@ public interface LoginDAO {
 	public MemberVO findId(MemberVO vo) throws Exception;
 
 	// 비밀번호 찾기 (이름,아이디)인증
-	public MemberVO IdName(MemberVO vo) throws Exception;
+	public MemberVO findPw_check(MemberVO vo) throws Exception;
 
 	// 인증 처리 후 비밀번호 변경
 	public void change_pw(MemberVO vo) throws Exception;

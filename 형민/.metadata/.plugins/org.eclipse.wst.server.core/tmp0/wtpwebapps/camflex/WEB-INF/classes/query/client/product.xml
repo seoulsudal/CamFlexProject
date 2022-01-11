@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.client.product.dao.ProductDAO">
+	<resultMap id="AdminProductVO" type="com.camflex.admin.product.vo.AdminProductVO">
+		<result column="p_number" property="p_number" />
+		<result column="p_type" property="p_type" />
+		<result column="p_name" property="p_name" />
+		<result column="p_price" property="p_price" />
+		<result column="p_information" property="p_information" />
+		<result column="p_mainphoto" property="p_mainphoto" />
+		<result column="p_photo1" property="p_photo1" />
+		<result column="p_photo2" property="p_photo2" />
+		<result column="p_photo3" property="p_photo3" />
+		<result column="p_date" property="p_date" />
+	</resultMap>
+	
+	<!-- 캠핑장 조회 -->
+	<select id="productList" parameterType="product" resultMap="AdminProductVO">
+		SELECT p_number, p_type, p_name, p_date
+		FROM product_tbl
+		ORDER BY p_number DESC
+	</select>
+	
+	<!-- 상세 페이지 -->
+	<select id="productDetail" parameterType="int" resultType="product">
+		SELECT p_number, p_mainphoto, p_photo1, p_photo2, p_photo3, p_type, p_name, p_information, p_price
+		FROM product_tbl
+		WHERE p_number = #{p_number}
+	</select>
+	
+</mapper>

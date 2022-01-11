@@ -64,7 +64,7 @@
 			</div>
 			<p></p>
 			<div>
-				<input type="submit" value="아이디 찾기" />
+				<input type="submit" value="아이디 찾기" class="btn btn-success"/>
 			</div>
 		</form>
 	</c:if>
