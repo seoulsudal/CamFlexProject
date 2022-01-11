@@ -9,15 +9,18 @@
 </style>
 
 <div class="container">
-	<div class="navbar-header">
+	<div class="navbar-header" style="height: 100px;">
 		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 			<span class="sr-only">Toggle navigation</span>
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="/" style="font-size: 50px">CamFlex</a>
+		<a class="navbar-brand" href="/"><img src="/resources/images/common/CAMFLEX.png" alt="캠플렉스" height="80px;" width="110px;"></a>
 	</div>
+	<br>
+	<br>
+	<br>
 	<div id="navbar" class="collapse navbar-collapse">
 		<ul class="nav navbar-nav navbar-left">
 			<li><a href="/notice/noticeList">공지사항</a></li>

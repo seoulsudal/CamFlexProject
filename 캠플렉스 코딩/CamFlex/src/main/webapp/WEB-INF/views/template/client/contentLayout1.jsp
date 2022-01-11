@@ -33,7 +33,10 @@
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<tiles:insertAttribute name="header"/>
 	</nav>
-	
+	<br>
+	<br>
+	<br>
+	<br>
 	<div class="container">
 		<div class="row content">
 			<div class="col-sm-3 sidenav">

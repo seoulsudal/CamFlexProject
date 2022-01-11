@@ -55,7 +55,7 @@ $(function() {
 				<td align="center">금액</td>
 				<td align="center">예약 시작일</td>
 				<td align="center">예약 종료일</td>
-				<td align="center">후기</td>
+				<td align="center">리뷰</td>
 			</tr>
 		</thead>
 		<tbody id="list">
@@ -75,7 +75,7 @@ $(function() {
 							<td align="center">${past.r_endDate}</td>
 							<td align="center">
 							<%-- <input type="text" id="rv_number" name="rv_number" value="${rv_count}"> --%>
-							<input type="button" class="btnReviewInsert btn btn-success" name="btnReviewInsert" value="후기 작성">										
+							<input type="button" class="btnReviewInsert btn btn-success" name="btnReviewInsert" value="리뷰 작성">										
 							</td>
 						</tr>
 					</c:forEach>

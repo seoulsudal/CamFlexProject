@@ -28,7 +28,10 @@
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<tiles:insertAttribute name="header" />
 	</nav>
-	
+	<br>
+	<br>
+	<br>
+	<br>
 	<div class="container">
 		<tiles:insertAttribute name="body" ignore="true"/>
 	</div>	

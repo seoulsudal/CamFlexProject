@@ -51,7 +51,7 @@
 <body>
 	<h2>아이디 찾기</h2>
 	<c:if test="${mvo == null }">
-		<form id="findId" name="findId" action="/findId" method="POST"
+		<form id="findId" name="findId" action="/login/findId" method="POST"
 			onsubmit="return find_id_Check()">
 			<div>
 				<label id="find_id_info">이름</label> <input type="text" id="m_name"
@@ -70,7 +70,7 @@
 	</c:if>
 
 	<c:if test="${mvo != null }">
-		${mvo.m_name}님 아이디는 ${mvo.m_id } 입니다.
+		${mvo.m_name}님 아이디는 ${mvo.m_id} 입니다.
 	</c:if>
 </body>
 </html>
