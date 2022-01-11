@@ -25,6 +25,7 @@ public class Pagination {
 
 	private void calcData() {
 		endPage = (int) (Math.ceil(pageRequest.getPage() / (double) displayPageNum) * displayPageNum);
+		
 		startPage = (endPage - displayPageNum) + 1;
 
 		int tempEndPage = (int) (Math.ceil(totalCount / (double) pageRequest.getSizePerPage()));
@@ -70,4 +71,5 @@ public class Pagination {
 				.queryParam("perPageNum", pageRequest.getSizePerPage()).build();
 		return uriComponents.toUriString();
 	}
+	
 }

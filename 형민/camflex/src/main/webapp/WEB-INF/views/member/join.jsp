@@ -34,11 +34,11 @@
 		}
 
 		// 아이디 중복 체크 
-		if ($("#resultAll").val() != "yes") {
+		/* if ($("#resultAll").val() != "yes") {
 			alert('아이디 중복 체크를 해주세요!');
 			$('#check_id').focus();
 			return false;
-		}
+		} */
 
 		//비밀번호 공백 입력여부 
 		if (Pw.value == '') {
@@ -159,40 +159,40 @@
 					<tr>
 						<td>ID</td>
 						<td><input type="text" class="form-control" name="m_id"
-							id="m_id" value="이메일 형식으로 입력" /></td>
+							id="m_id" placeholder="이메일 형식으로 입력" /></td>
 						<!--  <td><button type="button" id="check_id" name="check_id">중복체크</button></td>-->
 					</tr>
 					<tr>
 						<td>패스워드</td>
 						<td><input type="password" class="form-control" name="m_pw"
-							id="m_pw" value="영문/숫자 8~20자 (특수문자X)" /></td>
+							id="m_pw" placeholder="영문/숫자 8~20자 (특수문자X)"/></td>
 					</tr>
 					<tr>
 						<td>패스워드 재확인</td>
 						<td><input type="password" class="form-control"
-							name="m_pw_chk" id="m_pw_chk" value="위 비밀번호와 일치하게 입력" /></td>
+							name="m_pw_chk" id="m_pw_chk" placeholder="위 비밀번호와 일치하게 입력" /></td>
 					</tr>
 					<tr>
 						<td>이름</td>
 						<td><input type="text" class="form-control" name="m_name"
-							id="m_name" value="특수문자 or 숫자X 50자 미만" /></td>
+							id="m_name" placeholder="특수문자 or 숫자X 50자 미만" /></td>
 					</tr>
 					<tr>
 						<td>생년월일</td>
 						<td><input type="text" class="form-control" name="m_birth"
-							id="m_birth" value="생년월일 숫자 8자리 ( - 포함)" /></td>
+							id="m_birth" placeholder="생년월일 숫자 8자리 ( - 포함)" /></td>
 					</tr>
 					<tr>
 						<td>전화번호</td>
 						<td><input type="text" class="form-control" name="m_phone"
-							id="m_phone" value="(-)를 제외한 11자" /></td>
+							id="m_phone" placeholder="(-)를 제외한 11자" /></td>
 					</tr>
 				</table>
 
 			</div>
 
-			<div align="right">
-				<input type="submit" value="등록" />
+			<div align="center">
+				<input type="submit" value="등록" class="btn btn-success"/>
 			</div>
 		</form>
 	</div>

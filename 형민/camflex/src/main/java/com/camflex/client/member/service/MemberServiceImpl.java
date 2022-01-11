@@ -31,13 +31,6 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return result;
 	}
-	
-	// 아이디 중복체크
-	/*@Override
-	public MemberVO check_id(String m_id) throws Exception {
-		return memberDAO.check_id(m_id);
-	}*/
-
 
 	// 내 정보 보기, 정보 수정 폼
 	@Override
@@ -82,13 +75,22 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.Cancel(vo);
 	}
 
-	// 페이징 카운트
+	// 예약 취소 리스트 구현
 	@Override
-	public int count(PageRequest pageRequest) {
+	public List<MemberVO> cancelList(PageRequest pageRequest) throws Exception {
+		return memberDAO.cancelList(pageRequest);
+	}
+
+	// 카운트
+	@Override
+	public int count(PageRequest pageRequest) throws Exception {
 		return memberDAO.count(pageRequest);
 	}
 
-	
-
+	// 지난 예약 리스트 구현
+	@Override
+	public List<MemberVO> pastList(PageRequest pageRequest) throws Exception {
+		return memberDAO.pastList(pageRequest);
+	}
 
 }

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.admin.product.dao.AdminProductDAO">
+	<resultMap id="productVO"
+		type="com.camflex.admin.product.vo.AdminProductVO">
+		<result column="p_number" property="p_number" />
+		<result column="p_type" property="p_type" />
+		<result column="p_name" property="p_name" />
+		<result column="p_price" property="p_price" />
+		<result column="p_information" property="p_information" />
+		<result column="p_mainphoto" property="p_mainphoto" />
+		<result column="p_photo1" property="p_photo1" />
+		<result column="p_photo2" property="p_photo2" />
+		<result column="p_photo3" property="p_photo3" />
+		<result column="p_date" property="p_date" />
+	</resultMap>
+	
+	<!-- 상품 기본 조회 -->
+	<select id="productList" parameterType="product" resultMap="productVO">
+		SELECT p_number, p_type, p_name, p_date
+		FROM (SELECT p_number, p_type, p_name, p_date, ROWNUM AS RNUM
+			  FROM product_tbl
+			  ORDER BY p_number DESC)
+		WHERE RNUM between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}
+	</select>
+
+	<!-- 상품 등록 -->
+	<insert id="regProduct" parameterType="product">
+		<selectKey keyProperty="p_number" resultType="int"
+			order="BEFORE">
+			SELECT product_tbl_seq.nextval from dual
+		</selectKey>
+		INSERT INTO product_tbl(
+		p_number, p_type, p_name, p_price, p_information, p_mainphoto, p_photo1, p_photo2, p_photo3 
+		)
+		VALUES(
+		#{p_number}, #{p_type, jdbcType=VARCHAR}, #{p_name, jdbcType=VARCHAR}, #{p_price}, #{p_information, jdbcType=VARCHAR}, #{p_mainphoto, jdbcType=VARCHAR}, #{p_photo1, jdbcType=VARCHAR}, #{p_photo2, jdbcType=VARCHAR}, #{p_photo3, jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<select id="productDetail" parameterType="int" resultMap="productVO">
+		select p_number, p_mainphoto, p_photo1, p_photo2, p_photo3, p_type, p_name, p_information, p_price
+		from product_tbl
+		where p_number = #{p_number}
+	</select>
+	
+	<update id="updateProduct" parameterType="product">
+		update product_tbl
+		set p_type = #{p_type},
+			p_name = #{p_name},
+			p_price = #{p_price},
+			p_information = #{p_information},
+			p_mainphoto = #{p_mainphoto},
+			p_photo1 = #{p_photo1},
+			p_photo2 = #{p_photo2},
+			p_photo3 = #{p_photo3}
+		where p_number = #{p_number}
+	</update>
+	
+	<!-- 전체 글 수를 조회 -->
+	<select id="count" resultType="int">
+		<![CDATA[
+		SELECT count(p_number)
+		FROM product_tbl
+		WHERE p_number > 0
+		]]>
+	</select>
+	
+<!-- 	<delete id="productDelete" parameterType="product">
+		delete from product_tbl where p_number = #{p_number}
+	</delete> -->
+</mapper>

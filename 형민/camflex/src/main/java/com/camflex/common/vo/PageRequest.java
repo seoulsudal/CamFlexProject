@@ -10,7 +10,7 @@ public class PageRequest {
 
 	private String m_id;
 	private int p_number;
-	private int rv_number;
+	private int r_number;
 
 	// 검색 유형과 검색어를 멤버 변수(필드)로 선언한다.
 	private String searchType;
@@ -32,12 +32,12 @@ public class PageRequest {
 		this.p_number = p_number;
 	}
 
-	public int getRv_number() {
-		return rv_number;
+	public int getR_number() {
+		return r_number;
 	}
 
-	public void setRv_number(int rv_number) {
-		this.rv_number = rv_number;
+	public void setR_number(int r_number) {
+		this.r_number = r_number;
 	}
 
 	public PageRequest() {
@@ -93,24 +93,32 @@ public class PageRequest {
 
 	// 멤버 변수를 활용하여 다양한 형태의 쿼리 파라미터를 생성한다(변경 추가).
 	public String toUriString() {
-		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", this.page)
-				.queryParam("size", this.sizePerPage).queryParam("searchType", this.searchType)
-				.queryParam("keyword", this.keyword).build();
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.queryParam("page", this.page)
+				.queryParam("size", this.sizePerPage)
+				.queryParam("searchType", this.searchType)
+				.queryParam("keyword", this.keyword)
+				.build();
 
 		return uriComponents.toUriString();
 	}
 
 	public String toUriString(int page) {
-		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", this.page)
-				.queryParam("size", this.sizePerPage).queryParam("searchType", this.searchType)
-				.queryParam("keyword", this.keyword).build();
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.queryParam("page", this.page)
+				.queryParam("size", this.sizePerPage)
+				.queryParam("searchType", this.searchType)
+				.queryParam("keyword", this.keyword)
+				.build();
 
 		return uriComponents.toUriString();
 	}
 
 	public String toUriStringByPage(int page) {
-		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
-				.queryParam("size", this.sizePerPage).build();
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.queryParam("page", page)
+				.queryParam("size", this.sizePerPage)
+				.build();
 
 		return uriComponents.toUriString();
 	}

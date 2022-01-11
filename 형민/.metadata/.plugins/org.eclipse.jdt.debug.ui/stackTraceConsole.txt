@@ -1,6 +1,0 @@
-	private String m_name = "";// 회원 이름
-	private String m_phone = "";// 회원 전화번호
-	@DateTimeFormat(pattern = "yyyyMMdd")
-	private Date m_birth;// 회원 생년 월일
-	private Date m_date; // 회원 가입 날짜
-	private int m_number; // 회원 번호

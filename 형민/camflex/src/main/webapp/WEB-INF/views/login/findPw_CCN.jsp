@@ -19,7 +19,7 @@
 </head>
 <body>
 	<h2>입력한 이메일로 받은 인증번호를 입력하세요.</h2>
-	<form id="CCN" name="CCN" action="/CCN.do${dice},${m_id}"
+	<form id="CCN" name="CCN" action="CCN.do${dice},${m_id}"
 		onsubmit="return check_CCN();" method="post">
 		<div>
 			인증번호 입력 : <input type="number" name="CCN" placeholder=" 인증번호를 입력하세요." />

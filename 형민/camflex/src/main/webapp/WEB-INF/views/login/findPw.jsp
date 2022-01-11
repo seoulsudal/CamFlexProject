@@ -45,7 +45,7 @@
 </script>
 <body>
 	<h2>비밀번호 찾기</h2>
-	<form name="findPw" id="findPw" action="/findPw" method="POST" onsubmit="return find_password()">
+	<form name="findPw_check" id="findPw_check" action="findPw_check" method="POST" onsubmit="return find_password()">
 		<div>
 			<label id="find_pw_info">이름</label> <input type="text" id="m_name"
 				name="m_name" placeholder="이름">
