@@ -68,7 +68,7 @@ public class MemberController {
 			HttpSession session, Model model) throws Exception {
 		log.info("내 정보 조회");
 		session = request.getSession();
-		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		m_id = (String) session.getAttribute("m_id");
 
 		model.addAttribute("memberVO", memberService.readMember((String) session.getAttribute("m_id")));
@@ -82,7 +82,7 @@ public class MemberController {
 	public String PwCheckForm(@ModelAttribute MemberVO vo, HttpSession session, HttpServletRequest request,
 			HttpServletResponse response, Model model) throws Exception {
 		session = request.getSession();
-		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		m_id = (String) session.getAttribute("m_id");
 
 		model.addAttribute("memberVO", memberService.readMember((String) session.getAttribute("m_id")));
@@ -96,7 +96,7 @@ public class MemberController {
 	public String pwCheck(MemberVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response,
 			Model model) throws Exception {
 		session = request.getSession();
-		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		m_id = (String) session.getAttribute("m_id");
 
 		MemberVO mvo = memberService.PwCheck(vo);
@@ -119,7 +119,7 @@ public class MemberController {
 	public String memberModifyForm(@ModelAttribute MemberVO vo, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session, Model model) throws Exception {
 		session = request.getSession();
-		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		m_id = (String) session.getAttribute("m_id");
 		model.addAttribute("id", m_id);
 
@@ -133,7 +133,7 @@ public class MemberController {
 	public String memberModify(MemberVO vo, HttpServletRequest request, HttpServletResponse response,
 			HttpSession session, Model model) throws Exception {
 		session = request.getSession();
-		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		m_id = (String) session.getAttribute("m_id");
 
 		MemberVO mvo = new MemberVO();
@@ -154,7 +154,7 @@ public class MemberController {
 	@RequestMapping(value = "/reserveList", method = RequestMethod.GET)
 	public String ReserveList(@ModelAttribute MemberVO vo, @ModelAttribute PageRequest pageRequest, HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) throws Exception {
 		session = request.getSession();
-		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		m_id = (String) session.getAttribute("m_id");
 
 		pageRequest.setM_id(m_id);
@@ -176,7 +176,7 @@ public class MemberController {
 	public String ReserveCancel(@ModelAttribute ReservationVO rvo, Model model, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
 		session = request.getSession();
-		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		m_id = (String) session.getAttribute("m_id");
 		model.addAttribute("id", m_id);
 
@@ -234,7 +234,7 @@ public class MemberController {
 	public String Cancel(@ModelAttribute ReservationVO vo, HttpServletRequest request, HttpServletResponse response,
 			HttpSession session, Model model) throws Exception {
 		session = request.getSession();
-		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		m_id = (String) session.getAttribute("m_id");
 		model.addAttribute("id", m_id);
 
@@ -255,7 +255,7 @@ public class MemberController {
 	@RequestMapping(value = "/pastList", method = RequestMethod.GET)
 	private String pastList(HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("pgrq") PageRequest pageRequest, ReviewVO rvvo, Model model) throws Exception {
-		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 
 		log.info("pastList 호출 성공");
 		log.info("접속 ID = " + m_id);
@@ -279,7 +279,7 @@ public class MemberController {
 	@RequestMapping(value = "/cancelList", method = RequestMethod.GET)
 	private String cancelList(HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("pgrq") PageRequest pageRequest, Model model) throws Exception {
-		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 
 		log.info("cancelList 호출 성공");
 		log.info("접속 ID = " + m_id);

@@ -36,7 +36,7 @@ public class ReviewController {
 	// 댓글 글쓰기 구현
 	@RequestMapping(value = "/reviewInsert", method = RequestMethod.GET)
 	public String reviewInsertForm(HttpServletRequest request, HttpServletResponse response, ReviewVO rvvo, Model model) throws Exception {
-		sessionCheck(request, response, "로그인 후 댓글 작성 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		log.info("접속한 ID = " + m_id);
 		
 		log.info("reviewInsertForm 호출 성공");
@@ -55,7 +55,7 @@ public class ReviewController {
 	// 댓글 글쓰기 처리
 	@RequestMapping(value = "/reviewInsert", method = RequestMethod.POST)
 	public String reviewInsert(HttpServletRequest request, HttpServletResponse response, @ModelAttribute ReviewVO rvvo, Model model) throws Exception {
-		sessionCheck(request, response, "로그인 후 댓글 작성 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		log.info("접속한 ID = " + m_id);
 		
 		log.info("reviewInsert 호출 성공");

@@ -42,6 +42,7 @@ $(function() {
 
 </head>
 <body>
+	<%-- 1:1 문의 페이지 이동을 위한 Form --%>
 	<form name="detailForm" id="detailForm">
 		<input type="hidden" name="i_number" id="i_number" value="${inquiry.i_number}">
 		<input type="hidden" id="m_id" name="m_id" value="${id}">

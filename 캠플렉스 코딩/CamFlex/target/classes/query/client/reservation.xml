@@ -29,7 +29,7 @@
 	<select id="reservationList" parameterType="reservation" resultMap="ReservationVO">
 		SELECT r_number, m_id, p_number, r_startdate, r_enddate, r_price, r_state, c_agree, p_u_agree, p_i_agree, a_agree
 		FROM reservation_tbl
-		WHERE r_startdate > SYSDATE AND p_number = #{p_number}
+		WHERE r_startdate > SYSDATE AND p_number = #{p_number} AND (r_state = '확정' OR r_state = '대기') 
 		ORDER BY r_apllicationdate
 	</select>
 	

@@ -38,7 +38,7 @@ public class AdminInquiryController {
 	 ****************************/
 	@RequestMapping(value = "/inquiryList", method = RequestMethod.GET)
 	public String inquiryList(@ModelAttribute PageRequest pageRequest, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		log.info("문의사항 게시판 리스트 호출 성공");
 		
 		// List<InquiryVO> inquiryList = adminInquiryService.inquiryList(ivo);
@@ -60,7 +60,7 @@ public class AdminInquiryController {
 	 ***************************/
 	@RequestMapping(value = "/inquiryDetail", method = RequestMethod.GET)
 	public String inquiryDetail(@ModelAttribute InquiryVO ivo, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		log.info("문의사항 상세 페이지 호출 성공");
 		log.info("글 번호 : " + ivo.getI_number());
 		
@@ -79,7 +79,7 @@ public class AdminInquiryController {
 	 ****************************/
 	@RequestMapping(value = "/replyInquiry", method = RequestMethod.GET)
 	public String replyInquiry(@ModelAttribute InquiryVO ivo, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		log.info("문의사항 답글 폼 호출 성공");
 		InquiryVO reply = new InquiryVO();
 		
@@ -115,7 +115,7 @@ public class AdminInquiryController {
 	 ****************************/
 	@RequestMapping(value = "/updateReplyInquiry", method = RequestMethod.GET)
 	public String updateReplyInquiry(@ModelAttribute InquiryVO ivo, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		log.info("문의사항 답글 폼 호출 성공");
 		InquiryVO reply = new InquiryVO();
 		

@@ -34,9 +34,6 @@
 		<tiles:insertAttribute name="header"/>
 	</nav>
 	<br>
-	<br>
-	<br>
-	<br>
 	<div class="container">
 		<div class="row content" align="center">
 			<tiles:insertAttribute name="body" ignore="true"/>			

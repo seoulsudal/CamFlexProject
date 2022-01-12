@@ -165,7 +165,9 @@
 					<c:otherwise>
 						<c:forEach items="${reservationList}" var="reservation">
 						<div>
-							예약번호 : ${reservation.r_number},<br> 예약 시작일 : ${reservation.r_startDate},<br> 예약 종료일 : ${reservation.r_endDate}
+							예약번호 : ${reservation.r_number}, <br>
+							예약 시작일 : ${reservation.r_startDate}, <br>
+							예약 종료일 : ${reservation.r_endDate}
 						</div>
 							<br>
 						</c:forEach>
@@ -175,10 +177,11 @@
 		</div>
 		<br>
 		<div align="center">
-			<form id="dateSend" name="dateSend">
-				<button type="button" class="btn btn-success" id="reservation" disabled style="font-size: 20px; height: 75px; width: 150px;">예약하러 가기</button>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button type="button" class="btn btn-success" id="BtnProductList" style="font-size: 20px; height: 75px; width: 150px;">목록</button>
+			<button type="button" class="btn btn-success" id="reservation" disabled style="font-size: 20px; height: 75px; width: 150px;">예약하러 가기</button>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button type="button" class="btn btn-success" id="BtnProductList" style="font-size: 20px; height: 75px; width: 150px;">목록</button>
+			<%-- 예약 동의 페이지 이동을 위한 Form --%>
+			<form id="dateSend" name="dateSend">				
 				<input type="hidden" id="r_startDate" name="r_startDate" value="${year}-${month}-" />
 				<input type="hidden" id="r_endDate" name="r_endDate" value="${year}-${month}-" />
 				<input type="hidden" name="p_number" id="p_number" value="${detail.p_number}" />

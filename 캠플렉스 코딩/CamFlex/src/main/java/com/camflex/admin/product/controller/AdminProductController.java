@@ -39,7 +39,7 @@ public class AdminProductController {
 	 ************************************/
 	@RequestMapping(value = "/productList", method = RequestMethod.GET)
 	public String productList(@ModelAttribute("pgrq")PageRequest pageRequest, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		
 		log.info("상품 목록 호출 성공");
 
@@ -63,7 +63,7 @@ public class AdminProductController {
 	 ************************************/
 	@RequestMapping(value = "/regProduct", method = RequestMethod.GET)
 	public String regForm(HttpServletRequest request, HttpServletResponse response, Model model)throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		log.info("상품 등록 폼 호출 성공");
 		
 		model.addAttribute("id", m_id);
@@ -116,7 +116,7 @@ public class AdminProductController {
 	 ***********************************/
 	@RequestMapping(value = "/productDetail", method = RequestMethod.GET)
 	public String productDetail(@ModelAttribute AdminProductVO pvo, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		log.info("상품 상세 페이지 호출 성공");
 		log.info("p_number = " + pvo.getP_number());
 
@@ -138,7 +138,7 @@ public class AdminProductController {
 	 ****************************************/
 	@RequestMapping(value = "/updateProduct", method = RequestMethod.POST)
 	public String updateForm(@ModelAttribute AdminProductVO pvo, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		log.info("상품 수정 폼 호출 성공");
 
 		log.info("p_number = " + pvo.getP_number());

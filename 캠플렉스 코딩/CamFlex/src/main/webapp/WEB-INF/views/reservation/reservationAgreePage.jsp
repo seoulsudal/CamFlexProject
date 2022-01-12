@@ -55,6 +55,7 @@
 <body>
 	<div class="col-sm-12">
 	<form id="agreeForm">
+		<%-- 예약을 위한 Form --%>
 		<input type="hidden" name="p_number" id="p_number" value="${detail.p_number}"/>
 		<input type="hidden" name="p_price" id="p_price" value="${detail.p_price}"/>
 		<input type="hidden" id="r_startDate" name="r_startDate" value="${reservation.r_startDate}" />

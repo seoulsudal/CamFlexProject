@@ -40,6 +40,7 @@ $(function() {
 </head>
 <body>
 <h2 align="center">지난 예약 리스트</h2>
+<%-- 리뷰 작성 페이지로 가기 위한 Form --%>
 <form name="detailForm" id="detailForm">
 	<input type="hidden" name="p_number" id="p_number" value="${past.p_number}">
 	<input type="hidden" id="m_id" name="m_id" value="${id}">

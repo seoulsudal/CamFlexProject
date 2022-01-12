@@ -30,8 +30,6 @@
 	</nav>
 	<br>
 	<br>
-	<br>
-	<br>
 	<div class="container">
 		<tiles:insertAttribute name="body" ignore="true"/>
 	</div>	

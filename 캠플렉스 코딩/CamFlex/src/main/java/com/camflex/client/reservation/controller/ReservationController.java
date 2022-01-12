@@ -41,7 +41,7 @@ public class ReservationController {
 	/* 실시간 예약 폼 */
 	@RequestMapping(value = "/reservationDetail", method = RequestMethod.POST)
 	public String reservationDetail(HttpServletRequest request, HttpServletResponse response, @ModelAttribute AdminProductVO pvo, ReservationVO rvo, Model model) throws Exception {
-		sessionCheck(request, response, "로그인 후 예약 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		
 		log.info("reservationDetail 호출 성공");
 		log.info("P_number = " + pvo.getP_number());
@@ -101,7 +101,7 @@ public class ReservationController {
 	/* 실시간 예약 동의페이지 */
 	@RequestMapping(value = "/reservationAgreePage", method = RequestMethod.POST)
 	public String reservationAgreePageForm(HttpServletRequest request, HttpServletResponse response, @ModelAttribute AdminProductVO pvo, ReservationVO rvo, Model model) throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		
 		log.info("reservationAgreePageForm 호출 성공");
 		log.info("P_number = " + pvo.getP_number());
@@ -126,7 +126,7 @@ public class ReservationController {
 	/* 실시간 예약 생성 */	
 	@RequestMapping(value = "reservationRegister", method = RequestMethod.POST)
 	public String reservationRegister(HttpServletRequest request, HttpServletResponse response, @ModelAttribute AdminProductVO pvo, ReservationVO rvo, Model model) throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		
 		log.info("reservationRegister 호출 성공");
 		log.info("P_number = " + pvo.getP_number());

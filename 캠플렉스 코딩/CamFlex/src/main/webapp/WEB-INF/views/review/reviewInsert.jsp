@@ -45,6 +45,7 @@
 	</div>
 	<br>
 	<div class="well" align="center">
+	<%-- 리뷰 작성을 위한 Form --%>
 	<form id="writeForm" name="writeForm">
 		<input type="hidden" name="m_id" id="m_id" value="${id}">
 		<input type="hidden" name="p_number" id="p_number" value="${p_number}">

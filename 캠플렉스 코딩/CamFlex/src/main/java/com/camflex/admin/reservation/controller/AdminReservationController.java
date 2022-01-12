@@ -42,7 +42,7 @@ public class AdminReservationController {
 	 ***************************/
 	@RequestMapping(value = "/reservationList", method = RequestMethod.GET)
 	public String reservationList(@ModelAttribute("pgrq") PageRequest pageRequest, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		
 		log.info("예약 리스트 호출 성공");
 		
@@ -72,7 +72,7 @@ public class AdminReservationController {
 	 **************************/
 	@RequestMapping(value = "/newReservation", method = RequestMethod.GET)
 	public String newRsvList(@ModelAttribute PageRequest pageRequest, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		
 		
 		log.info("신규 예약 리스트 호출");
@@ -156,7 +156,7 @@ public class AdminReservationController {
 	 **********************/
 	@RequestMapping(value = "/reservationCancelList", method = RequestMethod.GET)
 	public String reservationCancelList(@ModelAttribute PageRequest pageRequest, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		
 		log.info("예약 취소 리스트 호출 성공");
 		

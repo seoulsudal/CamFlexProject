@@ -34,7 +34,7 @@ public class AdminChartController {
 	// 차트 출력
 	@RequestMapping(value = "/chartList")
 	public String chart(@ModelAttribute ReservationVO rvo, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		log.info("차트페이지 호출 성공");
 
 		model.addAttribute("id", m_id);

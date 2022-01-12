@@ -35,7 +35,7 @@ public class AdminMainController {
 	// 메인 페이지
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String mainList(@ModelAttribute MemberVO mvo, ReservationVO rvo, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		
 		log.info("메인 페이지 호출 성공");
 		

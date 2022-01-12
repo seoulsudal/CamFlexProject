@@ -40,7 +40,7 @@ public class AdminMemberController {
 	 *******************************/
 	@RequestMapping(value = "/memberList", method = RequestMethod.GET)
 	public String memberList(@ModelAttribute("pgrq") PageRequest pageRequest, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		log.info("회원 리스트 호출 성공");
 		// 뷰에 페이징 처리를 한 게시글 목록을 전달한다.
 		model.addAttribute("memberList", adminMemberService.memberList(pageRequest));

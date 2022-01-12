@@ -4,9 +4,9 @@
 	<resultMap type="java.util.TreeMap" id="graph"/>
 	<!-- 상품별 -->
 	<select id="campingZone" resultMap="graph">
-		select count(case when p_number between 1 and 41 then 1 end)"오토",
-				count(case when p_number between 42 and 45 then 1 end)"글램핑",
-				count(case when p_number between 46 and 47 then 1 end)"차박"
+		select count(case when p_number between 81 and 82 then 1 end)"오토",
+				count(case when p_number between 83 and 86 then 1 end)"글램핑",
+				count(case when p_number between 87 and 88 then 1 end)"차박"
 		from reservation_tbl
 	</select>
 	<!-- 월별 -->

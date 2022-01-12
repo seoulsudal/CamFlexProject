@@ -33,6 +33,7 @@
 
 <script type="text/javascript">
 $(function(){
+	// 예약 버튼 클릭 시
 	$("#productReservation").click(function(){
 		$("#p_detail").attr({
 			"method":"post",
@@ -41,6 +42,7 @@ $(function(){
 		$("#p_detail").submit();
 	});
 	
+	// 목록 버튼 클릭 시
 	$("#productListBtn").click(function(){
 		location.href="/product/productList";
 	});
@@ -48,7 +50,10 @@ $(function(){
 });
 
 function setImage(index){
-	var image_list = ['/uploadStorage/product/${detail.p_mainphoto}', '/uploadStorage/product/${detail.p_photo1}', '/uploadStorage/product/${detail.p_photo2}', '/uploadStorage/product/${detail.p_photo3}'];
+	var image_list = ['/uploadStorage/product/${detail.p_mainphoto}',
+					  '/uploadStorage/product/${detail.p_photo1}', 
+					  '/uploadStorage/product/${detail.p_photo2}', 
+					  '/uploadStorage/product/${detail.p_photo3}'];
 	
 	var image = document.getElementById("target");
 	
@@ -59,29 +64,37 @@ function setImage(index){
 <body>
 <div class="col-sm-12">
 	<div align="center"><h2>캠핑장 상세 페이지</h2></div><br>
+	<%-- 예약 상세 페이지 이동을 위한 FORM --%>
 	<form id="p_detail" name="p_detail" method = "post">
 		<input type="hidden" name="p_number" id="p_number" value="${detail.p_number}"/>
 		<input type="hidden" name="p_name" id="p_name" value="${detail.p_name}"/>
 		<input type="hidden" name="p_price" id="p_price" value="${detail.p_price}"/>
-		<input type="hidden" name="p_mainphoto" id="p_mainphoto" value="${detail.p_mainphoto}" />
-		<input type="hidden" name="p_photo1" id="p_photo1" value="${detail.p_photo1}"/>
-		<input type="hidden" name="p_photo2" id="p_photo2" value="${detail.p_photo2}"/>
-		<input type="hidden" name="p_photo3" id="p_photo3" value="${detail.p_photo3}"/>
 		<input type="hidden" id="m_id" name="m_id" value="${id}">
 	</form>
 	<div class="well">
 		<table border="1">
 			<tr align="center">
-				<td width="400px" height="500px" rowspan="2"><div><img id="target" src="/uploadStorage/product/${detail.p_mainphoto}" class="img-rounded"></div><br>
-				<br><br>
+				<td width="400px" height="500px" rowspan="2"><div>
+				<img id="target" src="/uploadStorage/product/${detail.p_mainphoto}" class="img-rounded"></div>
+				<br><br><br>
 				<div>
 				<ul class="views">
-					<li style="float: left; margin-right : 10px;"><a href="#" onclick="setImage(0)"><img id="photo1" class="small img-rounded" src="/uploadStorage/product/${detail.p_mainphoto}"></a></li>
-					<li style="float: left; margin-right : 10px;"><a href="#" onclick="setImage(1)"><img id="photo2" class="small img-rounded" src="/uploadStorage/product/${detail.p_photo1}"></a></li>
-					<li style="float: left; margin-right : 10px;"><a href="#" onclick="setImage(2)"><img id="photo3" class="small img-rounded" src="/uploadStorage/product/${detail.p_photo2}"></a></li>
-					<li style="float: left; margin-right : 10px;"><a href="#" onclick="setImage(3)"><img id="photo4" class="small img-rounded" src="/uploadStorage/product/${detail.p_photo3}"></a></li>
+					<li style="float: left; margin-right : 10px;"><a href="#" onclick="setImage(0)">
+					<img id="photo1" class="small img-rounded" src="/uploadStorage/product/${detail.p_mainphoto}">
+					</a></li>
+					<li style="float: left; margin-right : 10px;"><a href="#" onclick="setImage(1)">
+					<img id="photo2" class="small img-rounded" src="/uploadStorage/product/${detail.p_photo1}">
+					</a></li>
+					<li style="float: left; margin-right : 10px;"><a href="#" onclick="setImage(2)">
+					<img id="photo3" class="small img-rounded" src="/uploadStorage/product/${detail.p_photo2}">
+					</a></li>
+					<li style="float: left; margin-right : 10px;"><a href="#" onclick="setImage(3)">
+					<img id="photo4" class="small img-rounded" src="/uploadStorage/product/${detail.p_photo3}">
+					</a></li>
 				</ul></div></td>
-				<td width="500px" height="300px" class="text-primary"><h3>상품번호 : ${detail.p_number}<br> 상품명 : ${detail.p_name}</h3><br>${detail.p_information}<br></td>
+				<td width="500px" height="300px" class="text-primary">
+				<h3>상품번호 : ${detail.p_number}<br> 상품명 : ${detail.p_name}</h3><br>${detail.p_information}<br>
+				</td>
 			</tr>
 			<tr align="center">
 				<td><h2>가격 안내</h2><br><h3>1박 당&nbsp;<fmt:formatNumber value="${detail.p_price}" pattern="#,###원"/></h3></td>

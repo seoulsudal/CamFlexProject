@@ -40,7 +40,7 @@ public class AdminNoticeController {
 	 *****************************************/
 	@RequestMapping(value = "/noticeList", method = RequestMethod.GET)
 	public String noticeList(@ModelAttribute("pgrq")PageRequest pageRequest, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		log.info("공지사항 목록 호출 성공");
 		
 		//List<NoticeVO> noticeList = adminNoticeService.noticeList(nvo);
@@ -63,7 +63,7 @@ public class AdminNoticeController {
 	 ****************************************/
 	@RequestMapping(value = "/regNotice", method = RequestMethod.GET)
 	public String regForm(HttpServletRequest request, HttpServletResponse response, Model model)throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		
 		model.addAttribute("id", m_id);
 		
@@ -100,7 +100,7 @@ public class AdminNoticeController {
 	 ***********************************/
 	@RequestMapping(value = "/noticeDetail", method = RequestMethod.GET)
 	public String noticeDetail(@ModelAttribute AdminNoticeVO nvo, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		log.info("글 상세 페이지 호출 성공");
 		log.info("글 번호 : " + nvo.getN_number());
 		
@@ -129,7 +129,7 @@ public class AdminNoticeController {
 	 ****************************************/
 	@RequestMapping(value = "/updateNotice", method = RequestMethod.POST)
 	public String updateForm(@ModelAttribute AdminNoticeVO nvo, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
-		sessionCheck(request, response, "로그인 후 가능합니다.");
+		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		log.info("글 수정 폼 호출 성공");
 		log.info("글 번호 : " + nvo.getN_number());
 		
