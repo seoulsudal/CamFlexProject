@@ -21,7 +21,7 @@
 <!--  Custom styles for this template -->
 <link href="/resources/include/dist/css/dashboard.css" rel="stylesheet">
 
-<script type="text/javascript" src="/resources/inclspring tiles left body 라인ude/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
 
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
 
@@ -33,14 +33,13 @@
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<tiles:insertAttribute name="header"/>
 	</nav>
+	<br>
+	<br>
+	<br>
+	<br>
 	<div class="container">
-		<div class="row content">
-			<div class="col-sm-3 sidenav">
-				<tiles:insertAttribute name="aside2"/>
-			</div>
-			<div class="col-sm-9">
-				<tiles:insertAttribute name="body"/>			
-			</div>
+		<div class="row content" align="center">
+			<tiles:insertAttribute name="body" ignore="true"/>			
 		</div>
 	</div>
 	

@@ -1,5 +1,0 @@
-package com.camflex.client.reservation.dao;
-
-public class ReservationDAOImpl implements ReservationDAO {
-
-}

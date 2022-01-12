@@ -15,38 +15,25 @@
 <script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	$(".goDetail").click(function(){
-		var p_number = $(this).parents("tr").attr("data-num");
-		$("#p_number").val(p_number);
-		console.log("상품 번호 : " + p_number);
-		
-		$("#listForm").attr({
-			"method":"get",
-			"action":"/admin/product/productDetail"
-		});
-		$("#listForm").submit();
-	});
-});
-</script>
+
 </head>
 <body>
-		<div align="center"><h3>캠핑장 리스트</h3></div>
+		<div align="center"><h2>캠핑장 리스트</h2></div>
 		
 		<%-- 상세 페이지 이동을 위한 FORM --%>
 		<form name="detailForm" id="detailForm">
 		<input type="hidden" name="p_number" id="p_number">
 		<input type="hidden" name="p_mainphoto" id="p_mainphoto" value="${data.p_mainphoto}" />
+		<input type="hidden" id="m_id" name="m_id" value="${id}">
 		</form>
 		<br>
 		<c:choose>		
 			<c:when test="${empty productList}">
 				<div class="well" style="height: 150px">
-				<table>
+				<table align="center">
 					<tr>
 						<td>	
-						<font size="15" >등록된 상품이 없습니다.</font>
+						<font size="15">등록된 상품이 없습니다.</font>
 						</td>
 					</tr>
 				</table>
@@ -57,13 +44,13 @@ $(function(){
 					<div class="well" style="height: 190px">
 						<div class="col-sm-4">
 							<c:if test="${product.p_type  eq '오토'}">
-								<img src="/resources/images/common/1.png" class="col-sm-12">
+								<img src="/resources/images/common/1.jpg" class="col-sm-12" width="239.1" height="156.82">
 							</c:if>
 							<c:if test="${product.p_type eq '글램핑'}">
-								<img src="/resources/images/common/2.png" class="col-sm-12">
+								<img src="/resources/images/common/2.jpg" class="col-sm-12" width="239.1" height="156.82">
 							</c:if>
 							<c:if test="${product.p_type eq '차박'}">
-								<img src="/resources/images/common/3.png" class="col-sm-12">
+								<img src="/resources/images/common/3.jpg" class="col-sm-12" width="239.1" height="156.82">
 							</c:if>
 						</div>
 						<div class="col-sm-8">

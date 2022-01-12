@@ -33,13 +33,17 @@
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<tiles:insertAttribute name="header"/>
 	</nav>
+	<br>
+	<br>
+	<br>
+	<br>
 	<div class="container">
 		<div class="row content">
 			<div class="col-sm-3 sidenav">
-				<tiles:insertAttribute name="aside1"/>
+				<tiles:insertAttribute name="aside"/>
 			</div>
 			<div class="col-sm-9">
-				<tiles:insertAttribute name="body"/>			
+				<tiles:insertAttribute name="body" ignore="true"/>			
 			</div>
 		</div>
 	</div>

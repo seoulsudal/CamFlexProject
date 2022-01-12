@@ -28,16 +28,8 @@
 	
 	<!-- Begin page content -->
 	<div class="container">
-		<div class="page-header">
-			<div class="jumbotron">
-				<h1>과연 캠플렉스의 행방은..</h1>
-				<p>To Be continued..</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-6 col-lg-4">
-				<h2>사진 or 멘트</h2>
-			</div>
+		<div class="well">
+			<tiles:insertAttribute name="body" ignore="true"/>
 		</div>
 	</div>
 	

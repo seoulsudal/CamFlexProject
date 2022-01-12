@@ -27,7 +27,7 @@
     	auth = "Container"
     	type = "javax.sql.DataSource"
     	driverClassName = "oracle.jdbc.driver.OracleDriver"
-		url = "jdbc:oracle:thin:@192.168.0.137:1521:xe"
+		url = "jdbc:oracle:thin:@192.168.0.47:1521:xe"
 		username = "hr"
 		password = "1234"
 		maxActive = "100"

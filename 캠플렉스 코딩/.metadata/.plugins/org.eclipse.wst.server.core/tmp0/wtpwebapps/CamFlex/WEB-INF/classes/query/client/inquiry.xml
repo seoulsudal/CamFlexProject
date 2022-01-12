@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.client.inquiry.dao.InquiryDAO">
+	<resultMap type="com.camflex.client.inquiry.vo.InquiryVO" id="inquiryVO">
+		<result column="i_number" property="i_number"/>
+		<result column="i_title" property="i_title"/>
+		<result column="i_kinds" property="i_kinds"/>
+		<result column="i_content" property="i_content"/>
+		<result column="parentNO" property="parentNO"/>
+		<result column="m_id" property="m_id"/>
+	</resultMap>
+
+	<!-- 문의 목록 조회 -->
+	<select id="inquiryList" parameterType="inquiry" resultType="inquiry">
+		SELECT i_number, parentNO, i_kinds, m_id, i_title, i_date
+		FROM (SELECT i_number, parentNO, i_kinds, m_id, i_title, i_date, ROWNUM AS RNUM
+			  FROM inquiry_tbl
+			  WHERE m_id = #{m_id}
+			  START WITH parentNO = 0
+			  CONNECT BY PRIOR i_number = parentNO
+		 	  ORDER SIBLINGS BY i_number DESC)
+		WHERE RNUM between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}
+
+	</select>
+	
+	<!-- 문의 등록 처리 -->
+	<insert id="inquiryWrite">
+		<selectKey keyProperty="i_number" resultType="int" order="BEFORE">
+			SELECT inquiry_seq.NEXTVAL
+			FROM dual
+		</selectKey>
+			INSERT INTO inquiry_tbl(i_number, m_id, i_title, i_kinds, i_content)
+			VALUES(#{i_number}, #{m_id}, #{i_title}, #{i_kinds}, #{i_content})
+	</insert>
+	
+	<!-- 문의 상세보기 -->
+	<select id="inquiryDetail" parameterType="int" resultMap="inquiryVO">
+		SELECT i_number, i_title, i_kinds, i_content
+		FROM inquiry_tbl
+		WHERE i_number = #{i_number}
+	</select>
+	
+	<!-- 문의 수정 처리 -->
+	<!-- <update id="inquiryUpdate" parameterType="inquiry">
+		UPDATE inquiry_tbl
+		SET i_title = #{i_title}, i_kinds = #{i_kinds}, i_content = #{i_content}
+		WHERE i_number = #{i_number}
+	</update>	 -->
+	
+	<!-- 문의 삭제 처리 -->
+	<!-- <delete id="inquiryDelete" parameterType="inquiry">
+		DELETE FROM inquiry_tbl
+		WHERE i_number = #{i_number}
+	</delete> -->
+	
+	<!-- 수를 조회한다. -->
+	<select id="count" resultType="int">
+		<![CDATA[
+		SELECT count(i_number)
+		FROM inquiry_tbl
+		WHERE i_number > 0 AND m_id = #{m_id} 
+		]]>
+	</select>
+	
+</mapper>

@@ -7,13 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 등록 화면</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/common.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js">
 </script>
 <script type="text/javascript">
 $(function(){
@@ -68,17 +65,17 @@ function chkSubmit(item, msg){
 </head>
 <body>
 <div>
-	<div align="center"><h3>상품 등록</h3></div>
+	<div align="center" ><h3>상품 등록</h3></div>
 	<div align="center">
 		<form id="regProductForm" name="regProductForm" enctype="multipart/form-data">
-			<table border="1">
+			<table class="table" border="1">
 				<colgroup>
 					<col width="17%" />
 					<col width="83%" />
 				</colgroup>
 				<tr>
 					<td>구분</td>
-					<td><select id="p_type" name="p_type" >
+					<td><select class="form-control" id="p_type" name="p_type" >
 							<option value="오토">오토</option>
 							<option value="글램핑">글램핑</option>
 							<option value="차박">차박</option>
@@ -87,15 +84,15 @@ function chkSubmit(item, msg){
 				</tr>
 				<tr>
 					<td>상품명</td>
-					<td><input type="text" name="p_name" id="p_name" required="required" placeholder="상품명"/></td>
+					<td><input type="text" class="form-control" name="p_name" id="p_name" required="required" placeholder="상품명"/></td>
 				</tr>
 				<tr>
 					<td>가격</td>
-					<td><input type="text" name="p_price" id="p_price" required="required" placeholder="가격"/></td>
+					<td><input type="text" class="form-control" name="p_price" id="p_price" required="required" placeholder="가격"/></td>
 				</tr>
 				<tr>
 					<td>상품 안내</td>
-					<td><textarea id="p_information" name="p_information" maxlength="2000" rows="8" cols="50" placeholder="상품 안내"></textarea></td>
+					<td><textarea id="p_information" class="form-control" rows="5" name="p_information" maxlength="2000" cols="50" placeholder="상품 안내"></textarea></td>
 				</tr>
 				<tr>
 					<td>이미지</td>
@@ -117,9 +114,9 @@ function chkSubmit(item, msg){
 			</table>
 		</form>
 	</div>
-	<div align="center">
-		<input type="button" value="등록" id="regProductBtn">
-		<input type="button" value="목록" id="productListBtn">
+	<div align="right">
+		<input type="button" value="등록" id="regProductBtn" class="btn btn-default">
+		<input type="button" value="목록" id="productListBtn" class="btn btn-default">
 	</div>
 </div>
 </body>

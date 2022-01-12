@@ -67,11 +67,12 @@ function setImage(index){
 		<input type="hidden" name="p_photo1" id="p_photo1" value="${detail.p_photo1}"/>
 		<input type="hidden" name="p_photo2" id="p_photo2" value="${detail.p_photo2}"/>
 		<input type="hidden" name="p_photo3" id="p_photo3" value="${detail.p_photo3}"/>
+		<input type="hidden" id="m_id" name="m_id" value="${id}">
 	</form>
 	<div class="well">
 		<table border="1">
 			<tr align="center">
-				<td rowspan="2"><div><img id="target" src="/uploadStorage/product/${detail.p_mainphoto}" class="img-rounded"></div><br>
+				<td width="400px" height="500px" rowspan="2"><div><img id="target" src="/uploadStorage/product/${detail.p_mainphoto}" class="img-rounded"></div><br>
 				<br><br>
 				<div>
 				<ul class="views">
@@ -80,18 +81,22 @@ function setImage(index){
 					<li style="float: left; margin-right : 10px;"><a href="#" onclick="setImage(2)"><img id="photo3" class="small img-rounded" src="/uploadStorage/product/${detail.p_photo2}"></a></li>
 					<li style="float: left; margin-right : 10px;"><a href="#" onclick="setImage(3)"><img id="photo4" class="small img-rounded" src="/uploadStorage/product/${detail.p_photo3}"></a></li>
 				</ul></div></td>
-				<td width="500px" height="300px" class="text-primary"><h3>${detail.p_name}</h3><br><br><br><br><br>${detail.p_information}<br></td>
+				<td width="500px" height="300px" class="text-primary"><h3>상품번호 : ${detail.p_number}<br> 상품명 : ${detail.p_name}</h3><br>${detail.p_information}<br></td>
 			</tr>
 			<tr align="center">
-				<td><h3>${detail.p_price}원</h3><br><br><br><br>부대시설 및 렌탈 가격 안내<br>...</td>
+				<td><h2>가격 안내</h2><br><h3>1박 당&nbsp;<fmt:formatNumber value="${detail.p_price}" pattern="#,###원"/></h3></td>
 			</tr>
 		</table>
 	</div>
 	<div align="center">
 		<br>
-		<input type="button" value="예약" id="productReservation" class="btn btn-primary">
+		<input type="button" value="예약" id="productReservation" class="btn btn-success" style="font-size: 20px; height: 75px; width: 150px;">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="button" value="목록" id="productListBtn" class="btn btn-primary">
+		<input type="button" value="목록" id="productListBtn" class="btn btn-success" style="font-size: 20px; height: 75px; width: 150px;">
+	</div>
+	
+	<div>
+		<jsp:include page="reviewList.jsp"></jsp:include>
 	</div>
 </div>
 </body>

@@ -122,7 +122,7 @@ public class LoginController {
 	}
 
 	/* 비밀번호 찾기 페이지 */
-	@RequestMapping(value = "findPw", method = RequestMethod.GET)
+	@RequestMapping(value = "/findPw", method = RequestMethod.GET)
 	public String findPwForm() {
 		log.info("비밀번호 찾기 페이지 호출 성공");
 		return "login/findPw"; // views/login/findPw.jsp로 포워드
@@ -130,7 +130,7 @@ public class LoginController {
 
 	/* 비밀번호 찾기 인증번호 이메일 발송 기능 */
 	/* 이름과 아이디, 전화번호로 인증받는다. */
-	@RequestMapping(value = "findPw", method = RequestMethod.POST)
+	@RequestMapping(value = "/findPw", method = RequestMethod.POST)
 	public ModelAndView findPw(Model model, HttpServletResponse response, HttpServletRequest request, MemberVO vo,
 			RedirectAttributes rttr) throws Exception {
 
@@ -202,7 +202,7 @@ public class LoginController {
 
 	/* 인증번호 받고 인증하는 페이지 */
 	// Certification Number = CCN 인증번호
-	@RequestMapping(value = "CCN.do{dice},{m_id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/CCN.do{dice},{m_id}", method = RequestMethod.POST)
 	public ModelAndView CCN(String CCN, @PathVariable(value = "dice") String dice,
 			@PathVariable(value = "m_id") String m_id, HttpServletResponse response) throws IOException {
 
@@ -231,7 +231,7 @@ public class LoginController {
 			// 인증번호 불일치 시
 			ModelAndView mav2 = new ModelAndView();
 
-			mav2.setViewName("login/findPw_CCN");
+			mav2.setViewName("/login/findPw_CCN");
 
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out_equals = response.getWriter();
@@ -244,7 +244,7 @@ public class LoginController {
 	}
 
 	// 비밀번호 변경
-	@RequestMapping(value = "change_pw", method = RequestMethod.POST)
+	@RequestMapping(value = "/change_pw", method = RequestMethod.POST)
 	public String change_pw(MemberVO vo, String m_id, HttpServletResponse response, RedirectAttributes rttr)
 			throws Exception {
 		log.info("비밀번호 변경 요청");

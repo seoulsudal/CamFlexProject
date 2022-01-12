@@ -1,5 +1,0 @@
-package com.camflex.client.product.service;
-
-public interface ProductService {
-
-}

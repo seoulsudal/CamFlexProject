@@ -2,7 +2,8 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.camflex.admin.product.dao.AdminProductDAO">
-	<resultMap id="AdminproductVO" type="com.camflex.admin.product.vo.AdminProductVO">
+	<resultMap id="productVO"
+		type="com.camflex.admin.product.vo.AdminProductVO">
 		<result column="p_number" property="p_number" />
 		<result column="p_type" property="p_type" />
 		<result column="p_name" property="p_name" />
@@ -16,11 +17,12 @@
 	</resultMap>
 	
 	<!-- 상품 기본 조회 -->
-	<select id="productList" parameterType="product" resultMap="AdminproductVO">
+	<select id="productList" parameterType="product" resultMap="productVO">
 		SELECT p_number, p_type, p_name, p_date
-		FROM product_tbl
-		ORDER BY
-		p_number desc
+		FROM (SELECT p_number, p_type, p_name, p_date, ROWNUM AS RNUM
+			  FROM product_tbl
+			  ORDER BY p_number DESC)
+		WHERE RNUM between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}
 	</select>
 
 	<!-- 상품 등록 -->
@@ -37,7 +39,7 @@
 		)
 	</insert>
 	
-	<select id="productDetail" parameterType="int" resultMap="AdminproductVO">
+	<select id="productDetail" parameterType="int" resultMap="productVO">
 		select p_number, p_mainphoto, p_photo1, p_photo2, p_photo3, p_type, p_name, p_information, p_price
 		from product_tbl
 		where p_number = #{p_number}
@@ -56,4 +58,16 @@
 		where p_number = #{p_number}
 	</update>
 	
+	<!-- 전체 글 수를 조회 -->
+	<select id="count" resultType="int">
+		<![CDATA[
+		SELECT count(p_number)
+		FROM product_tbl
+		WHERE p_number > 0
+		]]>
+	</select>
+	
+<!-- 	<delete id="productDelete" parameterType="product">
+		delete from product_tbl where p_number = #{p_number}
+	</delete> -->
 </mapper>

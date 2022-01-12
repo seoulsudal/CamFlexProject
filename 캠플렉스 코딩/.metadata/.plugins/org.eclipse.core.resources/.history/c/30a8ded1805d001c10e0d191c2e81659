@@ -1,5 +1,0 @@
-package com.camflex.client.product.dao;
-
-public interface ProductDAO {
-
-}
