@@ -34,7 +34,7 @@
 		}
 
 		// 아이디 중복 체크 
-		/* if ($("#resultAll").val() != "yes") {
+		/* if ($("#idChk").val() != "yes") {
 			alert('아이디 중복 체크를 해주세요!');
 			$('#check_id').focus();
 			return false;
@@ -102,7 +102,7 @@
 		form.submit();
 	}
 
-	$(function() {
+	<!-- $(function() {
 		/*아이디 중복 검사 버튼 클릭 시*/
 		$("#check_id").click(function() {
 			var e_RegExp = /\w+@\w+\.\w+(\.\w+)?/;
@@ -137,8 +137,21 @@
 					}
 				});
 			}
-		});
+		});-->
 
+
+function fn_idChk(){
+$.ajax({
+url: "/member/idChk",
+type : "post",
+dataType : "json",
+data : {"m_id" : $("#m_id").val()},
+success : function(data){
+if(data ==1){
+alert("중복된 아이디 입니다. 다시 입력해주세요.");
+}else if(data ==0){
+$("#idChk").attr("value", "Y");
+alert("사용가능한 아이디입니다.)
 	});
 </script>
 </head>
@@ -160,7 +173,7 @@
 						<td>ID</td>
 						<td><input type="text" class="form-control" name="m_id"
 							id="m_id" placeholder="이메일 형식으로 입력" /></td>
-						<!--  <td><button type="button" id="check_id" name="check_id">중복체크</button></td>-->
+						<td><button type="button" id="idChk" name="idChk" onclick="fn_idChk();" value="N" >중복확인</button></td>-->
 					</tr>
 					<tr>
 						<td>패스워드</td>

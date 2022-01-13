@@ -12,6 +12,19 @@
 		#{m_number})
 	</insert>
 
+	<!-- 아이디 중복 체크 -->
+	<select id="idChk" resultType="int">
+		select count(*)
+		from member_tbl
+		where m_id=#{m_id}
+	</select>
+	
+	<select id="idChk" resultType="int" parameterType="member">
+	select count(*)
+	from member
+	where m_id=#{m_id}
+	</select>
+
 	<!-- 내 정보 보기 -->
 	<select id="readMember" resultType="member">
 		select *
@@ -62,15 +75,20 @@
 		where r_number= #{r_number} 
 		]]>
 	</update>
-	
+
 	<!-- 예약 취소 리스트 -->
-	<select id="cancelList" parameterType="reservation" resultType="reservation">
-		SELECT r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel
-		FROM (SELECT r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel, ROWNUM AS RNUM
-			  FROM reservation_tbl
-			  WHERE r_state = '취소' AND m_id = #{m_id}
-			  ORDER BY r_number DESC)
-		WHERE RNUM between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}
+	<select id="cancelList" parameterType="reservation"
+		resultType="reservation">
+		SELECT r_number, p_number, m_id, r_price, r_startdate,
+		r_enddate, r_upddate, r_cancel
+		FROM (SELECT r_number, p_number, m_id,
+		r_price, r_startdate, r_enddate, r_upddate, r_cancel, ROWNUM AS RNUM
+		FROM reservation_tbl
+		WHERE r_state = '취소' AND m_id = #{m_id}
+		ORDER BY
+		r_number DESC)
+		WHERE RNUM between #{sizePerPage} * #{page} - 9 AND
+		#{sizePerPage} * #{page}
 	</select>
 	<select id=""></select>
 	<!-- 수를 조회한다. -->
@@ -81,9 +99,10 @@
 		WHERE m_number > 0 AND m_id = #{m_id}
 		]]>
 	</select>
-	
+
 	<!-- 지난 예약 리스트 -->
-	<select id="pastList" parameterType="reservation" resultType="reservation">
+	<select id="pastList" parameterType="reservation"
+		resultType="reservation">
 		<![CDATA[
 		SELECT r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel
 		FROM (SELECT r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel, ROWNUM AS RNUM
@@ -93,5 +112,5 @@
 		WHERE RNUM between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}	  
 		]]>
 	</select>
-	
+
 </mapper>
