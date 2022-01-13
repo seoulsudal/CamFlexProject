@@ -22,7 +22,7 @@
 	<!-- 취소 통계 아직 미구현 -->
 	<select id="cancel" resultMap="graph">
 		select count(case when r_cancel = '개인사유' then 1 end)"개인사유",
-        		count(case when r_cancel = '날짜변경' then 1 end)"날짜변경",
+        		count(case when r_cancel = '예약날짜변경' then 1 end)"예약날짜변경",
         		count(case when r_cancel = '천재지변' then 1 end)"천재지변",
         		count(case when r_cancel = '기타' then 1 end)"기타"
 		from reservation_tbl

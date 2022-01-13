@@ -98,7 +98,7 @@ public class MemberController {
 		session = request.getSession();
 		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		m_id = (String) session.getAttribute("m_id");
-
+		model.addAttribute("id", m_id);
 		MemberVO mvo = memberService.PwCheck(vo);
 
 		if (mvo == null) {
@@ -135,7 +135,7 @@ public class MemberController {
 		session = request.getSession();
 		sessionCheck(request, response, "로그인 후 이용 가능합니다.");
 		m_id = (String) session.getAttribute("m_id");
-
+		model.addAttribute("id", m_id);
 		MemberVO mvo = new MemberVO();
 		mvo = memberService.MemberModify(vo);
 

@@ -30,41 +30,35 @@
 </script>
 </head>
 <body>
+	<div align="center">
 	<h2>개인 정보 수정하기</h2>
-
+	</div>
+	<br>
+	<table class="table" align="center">
 	<c:if test="${ mvo == null }">
-		<form name="memberModify" id="memberModify"
-			action="/member/memberModify" method="POST"
-			onsubmit="return phoneCheck()">
-			<div>
-				<label id="memberModify">아이디</label> <input id="m_id" name="m_id"
-					value="${memberVO.m_id }" readonly="true" />
-			</div>
-			<!--  <div>
-			<label id="MemberModify">비밀번호</label> <input type="password"
-				id="m_pw" name="m_pw" readonly="true" />
-		</div>-->
-			<div>
-				<label id="memberModify">이름</label> <input id="m_name" name="m_name"
-					value="${memberVO.m_name }" readonly="true" />
-			</div>
+		<form name="memberModify" id="memberModify" action="/member/memberModify" method="POST" onsubmit="return phoneCheck()">
+			<tr>
+				<td><label id="memberModify">아이디</label></td>
+				<td><input id="m_id" name="m_id" value="${memberVO.m_id }" readonly="true" /></td>
+			</tr>
+			<tr>
+				<td><label id="memberModify">이름</label></td>
+				<td><input id="m_name" name="m_name" value="${memberVO.m_name }" readonly="true" /></td>
+			</tr>
+			<tr>
+				<td><label id="memberModify">핸드폰 번호</label></td>
+				<td><input type="text" id="m_phone" name="m_phone" placeholder="(-)를 제외한 11자리 " /></td>
+			</tr>
+			<tr>
+				<td><label id="memberModify">생년월일</label></td>
+				<td><input id="m_birth" name="m_birth" value="${memberVO.m_birth }" readonly="true"/></td>
+			</tr>
 
-
-			<div>
-				<label id="memberModify">핸드폰 번호</label> <input type="text"
-					id="m_phone" name="m_phone" placeholder="(-)를 제외한 11자리 " />
-			</div>
-
-
-			<div>
-				<label id="memberModify">생년월일</label>
-				<input id="m_birth" name="m_birth" value="${memberVO.m_birth }" readonly="true"/>
-			</div>
-
-			<div>
-				<input type="submit" value="수정하기" class="btn btn-success"/>
-			</div>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" value="수정하기" class="btn btn-success"/></td>
+			</tr>
 		</form>
 	</c:if>
+	</table>
 </body>
 </html>

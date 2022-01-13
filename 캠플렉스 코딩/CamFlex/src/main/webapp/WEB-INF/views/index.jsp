@@ -33,21 +33,15 @@
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner">
 			<div class="item active">
-				<img src="/resources/images/common/cam1.png" alt="캠플렉스"
-					style="width: 100%;">
+				<img src="/resources/images/common/cam1.png" alt="캠플렉스" style="width: 100%;">
 			</div>
-
 			<div class="item">
-				<img src="/resources/images/common/cam2.png" alt="캠플렉스"
-					style="width: 100%;">
+				<img src="/resources/images/common/cam2.png" alt="캠플렉스" style="width: 100%;">
 			</div>
-
 			<div class="item">
-				<img src="/resources/images/common/cam3.png" alt="캠플렉스"
-					style="width: 100%;">
+				<img src="/resources/images/common/cam3.png" alt="캠플렉스" style="width: 100%;">
 			</div>
 		</div>
-
 		<!-- Left and right controls -->
 		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
 			<span class="glyphicon glyphicon-chevron-left"></span> <span

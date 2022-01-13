@@ -51,20 +51,21 @@
 <body>
 	<h2>아이디 찾기</h2>
 	<c:if test="${mvo == null }">
-		<form id="findId" name="findId" action="/login/findId" method="POST"
+		<form id="findId" name="findId" action="findId" method="POST"
 			onsubmit="return find_id_Check()">
-			<div>
-				<label id="find_id_info">이름</label> <input type="text" id="m_name"
-					name="m_name" placeholder="이름">
+			<div style="width: 350px">
+				<input type="text" id="m_name" name="m_name"
+					style="width: 305px; height: 35px;" placeholder="이름">
 			</div>
 			<p></p>
-			<div>
-				<label id="find_id_info">전화번호</label> <input type="text"
-					id="m_phone" name="m_phone" placeholder="전화번호">
+			<div style="width: 350px">
+				<input type="text" id="m_phone" name="m_phone"
+					style="width: 305px; height: 35px;" placeholder="전화번호">
 			</div>
 			<p></p>
-			<div>
-				<input type="submit" value="아이디 찾기" class="btn btn-success"/>
+			<div style="width: 350px">
+				<input type="submit" value="아이디 찾기"
+					style="width: 305px; height: 35px;" class="btn btn-success" />
 			</div>
 		</form>
 	</c:if>

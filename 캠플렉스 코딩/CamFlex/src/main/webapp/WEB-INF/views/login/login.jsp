@@ -48,21 +48,28 @@
 	<c:if test="${login == null }">
 		<form id="loginCheck" name="loginCheck" action="/login/loginCheck"
 			method="POST" onsubmit="return userLogin()">
-			<div style="width: 280px">
-				<label id="loginInfo"> 아이디</label> <input type="text" id="m_id"
-					name="m_id" placeholder="아이디">
-			</div>
 
-			<div style="width: 280px">
-				<label id="loginInfo"> 비밀번호</label> <input type="password" id="m_pw"
-					name="m_pw" placeholder="비밀번호">
+			<div style="width: 350px">
+				<input type="text" id="m_id" name="m_id"
+					style="width: 305px; height: 35px;" placeholder="아이디를 입력해주세요.">
 			</div>
 			<p></p>
-<div>
-				<input type="submit" value="로그인" class="btn btn-success"/> 
-				<input type="button" value="아이디 찾기"  class="btn" onClick="location.href='findId'" />
-				<input type="button" value="비밀번호 찾기" class="btn" onClick="location.href='findPw'"/>
-				<input type="button" value="회원가입" class="btn" onClick="location.href='/member/join'" />
+			<div style="width: 350px">
+				<input type="password" id="m_pw" name="m_pw"
+					style="width: 305px; height: 35px;" placeholder="비밀번호를 입력해주세요.">
+			</div>
+			<p></p>
+			<div style="width: 350px">
+				<input type="submit" value="로그인" style="width: 305px; height: 35px;"
+					class="btn btn-success" />
+			</div>
+			<p></p>
+			<div>
+				<input type="button" value="아이디 찾기" class="btn"
+					onClick="location.href='findId'" /> <input type="button"
+					value="비밀번호 찾기" class="btn" onClick="location.href='findPw'" /> <input
+					type="button" value="회원가입" class="btn"
+					onClick="location.href='/member/join'" />
 			</div>
 		</form>
 	</c:if>
