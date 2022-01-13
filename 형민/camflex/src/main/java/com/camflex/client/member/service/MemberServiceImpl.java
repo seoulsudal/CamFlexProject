@@ -32,6 +32,18 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+	// 아이디 중복 체크
+	@Override
+	public int idChk(MemberVO vo) throws Exception {
+		int result = memberDAO.idChk(vo);
+		return result;
+	}
+
+	/*
+	 * public int idChk(String m_id) throws Exception{ int result =
+	 * memberDAO.idChk(m_id); return result; }
+	 */
+
 	// 내 정보 보기, 정보 수정 폼
 	@Override
 	public MemberVO readMember(String m_id) throws Exception {
