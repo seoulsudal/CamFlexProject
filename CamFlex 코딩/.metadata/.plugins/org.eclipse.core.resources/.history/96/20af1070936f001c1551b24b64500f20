@@ -1,0 +1,125 @@
+package com.camflex.client.member.controller;
+
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.camflex.client.member.service.MemberService;
+import com.camflex.client.member.vo.MemberVO;
+import com.camflex.client.review.vo.ReviewVO;
+import com.camflex.common.vo.PageRequest;
+import com.camflex.common.vo.Pagination;
+
+@Controller
+@RequestMapping("/member")
+public class MemberController {
+
+	private Logger log = LoggerFactory.getLogger(MemberController.class);
+
+	private HttpSession session;
+	private String m_id;
+
+	@Autowired
+	private MemberService memberService;
+
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;
+
+	/* 회원가입 폼 */
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	public String joinForm() {
+		log.info("join GET 성공");
+		return "member/join";
+	}
+
+	/* 회원가입 처리 (BCryptPasswordEncoder 사용) */
+	@RequestMapping(value = "/insertMember", method = RequestMethod.POST)
+	public String insertMember(MemberVO vo) throws Exception {
+		String m_pw = ""; // 인코딩 전 비밀번호
+		String encodePw = ""; // 인코딩 후 비밀번호
+
+		m_pw = vo.getM_pw(); // 비밀번호 데이터 얻음
+		encodePw = pwEncoder.encode(m_pw); // 비밀번호 인코딩
+		vo.setM_pw(encodePw); // 인코딩된 비밀번호 member객체에 다시 저장
+
+		/* 회원가입 쿼리 실행 */
+		memberService.insertMember(vo);
+		log.info("회원가입 처리 완료");
+		return "/member/insert";
+	}
+
+	// 지난 예약 리스트 구현
+	@RequestMapping(value = "/pastList", method = RequestMethod.GET)
+	private String pastList(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("pgrq") PageRequest pageRequest, ReviewVO rvvo, Model model) throws Exception {
+		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
+
+		log.info("pastList 호출 성공");
+		log.info("접속 ID = " + m_id);
+
+		pageRequest.setM_id(m_id);
+
+		model.addAttribute("pastList", memberService.pastList(pageRequest));
+		model.addAttribute("id", m_id);
+
+		// 페이징 기법
+		Pagination pagination = new Pagination();
+		pagination.setPageRequest(pageRequest);
+		pagination.setTotalCount(memberService.count(pageRequest));
+		model.addAttribute("pagination", pagination);
+
+		return "member/pastList";
+	}
+
+	// 예약 취소 리스트 구현
+	@RequestMapping(value = "/cancelList", method = RequestMethod.GET)
+	private String cancelList(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("pgrq") PageRequest pageRequest, Model model) throws Exception {
+		sessionCheck(request, response, "로그인 후 확인 가능합니다.");
+
+		log.info("cancelList 호출 성공");
+		log.info("접속 ID = " + m_id);
+
+		pageRequest.setM_id(m_id);
+
+		model.addAttribute("cancelList", memberService.cancelList(pageRequest));
+		model.addAttribute("id", m_id);
+
+		// 페이징 기법
+		Pagination pagination = new Pagination();
+		pagination.setPageRequest(pageRequest);
+		pagination.setTotalCount(memberService.count(pageRequest));
+		model.addAttribute("pagination", pagination);
+
+		return "member/cancelList";
+	}
+
+	// 로그인 체크
+	private void sessionCheck(HttpServletRequest request, HttpServletResponse response, String message) throws Exception {
+		session = request.getSession();
+		m_id = (String) session.getAttribute("m_id");
+
+		log.info("여긴 m_id " + m_id);
+		if (m_id == null) {
+			response.setContentType("text/html; charset=euc-kr");
+			PrintWriter out = response.getWriter();
+			out.println("<script type='text/javascript'>");
+			out.println("alert('" + message + "');");
+			out.println("location.href='/login/login'");
+			out.println("</script>");
+			out.flush();
+		}
+	}
+	
+}

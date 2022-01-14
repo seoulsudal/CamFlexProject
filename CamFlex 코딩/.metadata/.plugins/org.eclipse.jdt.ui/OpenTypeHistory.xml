@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.client.product.dao{ProductDAO.java[ProductDAO" modifiers="513" timestamp="1639717187524"/>
+    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.client.reservation.service{ReservationService.java[ReservationService" modifiers="513" timestamp="1640160107261"/>
+    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.client.reservation.dao{ReservationDAO.java[ReservationDAO" modifiers="513" timestamp="1640160209168"/>
+    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.client.notice.service{NoticeService.java[NoticeService" modifiers="513" timestamp="1640237997690"/>
+    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.client.notice.dao{NoticeDAO.java[NoticeDAO" modifiers="513" timestamp="1640238080675"/>
+    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.client.inquiry.service{InquiryService.java[InquiryService" modifiers="513" timestamp="1640841405239"/>
+    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.client.inquiry.dao{InquiryDAO.java[InquiryDAO" modifiers="513" timestamp="1640844303495"/>
+    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.client.member.service{MemberService.java[MemberService" modifiers="513" timestamp="1641544156337"/>
+    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.client.member.dao{MemberDAO.java[MemberDAO" modifiers="513" timestamp="1641544323764"/>
+    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.client.review.service{ReviewService.java[ReviewService" modifiers="513" timestamp="1641271942261"/>
+    <typeInfo handle="=CamFlex/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.camflex.client.review.dao{ReviewDAO.java[ReviewDAO" modifiers="513" timestamp="1641271975549"/>
+</typeInfoHistroy>

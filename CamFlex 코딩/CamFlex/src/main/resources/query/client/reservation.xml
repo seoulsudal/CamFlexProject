@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.client.reservation.dao.ReservationDAO">
+	<resultMap type="com.camflex.client.reservation.vo.ReservationVO" id="ReservationVO">
+		<result column="r_number" property="r_number"/>
+		<result column="m_id" property="m_id"/>
+		<result column="p_number" property="p_number"/>
+		<result column="r_startdate" property="r_startDate"/>
+		<result column="r_enddate" property="r_endDate"/>
+		<result column="r_price" property="r_price"/>
+		<result column="r_state" property="r_state"/>
+		<result column="c_agree" property="c_agree"/>
+		<result column="p_u_agree" property="p_u_agree"/>
+		<result column="p_i_agree" property="p_i_agree"/>
+		<result column="a_agree" property="a_agree"/>
+	</resultMap>
+	
+	<!-- 실시간 예약 생성 -->
+	<insert id="create" parameterType="reservation">
+		<selectKey keyProperty="r_number" resultType="int" order="BEFORE">
+			select reservation_seq.NEXTVAL 
+			FROM dual 
+		</selectKey>
+		INSERT INTO reservation_tbl(r_number, m_id, p_number, r_startdate, r_enddate, r_price, r_state, c_agree, p_u_agree, p_i_agree, a_agree)
+		VALUES(#{r_number}, #{m_id}, #{p_number}, #{r_startDate}, #{r_endDate}, #{r_price}, #{r_state}, #{c_agree}, #{p_u_agree}, #{p_i_agree}, #{a_agree})
+	</insert>
+	
+	<!-- 예약 조회 -->
+	<select id="reservationList" parameterType="reservation" resultMap="ReservationVO">
+		SELECT r_number, m_id, p_number, r_startdate, r_enddate, r_price, r_state, c_agree, p_u_agree, p_i_agree, a_agree
+		FROM reservation_tbl
+		WHERE r_startdate > SYSDATE AND p_number = #{p_number} AND (r_state = '확정' OR r_state = '대기') 
+		ORDER BY r_apllicationdate
+	</select>
+	
+</mapper>

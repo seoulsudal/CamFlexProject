@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.admin.reservation.dao.AdminReservationDAO">
+	<!-- 검색 조건울 나타내는 쿼리 조각 -->
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 'm'.toString()">
+				and m_id like concat('%', concat(#{keyword}, '%'))
+			</if>
+			<if test="searchType == 'd'.toString()">
+				and (r_startDate like concat('%', concat(#{keyword}, '%'))
+				or r_endDate like concat('%', concat(#{keyword}, '%'))
+				or r_upddate like concat('%', concat(#{keyword}, '%')))
+			</if>
+			<if test="searchType == 't'.toString()">
+				and (r_startdate like concat('%', concat(sysdate, '%')))
+			</if>
+		</if>
+	</sql>
+	<sql id="total_list">
+		<if test="searchType == null">
+			WHERE RNUM between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}
+		</if>
+	</sql>
+	
+	<!-- 예약 리스트 -->
+	<select id="reservationList" resultType="reservation">
+		<![CDATA[
+		SELECT r_number, p_number, m_id, r_price, r_apllicationdate, r_startdate, r_enddate, r_state, r_upddate
+		FROM (SELECT ROWNUM AS RNUM, r_number, p_number, m_id, r_price, r_apllicationdate, r_startdate, r_enddate, r_state, r_upddate
+			  FROM reservation_tbl
+			  WHERE r_state = '확정'
+			  ORDER BY r_number DESC)
+		WHERE RNUM between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}
+		]]>
+		<include refid="search"></include>
+		<![CDATA[
+		ORDER BY r_upddate DESC
+		]]>
+	</select>
+	
+	<!-- 예약 전체 명수를 조회한다. -->
+	<select id="count" resultType="int">
+		<![CDATA[
+		SELECT count(r_number)
+		FROM reservation_tbl
+		WHERE r_number > 0 and r_state = '확정'
+		]]>
+	</select>
+	
+	<!-- 신규 예약 리스트 -->
+	<select id="newRsvList" parameterType="reservation" resultType="reservation">
+		<![CDATA[
+		SELECT r_number, p_number, m_id, r_price, r_apllicationdate, r_startdate, r_enddate, r_state
+		FROM (SELECT ROWNUM AS RNUM, r_number, p_number, m_id, r_price, r_apllicationdate, r_startdate, r_enddate, r_state
+			  FROM reservation_tbl
+			  WHERE r_state = '대기'
+			  ORDER BY r_number DESC)
+		WHERE RNUM between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}
+		]]>
+	</select>
+	
+	<!-- 신규 예약 수를 조회한다. -->
+	<select id="count1" resultType="int">
+		<![CDATA[
+		SELECT count(r_number)
+		FROM reservation_tbl
+		WHERE r_number > 0 and r_state = '대기'
+		]]>
+	</select>
+	
+	<!-- 예약 승인 -->
+	<update id="confirmRsv">
+		UPDATE reservation_tbl
+		SET r_state = '확정', r_upddate = sysdate
+		WHERE r_number = #{r_number}
+	</update>
+	
+	<!-- 예약 취소 리스트 -->
+	<select id="cancelList" parameterType="reservation" resultType="reservation">
+		SELECT r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel, r_state
+		FROM (SELECT r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel, r_state, ROWNUM AS RNUM
+			  FROM reservation_tbl
+		  	  WHERE r_state = '취소'
+		  	  ORDER BY r_number DESC)
+		WHERE RNUM between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}
+	</select>
+	
+	<!-- 예약 취소 수를 조회한다. -->
+	<select id="count2" resultType="int">
+		<![CDATA[
+		SELECT count(r_number)
+		FROM reservation_tbl
+		WHERE r_number > 0 and r_state = '취소'
+		]]>
+	</select>
+	
+	<!-- 예약 취소 -->
+	<update id="cancelRsv">
+		UPDATE reservation_tbl
+		SET r_state = '취소', r_upddate = sysdate, r_cancel = '관리자 취소'
+		WHERE r_number = #{r_number}
+	</update>
+</mapper>

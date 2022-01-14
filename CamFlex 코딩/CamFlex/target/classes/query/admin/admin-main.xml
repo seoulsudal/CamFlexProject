@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.admin.main.dao.AdminMainDAO">
+	<!-- 오늘 날짜 기준 가입한 회원 수 -->
+	<select id="mainList" resultType="int">
+		select count(*) as mainList
+		from member_tbl
+		where to_char(m_date, 'yyyyMMdd') = to_char(sysdate, 'yyyymmdd') AND m_number > 0
+	</select>
+	
+	<!-- 신규 예약 대기자 수 -->
+	<select id="rsvList" resultType="int">
+		select count(*) as rsvList
+		from reservation_tbl
+		where r_state = '대기'
+	</select>
+	
+	<!-- 오늘 날짜 방문 고객 수 -->
+	<select id="visit" resultType="int">
+		select count(*) as visit
+		from reservation_tbl
+		where to_char(r_startdate, 'yyyyMMdd') = to_char(sysdate, 'yyyyMMdd') and r_state = '확정'
+	</select>
+	
+	<!-- 전일 매출 -->
+	<select id="yesterday" resultType="int">
+		SELECT NVL(SUM_DATA, 0)
+		FROM(SELECT SUM(r_price)AS SUM_DATA
+		FROM reservation_tbl
+		WHERE to_char(r_apllicationdate, 'yyyyMMdd') = to_char(sysdate - 1, 'yyyyMMdd') and r_state = '완료')
+	</select>
+</mapper>

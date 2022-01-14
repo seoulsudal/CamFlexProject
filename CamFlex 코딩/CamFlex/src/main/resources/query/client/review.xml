@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.client.review.dao.ReviewDAO">
+
+	<!-- 댓글 목록 조회 -->
+	<select id="reviewList" parameterType="review" resultType="review">
+		SELECT rv_number, m_id, p_number, rv_date, rv_content
+		FROM review_tbl
+		WHERE p_number = #{p_number}
+		ORDER BY rv_date DESC
+	</select>
+	
+	<!-- 댓글 글쓰기 처리 -->
+	<insert id="reviewInsert">
+		<selectKey keyProperty="rv_number" resultType="int" order="BEFORE">
+			SELECT REVIEW_SEQ.NEXTVAL
+			FROM dual
+		</selectKey>
+			INSERT INTO review_tbl(rv_number, m_id, p_number, rv_content, r_number, rv_count)
+			VALUES(#{rv_number}, #{m_id}, #{p_number}, #{rv_content}, #{r_number}, 1)
+	</insert>
+
+	<!-- 전체 글 수를 조회 -->
+	<select id="count" resultType="int">
+		<![CDATA[
+		SELECT count(i_number)
+		FROM inquiry_tbl
+		WHERE i_number > 0
+		]]>
+	</select>
+	
+	<!-- 리뷰 카운트 -->
+	<select id="rv_count" resultType="int">
+		SELECT rv_count
+		FROM review_tbl
+		WHERE r_number = #{r_number}
+	</select>
+	
+</mapper>

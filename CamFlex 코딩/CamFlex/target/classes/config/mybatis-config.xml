@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.camflex.client.login.vo.LoginVO" alias="login"/>
+		<typeAlias type="com.camflex.client.reservation.vo.ReservationVO" alias="reservation" />
+		<typeAlias type="com.camflex.client.inquiry.vo.InquiryVO" alias="inquiry"/>
+		<typeAlias type="com.camflex.admin.product.vo.AdminProductVO" alias="product"/>
+		<typeAlias type="com.camflex.admin.notice.vo.AdminNoticeVO" alias="notice"/>
+		<typeAlias type="com.camflex.client.member.vo.MemberVO" alias="member"/>
+		<typeAlias type="com.camflex.client.review.vo.ReviewVO" alias="review"/>
+	</typeAliases>
+</configuration>

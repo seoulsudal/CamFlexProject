@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.client.member.dao.MemberDAO">
+
+	<!-- 회원가입 처리 -->
+	<insert id="insertMember" parameterType="member">
+		<selectKey keyProperty="m_number" resultType="int" order="BEFORE">
+			SELECT member_tbl_seq.nextval FROM DUAL
+		</selectKey>
+		INSERT INTO member_tbl(m_id, m_pw, m_name, m_birth, m_phone, m_number)
+		VALUES(#{m_id}, #{m_pw}, #{m_name}, #{m_birth}, #{m_phone}, #{m_number})
+	</insert>
+	
+	<!-- 예약 취소 리스트 -->
+	<select id="cancelList" parameterType="reservation" resultType="reservation">
+		SELECT r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel
+		FROM (SELECT r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel, ROWNUM AS RNUM
+			  FROM reservation_tbl
+			  WHERE r_state = '취소' AND m_id = #{m_id})
+		WHERE RNUM between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}
+	</select>
+	
+	<!-- 수를 조회한다. -->
+	<select id="count" resultType="int">
+		<![CDATA[
+		SELECT count(m_number)
+		FROM member_tbl
+		WHERE m_number > 0 AND m_id = #{m_id}
+		]]>
+	</select>
+	
+	<!-- 지난 예약 리스트 -->
+	<select id="pastList" parameterType="reservation" resultType="reservation">
+		<![CDATA[
+		SELECT r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel
+		FROM (SELECT r_number, p_number, m_id, r_price, r_startdate, r_enddate, r_upddate, r_cancel, ROWNUM AS RNUM
+			  FROM reservation_tbl
+			  WHERE m_id = #{m_id} AND r_enddate < sysdate AND r_state = '확정')
+		WHERE RNUM between #{sizePerPage} * #{page} - 9 AND #{sizePerPage} * #{page}	  
+		]]>
+	</select>
+	
+</mapper>

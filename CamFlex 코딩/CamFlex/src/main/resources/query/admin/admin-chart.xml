@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camflex.admin.chart.dao.AdminChartDAO">
+	<resultMap type="java.util.TreeMap" id="graph"/>
+	<!-- 상품별 -->
+	<select id="campingZone" resultMap="graph">
+		select count(case when p_number between 81 and 82 then 1 end)"오토",
+				count(case when p_number between 83 and 86 then 1 end)"글램핑",
+				count(case when p_number between 87 and 88 then 1 end)"차박"
+		from reservation_tbl
+	</select>
+	<!-- 월별 -->
+	<select id="monthlySales" resultMap="graph">
+		SELECT NVL(저저번달, 0)AS 저저번달, NVL(저번달, 0)AS 저번달, NVL(이번달, 0)AS 이번달
+		FROM (SELECT sum(case when to_char(r_upddate, 'mm') = to_char(sysdate, 'mm')-2 then r_price / 10 end)AS 저저번달,
+        			 sum(case when to_char(r_upddate, 'mm') = to_char(sysdate, 'mm')-1 then r_price / 10 end)AS 저번달,
+    				 sum(case when to_char(r_upddate, 'mm') = to_char(sysdate, 'mm') then r_price / 10 end)AS 이번달 
+			  FROM reservation_tbl
+			  WHERE r_state = '확정')
+	</select>
+	
+	<!-- 취소 통계 아직 미구현 -->
+	<select id="cancel" resultMap="graph">
+		select count(case when r_cancel = '개인사유' then 1 end)"개인사유",
+        		count(case when r_cancel = '예약날짜변경' then 1 end)"예약날짜변경",
+        		count(case when r_cancel = '천재지변' then 1 end)"천재지변",
+        		count(case when r_cancel = '기타' then 1 end)"기타"
+		from reservation_tbl
+		where r_state = '취소'
+	</select>
+</mapper>
