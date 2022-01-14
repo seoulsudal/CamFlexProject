@@ -1,5 +1,0 @@
-package com.camflex.client.member.dao;
-
-public class MemberDAOImpl implements MemberDAO {
-
-}

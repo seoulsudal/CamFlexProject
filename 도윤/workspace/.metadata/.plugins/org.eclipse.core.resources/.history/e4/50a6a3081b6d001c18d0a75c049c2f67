@@ -1,5 +1,0 @@
-package com.camflex.admin.login.dao;
-
-public class AdminLoginDAOImpl implements AdminLoginDAO {
-
-}

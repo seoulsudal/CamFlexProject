@@ -1,9 +1,0 @@
-package com.camflex.client.member.service;
-
-import com.camflex.client.member.vo.MemberVO;
-
-public interface MemberService {
-
-	public int regMember(MemberVO mvo);
-
-}
